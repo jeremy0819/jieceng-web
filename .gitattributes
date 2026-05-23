@@ -1,0 +1,10 @@
+# 統一文字檔換行為 LF，避免 Windows/Linux 之間產生大量無意義差異
+* text=auto eol=lf
+
+# 圖片等二進位檔不做換行轉換
+*.jpg binary
+*.jpeg binary
+*.png binary
+*.gif binary
+*.ico binary
+*.webp binary

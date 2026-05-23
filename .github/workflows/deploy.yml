@@ -1,0 +1,76 @@
+name: Deploy to GitHub Pages
+
+# 每次推送到 main 分支會自動 build 並部署；也可在 Actions 頁面手動觸發。
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# GitHub Pages 部署所需的權限
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# 同一時間只跑一個部署，避免互相覆蓋
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      # 計算部署的子路徑：
+      #   專案站台 user/jieceng-web      -> /jieceng-web/
+      #   使用者站台 user.github.io       -> /
+      # 不使用 NUXT_APP_BASE_URL，因為它會在 prerender 時被重複套用而導致整站變成轉址檔。
+      - name: Compute deploy base path
+        id: base
+        run: |
+          repo="${{ github.event.repository.name }}"
+          if [[ "$repo" == *.github.io ]]; then
+            echo "deploy_base=/" >> "$GITHUB_OUTPUT"
+          else
+            echo "deploy_base=/$repo/" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Generate static site
+        env:
+          DEPLOY_BASE: ${{ steps.base.outputs.deploy_base }}
+        run: npm run generate
+
+      # GitHub Pages 預設會用 Jekyll 忽略底線開頭的資料夾 (_nuxt)，加上 .nojekyll 關閉此行為
+      - name: Disable Jekyll
+        run: touch .output/public/.nojekyll
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .output/public
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
