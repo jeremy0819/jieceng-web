@@ -57,7 +57,10 @@ jobs:
         run: touch .output/public/.nojekyll
 
       - name: Setup Pages
+        # enablement: true 會在首次部署時自動開啟 Pages（來源設為 GitHub Actions），免去手動設定
         uses: actions/configure-pages@v5
+        with:
+          enablement: true
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
