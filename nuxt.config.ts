@@ -33,6 +33,7 @@ export default defineNuxtConfig({
     // 注意：不要用 NUXT_APP_BASE_URL，那會在 prerender 時被重複套用而導致整站變成轉址檔。
     baseURL: process.env.DEPLOY_BASE || '/',
     head: {
+      htmlAttrs: { lang: 'zh-Hant' },
       title: '傑丞建築機構 | 構築永續未來，定義空間美學',
       meta: [
         { charset: 'utf-8' },
@@ -43,7 +44,9 @@ export default defineNuxtConfig({
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
         { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
-        { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@300&display=swap' }
+        // Latin 字體 (Playfair / Inter / JetBrains Mono) 負責英文與數字的高級感，
+        // Noto Serif TC / Noto Sans TC 作為後備字體負責所有中文字形。
+        { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Noto+Serif+TC:wght@300;400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;700&family=JetBrains+Mono:wght@300&display=swap' }
       ]
     },
     pageTransition: { name: 'page', mode: 'out-in' }

@@ -12,11 +12,11 @@
       </div>
 
       <div class="relative z-10 text-center px-6">
-        <h1 class="font-serif text-5xl md:text-8xl font-light tracking-tight text-warm-white mb-6 animate-fade-in-up">
+        <h1 class="font-serif text-5xl md:text-8xl font-light tracking-zh-wide text-warm-white mb-6 animate-fade-in-up">
           傑丞建築機構
         </h1>
         <p
-          class="font-sans text-lg md:text-2xl font-extralight tracking-[0.2em] text-warm-white/90 mb-12 animate-fade-in-up"
+          class="font-sans text-lg md:text-2xl font-extralight tracking-[0.25em] text-warm-white/90 mb-12 animate-fade-in-up"
           style="animation-delay: 0.3s"
         >
           構築永續未來 · 定義空間美學
@@ -34,9 +34,9 @@
     <!-- 區塊2: 全案管理介紹 (優化高度統一與圖片不裁切) -->
     <section class="section-spacing bg-warm-white">
       <div class="container-custom">
-        <div class="flex flex-col items-center mb-24 animate-on-scroll">
+        <div class="flex flex-col items-center mb-24 animate-fade-in-up">
           <span class="font-mono text-emerald-brand text-xs tracking-[0.3em] uppercase mb-4">Core Management</span>
-          <h2 class="font-serif text-4xl md:text-5xl font-light text-charcoal mb-6">全案管理介紹</h2>
+          <h2 class="font-serif text-4xl md:text-5xl font-light tracking-zh text-charcoal mb-6">全案管理介紹</h2>
           <div class="h-[1px] w-24 bg-emerald-brand"></div>
         </div>
 

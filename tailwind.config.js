@@ -21,10 +21,17 @@ module.exports = {
         }
       },
       // 視覺基因：字體定義
+      // Latin 字體放最前面（只含西文字形），中文交給 Noto 後備字體渲染，
+      // 如此英文得到 Playfair / Inter 的精品感，中文得到思源宋體 / 黑體的工整氣質。
       fontFamily: {
         sans: ['Inter', 'Noto Sans TC', 'sans-serif'],
-        serif: ['Playfair Display', 'serif'],
+        serif: ['Playfair Display', 'Noto Serif TC', 'serif'],
         mono: ['JetBrains Mono', 'monospace'],
+      },
+      letterSpacing: {
+        // 中文專用字距：比預設稍微鬆開，呈現留白的呼吸感而不致鬆散
+        'zh': '0.05em',
+        'zh-wide': '0.12em',
       },
       // 高級感動畫：定義自定義貝茲曲線與時長
       transitionTimingFunction: {

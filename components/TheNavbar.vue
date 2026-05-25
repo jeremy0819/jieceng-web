@@ -2,14 +2,15 @@
   <header
     :class="[
       'fixed top-0 left-0 right-0 z-50 transition-all duration-700 elegant-transition',
-      isScrolled ? 'bg-warm-white/90 backdrop-blur-md py-4 shadow-sm' : 'bg-warm-white py-6'
+      isScrolled || isMenuOpen ? 'bg-warm-white/90 backdrop-blur-md py-4 shadow-sm' : 'bg-warm-white py-6'
     ]"
   >
     <nav class="container-custom flex justify-between items-center">
-      <!-- 品牌標誌：使用襯線體展現人文氣息 -->
+      <!-- 品牌標誌：襯線體展現人文氣息，中文採用較舒展的字距 -->
       <NuxtLink
         to="/"
-        class="text-2xl font-serif font-bold tracking-tighter text-charcoal hover:text-emerald-brand transition-colors duration-500"
+        class="text-2xl font-serif font-bold tracking-zh text-charcoal hover:text-emerald-brand transition-colors duration-500"
+        @click="isMenuOpen = false"
       >
         傑丞建築機構
       </NuxtLink>
@@ -27,21 +28,55 @@
             {{ link.name }}
           </span>
           <!-- 翡翠綠裝飾底線 -->
-          <span class="absolute bottom-0 left-0 w-full h-[1px] bg-emerald-brand transform translate-x-[-105%] group-hover:translate-x-0 transition-transform duration-700 cubic-bezier(0.16, 1, 0.3, 1)"></span>
+          <span class="absolute bottom-0 left-0 w-full h-[1px] bg-emerald-brand transform translate-x-[-105%] group-hover:translate-x-0 transition-transform duration-700 elegant-transition"></span>
         </NuxtLink>
       </div>
 
-      <!-- 手機版選單按鈕 (簡約線條) -->
-      <button class="md:hidden flex flex-col space-y-1.5 p-2 focus:outline-none">
-        <span class="w-6 h-[1px] bg-charcoal"></span>
-        <span class="w-6 h-[1px] bg-charcoal"></span>
+      <!-- 手機版選單按鈕 (簡約線條，可開合) -->
+      <button
+        class="md:hidden relative w-8 h-8 flex flex-col justify-center items-center focus:outline-none"
+        :aria-expanded="isMenuOpen"
+        aria-label="開啟選單"
+        @click="isMenuOpen = !isMenuOpen"
+      >
+        <span
+          :class="[
+            'block w-6 h-[1px] bg-charcoal transition-all duration-500 elegant-transition',
+            isMenuOpen ? 'translate-y-[3px] rotate-45' : '-translate-y-1'
+          ]"
+        ></span>
+        <span
+          :class="[
+            'block w-6 h-[1px] bg-charcoal transition-all duration-500 elegant-transition',
+            isMenuOpen ? '-translate-y-[2px] -rotate-45' : 'translate-y-1'
+          ]"
+        ></span>
       </button>
     </nav>
+
+    <!-- 手機版展開選單 -->
+    <Transition name="mobile-menu">
+      <div v-if="isMenuOpen" class="md:hidden overflow-hidden">
+        <div class="container-custom pt-8 pb-10 flex flex-col space-y-6">
+          <NuxtLink
+            v-for="link in navLinks"
+            :key="link.path"
+            :to="link.path"
+            class="font-sans text-base tracking-zh-wide text-charcoal/70 active:text-emerald-brand"
+            active-class="!text-charcoal font-medium"
+            @click="isMenuOpen = false"
+          >
+            {{ link.name }}
+          </NuxtLink>
+        </div>
+      </div>
+    </Transition>
   </header>
 </template>
 
 <script setup>
 const isScrolled = ref(false)
+const isMenuOpen = ref(false)
 
 const navLinks = [
   { name: '首頁', path: '/' },
@@ -51,7 +86,13 @@ const navLinks = [
   { name: '聯絡方式', path: '/contact' }
 ]
 
-// 處理滾動效果
+// 切換選單時鎖定/解鎖背景捲動
+watch(isMenuOpen, (open) => {
+  if (process.client) {
+    document.body.style.overflow = open ? 'hidden' : ''
+  }
+})
+
 if (process.client) {
   onMounted(() => {
     window.addEventListener('scroll', () => {
@@ -75,8 +116,19 @@ if (process.client) {
   @apply absolute bottom-0 left-0 w-full h-[1px] bg-emerald-brand;
 }
 
-/* 確保點擊連結後平滑感 */
 .nav-link {
   padding: 4px 0;
+}
+
+/* 手機選單展開動畫 */
+.mobile-menu-enter-active,
+.mobile-menu-leave-active {
+  transition: max-height 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease;
+  max-height: 320px;
+}
+.mobile-menu-enter-from,
+.mobile-menu-leave-to {
+  max-height: 0;
+  opacity: 0;
 }
 </style>
