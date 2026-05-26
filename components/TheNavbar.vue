@@ -48,6 +48,7 @@ const navLinks = [
   { name: '關於我們', path: '/about' },
   { name: '全案管理', path: '/pcm' },
   { name: '作品集', path: '/portfolio' },
+  { name: '簡報', path: '/presentations' },
   { name: '聯絡方式', path: '/contact' }
 ]
 

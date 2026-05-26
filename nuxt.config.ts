@@ -16,6 +16,7 @@ export default defineNuxtConfig({
         '/about',
         '/portfolio',
         '/pcm',
+        '/presentations',
         '/contact',
         '/project/1',
         '/project/2',
