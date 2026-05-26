@@ -5,9 +5,10 @@ on:
     branches: [main]
   workflow_dispatch:
 
-# 最上層只設最低限度；各 job 明確宣告自己需要的權限
 permissions:
   contents: read
+  pages: write
+  id-token: write
 
 concurrency:
   group: pages
@@ -47,15 +48,11 @@ jobs:
       - name: Add .nojekyll
         run: touch .output/public/.nojekyll
 
-      - name: Verify output directory
+      - name: Verify output
         run: |
-          echo "=== Output directory contents ==="
-          ls -la .output/public/
-          echo "=== index.html exists? ==="
-          test -f .output/public/index.html && echo "YES" || echo "NO — build failed"
-
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
+          echo "Files in .output/public:"
+          ls .output/public/
+          test -f .output/public/index.html && echo "index.html OK" || (echo "ERROR: index.html missing" && exit 1)
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
@@ -65,7 +62,6 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
-    # deploy job 必須明確宣告這兩個權限，GitHub Pages OIDC 部署才能運作
     permissions:
       pages: write
       id-token: write
