@@ -1,18 +1,14 @@
 name: Deploy to GitHub Pages
 
-# 每次推送到 main 分支會自動 build 並部署；也可在 Actions 頁面手動觸發。
 on:
   push:
     branches: [main]
   workflow_dispatch:
 
-# GitHub Pages 部署所需的權限
+# 最上層只設最低限度；各 job 明確宣告自己需要的權限
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
-# 同一時間只跑一個部署，避免互相覆蓋
 concurrency:
   group: pages
   cancel-in-progress: false
@@ -33,10 +29,6 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      # 計算部署的子路徑：
-      #   專案站台 user/jieceng-web      -> /jieceng-web/
-      #   使用者站台 user.github.io       -> /
-      # 不使用 NUXT_APP_BASE_URL，因為它會在 prerender 時被重複套用而導致整站變成轉址檔。
       - name: Compute deploy base path
         id: base
         run: |
@@ -52,17 +44,20 @@ jobs:
           DEPLOY_BASE: ${{ steps.base.outputs.deploy_base }}
         run: npm run generate
 
-      # GitHub Pages 預設會用 Jekyll 忽略底線開頭的資料夾 (_nuxt)，加上 .nojekyll 關閉此行為
-      - name: Disable Jekyll
+      - name: Add .nojekyll
         run: touch .output/public/.nojekyll
 
-      - name: Setup Pages
-        # enablement: true 會在首次部署時自動開啟 Pages（來源設為 GitHub Actions），免去手動設定
-        uses: actions/configure-pages@v5
-        with:
-          enablement: true
+      - name: Verify output directory
+        run: |
+          echo "=== Output directory contents ==="
+          ls -la .output/public/
+          echo "=== index.html exists? ==="
+          test -f .output/public/index.html && echo "YES" || echo "NO — build failed"
 
-      - name: Upload artifact
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: .output/public
@@ -70,6 +65,10 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
+    # deploy job 必須明確宣告這兩個權限，GitHub Pages OIDC 部署才能運作
+    permissions:
+      pages: write
+      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
