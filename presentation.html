@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>台灣建築標章 × 傑丞建築機構｜專業簡報</title>
+
+  <!-- Reveal.js -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reset.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── Brand tokens ─────────────────────────────── */
+    :root {
+      --warm-white : #fafaf9;
+      --charcoal   : #1a1a1a;
+      --emerald    : #064e3b;
+      --emerald-mid: #065f46;
+      --emerald-lg : #10b981;
+      --emerald-pale: #d1fae5;
+      --stone-200  : #e7e5e4;
+      --stone-400  : #a8a29e;
+      --gold       : #b8860b;
+      --silver     : #6b7280;
+      --bronze     : #92400e;
+    }
+
+    /* ─── Reveal overrides ─────────────────────────── */
+    .reveal-viewport { background: var(--warm-white); }
+
+    .reveal {
+      font-family: 'Inter', 'Noto Sans TC', sans-serif;
+      font-size: 22px;
+      color: var(--charcoal);
+    }
+
+    .reveal .slides { text-align: left; }
+
+    .reveal h1, .reveal h2, .reveal h3, .reveal h4 {
+      font-family: 'Playfair Display', 'Noto Serif TC', serif;
+      color: var(--charcoal);
+      text-transform: none;
+      letter-spacing: -0.01em;
+      line-height: 1.25;
+      margin-bottom: 0.5em;
+      font-weight: 700;
+    }
+    .reveal h1 { font-size: 2.5em; }
+    .reveal h2 { font-size: 1.7em; }
+    .reveal h3 { font-size: 1.2em; font-weight: 600; font-family: 'Inter', sans-serif; }
+    .reveal h4 { font-size: 1em; font-weight: 600; font-family: 'Inter', sans-serif; }
+
+    .reveal p, .reveal li { line-height: 1.7; font-weight: 400; }
+    .reveal ul { list-style: none; padding: 0; }
+    .reveal ul li::before { content: '—'; color: var(--emerald); margin-right: .5em; font-weight: 600; }
+
+    .reveal .controls { color: var(--emerald); }
+    .reveal .progress span { background: var(--emerald); }
+    .reveal .slide-number { font-family: 'JetBrains Mono', monospace; font-size: 0.55em; color: var(--stone-400); }
+
+    .reveal a { color: var(--emerald); }
+
+    /* ─── Layout helpers ───────────────────────────── */
+    .slide-wrap  { padding: 0 60px; }
+    .slide-inner { max-width: 960px; margin: 0 auto; height: 100%; display: flex; flex-direction: column; justify-content: center; }
+
+    .em { color: var(--emerald); }
+    .mono { font-family: 'JetBrains Mono', monospace; font-size: .85em; }
+
+    .rule { width: 48px; height: 3px; background: var(--emerald); margin-bottom: 1.2em; border-radius: 2px; }
+    .rule-full { width: 100%; height: 1px; background: var(--stone-200); margin: 1em 0; }
+
+    .tag {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .6em;
+      font-weight: 500;
+      padding: .18em .6em;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      vertical-align: middle;
+      margin-bottom: .3em;
+    }
+    .tag-green  { background: var(--emerald-pale); color: var(--emerald); }
+    .tag-blue   { background: #dbeafe; color: #1e40af; }
+    .tag-amber  { background: #fef3c7; color: #92400e; }
+    .tag-gray   { background: #f3f4f6; color: #374151; }
+
+    /* ─── Grid ─────────────────────────────────────── */
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 2em; }
+    .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5em; }
+
+    /* ─── Card ──────────────────────────────────────── */
+    .card {
+      background: #fff;
+      border: 1px solid var(--stone-200);
+      border-radius: 12px;
+      padding: 1.4em 1.6em;
+    }
+    .card-em {
+      background: var(--emerald);
+      color: #fff;
+      border-radius: 12px;
+      padding: 1.4em 1.6em;
+    }
+    .card-em h3, .card-em p { color: #fff; }
+    .card-em .mono { color: var(--emerald-pale); }
+
+    /* ─── Stat ──────────────────────────────────────── */
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.8em;
+      font-weight: 700;
+      color: var(--emerald);
+      line-height: 1;
+    }
+    .stat-label { font-size: .75em; color: var(--stone-400); margin-top: .3em; }
+
+    /* ─── Badge row (certification levels) ─────────── */
+    .badge-row { display: flex; gap: .8em; flex-wrap: wrap; margin-top: .8em; }
+    .badge {
+      display: flex; flex-direction: column; align-items: center;
+      padding: .7em 1.2em;
+      border-radius: 10px;
+      border: 1.5px solid var(--stone-200);
+      min-width: 90px;
+      font-size: .75em;
+    }
+    .badge-icon { font-size: 1.8em; line-height: 1; margin-bottom: .2em; }
+    .badge-name { font-weight: 600; font-size: 1em; }
+    .badge-en   { font-size: .75em; color: var(--stone-400); }
+
+    .badge-diamond { border-color: #a78bfa; background: #f5f3ff; }
+    .badge-gold    { border-color: #d97706; background: #fffbeb; }
+    .badge-silver  { border-color: #6b7280; background: #f9fafb; }
+    .badge-bronze  { border-color: #92400e; background: #fef3c7; }
+    .badge-pass    { border-color: var(--emerald); background: var(--emerald-pale); }
+
+    /* ─── BERS level bar ────────────────────────────── */
+    .bers-row { display: flex; gap: .4em; margin-top: .8em; }
+    .bers-cell {
+      flex: 1; padding: .6em .4em; text-align: center;
+      border-radius: 8px; font-size: .65em; font-weight: 600;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* ─── Table ─────────────────────────────────────── */
+    .data-table { width: 100%; border-collapse: collapse; font-size: .78em; }
+    .data-table th {
+      text-align: left; padding: .6em .8em;
+      background: var(--emerald); color: #fff;
+      font-weight: 500; font-family: 'Inter', sans-serif;
+    }
+    .data-table td { padding: .55em .8em; border-bottom: 1px solid var(--stone-200); vertical-align: top; }
+    .data-table tr:last-child td { border-bottom: none; }
+    .data-table tr:nth-child(even) td { background: #f9fafb; }
+
+    /* ─── Special slides ────────────────────────────── */
+    .cover-bg {
+      background: var(--charcoal) !important;
+      color: #fff;
+    }
+    .cover-bg h1, .cover-bg h2, .cover-bg h3 { color: #fff; }
+    .cover-bg .rule { background: var(--emerald-lg); }
+
+    .part-bg {
+      background: var(--emerald) !important;
+      color: #fff;
+    }
+    .part-bg h1, .part-bg h2, .part-bg p { color: #fff; }
+    .part-bg .rule { background: var(--emerald-lg); }
+    .part-bg .em { color: var(--emerald-pale); }
+
+    /* ─── Indicator dots ────────────────────────────── */
+    .indicator-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1em;
+      margin-top: .8em;
+    }
+    .indicator-item {
+      display: flex; align-items: flex-start; gap: .7em;
+      background: #fff; border: 1px solid var(--stone-200);
+      border-radius: 10px; padding: .9em 1em;
+    }
+    .indicator-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .7em; font-weight: 500;
+      background: var(--emerald); color: #fff;
+      border-radius: 50%; width: 1.8em; height: 1.8em;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-top: .1em;
+    }
+    .indicator-text { font-size: .75em; }
+    .indicator-text strong { display: block; font-weight: 600; margin-bottom: .15em; }
+
+    /* ─── Project card ───────────────────────────────── */
+    .project-card {
+      display: grid; grid-template-columns: 1fr 1.2fr; gap: 2em;
+      align-items: center;
+    }
+    .project-img {
+      width: 100%; aspect-ratio: 4/3;
+      background: var(--stone-200); border-radius: 12px;
+      overflow: hidden; position: relative;
+    }
+    .project-img img {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+    .project-img-placeholder {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+      font-size: 3em; color: var(--emerald);
+    }
+    .spec-row { display: flex; gap: 1em; flex-wrap: wrap; margin-top: .6em; }
+    .spec-item { font-size: .72em; }
+    .spec-key { color: var(--stone-400); display: block; margin-bottom: .1em; text-transform: uppercase; letter-spacing: .06em; font-size: .8em; }
+    .spec-val { font-weight: 600; font-family: 'JetBrains Mono', monospace; }
+  </style>
+</head>
+
+<body>
+<div class="reveal">
+<div class="slides">
+
+<!-- ══════════════════════════════════════════════════
+     01. 封面
+═════════════════════════════════════════════════════ -->
+<section data-background-color="#1a1a1a">
+  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
+    <div style="max-width:900px;margin:0 auto;padding:60px 0;">
+      <p class="mono" style="color:var(--emerald-lg);margin-bottom:1.2em;font-size:.75em;">傑丞建築機構 / Jieceng Architecture</p>
+      <h1 style="color:#fff;font-size:2.8em;line-height:1.1;margin-bottom:.5em;">
+        台灣三大<br/>
+        <span style="color:var(--emerald-lg);">建築標章</span><br/>
+        完全解析
+      </h1>
+      <div style="width:60px;height:3px;background:var(--emerald-lg);margin:1.2em 0;border-radius:2px;"></div>
+      <p style="color:#9ca3af;font-size:.85em;margin-bottom:.4em;">
+        綠建築 EEWH ／ 智慧建築 ／ 建築能效評估標示 BERS
+      </p>
+      <p style="color:#9ca3af;font-size:.85em;">
+        暨 傑丞建築機構 專案成果發表
+      </p>
+      <p class="mono" style="color:#4b5563;font-size:.62em;margin-top:2em;">2026.05.26</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════
+     02. 目錄
+═════════════════════════════════════════════════════ -->
+<section>
+  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
+    <div class="slide-inner">
+      <div class="rule"></div>
+      <h2>今日議程</h2>
+      <div class="grid-2" style="margin-top:1.4em;gap:2.5em;">
+        <div>
+          <p class="mono" style="color:var(--emerald);font-size:.65em;margin-bottom:.8em;">PART 01</p>
+          <h3 style="margin-bottom:.8em;">台灣三大建築標章</h3>
+          <ul style="font-size:.82em;">
+            <li>綠建築標章 EEWH</li>
+            <li>智慧建築標章</li>
+            <li>建築能效評估標示 BERS</li>
+            <li>三大標章綜合比較</li>
+          </ul>
+        </div>
+        <div>
+          <p class="mono" style="color:var(--emerald);font-size:.65em;margin-bottom:.8em;">PART 02</p>
+          <h3 style="margin-bottom:.8em;">傑丞建築機構介紹</h3>
+          <ul style="font-size:.82em;">
+            <li>公司理念與服務</li>
+            <li>開放建築</li>
+            <li>當層配管</li>
+            <li>複層樓板 ／ 都市更新</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════
+     03. Part 1 過場
+═════════════════════════════════════════════════════ -->
+<section data-background-color="#064e3b">
+  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
+    <div style="max-width:800px;margin:0 auto;">
+      <p class="mono" style="color:var(--emerald-pale);font-size:.65em;margin-bottom:1em;">PART 01</p>
+      <h1 style="color:#fff;font-size:2.6em;line-height:1.1;">台灣三大<br/>建築標章</h1>
+      <div style="width:48px;height:3px;background:var(--emerald-lg);margin:1.2em 0;border-radius:2px;"></div>
+      <p style="color:#a7f3d0;font-size:.85em;">
+        從生態永續到智慧節能，標章制度如何引領台灣建築走向未來。
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════
+     04. 綠建築 EEWH — 簡介
+═════════════════════════════════════════════════════ -->
+<section>
+  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
+    <div class="slide-inner">
+      <span class="tag tag-green">EEWH ／ 綠建築標章</span>
+      <div class="rule"></div>
+      <h2>生態 · 節能 · 減廢 · 健康</h2>
+      <div class="grid-2" style="margin-top:1.2em;align-items:start;">
+        <div>
+          <p style="font-size:.82em;line-height:1.8;color:#374151;">
+            台灣綠建築標章（<strong>EEWH</strong>）由內政部建築研究所主管，
+            自 <strong>1999 年</strong>起推動，是全球第一個建立於亞熱帶氣候的
+            綠建築標章系統，以「<strong>九大指標</strong>」評估建築對生態環境的影響。
+          </p>
+          <div class="rule-full"></div>
+          <div class="grid-2" style="gap:1.2em;">
+            <div><div class="stat-num">9</div><div class="stat-label">評估指標</div></div>
+            <div><div class="stat-num">5</div><div class="stat-label">認證等級</div></div>
+          </div>
+        </div>
+        <div>
+          <div class="card" style="margin-bottom:1em;">
+            <h4 style="color:var(--emerald);margin-bottom:.6em;">EEWH 代表意義</h4>
+            <table style="font-size:.72em;width:100%;border-collapse:collapse;">
+              <tr><td style="padding:.3em .4em;"><span class="mono">E</span></td><td style="padding:.3em .4em;">Ecology <span style="color:var(--stone-400);">生態</span></td></tr>
+              <tr><td style="padding:.3em .4em;"><span class="mono">E</span></td><td style="padding:.3em .4em;">Energy saving <span style="color:var(--stone-400);">節能</span></td></tr>
+              <tr><td style="padding:.3em .4em;"><span class="mono">W</span></td><td style="padding:.3em .4em;">Waste reduction <span style="color:var(--stone-400);">減廢</span></td></tr>
+              <tr><td style="padding:.3em .4em;"><span class="mono">H</span></td><td style="padding:.3em .4em;">Health <span style="color:var(--stone-400);">健康</span></td></tr>
+            </table>
+          </div>
+          <div class="card">
+            <h4 style="margin-bottom:.4em;">適用範圍</h4>
+            <p style="font-size:.72em;color:#374151;">新建建築（強制）、舊建築改善（自願）、
+            住宅、商業、公共工程皆適用。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════
+     05. EEWH — 九大指標
+═════════════════════════════════════════════════════ -->
+<section>
+  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
+    <div class="slide-inner">
+      <span class="tag tag-green">EEWH ／ 評估指標</span>
+      <div class="rule"></div>
+      <h2>九大評估指標</h2>
+      <div class="indicator-grid" style="margin-top:.9em;">
+        <div class="indicator-item">
+          <div class="indicator-num">01</div>
+          <div class="indicator-text"><strong>生物多樣性</strong>生態棲地與物種保育</div>
+        </div>
+        <div class="indicator-item">
+          <div class="indicator-num">02</div>
+          <div class="indicator-text"><strong>綠化量</strong>植栽固碳效果評估</div>
+        </div>
+        <div class="indicator-item">
+          <div class="indicator-num">03</div>
+          <div class="indicator-text"><strong>基地保水</strong>雨水入滲與滯洪能力</div>
+        </div>
+        <div class="indicator-item">
+          <div class="indicator-num">04</div>
+          <div class="indicator-text"><strong>日常節能</strong> ★必要 空調與照明效率</div>
+        </div>
+        <div class="indicator-item">
+          <div class="indicator-num">05</div>
+          <div class="indicator-text"><strong>CO₂ 減量</strong>建材隱含碳排放量</div>
+        </div>
+        <div class="indicator-item">
+          <div class="indicator-num">06</div>
+          <div class="indicator-text"><strong>廢棄物減量</strong>施工廢料管控</div>
+        </div>
+        <div class="indicator-item">
+          <div class="indicator-num">07</div>
+          <div class="indicator-text"><strong>室內環境</strong> ★必要 空氣品質與音環境</div>
+        </div>
+        <div class="indicator-item">
+          <div class="indicator-num">08</div>
+          <div class="indicator-text"><strong>水資源</strong> ★必要 節水設備與回收利用</div>
+        </div>
+        <div class="indicator-item">
+          <div class="indicator-num">09</div>
+          <div class="indicator-text"><strong>污水及垃圾</strong> ★必要 廢棄物處理設施</div>
+        </div>
+      </div>
+      <p class="mono" style="font-size:.58em;color:var(--stone-400);margin-top:.8em;">★ 必要指標：新建建築須全數通過</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════
+     06. EEWH — 認證等級
+═════════════════════════════════════════════════════ -->
+<section>
+  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
+    <div class="slide-inner">
+      <span class="tag tag-green">EEWH ／ 認證等級</span>
+      <div class="rule"></div>
+      <h2>五個認證等級</h2>
+      <div style="display:flex;gap:1em;margin-top:1.2em;flex-wrap:wrap;">
+        <div class="badge badge-pass" style="flex:1;min-width:130px;padding:1em;">
+          <div class="badge-icon">🌿</div>
+          <div class="badge-name">合格級</div>
+          <div class="badge-en">Qualified</div>
+          <div style="font-size:.65em;margin-top:.4em;color:var(--emerald);">基礎門檻</div>
+        </div>
+        <div class="badge badge-bronze" style="flex:1;min-width:130px;padding:1em;">
+          <div class="badge-icon">🥉</div>
+          <div class="badge-name">銅 級</div>
+          <div class="badge-en">Bronze</div>
+          <div style="font-size:.65em;margin-top:.4em;color:#92400e;">良好表現</div>
+        </div>
+        <div class="badge badge-silver" style="flex:1;min-width:130px;padding:1em;">
+          <div class="badge-icon">🥈</div>
+          <div class="badge-name">銀 級</div>
+          <div class="badge-en">Silver</div>
+          <div style="font-size:.65em;margin-top:.4em;color:#6b7280;">優良表現</div>
+        </div>
+        <div class="badge badge-gold" style="flex:1;min-width:130px;padding:1em;">
+          <div class="badge-icon">🥇</div>
+          <div class="badge-name">黃金級</div>
+          <div class="badge-en">Gold</div>
+          <div style="font-size:.65em;margin-top:.4em;color:#d97706;">卓越表現</div>
+        </div>
+        <div class="badge badge-diamond" style="flex:1;min-width:130px;padding:1em;">
+          <div class="badge-icon">💎</div>
+          <div class="badge-name">鑽石級</div>
+          <div class="badge-en">Diamond</div>
+          <div style="font-size:.65em;margin-top:.4em;color:#7c3aed;">頂尖典範</div>
+        </div>
+      </div>
+      <div class="card" style="margin-top:1.2em;padding:1em 1.4em;">
+        <p style="font-size:.75em;color:#374151;margin:0;">
+          評分以必要指標全數通過為前提，加計選擇指標得分後，
+          依總分高低決定等級。鑽石級為台灣最高建築環境認證，
+          代表建築在生態、節能、健康各面向均達頂尖水準。
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════
+     07. 智慧建築標章 — 簡介
+═════════════════════════════════════════════════════ -->
+<section>
+  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
+    <div class="slide-inner">
+      <span class="tag tag-blue">智慧建築標章</span>
+      <div class="rule"></div>
+      <h2>整合科技與人性的智慧空間</h2>
+      <div class="grid-2" style="margin-top:1.2em;align-items:start;">
+        <div>
+          <p style="font-size:.82em;line-height:1.8;color:#374151;">
+            <strong>智慧建築標章</strong>由內政部建築研究所主管，
+            自 <strong>2004 年</strong>推動，評估建築物將資訊通信、
+            安全防災、節能管理等智慧化系統整合至空間設計的程度，
+            目標打造更安全、舒適、節能的人性化建築環境。
+          </p>
+          <div class="rule-full"></div>
+          <div class="grid-2" style="gap:1.2em;">
+            <div><div class="stat-num">6</div><div class="stat-label">評估指標</div></div>
+            <div><div class="stat-num">4</div><div class="stat-label">認證等級</div></div>
+          </div>
+        </div>
+        <div>
+          <div class="card">
+            <h4 style="color:#1e40af;margin-bottom:.8em;">核心理念</h4>
+            <ul style="font-size:.75em;">
+              <li>人本為先的智慧化設計</li>
+              <li>各系統跨平台整合管理</li>
+              <li>即時感測 × 智能回應</li>
+              <li>提升建築物整體生命週期效益</li>
+            </ul>
+          </div>
+          <div class="card" style="margin-top:1em;">
+            <h4 style="margin-bottom:.4em;">適用類型</h4>
+            <p style="font-size:.72em;color:#374151;">
+              住宅、商辦、公共建築、廠房皆適用，
+              新建及既有建築均可申請評定。
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════
+     08. 智慧建築 — 六大指標
+═════════════════════════════════════════════════════ -->
+<section>
+  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
+    <div class="slide-inner">
+      <span class="tag tag-blue">智慧建築 ／ 評估指標</span>
+      <div class="rule"></div>
+      <h2>六大評估指標</h2>
+      <div class="grid-2" style="margin-top:1em;gap:1.2em;">
+        <div class="card" style="border-left:3px solid #3b82f6;">
+          <h4 style="color:#1e40af;">01 — 資訊通信</h4>
+          <p style="font-size:.75em;color:#374151;margin:0;">
+            ICT 基礎設施、網路架構、通訊系統整合能力，確保資訊傳輸穩定可靠。
+          </p>
+        </div>
+        <div class="card" style="border-left:3px solid #ef4444;">
+          <h4 style="color:#dc2626;">02 — 安全防災</h4>
+          <p style="font-size:.75em;color:#374151;margin:0;">
+            火警、保全、門禁、緊急廣播等安全系統整合，提供全方位防護。
+          </p>
+        </div>
+        <div class="card" style="border-left:3px solid var(--emerald-lg);">
+          <h4 style="color:var(--emerald);">03 — 健康舒適</h4>
+          <p style="font-size:.75em;color:#374151;margin:0;">
+            空調、照明、空氣品質感測與自動調節，維持室內最佳人居環境。
+          </p>
+        </div>
+        <div class="card" style="border-left:3px solid #f59e0b;">
+          <h4 style="color:#d97706;">04 — 節能管理</h4>
+          <p style="font-size:.75em;color:#374151;margin:0;">
+            能源使用監控與智慧排程，透過數據分析持續優化能源效率。
+          </p>
+        </div>
+        <div class="card" style="border-left:3px solid #8b5cf6;">
+          <h4 style="color:#7c3aed;">05 — 設備整合</h4>
+          <p style="font-size:.75em;color:#374151;margin:0;">
+            建築機電設備跨系統整合平台，實現統一管理與即時監控。
+          </p>
+        </div>
+        <div class="card" style="border-left:3px solid #06b6d4;">
+          <h4 style="color:#0e7490;">06 — 貼心便利</h4>
+          <p style="font-size:.75em;color:#374151;margin:0;">
+            智慧停車、訪客管理、資訊服務，提升使用者的日常便利體驗。
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════
+     09. BERS — 簡介
+═════════════════════════════════════════════════════ -->
+<section>
+  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
+    <div class="slide-inner">
+      <span class="tag tag-amber">BERS ／ 建築能效評估標示</span>
+      <div class="rule"></div>
+      <h2>建築能源效率的量化標準</h2>
+      <div class="grid-2" style="margin-top:1.2em;align-items:start;">
+        <div>
+          <p style="font-size:.82em;line-height:1.8;color:#374151;">
+            <strong>建築能效評估標示</strong>（BERS）由內政部於
+            <strong>2022 年</strong>正式推動，以建築物全生命週期的
+            <strong>能源使用強度（EUI）</strong>為核心指標，
+            建立從第 1+ 級到第 7 級的量化能效分級制度，
+            接軌歐盟 EPC 國際規範。
+          </p>
+          <div class="rule-full"></div>
+          <div class="grid-2" style="gap:1.2em;">
+            <div><div class="stat-num">8</div><div class="stat-label">能效等級</div></div>
+            <div><div class="stat-num">2050</div><div class="stat-label">淨零碳目標年</div></div>
+          </div>
+        </div>
+        <div>
+          <div class="card" style="border-left:3px solid #f59e0b;margin-bottom:1em;">
+            <h4 style="color:#d97706;margin-bottom:.5em;">核心評估指標</h4>
+            <p style="font-size:.75em;color:#374151;margin:0;">
+              <strong>EUI（Energy Use Intensity）</strong><br/>
+              每年每平方公尺的能源使用量（kWh/m²/年），
+              數值越低代表能效越佳。
+            </p>
+          </div>
+          <div class="card">
+            <h4 style="margin-bottom:.5em;">推動時程</h4>
+            <ul style="font-size:.72em;">
+              <li>2022 — 制度建立，鼓勵自願申請</li>
+              <li>2025 — 新建公有建築強制申請</li>
+              <li>2030 — 新建建築達第 2 級目標</li>
+              <li>2050 — 全面淨零建築</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════
+     10. BERS — 能效等級
+═════════════════════════════════════════════════════ -->
+<section>
+  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
+    <div class="slide-inner">
+      <span class="tag tag-amber">BERS ／ 能效等級</span>
+      <div class="rule"></div>
+      <h2>八個能效等級</h2>
+      <div class="bers-row" style="margin-top:1em;">
+        <div class="bers-cell" style="background:#064e3b;color:#fff;">1+<br/><span style="font-size:.8em;font-weight:400;">淨零</span></div>
+        <div class="bers-cell" style="background:#065f46;color:#fff;">1<br/><span style="font-size:.8em;font-weight:400;">頂尖</span></div>
+        <div class="bers-cell" style="background:#059669;color:#fff;">2<br/><span style="font-size:.8em;font-weight:400;">優良</span></div>
+        <div class="bers-cell" style="background:#34d399;color:#065f46;">3<br/><span style="font-size:.8em;font-weight:400;">良好</span></div>
+        <div class="bers-cell" style="background:#fcd34d;color:#92400e;">4<br/><span style="font-size:.8em;font-weight:400;">達標</span></div>
+        <div class="bers-cell" style="background:#fb923c;color:#fff;">5<br/><span style="font-size:.8em;font-weight:400;">待改</span></div>
+        <div class="bers-cell" style="background:#ef4444;color:#fff;">6<br/><span style="font-size:.8em;font-weight:400;">耗能</span></div>
+        <div class="bers-cell" style="background:#7f1d1d;color:#fff;">7<br/><span style="font-size:.8em;font-weight:400;">高耗</span></div>
+      </div>
+      <div style="display:flex;justify-content:space-between;font-size:.6em;color:var(--stone-400);margin:.4em 0 1em;">
+        <span>最佳能效</span><span>最差能效 →</span>
+      </div>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>等級</th>
+            <th>說明</th>
+            <th>政策目標</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="mono" style="color:var(--emerald);font-weight:700;">1+</span></td>
+            <td>近零碳或淨零建築，能效極優</td>
+            <td>2050 淨零排放願景</td>
+          </tr>
+          <tr>
+            <td><span class="mono" style="color:var(--emerald);">1 — 2</span></td>
+            <td>超越基準值 30% 以上，高效能建築</td>
+            <td>2030 年新建建築目標</td>
+          </tr>
+          <tr>
+            <td><span class="mono" style="color:#d97706;">3 — 4</span></td>
+            <td>達到或接近法定節能基準</td>
+            <td>現行建築法規要求</td>
+          </tr>
+          <tr>
+            <td><span class="mono" style="color:#dc2626;">5 — 7</span></td>
+            <td>低於基準值，需進行節能改善</td>
+            <td>改善輔導對象</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════
+     11. 三大標章比較
+═════════════════════════════════════════════════════ -->
+<section>
+  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
+    <div class="slide-inner">
+      <span class="tag tag-gray">綜合比較</span>
+      <div class="rule"></div>
+      <h2>三大標章一覽</h2>
+      <table class="data-table" style="margin-top:1em;">
+        <thead>
+          <tr>
+            <th style="width:15%;">項目</th>
+            <th style="width:28%;"><span class="tag-green" style="display:inline;padding:.1em .4em;background:var(--emerald-pale);color:var(--emerald);border-radius:4px;font-size:.8em;">綠建築 EEWH</span></th>
+            <th style="width:28%;"><span style="display:inline;padding:.1em .4em;background:#dbeafe;color:#1e40af;border-radius:4px;font-size:.8em;">智慧建築</span></th>
+            <th style="width:28%;"><span style="display:inline;padding:.1em .4em;background:#fef3c7;color:#92400e;border-radius:4px;font-size:.8em;">BERS</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>主管機關</strong></td>
+            <td>內政部建築研究所</td>
+            <td>內政部建築研究所</td>
+            <td>內政部</td>
+          </tr>
+          <tr>
+            <td><strong>啟動年份</strong></td>
+            <td>1999</td>
+            <td>2004</td>
+            <td>2022</td>
+          </tr>
+          <tr>
+            <td><strong>核心焦點</strong></td>
+            <td>生態・節能・健康</td>
+            <td>智慧化系統整合</td>
+            <td>能源使用效率</td>
+          </tr>
+          <tr>
+            <td><strong>評估方式</strong></td>
+            <td>九大指標加權評分</td>
+            <td>六大智慧化系統</td>
+            <td>EUI 能源使用強度</td>
+          </tr>
+          <tr>
+            <td><strong>等級數</strong></td>
+            <td>5 級（合格 → 鑽石）</td>
+            <td>4 級（合格 → 鑽石）</td>
+            <td>8 級（1+ → 7）</td>
+          </tr>
+          <tr>
+            <td><strong>新建強制</strong></td>
+            <td>部分類型強制</td>
+            <td>自願申請</td>
+            <td>公有建築強制</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="card" style="margin-top:1em;padding:.8em 1.2em;">
+        <p style="font-size:.72em;color:#374151;margin:0;">
+          💡 三大標章互補並行：EEWH 關注<strong>生態品質</strong>，
+          智慧建築標章強化<strong>科技應用</strong>，BERS 量化<strong>能源效益</strong>。
+          同時取得三大標章，代表建築達到環境、智慧、節能的全面卓越。
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════
+     12. Part 2 過場
+═════════════════════════════════════════════════════ -->
+<section data-background-color="#064e3b">
+  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
+    <div style="max-width:800px;margin:0 auto;">
+      <p class="mono" style="color:var(--emerald-pale);font-size:.65em;margin-bottom:1em;">PART 02</p>
+      <h1 style="color:#fff;font-size:2.6em;line-height:1.1;">傑丞建築機構<br/>專案成果</h1>
+      <div style="width:48px;height:3px;background:var(--emerald-lg);margin:1.2em 0;border-radius:2px;"></div>
+      <p style="color:#a7f3d0;font-size:.85em;">
+        每一個空間，都是對居住者生命品質的承諾。
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════
+     13. 公司簡介
+═════════════════════════════════════════════════════ -->
+<section>
+  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
+    <div class="slide-inner">
+      <span class="tag tag-green">傑丞建築機構</span>
+      <div class="rule"></div>
+      <h2>理念 · 工法 · 空間美學</h2>
+      <div class="grid-2" style="margin-top:1.2em;align-items:start;">
+        <div>
+          <p style="font-size:.82em;line-height:1.8;color:#374151;">
+            傑丞建築機構以<strong>極簡留白與優雅動態</strong>傳遞品牌的
+            專業工法與空間美學，致力於將最新建築技術融入人性化設計，
+            打造可以隨時間進化的永續居住環境。
+          </p>
+          <div class="rule-full"></div>
+          <ul style="font-size:.8em;">
+            <li>開放建築專利技術應用</li>
+            <li>SI 管線分離工法</li>
+            <li>全案管理 PCM 服務</li>
+            <li>永續建築設計顧問</li>
+          </ul>
+        </div>
+        <div>
+          <div class="grid-2" style="gap:1em;">
+            <div class="card" style="text-align:center;">
+              <div class="stat-num">4+</div>
+              <div class="stat-label">代表作品</div>
+            </div>
+            <div class="card" style="text-align:center;">
+              <div class="stat-num">PCM</div>
+              <div class="stat-label" style="font-family:'JetBrains Mono';font-size:.65em;">全案管理服務</div>
+            </div>
+            <div class="card" style="text-align:center;">
+              <div class="stat-num" style="font-size:2em;">SI</div>
+              <div class="stat-label">管線分離工法</div>
+            </div>
+            <div class="card" style="text-align:center;">
+              <div class="stat-num" style="font-size:1.8em;">Open</div>
+              <div class="stat-label">開放建築理念</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════
+     14. 專案 — 開放建築
+═════════════════════════════════════════════════════ -->
+<section>
+  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
+    <div class="slide-inner">
+      <span class="tag tag-gray" style="margin-bottom:.3em;">Residential ／ 台北市 信義區</span>
+      <div class="rule"></div>
+      <h2>開放建築</h2>
+      <div class="project-card" style="margin-top:1em;">
+        <div class="project-img">
+          <div class="project-img-placeholder">🏠</div>
+        </div>
+        <div>
+          <p style="font-size:.82em;line-height:1.8;color:#374151;">
+            利用自然採光與極簡線條，打造開放式居住空間。
+            本案重點在於打破傳統實牆的束縛，採用<strong>可變動的彈性隔間技術</strong>，
+            讓住戶能隨著生命週期的變化，自由調整室內佈局。
+          </p>
+          <div class="rule-full"></div>
+          <div class="spec-row">
+            <div class="spec-item">
+              <span class="spec-key">地點</span>
+              <span class="spec-val">台北市 信義區</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-key">完工年</span>
+              <span class="spec-val">2024</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-key">面積</span>
+              <span class="spec-val">120 sqm</span>
+            </div>
+          </div>
+          <div style="margin-top:1em;">
+            <span class="tag tag-green">Open Building Patent</span>
+          </div>
+          <div class="card" style="margin-top:.8em;padding:.8em 1.2em;">
+            <p style="font-size:.72em;color:#374151;margin:0;">
+              彈性隔間設計使空間可因應家庭成長需求進行改造，
+              降低裝修成本並延長建物使用壽命，契合永續建築精神。
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════
+     15. 專案 — 當層配管
+═════════════════════════════════════════════════════ -->
+<section>
+  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
+    <div class="slide-inner">
+      <span class="tag tag-gray" style="margin-bottom:.3em;">Commercial ／ 新北市 板橋區</span>
+      <div class="rule"></div>
+      <h2>當層配管</h2>
+      <div class="project-card" style="margin-top:1em;">
+        <div class="project-img">
+          <div class="project-img-placeholder">🏢</div>
+        </div>
+        <div>
+          <p style="font-size:.82em;line-height:1.8;color:#374151;">
+            結合工業風格與綠色植物，提升工作效率與舒適度。
+            引進<strong>當層配管專利技術</strong>，解決傳統建築漏水難以維修的痛點，
+            實現管線與結構體徹底分離，大幅提升建物壽命。
+          </p>
+          <div class="rule-full"></div>
+          <div class="spec-row">
+            <div class="spec-item">
+              <span class="spec-key">地點</span>
+              <span class="spec-val">新北市 板橋區</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-key">完工年</span>
+              <span class="spec-val">2023</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-key">面積</span>
+              <span class="spec-val">450 sqm</span>
+            </div>
+          </div>
+          <div style="margin-top:1em;">
+            <span class="tag tag-blue">SI Separation</span>
+          </div>
+          <div class="card" style="margin-top:.8em;padding:.8em 1.2em;">
+            <p style="font-size:.72em;color:#374151;margin:0;">
+              SI（支撐體與填充體分離）工法是日本成熟技術的台灣應用實踐，
+              管線獨立於當層樓板，維修不影響上下樓鄰居，
+              大幅減少紛爭並降低長期維護成本。
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════
+     16. 專案 — 複層樓板
+═════════════════════════════════════════════════════ -->
+<section>
+  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
+    <div class="slide-inner">
+      <span class="tag tag-gray" style="margin-bottom:.3em;">Landscape ／ 台中市 西屯區</span>
+      <div class="rule"></div>
+      <h2>複層樓板</h2>
+      <div class="project-card" style="margin-top:1em;">
+        <div class="project-img">
+          <div class="project-img-placeholder">🌿</div>
+        </div>
+        <div>
+          <p style="font-size:.82em;line-height:1.8;color:#374151;">
+            強調人與自然互動，設計融入周圍環境的公共空間。
+            透過<strong>複層樓板設計</strong>創造出極佳的隔音效果與
+            微氣候調節空間，讓室內環境不受外界噪音干擾，維持恆溫舒適。
+          </p>
+          <div class="rule-full"></div>
+          <div class="spec-row">
+            <div class="spec-item">
+              <span class="spec-key">地點</span>
+              <span class="spec-val">台中市 西屯區</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-key">完工年</span>
+              <span class="spec-val">2024</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-key">面積</span>
+              <span class="spec-val">800 sqm</span>
+            </div>
+          </div>
+          <div style="margin-top:1em;">
+            <span class="tag tag-green">Double-Layer Floor</span>
+          </div>
+          <div class="card" style="margin-top:.8em;padding:.8em 1.2em;">
+            <p style="font-size:.72em;color:#374151;margin:0;">
+              複層樓板的空氣層設計同時達到隔音、隔熱、管線整合三重效益，
+              是響應綠建築 EEWH 室內環境指標的具體技術實踐。
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════
+     17. 專案 — 都市更新
+═════════════════════════════════════════════════════ -->
+<section>
+  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
+    <div class="slide-inner">
+      <span class="tag tag-gray" style="margin-bottom:.3em;">Renovation ／ 台北市 大同區</span>
+      <div class="rule"></div>
+      <h2>都市更新</h2>
+      <div class="project-card" style="margin-top:1em;">
+        <div class="project-img">
+          <div class="project-img-placeholder">🏛️</div>
+        </div>
+        <div>
+          <p style="font-size:.82em;line-height:1.8;color:#374151;">
+            保留歷史紋理，注入現代機能，賦予老建築新生命。
+            在尊重原有結構與街區記憶的前提下，導入現代化機能與安全規範，
+            讓老屋<strong>延續城市文化</strong>的同時滿足當代居住需求。
+          </p>
+          <div class="rule-full"></div>
+          <div class="spec-row">
+            <div class="spec-item">
+              <span class="spec-key">地點</span>
+              <span class="spec-val">台北市 大同區</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-key">完工年</span>
+              <span class="spec-val">2023</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-key">面積</span>
+              <span class="spec-val">320 sqm</span>
+            </div>
+          </div>
+          <div style="margin-top:1em;">
+            <span class="tag tag-amber">Urban Renewal</span>
+          </div>
+          <div class="card" style="margin-top:.8em;padding:.8em 1.2em;">
+            <p style="font-size:.72em;color:#374151;margin:0;">
+              都市更新不只是拆舊建新，更是以建築設計為媒介的城市文化保存工作，
+              結合 BERS 能效評估，讓老屋翻新兼顧歷史記憶與現代節能標準。
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════
+     18. 結語
+═════════════════════════════════════════════════════ -->
+<section data-background-color="#1a1a1a">
+  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
+    <div style="max-width:900px;margin:0 auto;padding:60px 0;">
+      <p class="mono" style="color:var(--emerald-lg);font-size:.65em;margin-bottom:1em;">傑丞建築機構</p>
+      <h1 style="color:#fff;font-size:2.4em;line-height:1.15;margin-bottom:.5em;">
+        以標準為基石，<br/>
+        <span style="color:var(--emerald-lg);">以設計為靈魂</span>
+      </h1>
+      <div style="width:60px;height:3px;background:var(--emerald-lg);margin:1.2em 0;border-radius:2px;"></div>
+      <p style="color:#9ca3af;font-size:.82em;line-height:1.8;max-width:540px;">
+        綠建築、智慧建築、BERS 三大標章是台灣建築走向永續的重要里程碑，
+        而傑丞建築機構將持續以前瞻工法與人本設計，
+        為每一位住戶打造值得傳承的空間。
+      </p>
+      <div style="margin-top:2em;display:flex;gap:2em;">
+        <div>
+          <div style="color:#6b7280;font-size:.65em;margin-bottom:.3em;text-transform:uppercase;letter-spacing:.08em;">Website</div>
+          <div style="color:#fff;font-family:'JetBrains Mono',monospace;font-size:.75em;">jeremy0819.github.io/jieceng-web</div>
+        </div>
+        <div>
+          <div style="color:#6b7280;font-size:.65em;margin-bottom:.3em;text-transform:uppercase;letter-spacing:.08em;">Service</div>
+          <div style="color:#fff;font-size:.75em;">建築設計 ／ PCM 全案管理 ／ 永續顧問</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div><!-- .slides -->
+</div><!-- .reveal -->
+
+<!-- Reveal.js -->
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+<script>
+  Reveal.initialize({
+    hash: true,
+    transition: 'fade',
+    transitionSpeed: 'slow',
+    backgroundTransition: 'fade',
+    controls: true,
+    controlsTutorial: false,
+    progress: true,
+    center: false,
+    slideNumber: 'c/t',
+    width: 1280,
+    height: 720,
+    margin: 0.04,
+    minScale: 0.2,
+    maxScale: 2.0,
+    keyboard: {
+      37: 'prev',
+      38: 'prev',
+      39: 'next',
+      40: 'next',
+    },
+  });
+</script>
+</body>
+</html>
