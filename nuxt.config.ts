@@ -1,6 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  // 🔴 新增此行，對應目前的開發日期
   compatibilityDate: '2025-02-17',
 
   // 開啟 SSG 模式
