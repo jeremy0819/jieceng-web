@@ -9,6 +9,20 @@
     font-variant-ligatures: none;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    /* 提升中英混排的行距節奏與字距，讓內文更易讀、更有設計感 */
+    line-height: 1.75;
+    letter-spacing: 0.01em;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* 大標題：現代瀏覽器自動平衡斷行，避免單字落單造成版面破碎 */
+  h1, h2, h3 {
+    text-wrap: balance;
+  }
+
+  /* 內文段落：自動避免段尾孤字 */
+  p {
+    text-wrap: pretty;
   }
 
   /* 品牌色選取效果 (翡翠綠) */
