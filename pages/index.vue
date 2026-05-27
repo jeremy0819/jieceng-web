@@ -26,59 +26,71 @@
           class="inline-block px-10 py-4 border border-warm-white text-warm-white text-sm tracking-widest uppercase hover:bg-warm-white hover:text-charcoal transition-all duration-1200 elegant-transition animate-fade-in-up"
           style="animation-delay: 0.6s"
         >
-          查看作品集
+          查看全案管理案例
         </NuxtLink>
       </div>
     </section>
 
-    <!-- 區塊2: 全案管理介紹 (優化高度統一與圖片不裁切) -->
+    <!-- 區塊2: 全案管理案例 (Apple 風格大圖卡) -->
     <section class="section-spacing bg-warm-white">
       <div class="container-custom">
-        <div class="flex flex-col items-center mb-24 animate-fade-in-up">
-          <span class="font-mono text-emerald-brand text-xs tracking-[0.3em] uppercase mb-4">Core Management</span>
-          <h2 class="font-serif text-4xl md:text-5xl font-light tracking-zh text-charcoal mb-6">全案管理介紹</h2>
-          <div class="h-[1px] w-24 bg-emerald-brand"></div>
+        <!-- 大標題區 -->
+        <div class="text-center mb-16 md:mb-24 animate-fade-in-up">
+          <span class="font-mono text-emerald-brand text-xs tracking-[0.3em] uppercase mb-5 block">Featured Cases</span>
+          <h2 class="font-serif text-5xl md:text-7xl font-light tracking-zh text-charcoal mb-6 leading-tight">
+            全案管理案例
+          </h2>
+          <p class="font-sans text-base md:text-xl font-light text-charcoal/50 max-w-2xl mx-auto tracking-zh leading-relaxed">
+            從住宅到商業，每一個案例都是傑丞全案管理與專利工法的具體實踐。
+          </p>
         </div>
 
-        <!-- 作品網格 (使用 flex h-full 統一高度) -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 items-stretch">
-          <div
-            v-for="project in featuredProjects"
+        <!-- 大圖卡網格 (2 欄、圓角、滿版照片、漸層字幕) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+          <NuxtLink
+            v-for="(project, index) in featuredProjects"
             :key="project.id"
-            class="group cursor-pointer flex flex-col h-full"
+            :to="`/project/${project.id}`"
+            class="group relative block overflow-hidden rounded-3xl bg-charcoal aspect-[4/3] animate-fade-in-up shadow-sm"
+            :style="`animation-delay: ${0.1 + index * 0.1}s`"
           >
-            <NuxtLink :to="`/project/${project.id}`" class="flex flex-col h-full overflow-hidden bg-white shadow-sm">
-              <!-- 圖片容器 (調整為不裁切 object-contain) -->
-              <div class="relative h-80 overflow-hidden bg-stone-50 flex items-center justify-center">
-                <img
-                  :src="project.image"
-                  :alt="project.title"
-                  class="max-w-full max-h-full object-contain transition-transform duration-1200 elegant-transition group-hover:scale-105"
-                >
-                <div class="absolute inset-0 bg-emerald-brand/0 group-hover:bg-emerald-brand/5 transition-colors duration-700"></div>
-              </div>
+            <img
+              :src="project.image"
+              :alt="project.title"
+              class="absolute inset-0 w-full h-full object-cover transition-transform duration-1200 elegant-transition group-hover:scale-105"
+            >
+            <!-- 底部漸層遮罩 -->
+            <div class="absolute inset-0 bg-gradient-to-t from-charcoal/85 via-charcoal/20 to-transparent"></div>
 
-              <!-- 文字描述 (flex-grow 確保底部對齊) -->
-              <div class="p-8 border-t border-stone-100 flex flex-col flex-grow">
-                <h3 class="font-serif text-xl font-medium text-charcoal mb-3">{{ project.title }}</h3>
-                <p class="font-sans text-sm text-charcoal/60 leading-relaxed mb-8 flex-grow">
-                  {{ project.description }}
-                </p>
-                <div class="flex items-center text-emerald-brand text-xs font-mono tracking-widest uppercase overflow-hidden mt-auto">
-                  <span class="transform translate-x-0 group-hover:translate-x-2 transition-transform duration-500">View Detail</span>
-                  <div class="ml-2 w-0 group-hover:w-8 h-[1px] bg-emerald-brand transition-all duration-500"></div>
-                </div>
-              </div>
-            </NuxtLink>
-          </div>
+            <!-- 分類標籤 -->
+            <div class="absolute top-7 left-7">
+              <span class="font-mono text-[11px] tracking-[0.2em] uppercase text-warm-white/70">
+                {{ categoryLabel(project.category) }}
+              </span>
+            </div>
+
+            <!-- 文字內容 -->
+            <div class="absolute bottom-0 left-0 right-0 p-8 md:p-10">
+              <h3 class="font-serif text-3xl md:text-4xl font-light text-warm-white mb-3 tracking-zh">
+                {{ project.title }}
+              </h3>
+              <p class="font-sans text-sm md:text-base text-warm-white/70 leading-relaxed max-w-md mb-5 line-clamp-2">
+                {{ project.description }}
+              </p>
+              <span class="inline-flex items-center gap-2 text-warm-white text-xs tracking-[0.15em] uppercase">
+                了解更多
+                <span class="transition-transform duration-500 group-hover:translate-x-1.5">→</span>
+              </span>
+            </div>
+          </NuxtLink>
         </div>
 
-        <div class="mt-24 text-center">
+        <div class="mt-16 md:mt-24 text-center">
           <NuxtLink
             to="/portfolio"
-            class="inline-block px-12 py-5 bg-charcoal text-warm-white text-xs tracking-[0.2em] uppercase hover:bg-emerald-brand transition-colors duration-700 elegant-transition"
+            class="inline-flex items-center gap-3 px-12 py-5 bg-charcoal text-warm-white text-xs tracking-[0.2em] uppercase rounded-full hover:bg-emerald-brand transition-colors duration-700 elegant-transition"
           >
-            查看所有作品
+            查看全部案例
           </NuxtLink>
         </div>
       </div>
@@ -88,7 +100,15 @@
 
 <script setup>
 const { projects } = useProjects()
-const featuredProjects = projects.slice(0, 3)
+const featuredProjects = projects.slice(0, 4)
+
+const categoryLabels = {
+  Residential: '住宅',
+  Commercial: '商業',
+  Landscape: '景觀',
+  Renovation: '改造'
+}
+const categoryLabel = (key) => categoryLabels[key] ?? key
 </script>
 
 <style scoped>

@@ -5,10 +5,10 @@
       <div class="container-custom">
         <div class="text-center">
           <span class="font-mono text-emerald-brand text-xs tracking-[0.3em] uppercase mb-4 block animate-fade-in-up">
-            Portfolio
+            PCM Cases
           </span>
           <h1 class="font-serif text-5xl md:text-6xl font-light text-charcoal mb-8 animate-fade-in-up">
-            精選案例
+            全案管理案例
           </h1>
           <div class="h-[1px] w-24 bg-emerald-brand mx-auto mb-16 animate-fade-in-up"></div>
 
@@ -16,16 +16,16 @@
           <div class="flex flex-wrap justify-center gap-8 md:gap-12 animate-fade-in-up" style="animation-delay: 0.2s">
             <button
               v-for="category in categories"
-              :key="category"
-              @click="currentCategory = category"
+              :key="category.key"
+              @click="currentCategory = category.key"
               :class="[
-                'font-sans text-xs tracking-[0.2em] uppercase transition-all duration-500 relative pb-2',
-                currentCategory === category ? 'text-charcoal' : 'text-charcoal/40 hover:text-charcoal'
+                'font-sans text-xs tracking-[0.2em] uppercase transition-all duration-500 relative pb-2 tracking-zh',
+                currentCategory === category.key ? 'text-charcoal' : 'text-charcoal/40 hover:text-charcoal'
               ]"
             >
-              {{ category }}
+              {{ category.label }}
               <span
-                v-if="currentCategory === category"
+                v-if="currentCategory === category.key"
                 class="absolute bottom-0 left-0 w-full h-[1px] bg-emerald-brand animate-expand-width"
               ></span>
             </button>
@@ -89,9 +89,26 @@
 
 <script setup>
 const { projects } = useProjects()
+const route = useRoute()
+
+const categories = [
+  { key: 'All', label: '全部' },
+  { key: 'Residential', label: '住宅' },
+  { key: 'Commercial', label: '商業' },
+  { key: 'Landscape', label: '景觀' },
+  { key: 'Renovation', label: '改造' }
+]
 
 const currentCategory = ref('All')
-const categories = ['All', 'Residential', 'Commercial', 'Landscape', 'Renovation']
+
+// 從網址 ?category= 帶入篩選（導覽列下拉選單會用到）
+const applyQuery = () => {
+  const q = route.query.category
+  const match = categories.find((c) => c.key === q)
+  currentCategory.value = match ? match.key : 'All'
+}
+applyQuery()
+watch(() => route.query.category, applyQuery)
 
 const filteredProjects = computed(() => {
   if (currentCategory.value === 'All') return projects
