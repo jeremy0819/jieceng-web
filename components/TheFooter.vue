@@ -58,7 +58,9 @@ const currentYear = new Date().getFullYear()
 const navLinks = [
   { name: '首頁', path: '/' },
   { name: '關於我們', path: '/about' },
-  { name: '作品集', path: '/portfolio' },
+  { name: '全案管理', path: '/pcm' },
+  { name: '全案管理案例', path: '/portfolio' },
+  { name: '標章介紹', path: '/presentations' },
   { name: '聯絡方式', path: '/contact' }
 ]
 </script>

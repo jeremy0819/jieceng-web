@@ -5,10 +5,10 @@
       <div class="container-custom">
         <div class="text-center">
           <span class="font-mono text-emerald-brand text-xs tracking-[0.3em] uppercase mb-4 block animate-fade-in-up">
-            Presentations
+            Certifications
           </span>
           <h1 class="font-serif text-5xl md:text-6xl font-light text-charcoal mb-8 animate-fade-in-up">
-            建築標章簡報
+            標章介紹
           </h1>
           <div class="h-[1px] w-24 bg-emerald-brand mx-auto mb-8 animate-fade-in-up"></div>
           <p class="font-sans text-sm md:text-base text-charcoal/50 max-w-xl mx-auto leading-relaxed animate-fade-in-up" style="animation-delay: 0.15s">
