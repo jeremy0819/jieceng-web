@@ -117,29 +117,6 @@ const filteredProjects = computed(() => {
 </script>
 
 <style scoped>
-.elegant-transition {
-  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-/* 基礎載入動畫 */
-.animate-fade-in-up {
-  opacity: 0;
-  animation: fade-in-up 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-@keyframes fade-in-up {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes expand-width {
-  from { width: 0; }
-  to { width: 100%; }
-}
-
-.animate-expand-width {
-  animation: expand-width 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
 
 /* --- 修正後的 TransitionGroup 動態樣式 --- */
 

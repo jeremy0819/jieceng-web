@@ -1,75 +1,117 @@
-/* 導入字體與基礎樣式 */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* ── Base ──────────────────────────────────────── */
 @layer base {
   body {
     @apply bg-warm-white text-charcoal antialiased;
     font-variant-ligatures: none;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    /* 提升中英混排的行距節奏與字距，讓內文更易讀、更有設計感 */
     line-height: 1.75;
     letter-spacing: 0.01em;
     text-rendering: optimizeLegibility;
   }
 
-  /* 大標題：現代瀏覽器自動平衡斷行，避免單字落單造成版面破碎 */
-  h1, h2, h3 {
-    text-wrap: balance;
-  }
+  h1, h2, h3 { text-wrap: balance; }
+  p { text-wrap: pretty; }
 
-  /* 內文段落：自動避免段尾孤字 */
-  p {
-    text-wrap: pretty;
-  }
-
-  /* 品牌色選取效果 (翡翠綠) */
   ::selection {
-    background-color: #064e3b; /* emerald-950 */
-    color: #ecfdf5;           /* emerald-50 */
+    background-color: #064e3b;
+    color: #ecfdf5;
   }
 
-  /* 高級感細節：自定義捲軸 */
-  ::-webkit-scrollbar {
-    width: 6px;
-  }
-  ::-webkit-scrollbar-track {
-    background: #fafaf9; /* 暖米白色 */
-  }
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: #fafaf9; }
   ::-webkit-scrollbar-thumb {
-    background: #e5e5e0;
+    background: #d6d3d1;
     border-radius: 10px;
-    transition: background 0.3s ease;
   }
-  ::-webkit-scrollbar-thumb:hover {
-    background: #10b981; /* 懸停時轉為亮綠 */
+  ::-webkit-scrollbar-thumb:hover { background: #064e3b; }
+
+  html { scroll-behavior: smooth; }
+}
+
+/* ── Global utilities ──────────────────────────── */
+@layer utilities {
+  .elegant-transition {
+    transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
   }
 
-  /* 平滑滾動基礎設定 */
-  html {
-    scroll-behavior: smooth;
+  .animate-fade-in-up {
+    opacity: 0;
+    animation: fade-in-up 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .animate-slow-zoom {
+    animation: slow-zoom 20s linear infinite alternate;
+  }
+
+  .animate-expand-width {
+    animation: expand-width 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .animate-scroll-bar {
+    animation: scroll-bar 1.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  }
+
+  .text-emerald-brand-light {
+    color: #10b981;
   }
 }
 
-/* Nuxt 頁面切換過渡動畫：採用高級感曲線 */
+/* ── Keyframes ─────────────────────────────────── */
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slow-zoom {
+  from { transform: scale(1); }
+  to   { transform: scale(1.1); }
+}
+
+@keyframes expand-width {
+  from { width: 0; }
+  to   { width: 100%; }
+}
+
+@keyframes scroll-bar {
+  0%   { top: -40%; opacity: 0; }
+  20%  { opacity: 1; }
+  80%  { opacity: 1; }
+  100% { top: 140%; opacity: 0; }
+}
+
+/* ── Page transitions ──────────────────────────── */
 .page-enter-active,
 .page-leave-active {
-  transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.page-enter-from { opacity: 0; transform: translateY(14px); }
+.page-leave-to   { opacity: 0; transform: translateY(-6px); }
+
+/* ── Grain texture (暗色區塊奢質底紋) ─────────── */
+.grain-dark {
+  position: relative;
+  isolation: isolate;
 }
 
-.page-enter-from {
-  opacity: 0;
-  transform: translateY(20px);
+.grain-dark::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23g)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  mix-blend-mode: screen;
 }
 
-.page-leave-to {
-  opacity: 0;
-  transform: translateY(-20px);
-}
-
-/* 全局工具類：極簡留白標準 */
+/* ── Layout utilities ──────────────────────────── */
 .section-spacing {
   @apply py-32 md:py-40;
 }

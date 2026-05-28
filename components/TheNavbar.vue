@@ -5,6 +5,12 @@
       isScrolled || isMenuOpen ? 'bg-warm-white/90 backdrop-blur-md py-4 shadow-sm' : 'bg-warm-white py-6'
     ]"
   >
+    <!-- 捲動進度指示條 -->
+    <div
+      class="absolute top-0 left-0 h-[2px] bg-emerald-brand origin-left will-change-transform"
+      :style="{ transform: `scaleX(${scrollProgress})` }"
+    ></div>
+
     <nav class="container-custom flex justify-between items-center">
       <!-- 品牌標誌 -->
       <NuxtLink
@@ -294,6 +300,8 @@ const closeMenu = () => { activeMenu.value = null; activeCat.value = 'Residentia
 const isScrolled = ref(false)
 const isMenuOpen = ref(false)
 const mobileOpen = ref(null)
+const scrollProgress = ref(0)
+
 const toggleMobile = (name) => { mobileOpen.value = mobileOpen.value === name ? null : name }
 const closeAll = () => { isMenuOpen.value = false; mobileOpen.value = null }
 
@@ -305,18 +313,19 @@ watch(isMenuOpen, (open) => {
 
 if (process.client) {
   onMounted(() => {
-    window.addEventListener('scroll', () => {
-      isScrolled.value = window.scrollY > 50
-    })
+    const onScroll = () => {
+      const doc = document.documentElement
+      const scrollTop = doc.scrollTop || document.body.scrollTop
+      const scrollHeight = doc.scrollHeight - doc.clientHeight
+      scrollProgress.value = scrollHeight > 0 ? scrollTop / scrollHeight : 0
+      isScrolled.value = scrollTop > 50
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
   })
 }
 </script>
 
 <style scoped>
-.elegant-transition {
-  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
-}
-
 .nav-link.active-link span {
   @apply text-charcoal font-semibold;
 }

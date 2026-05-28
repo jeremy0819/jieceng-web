@@ -103,30 +103,13 @@ useHead({
 </script>
 
 <style scoped>
-.elegant-transition {
-  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
-}
-
+/* 詳情頁背景縮放比首頁更緩更深：30s / scale 1.15 */
 @keyframes slow-zoom {
   from { transform: scale(1); }
-  to { transform: scale(1.15); }
+  to   { transform: scale(1.15); }
 }
 
 .animate-slow-zoom {
   animation: slow-zoom 30s linear infinite alternate;
-}
-
-.animate-fade-in-up {
-  opacity: 0;
-  animation: fade-in-up 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-@keyframes fade-in-up {
-  from { opacity: 0; transform: translateY(40px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.text-emerald-brand-light {
-  color: #10b981;
 }
 </style>
