@@ -177,6 +177,62 @@
       </div>
     </section>
 
+    <!-- 區塊4.5: 全案管理案例 -->
+    <section class="section-spacing bg-white border-t border-stone-100">
+      <div class="container-custom">
+        <div class="text-center mb-16 md:mb-24">
+          <span class="font-mono text-emerald-brand text-xs tracking-[0.3em] uppercase mb-5 block animate-fade-in-up">Cases</span>
+          <h2 class="font-serif text-4xl md:text-5xl font-light tracking-zh text-charcoal mb-6 animate-fade-in-up">
+            全案管理案例
+          </h2>
+          <div class="h-[1px] w-12 bg-emerald-brand mx-auto animate-fade-in-up"></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+          <NuxtLink
+            v-for="(project, index) in projects"
+            :key="project.id"
+            :to="`/project/${project.id}`"
+            class="group relative block overflow-hidden rounded-3xl bg-charcoal aspect-[4/3] animate-fade-in-up shadow-sm"
+            :style="`animation-delay: ${0.1 + index * 0.1}s`"
+          >
+            <img
+              :src="project.image"
+              :alt="project.title"
+              class="absolute inset-0 w-full h-full object-cover transition-transform duration-1200 elegant-transition group-hover:scale-105"
+            >
+            <div class="absolute inset-0 bg-gradient-to-t from-charcoal/85 via-charcoal/20 to-transparent"></div>
+            <div class="absolute top-7 left-7">
+              <span class="font-mono text-[11px] tracking-[0.2em] uppercase text-warm-white/70">
+                {{ categoryLabel(project.category) }}
+              </span>
+            </div>
+            <div class="absolute bottom-0 left-0 right-0 p-8 md:p-10">
+              <h3 class="font-serif text-3xl md:text-4xl font-light text-warm-white mb-3 tracking-zh">
+                {{ project.title }}
+              </h3>
+              <p class="font-sans text-sm md:text-base text-warm-white/70 leading-relaxed max-w-md mb-5 line-clamp-2">
+                {{ project.description }}
+              </p>
+              <span class="inline-flex items-center gap-2 text-warm-white text-xs tracking-[0.15em] uppercase">
+                了解更多
+                <span class="transition-transform duration-500 group-hover:translate-x-1.5">→</span>
+              </span>
+            </div>
+          </NuxtLink>
+        </div>
+
+        <div class="mt-16 text-center">
+          <NuxtLink
+            to="/portfolio"
+            class="inline-flex items-center gap-3 px-12 py-5 bg-charcoal text-warm-white text-xs tracking-[0.2em] uppercase rounded-full hover:bg-emerald-brand transition-colors duration-700 elegant-transition"
+          >
+            查看全部案例
+          </NuxtLink>
+        </div>
+      </div>
+    </section>
+
     <!-- 區塊4: CTA 聯絡我們 -->
     <section class="py-32 bg-charcoal">
       <div class="container-custom text-center">
@@ -231,6 +287,15 @@ const faqs = [
   { q: '應該在什麼時間點導入全案管理？', a: '越早越好。在土地評估與規劃初期就介入，能在源頭優化財務與設計決策，效益遠大於施工階段才補救。' },
   { q: '傑丞的專利工法能帶來什麼價值？', a: '當層配管、複層樓板等專利工法，從結構源頭解決傳統建築漏水、噪音與維修困難的痛點，大幅延長建物壽命並提升資產轉手價值。' }
 ]
+
+const { projects } = useProjects()
+const categoryLabels = {
+  Residential: '住宅',
+  Commercial: '商業',
+  Landscape: '景觀',
+  Renovation: '改造'
+}
+const categoryLabel = (key) => categoryLabels[key] ?? key
 
 const openFaq = ref(0)
 const toggleFaq = (i) => {

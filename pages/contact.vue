@@ -23,15 +23,17 @@
 
           <!-- 左側：聯絡表單 (極簡線條風格) -->
           <div class="animate-fade-in-up" style="animation-delay: 0.4s">
-            <form @submit.prevent class="space-y-12">
+            <form @submit.prevent="submitForm" class="space-y-12">
               <!-- 姓名欄位 -->
               <div class="group relative">
                 <label class="block font-mono text-[10px] uppercase tracking-widest text-charcoal/40 mb-2 transition-colors group-focus-within:text-emerald-brand">
                   Full Name
                 </label>
                 <input
+                  v-model="form.name"
                   type="text"
                   placeholder="您的姓名"
+                  required
                   class="w-full bg-transparent border-b border-charcoal/10 py-3 focus:outline-none focus:border-emerald-brand transition-colors duration-700 font-sans text-charcoal placeholder:text-charcoal/20"
                 >
                 <div class="absolute bottom-0 left-0 w-0 h-[1px] bg-emerald-brand transition-all duration-700 elegant-transition group-focus-within:w-full"></div>
@@ -43,8 +45,10 @@
                   Email Address
                 </label>
                 <input
+                  v-model="form.email"
                   type="email"
                   placeholder="email@example.com"
+                  required
                   class="w-full bg-transparent border-b border-charcoal/10 py-3 focus:outline-none focus:border-emerald-brand transition-colors duration-700 font-sans text-charcoal placeholder:text-charcoal/20"
                 >
                 <div class="absolute bottom-0 left-0 w-0 h-[1px] bg-emerald-brand transition-all duration-700 elegant-transition group-focus-within:w-full"></div>
@@ -56,8 +60,10 @@
                   Message
                 </label>
                 <textarea
+                  v-model="form.message"
                   rows="4"
                   placeholder="請描述您的需求..."
+                  required
                   class="w-full bg-transparent border-b border-charcoal/10 py-3 focus:outline-none focus:border-emerald-brand transition-colors duration-700 font-sans text-charcoal placeholder:text-charcoal/20 resize-none"
                 ></textarea>
                 <div class="absolute bottom-0 left-0 w-0 h-[1px] bg-emerald-brand transition-all duration-700 elegant-transition group-focus-within:w-full"></div>
@@ -89,7 +95,7 @@
                 <div>
                   <h3 class="font-mono text-xs text-emerald-brand tracking-widest uppercase mb-4">Inquiry</h3>
                   <p class="font-serif text-2xl text-charcoal">(02) 2345-6789</p>
-                  <p class="font-sans text-charcoal/60 mt-2">info@jieceng-arch.com</p>
+                  <a href="mailto:jason.house2007@gmail.com" class="font-sans text-charcoal/60 hover:text-emerald-brand transition-colors duration-500 mt-2 block">jason.house2007@gmail.com</a>
                 </div>
               </div>
 
@@ -103,12 +109,27 @@
                 </div>
               </div>
 
-              <!-- 極簡地圖預留區 -->
-              <div class="aspect-video bg-stone-100 grayscale hover:grayscale-0 transition-all duration-1200 elegant-transition border border-stone-200">
-                <div class="w-full h-full flex items-center justify-center text-charcoal/20 font-mono text-[10px] tracking-widest uppercase">
-                  Interactive Map Integration
-                </div>
+              <!-- Google Maps 嵌入 -->
+              <div class="overflow-hidden border border-stone-200 grayscale hover:grayscale-0 transition-all duration-1200 elegant-transition">
+                <iframe
+                  src="https://www.google.com/maps?q=%E6%A1%83%E5%9C%92%E5%B8%82%E6%A1%83%E5%9C%92%E5%8D%80%E5%A4%A7%E8%88%88%E8%A5%BF%E8%B7%AF%E4%B8%80%E6%AE%B5268%E8%99%9F&output=embed&z=17"
+                  width="100%"
+                  height="280"
+                  style="border:0; display:block;"
+                  allowfullscreen
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                  title="傑丞建築機構位置"
+                ></iframe>
               </div>
+              <a
+                href="https://maps.app.goo.gl/AYb92M8zd5Rp3KuT9"
+                target="_blank"
+                rel="noopener"
+                class="inline-flex items-center gap-2 font-mono text-[11px] tracking-widest text-charcoal/40 hover:text-emerald-brand transition-colors duration-500 uppercase"
+              >
+                在 Google Maps 開啟 ↗
+              </a>
             </div>
           </div>
 
@@ -117,6 +138,18 @@
     </section>
   </div>
 </template>
+
+<script setup>
+const form = reactive({ name: '', email: '', message: '' })
+
+const submitForm = () => {
+  const subject = encodeURIComponent(`[傑丞建築機構] 諮詢來自 ${form.name}`)
+  const body = encodeURIComponent(`姓名：${form.name}\n聯絡信箱：${form.email}\n\n訊息內容：\n${form.message}`)
+  window.open(`mailto:jason.house2007@gmail.com?subject=${subject}&body=${body}`)
+}
+
+useHead({ title: '聯絡我們 - 傑丞建築機構' })
+</script>
 
 <style scoped>
 .elegant-transition {
