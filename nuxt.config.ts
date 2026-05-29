@@ -40,6 +40,10 @@ export default defineNuxtConfig({
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
         { hid: 'description', name: 'description', content: '傑丞建築機構，致力於永續未來與空間美學。' }
       ],
+      // 在內容繪製前於 <html> 加上 reveal-ready，讓捲動進場不閃爍（見 plugins/reveal.client.ts）
+      script: [
+        { innerHTML: "document.documentElement.classList.add('reveal-ready')", tagPosition: 'head' }
+      ],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },

@@ -84,6 +84,30 @@
   100% { top: 140%; opacity: 0; }
 }
 
+/* ── Scroll reveal（捲動進場，漸進增強）────────── */
+/* reveal-ready 由 <head> 早期 inline script 加在 <html> 上，確保 JS 啟用時
+   不會出現「先顯示再隱藏」的閃爍；JS 關閉則退回上面的載入動畫。 */
+.reveal-ready .animate-fade-in-up {
+  animation: none;
+  opacity: 0;
+  transform: translateY(34px);
+  transition: opacity 1.1s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 1.1s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-ready .animate-fade-in-up.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-ready .animate-fade-in-up {
+    transition: none;
+    transform: none;
+  }
+}
+
 /* ── Page transitions ──────────────────────────── */
 .page-enter-active,
 .page-leave-active {
