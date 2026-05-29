@@ -1,7 +1,7 @@
 <template>
   <div class="bg-warm-white min-h-screen">
     <!-- 區塊1: 頁面標題區 -->
-    <section class="grain-dark relative min-h-[65vh] flex items-center overflow-hidden bg-charcoal">
+    <section class="grain-dark relative min-h-[60vh] flex items-center overflow-hidden bg-charcoal">
       <div class="absolute inset-0 z-0">
         <img
           src="/image/hero-background.jpg"
@@ -16,9 +16,10 @@
           <span class="font-mono text-emerald-brand-light text-[10px] tracking-[0.4em] uppercase mb-6 block animate-fade-in-up">
             Our Philosophy
           </span>
-          <h1 class="font-serif text-5xl md:text-7xl font-light text-warm-white leading-tight animate-fade-in-up" style="animation-delay: 0.15s">
-            築跡與未來，<br />
-            在空間中對話。
+          <h1 class="font-serif text-6xl md:text-8xl font-light text-warm-white leading-none animate-fade-in-up" style="animation-delay: 0.15s">
+            關於
+            <br />
+            <span class="italic text-warm-white/40">傑丞。</span>
           </h1>
         </div>
       </div>
@@ -35,56 +36,68 @@
             :style="`animation-delay: ${0.1 + i * 0.1}s`"
           >
             <div class="font-serif text-5xl md:text-6xl text-warm-white font-light mb-3 tracking-tight">{{ stat.value }}</div>
-            <div class="font-mono text-[9px] tracking-[0.35em] uppercase text-warm-white/35">{{ stat.label }}</div>
+            <div class="font-mono text-[9px] tracking-[0.3em] uppercase text-warm-white/35">{{ stat.label }}</div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 區塊3: 理念詳述 -->
+    <!-- 區塊3: 品牌故事 + 企業核心 -->
     <section class="section-spacing border-t border-stone-100">
       <div class="container-custom">
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-16 items-start">
-          <!-- 左側：沉浸式大圖 -->
-          <div class="md:col-span-7 relative group animate-fade-in-up">
-            <div class="overflow-hidden aspect-[4/5] bg-stone-200">
+        <div class="grid lg:grid-cols-12 gap-16 items-start">
+          <!-- 左：大圖 -->
+          <div class="lg:col-span-5 space-y-12">
+            <div class="aspect-[3/4] rounded-3xl overflow-hidden bg-stone-100 grayscale hover:grayscale-0 transition-all duration-1200 elegant-transition group animate-fade-in-up">
               <img
-                src="/image/hero-background.jpg"
-                alt="建築設計細節"
-                class="w-full h-full object-cover grayscale-[0.25] group-hover:grayscale-0 transition-all duration-1200 elegant-transition group-hover:scale-105"
+                src="/image/project-4.jpg"
+                alt="傑丞團隊與作品"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1200 elegant-transition"
               >
             </div>
-            <div class="absolute -bottom-6 -right-6 w-28 h-28 border-r border-b border-emerald-brand/25 z-[-1]"></div>
-            <div class="absolute -top-6 -left-6 w-28 h-28 border-l border-t border-stone-200 z-[-1]"></div>
           </div>
 
-          <!-- 右側：文字內容 -->
-          <div class="md:col-span-5 md:pt-16">
-            <h2 class="font-serif text-3xl font-light text-charcoal mb-8 animate-fade-in-up" style="animation-delay: 0.2s">
-              我們的理念
-            </h2>
-            <div class="space-y-6 text-charcoal/65 leading-relaxed font-sans animate-fade-in-up" style="animation-delay: 0.35s">
-              <p>
-                「傑丞建築機構」相信建築不僅是鋼筋水泥的堆疊，更是對環境、人文與未來生活的承諾。我們的設計理念始於對基地紋理的尊重，透過精確的空間規劃，創造出既具功能性又充滿情感的場所。
+          <!-- 右：文字 -->
+          <div class="lg:col-span-7 lg:pl-12 space-y-16">
+            <!-- 品牌故事 -->
+            <div class="space-y-8">
+              <h2 class="font-mono text-xs uppercase tracking-[0.3em] font-bold text-emerald-brand animate-fade-in-up">品牌故事</h2>
+              <p class="font-serif text-3xl font-light text-charcoal leading-tight tracking-zh animate-fade-in-up" style="animation-delay: 0.1s">
+                傑丞建築不僅是建築商，更是您生活夢想的構築者與守護者。
               </p>
-              <p>
-                我們致力於將永續材料與前瞻性技術融入設計，確保每個作品都能在美學與環保之間取得平衡，利用自然光影變化，為居住者帶來舒適且富有層次感的空間體驗。
-              </p>
+              <div class="space-y-6 font-sans text-lg text-charcoal/55 font-light leading-relaxed max-w-2xl tracking-zh animate-fade-in-up" style="animation-delay: 0.2s">
+                <p>我們深信建築應該具有生命力。傑丞團隊由資深建築師、室內設計師與永續科技專家組成，共同追求「極簡、機能、永續」的核心價值。</p>
+                <p>在過去的時光中，我們在多個城市核心區留下作品。每一個作品都象徵著我們對品質的挑剔，以及對居住者幸福感的重視。</p>
+              </div>
             </div>
 
-            <!-- 核心價值清單 -->
-            <div class="mt-14 animate-fade-in-up" style="animation-delay: 0.5s">
-              <h3 class="font-mono text-[10px] tracking-[0.3em] uppercase text-emerald-brand mb-7">Core Values</h3>
-              <ul class="space-y-4">
-                <li v-for="item in values" :key="item" class="flex items-center gap-4 group">
-                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-brand shrink-0 transform group-hover:scale-150 transition-transform duration-500"></span>
-                  <span class="font-sans text-sm text-charcoal/80 tracking-zh">{{ item }}</span>
-                </li>
-              </ul>
+            <!-- 企業核心 -->
+            <div class="space-y-8 border-t border-stone-200 pt-16">
+              <h2 class="font-mono text-xs uppercase tracking-[0.3em] font-bold text-emerald-brand animate-fade-in-up">企業核心</h2>
+              <div class="grid md:grid-cols-2 gap-12">
+                <div class="animate-fade-in-up" style="animation-delay: 0.1s">
+                  <h3 class="font-serif text-xl text-charcoal mb-5 tracking-zh">價值觀</h3>
+                  <ul class="space-y-3">
+                    <li v-for="v in values" :key="v" class="flex items-center gap-4 group">
+                      <span class="w-1.5 h-1.5 rounded-full bg-emerald-brand shrink-0 transform group-hover:scale-150 transition-transform duration-500"></span>
+                      <span class="font-sans text-charcoal/65 font-light tracking-zh">{{ v }}</span>
+                    </li>
+                  </ul>
+                </div>
+                <div class="animate-fade-in-up" style="animation-delay: 0.2s">
+                  <h3 class="font-serif text-xl text-charcoal mb-5 tracking-zh">目標</h3>
+                  <ul class="space-y-3">
+                    <li v-for="g in goals" :key="g" class="flex items-center gap-4 group">
+                      <span class="w-1.5 h-1.5 rounded-full bg-emerald-brand shrink-0 transform group-hover:scale-150 transition-transform duration-500"></span>
+                      <span class="font-sans text-charcoal/65 font-light tracking-zh">{{ g }}</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </div>
 
             <!-- 聯絡連結 -->
-            <div class="mt-14 animate-fade-in-up" style="animation-delay: 0.7s">
+            <div class="animate-fade-in-up" style="animation-delay: 0.3s">
               <NuxtLink
                 to="/contact"
                 class="group flex items-center text-charcoal font-serif italic text-lg hover:text-emerald-brand transition-colors duration-500"
@@ -104,18 +117,14 @@
 
 <script setup>
 const stats = [
-  { value: '10+',  label: 'Years of Excellence' },
-  { value: '50+',  label: 'Projects Completed' },
-  { value: '3',    label: 'Patent Systems' },
-  { value: '100%', label: 'Client Commitment' }
+  { value: '20+', label: 'Years of Heritage' },
+  { value: '6', label: 'Green Certifications' },
+  { value: '5', label: 'iHome Systems' },
+  { value: '100%', label: 'Quality Traceability' }
 ]
 
-const values = [
-  '永續建築工法 (Sustainable Design)',
-  '精確空間規劃 (Precision Planning)',
-  '人文與美學對話 (Humanistic Aesthetics)',
-  '前瞻性建築技術 (Advanced Technology)'
-]
+const values = ['誠信開發', '工藝至上', '永續經營', '以人為本']
+const goals = ['打造零碳建築', '提升居住品質', '活化都市空間', '引領建築潮流']
 
 useHead({ title: '關於我們 - 傑丞建築機構' })
 </script>

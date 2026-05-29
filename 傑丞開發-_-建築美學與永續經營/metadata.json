@@ -1,9 +1,0 @@
-{
-  "name": "傑丞開發 | 建築美學與永續經營",
-  "description": "傑丞開發官方網站 - 致力於打造與自然共生的建築精品，結合 AI 技術提供創新的居住與設計體驗。",
-  "requestFramePermissions": [
-    "microphone",
-    "geolocation"
-  ],
-  "majorCapabilities": []
-}

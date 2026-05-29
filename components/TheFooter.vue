@@ -59,6 +59,7 @@ const navLinks = [
   { name: '首頁', path: '/' },
   { name: '關於我們', path: '/about' },
   { name: '全案管理', path: '/pcm' },
+  { name: 'iHome 5.0', path: '/ihome' },
   { name: '全案管理案例', path: '/portfolio' },
   { name: '標章介紹', path: '/presentations' },
   { name: '聯絡方式', path: '/contact' }

@@ -73,7 +73,7 @@
                   <ul class="w-40 shrink-0 py-3 bg-stone-50/60">
                     <li v-for="cat in caseCategories" :key="cat.key" @mouseenter="activeCat = cat.key">
                       <NuxtLink
-                        :to="`/portfolio?category=${cat.key}`"
+                        :to="`/portfolio?tech=${cat.key}`"
                         class="flex items-center justify-between px-5 py-3 text-sm tracking-zh transition-colors duration-200"
                         :class="activeCat === cat.key ? 'bg-white text-emerald-brand' : 'text-charcoal/70 hover:text-charcoal'"
                         @click="closeMenu"
@@ -209,7 +209,7 @@
                 <template v-if="link.dropdown === 'cases'">
                   <div v-for="cat in caseCategories" :key="cat.key">
                     <NuxtLink
-                      :to="`/portfolio?category=${cat.key}`"
+                      :to="`/portfolio?tech=${cat.key}`"
                       class="block py-1.5 text-sm font-medium tracking-zh text-charcoal/80"
                       @click="closeAll"
                     >
@@ -258,7 +258,8 @@
 </template>
 
 <script setup>
-const { projects } = useProjects()
+const { projectsByTech } = useProjects()
+const { iHomeTech } = useIHome()
 
 const base = useRuntimeConfig().app.baseURL
 const withBase = (path) => `${base}${path}`.replace(/([^:]\/)\/+/g, '$1')
@@ -267,17 +268,14 @@ const navLinks = [
   { name: '首頁', path: '/' },
   { name: '關於我們', path: '/about' },
   { name: '全案管理', path: '/pcm' },
+  { name: 'iHome 5.0', path: '/ihome' },
   { name: '全案管理案例', path: '/portfolio', dropdown: 'cases' },
   { name: '標章介紹', path: '/presentations', dropdown: 'certs' },
   { name: '聯絡方式', path: '/contact' }
 ]
 
-const caseCategories = [
-  { key: 'Residential', label: '住宅' },
-  { key: 'Commercial', label: '商業' },
-  { key: 'Landscape', label: '景觀' },
-  { key: 'Renovation', label: '改造' }
-]
+// 下拉以 iHome 5.0 五大宅工法分類
+const caseCategories = iHomeTech.map((t) => ({ key: t.key, label: t.title }))
 
 const certifications = [
   { title: '綠建築標章', sub: 'EEWH', file: 'presentation.html' },
@@ -285,16 +283,17 @@ const certifications = [
   { title: '建築能效評估標示', sub: 'BERS', file: 'presentation-bers.html' }
 ]
 
-const projectsByCategory = (key) => projects.filter((p) => p.category === key)
+const projectsByCategory = (key) => projectsByTech(key)
 
 // 桌機下拉狀態
+const firstCat = caseCategories[0]?.key ?? ''
 const activeMenu = ref(null)
-const activeCat = ref('Residential')
+const activeCat = ref(firstCat)
 const activeCatLabel = computed(
   () => caseCategories.find((c) => c.key === activeCat.value)?.label ?? ''
 )
 const openMenu = (name) => { activeMenu.value = name }
-const closeMenu = () => { activeMenu.value = null; activeCat.value = 'Residential' }
+const closeMenu = () => { activeMenu.value = null; activeCat.value = firstCat }
 
 // 手機選單狀態
 const isScrolled = ref(false)

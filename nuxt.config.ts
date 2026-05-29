@@ -15,12 +15,11 @@ export default defineNuxtConfig({
         '/about',
         '/portfolio',
         '/pcm',
+        '/ihome',
         '/presentations',
         '/contact',
         '/project/1',
-        '/project/2',
-        '/project/3',
-        '/project/4'
+        '/project/2'
       ]
     }
   },

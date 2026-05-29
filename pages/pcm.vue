@@ -204,7 +204,7 @@
             <div class="absolute inset-0 bg-gradient-to-t from-charcoal/85 via-charcoal/20 to-transparent"></div>
             <div class="absolute top-7 left-7">
               <span class="font-mono text-[11px] tracking-[0.2em] uppercase text-warm-white/70">
-                {{ categoryLabel(project.category) }}
+                {{ project.categoryLabel }} · {{ project.year }}
               </span>
             </div>
             <div class="absolute bottom-0 left-0 right-0 p-8 md:p-10">
@@ -289,13 +289,6 @@ const faqs = [
 ]
 
 const { projects } = useProjects()
-const categoryLabels = {
-  Residential: '住宅',
-  Commercial: '商業',
-  Landscape: '景觀',
-  Renovation: '改造'
-}
-const categoryLabel = (key) => categoryLabels[key] ?? key
 
 const openFaq = ref(0)
 const toggleFaq = (i) => {

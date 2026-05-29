@@ -1,79 +1,64 @@
 export interface Project {
   id: number
   title: string
+  year: number
   category: string
+  categoryLabel: string
+  location: string
   description: string
   fullDescription: string
   image: string
+  highlights: string[]
   specs: Record<string, string>
+  technologies: string[] // 對應 useIHome 的 key：centennial / healthy / energy / smart / resume
 }
 
 /**
- * 全站作品資料的單一來源。
- * 新增作品：在此陣列加一筆物件，並把對應圖片放到 public/image/ 即可，
- * 首頁、作品集、作品詳情頁會自動同步。
+ * 全站建案資料的單一來源（真實案例）。
+ * 新增建案：在此陣列加一筆物件，並把對應圖片放到 public/image/，
+ * 首頁、作品集、案例詳情頁會自動同步。technologies 對應 iHome 5.0 五大宅。
  */
 const projects: Project[] = [
   {
     id: 1,
-    title: '開放建築',
-    category: 'Residential',
-    description: '利用自然採光與極簡線條，打造開放式居住空間。',
+    title: '傑丞。印象羅芙',
+    year: 2020,
+    category: 'residential',
+    categoryLabel: '住宅建案',
+    location: '桃園中路特區',
+    description: '位於桃園中路特區，台灣首座榮獲六大建築標章認證之頂級豪宅。',
     fullDescription:
-      '利用自然採光與極簡線條，打造開放式居住空間。本案重點在於打破傳統實牆的束縛，採用可變動的彈性隔間技術，讓住戶能隨著生命週期的變化，自由調整室內佈局。',
+      '印象羅芙是傑丞建築的旗艦力作，坐落於萬坪風禾公園第一排。本案完美實踐 iHome 5.0 核心精神，透過 SI 工法實現結構與管線分離，並以全方位的標章認證，定義桃園頂級住宅的全新標準。',
     image: 'image/project-1.jpg',
+    highlights: ['SI 結構純化工法', '複層高架式減音樓板', '風禾公園景觀第一排'],
     specs: {
-      Location: '台北市, 信義區',
-      Year: '2024',
-      Area: '120 sqm',
-      System: 'Open Building Patent',
+      建築標章: '六大認證',
+      節能潛力: '達 69%',
+      完工年份: '2020',
+      基地位置: '桃園中路特區'
     },
+    technologies: ['centennial', 'healthy', 'energy', 'smart', 'resume']
   },
   {
     id: 2,
-    title: '當層配管',
-    category: 'Commercial',
-    description: '結合工業風格與綠色植物，提升工作效率與舒適度。',
+    title: '傑丞。印象天裔',
+    year: 2022,
+    category: 'residential',
+    categoryLabel: '住宅建案',
+    location: '桃園',
+    description: '全台唯一住宅類「鑽石級」綠建築標章，被動式降載設計的永續典範。',
     fullDescription:
-      '結合工業風格與綠色植物，提升工作效率與舒適度。引進「當層配管」專利技術，解決傳統建築漏水難以維修的痛點，實現管線與結構體徹底分離，大幅提升建物壽命。',
+      '印象天裔以全台唯一住宅類「鑽石級」綠建築標章，樹立永續住宅的新高度。本案以被動式降載設計為核心，從建築外殼到空間配置，全面降低對機電的依賴，讓節能成為生活的自然狀態。',
     image: 'image/project-2.jpg',
+    highlights: ['鑽石級綠建築標章', '被動式降載設計', '全齡友善生活空間'],
     specs: {
-      Location: '新北市, 板橋區',
-      Year: '2023',
-      Area: '450 sqm',
-      System: 'SI Separation',
+      建築標章: '鑽石級綠建築',
+      設計核心: '被動式降載',
+      完工年份: '2022',
+      基地位置: '桃園'
     },
-  },
-  {
-    id: 3,
-    title: '複層樓板',
-    category: 'Landscape',
-    description: '強調人與自然互動，設計融入周圍環境的公共空間。',
-    fullDescription:
-      '強調人與自然互動，設計融入周圍環境的公共空間。透過複層樓板設計創造出極佳的隔音效果與微氣候調節空間，讓室內環境不受外界噪音干擾，維持恆溫舒適。',
-    image: 'image/project-3.jpg',
-    specs: {
-      Location: '台中市, 西屯區',
-      Year: '2024',
-      Area: '800 sqm',
-      System: 'Double-Layer Floor',
-    },
-  },
-  {
-    id: 4,
-    title: '都市更新',
-    category: 'Renovation',
-    description: '保留歷史紋理，注入現代機能，賦予老建築新生命。',
-    fullDescription:
-      '保留歷史紋理，注入現代機能，賦予老建築新生命。在尊重原有結構與街區記憶的前提下，導入現代化的機能與安全規範，讓老屋在延續城市文化的同時，也能滿足當代的居住需求。',
-    image: 'image/project-4.jpg',
-    specs: {
-      Location: '台北市, 大同區',
-      Year: '2023',
-      Area: '320 sqm',
-      System: 'Urban Renewal',
-    },
-  },
+    technologies: ['energy', 'healthy', 'resume']
+  }
 ]
 
 export const useProjects = () => {
@@ -87,5 +72,8 @@ export const useProjects = () => {
   const getProject = (id: string | number): Project | undefined =>
     resolved.find((p) => p.id === Number(id))
 
-  return { projects: resolved, getProject }
+  const projectsByTech = (key: string) =>
+    resolved.filter((p) => p.technologies.includes(key))
+
+  return { projects: resolved, getProject, projectsByTech }
 }
