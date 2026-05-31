@@ -48,7 +48,7 @@
         <div class="grid lg:grid-cols-12 gap-16 items-start">
           <!-- 左：大圖 -->
           <div class="lg:col-span-5 space-y-12">
-            <div class="aspect-[3/4] rounded-3xl overflow-hidden bg-stone-100 grayscale hover:grayscale-0 transition-all duration-1200 elegant-transition group animate-fade-in-up">
+            <div class="aspect-[3/4] rounded-3xl overflow-hidden bg-stone-100 shadow-xl ring-1 ring-black/[0.07] grayscale hover:grayscale-0 transition-all duration-1200 elegant-transition group animate-fade-in-up">
               <img
                 src="/image/project-4.jpg"
                 alt="傑丞團隊與作品"

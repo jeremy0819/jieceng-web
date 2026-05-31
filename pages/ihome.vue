@@ -52,7 +52,7 @@
 
             <!-- 圖片側 -->
             <div :class="['lg:col-span-7 animate-fade-in-up', idx % 2 !== 0 ? 'lg:order-1' : '']" style="animation-delay: 0.15s">
-              <div class="relative aspect-[16/11] overflow-hidden rounded-[2.5rem] bg-stone-100 group">
+              <div class="relative aspect-[16/11] overflow-hidden rounded-[2.5rem] bg-stone-100 shadow-lg ring-1 ring-black/[0.06] group">
                 <img
                   :src="t.image"
                   :alt="t.title"
@@ -85,7 +85,7 @@
           </NuxtLink>
           <NuxtLink
             to="/contact"
-            class="inline-flex items-center gap-3 px-10 py-4 border border-warm-white/40 text-warm-white text-xs tracking-[0.2em] uppercase rounded-full hover:bg-warm-white hover:text-charcoal transition-colors duration-700 elegant-transition"
+            class="inline-flex items-center gap-3 px-10 py-4 ring-1 ring-warm-white/40 text-warm-white text-xs tracking-[0.2em] uppercase rounded-full hover:bg-warm-white hover:text-charcoal transition-colors duration-700 elegant-transition"
           >
             預約諮詢
           </NuxtLink>

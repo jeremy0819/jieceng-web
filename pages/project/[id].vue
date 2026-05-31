@@ -105,7 +105,7 @@
                   v-for="t in project.technologies"
                   :key="t"
                   :to="`/portfolio?tech=${t}`"
-                  class="px-6 py-2.5 bg-white/5 border border-white/10 rounded-full font-mono text-[11px] tracking-wider text-emerald-brand-light hover:bg-emerald-brand hover:text-white hover:border-emerald-brand transition-all duration-500"
+                  class="px-6 py-2.5 bg-white/5 ring-1 ring-white/10 rounded-full font-mono text-[11px] tracking-wider text-emerald-brand-light hover:bg-emerald-brand hover:text-white hover:ring-emerald-brand transition-all duration-500"
                 >
                   {{ labelOf(t) }}
                 </NuxtLink>

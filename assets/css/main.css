@@ -143,3 +143,21 @@
 .container-custom {
   @apply max-w-7xl mx-auto px-6 md:px-12;
 }
+
+/* Canvas-grid: full-viewport-width horizontal separator
+   Use on any section to get a line that bleeds past the container edges */
+.vw-sep {
+  position: relative;
+}
+.vw-sep::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  height: 1px;
+  background: #e7e5e4;
+  pointer-events: none;
+  z-index: 0;
+}

@@ -1,36 +1,39 @@
 <template>
   <div class="bg-warm-white">
     <!-- 區塊1: 首頁 Hero Section -->
-    <section class="grain-dark relative h-[95vh] flex items-center justify-center overflow-hidden bg-charcoal">
+    <section class="grain-dark relative h-[95vh] flex items-end overflow-hidden bg-charcoal">
       <div class="absolute inset-0 z-0">
         <img
           src="/image/hero-background.jpg"
           alt="傑丞建築首頁背景"
           class="w-full h-full object-cover opacity-55 scale-105 animate-slow-zoom"
         >
-        <div class="absolute inset-0 bg-gradient-to-b from-charcoal/30 via-transparent to-charcoal/70"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-charcoal/90 via-charcoal/30 to-charcoal/10"></div>
       </div>
 
-      <div class="relative z-10 text-center px-6">
-        <p class="font-mono text-[10px] tracking-[0.45em] text-warm-white/50 uppercase mb-8 animate-fade-in-up" style="animation-delay: 0.1s">
-          Sustainable Architecture · Centennial Heritage
-        </p>
-        <h1 class="font-serif text-6xl md:text-9xl font-light tracking-zh-wide text-warm-white mb-8 animate-fade-in-up">
-          傑丞建築機構
-        </h1>
-        <p class="font-sans text-base md:text-xl font-extralight tracking-[0.3em] text-warm-white/75 mb-14 animate-fade-in-up" style="animation-delay: 0.3s">
-          永續建築 · 傳承百年
-        </p>
-        <NuxtLink
-          to="/portfolio"
-          class="inline-block px-10 py-4 border border-warm-white/70 text-warm-white text-xs tracking-widest uppercase hover:bg-warm-white hover:text-charcoal transition-all duration-700 elegant-transition animate-fade-in-up"
-          style="animation-delay: 0.6s"
-        >
-          探索建築誌
-        </NuxtLink>
+      <div class="relative z-10 w-full pb-20 md:pb-28">
+        <div class="container-custom">
+          <p class="font-mono text-[10px] tracking-[0.45em] text-warm-white/50 uppercase mb-8 animate-fade-in-up" style="animation-delay: 0.1s">
+            Sustainable Architecture · Centennial Heritage
+          </p>
+          <h1 class="font-serif text-7xl md:text-9xl font-light tracking-tight text-warm-white mb-7 animate-fade-in-up">
+            傑丞建築機構
+          </h1>
+          <div class="flex flex-col sm:flex-row sm:items-center gap-7 sm:gap-12 animate-fade-in-up" style="animation-delay: 0.3s">
+            <p class="font-sans text-base font-light tracking-[0.25em] text-warm-white/55">
+              永續建築 · 傳承百年
+            </p>
+            <NuxtLink
+              to="/portfolio"
+              class="self-start inline-block px-8 py-3.5 ring-1 ring-warm-white/35 text-warm-white text-xs tracking-widest uppercase rounded-full hover:bg-warm-white hover:text-charcoal transition-all duration-700 elegant-transition"
+            >
+              探索建築誌
+            </NuxtLink>
+          </div>
+        </div>
       </div>
 
-      <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 z-10 animate-fade-in-up" style="animation-delay: 1.4s">
+      <div class="absolute bottom-10 right-8 md:right-14 flex flex-col items-center gap-3 z-10 animate-fade-in-up" style="animation-delay: 1.4s">
         <span class="font-mono text-[9px] tracking-[0.4em] text-warm-white/35 uppercase">Scroll</span>
         <div class="relative w-px h-12 overflow-hidden">
           <div class="absolute left-0 w-full bg-warm-white/50 animate-scroll-bar" style="height: 40%"></div>
@@ -56,7 +59,7 @@
             </div>
           </div>
           <div class="lg:col-span-7">
-            <div class="aspect-[4/5] md:aspect-[16/11] rounded-3xl overflow-hidden bg-stone-100 shadow-2xl group animate-fade-in-up" style="animation-delay: 0.15s">
+            <div class="aspect-[4/5] md:aspect-[16/11] rounded-3xl overflow-hidden bg-stone-100 shadow-2xl ring-1 ring-black/[0.07] group animate-fade-in-up" style="animation-delay: 0.15s">
               <img
                 src="/image/project-3.jpg"
                 alt="傑丞設計細節"
@@ -69,16 +72,18 @@
     </section>
 
     <!-- 區塊3: iHome 5.0 互動式展示（蘋果式分頁切換）-->
-    <section class="section-spacing bg-warm-white border-t border-stone-100">
+    <section class="section-spacing bg-warm-white vw-sep">
       <div class="container-custom">
-        <div class="text-center mb-14 md:mb-20 animate-fade-in-up">
-          <span class="font-mono text-emerald-brand text-xs tracking-[0.35em] uppercase mb-5 block">The Method</span>
-          <h2 class="font-serif text-5xl md:text-7xl font-light tracking-zh text-charcoal mb-6 leading-tight">
-            iHome 5.0 五大宅
-          </h2>
-          <p class="font-sans text-base md:text-lg font-light text-charcoal/45 max-w-xl mx-auto tracking-zh leading-relaxed">
-            點選下方標籤，探索定義傑丞建築的五大工法核心。
-          </p>
+        <div class="mb-14 md:mb-20 animate-fade-in-up">
+          <span class="font-mono text-emerald-brand text-xs tracking-[0.35em] uppercase mb-6 block">The Method</span>
+          <div class="flex flex-col lg:flex-row lg:items-baseline gap-4 lg:gap-10">
+            <h2 class="font-serif text-5xl md:text-6xl font-light tracking-tight text-charcoal shrink-0 leading-tight">
+              iHome 5.0 五大宅
+            </h2>
+            <p class="font-sans text-base md:text-lg font-light text-charcoal/40 max-w-[38ch] leading-relaxed tracking-zh">
+              點選標籤，探索定義傑丞建築的五大工法核心。
+            </p>
+          </div>
         </div>
 
         <!-- 分段標籤 -->
@@ -129,7 +134,7 @@
         <div class="mt-12 text-center animate-fade-in-up">
           <NuxtLink
             to="/ihome"
-            class="inline-flex items-center gap-3 px-10 py-4 border border-charcoal/20 text-charcoal text-xs tracking-[0.2em] uppercase rounded-full hover:bg-charcoal hover:text-warm-white transition-all duration-700 elegant-transition"
+            class="inline-flex items-center gap-3 px-10 py-4 ring-1 ring-charcoal/20 text-charcoal text-xs tracking-[0.2em] uppercase rounded-full hover:bg-charcoal hover:text-warm-white hover:ring-charcoal transition-all duration-700 elegant-transition"
           >
             深入了解 iHome 5.0
           </NuxtLink>
@@ -138,7 +143,7 @@
     </section>
 
     <!-- 區塊4: 精選建築誌（交錯網格）-->
-    <section class="section-spacing bg-white">
+    <section class="section-spacing bg-white vw-sep">
       <div class="container-custom">
         <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 md:mb-24 gap-8">
           <h2 class="font-serif text-5xl md:text-7xl font-light leading-none tracking-tight text-charcoal animate-fade-in-up">
@@ -148,7 +153,7 @@
           </h2>
           <NuxtLink
             to="/portfolio"
-            class="px-10 py-4 border border-charcoal/20 rounded-full font-mono text-[10px] font-bold uppercase tracking-widest text-charcoal hover:bg-charcoal hover:text-warm-white transition-all duration-700 elegant-transition animate-fade-in-up"
+            class="px-10 py-4 ring-1 ring-charcoal/20 rounded-full font-mono text-[10px] font-bold uppercase tracking-widest text-charcoal hover:bg-charcoal hover:text-warm-white hover:ring-charcoal transition-all duration-700 elegant-transition animate-fade-in-up"
           >
             探索所有案例
           </NuxtLink>

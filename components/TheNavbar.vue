@@ -68,7 +68,7 @@
                 v-if="link.dropdown === 'cases' && activeMenu === link.name"
                 class="absolute right-0 top-full pt-4 z-50"
               >
-                <div class="flex w-[440px] bg-white shadow-xl border border-stone-100 rounded-sm overflow-hidden">
+                <div class="flex w-[440px] bg-white shadow-xl ring-1 ring-black/[0.07] rounded-sm overflow-hidden">
                   <!-- 分類欄 -->
                   <ul class="w-40 shrink-0 py-3 bg-stone-50/60">
                     <li v-for="cat in caseCategories" :key="cat.key" @mouseenter="activeCat = cat.key">
@@ -118,7 +118,7 @@
                 v-else-if="link.dropdown === 'certs' && activeMenu === link.name"
                 class="absolute right-0 top-full pt-4 z-50"
               >
-                <div class="w-[320px] bg-white shadow-xl border border-stone-100 rounded-sm py-3">
+                <div class="w-[320px] bg-white shadow-xl ring-1 ring-black/[0.07] rounded-sm py-3">
                   <a
                     v-for="c in certifications"
                     :key="c.file"
