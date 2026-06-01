@@ -7,6 +7,7 @@
           :src="project.image"
           :alt="project.title"
           class="w-full h-full object-cover opacity-80 scale-105 animate-slow-zoom"
+          loading="eager" fetchpriority="high" decoding="async"
         >
         <div class="absolute inset-0 bg-gradient-to-t from-charcoal/85 via-charcoal/10 to-charcoal/30"></div>
 
@@ -76,10 +77,10 @@
               <!-- 次圖 -->
               <div class="mt-20 grid grid-cols-2 gap-4">
                 <div class="aspect-square rounded-2xl bg-stone-100 overflow-hidden">
-                  <img :src="project.image" class="w-full h-full object-cover hover:scale-110 transition-transform duration-1200 elegant-transition">
+                  <img :src="project.image" class="w-full h-full object-cover hover:scale-110 transition-transform duration-1200 elegant-transition" loading="lazy" decoding="async">
                 </div>
                 <div class="aspect-square rounded-2xl bg-stone-100 overflow-hidden">
-                  <img src="/image/hero-background.jpg" class="w-full h-full object-cover hover:scale-110 transition-transform duration-1200 elegant-transition">
+                  <img src="/image/hero-background.jpg" class="w-full h-full object-cover hover:scale-110 transition-transform duration-1200 elegant-transition" loading="lazy" decoding="async">
                 </div>
               </div>
             </div>

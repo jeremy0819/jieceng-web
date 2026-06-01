@@ -57,6 +57,7 @@
                   :src="t.image"
                   :alt="t.title"
                   class="w-full h-full object-cover grayscale transition-all duration-1200 elegant-transition group-hover:grayscale-0 group-hover:scale-105"
+                  loading="lazy" decoding="async"
                 >
                 <div class="absolute top-7 left-7">
                   <span class="font-mono text-[10px] tracking-[0.25em] uppercase text-white/80 bg-charcoal/30 backdrop-blur-sm px-3 py-1.5 rounded-full">
@@ -98,5 +99,13 @@
 <script setup>
 const { iHomeTech } = useIHome()
 
-useHead({ title: 'iHome 5.0 五大宅工法 - 傑丞建築機構' })
+useSeoMeta({
+  title: 'iHome 5.0 五大宅工法 - 傑丞建築機構',
+  description: 'iHome 5.0 是傑丞建築的專利核心工法，涵蓋百年宅（耐震）、健康宅（抑菌）、節能宅（低碳）、智慧宅（智能家居）、履歷宅（全程溯源）五大系統。',
+  ogTitle: 'iHome 5.0 五大宅工法',
+  ogDescription: '百年宅、健康宅、節能宅、智慧宅、履歷宅——傑丞建築的五大技術承諾。',
+  ogImage: 'https://jeremy0819.github.io/jieceng-web/image/hero-background.jpg',
+  ogType: 'website',
+  twitterCard: 'summary_large_image',
+})
 </script>

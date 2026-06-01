@@ -51,6 +51,7 @@
                 :src="project.image"
                 :alt="project.title"
                 class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1200 elegant-transition group-hover:scale-105"
+                loading="lazy" decoding="async"
               >
               <!-- 漸層 + 探索提示 -->
               <div class="absolute inset-0 bg-gradient-to-t from-charcoal/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 flex items-end p-8">

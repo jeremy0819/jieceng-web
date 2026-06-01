@@ -7,6 +7,7 @@
           src="/image/hero-background.jpg"
           alt="傑丞建築首頁背景"
           class="w-full h-full object-cover opacity-55 scale-105 animate-slow-zoom"
+          loading="eager" fetchpriority="high" decoding="async"
         >
         <div class="absolute inset-0 bg-gradient-to-t from-charcoal/90 via-charcoal/30 to-charcoal/10"></div>
       </div>
@@ -64,6 +65,7 @@
                 src="/image/project-3.jpg"
                 alt="傑丞設計細節"
                 class="w-full h-full object-cover transition-transform duration-1200 elegant-transition group-hover:scale-105"
+                loading="lazy" decoding="async"
               >
             </div>
           </div>
@@ -109,7 +111,7 @@
             <div :key="active.key" class="grid md:grid-cols-2">
               <!-- 圖片 -->
               <div class="relative h-64 md:h-[520px] overflow-hidden">
-                <img :src="active.image" :alt="active.title" class="w-full h-full object-cover">
+                <img :src="active.image" :alt="active.title" class="w-full h-full object-cover" loading="lazy" decoding="async">
                 <div class="absolute inset-0 bg-gradient-to-r from-charcoal/10 to-charcoal/60 md:bg-gradient-to-r md:from-transparent md:to-charcoal/70"></div>
               </div>
               <!-- 文字 -->
@@ -172,6 +174,7 @@
                 :src="project.image"
                 :alt="project.title"
                 class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1200 elegant-transition group-hover:scale-105"
+                loading="lazy" decoding="async"
               >
             </div>
             <div class="flex justify-between items-start border-t border-stone-200 pt-7">
@@ -196,6 +199,18 @@ const { iHomeTech } = useIHome()
 
 const activeKey = ref(iHomeTech[0].key)
 const active = computed(() => iHomeTech.find((t) => t.key === activeKey.value) ?? iHomeTech[0])
+
+useSeoMeta({
+  title: '傑丞建築機構 | 構築永續未來，定義空間美學',
+  description: '傑丞建築機構深耕桃園與雙北逾二十載，以 iHome 5.0 專利工法打造百年宅、健康宅、節能宅、智慧宅、履歷宅，提供都更全案管理與永續建築設計。',
+  ogTitle: '傑丞建築機構 | 構築永續未來，定義空間美學',
+  ogDescription: '以 iHome 5.0 專利工法打造永續建築精品，全案管理一條龍服務。',
+  ogImage: 'https://jeremy0819.github.io/jieceng-web/image/hero-background.jpg',
+  ogType: 'website',
+  twitterCard: 'summary_large_image',
+  twitterTitle: '傑丞建築機構 | 永續建築美學',
+  twitterDescription: '以 iHome 5.0 專利工法打造永續建築精品。',
+})
 </script>
 
 <style scoped>

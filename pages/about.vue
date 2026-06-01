@@ -7,6 +7,7 @@
           src="/image/hero-background.jpg"
           alt="關於我們背景"
           class="w-full h-full object-cover opacity-45 animate-slow-zoom"
+          loading="eager" fetchpriority="high" decoding="async"
         >
         <div class="absolute inset-0 bg-gradient-to-r from-charcoal/85 via-charcoal/50 to-transparent"></div>
       </div>
@@ -53,6 +54,7 @@
                 src="/image/project-4.jpg"
                 alt="傑丞團隊與作品"
                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1200 elegant-transition"
+                loading="lazy" decoding="async"
               >
             </div>
           </div>
@@ -126,5 +128,13 @@ const stats = [
 const values = ['誠信開發', '工藝至上', '永續經營', '以人為本']
 const goals = ['打造零碳建築', '提升居住品質', '活化都市空間', '引領建築潮流']
 
-useHead({ title: '關於我們 - 傑丞建築機構' })
+useSeoMeta({
+  title: '關於我們 - 傑丞建築機構',
+  description: '傑丞建築機構由資深建築師、室內設計師與永續科技專家組成，二十年深耕桃園與雙北，以誠信開發、工藝至上的精神為每位居住者構築百年住宅。',
+  ogTitle: '關於傑丞建築機構',
+  ogDescription: '二十年建築工藝與永續承諾，傑丞建築機構品牌故事。',
+  ogImage: 'https://jeremy0819.github.io/jieceng-web/image/hero-background.jpg',
+  ogType: 'website',
+  twitterCard: 'summary_large_image',
+})
 </script>

@@ -7,6 +7,7 @@
           src="/image/hero-background.jpg"
           alt="PCM 全案管理"
           class="w-full h-full object-cover opacity-40 scale-105 animate-slow-zoom"
+          loading="eager" fetchpriority="high" decoding="async"
         >
         <div class="absolute inset-0 bg-gradient-to-b from-charcoal/60 to-charcoal/20"></div>
       </div>
@@ -200,6 +201,7 @@
               :src="project.image"
               :alt="project.title"
               class="absolute inset-0 w-full h-full object-cover transition-transform duration-1200 elegant-transition group-hover:scale-105"
+              loading="lazy" decoding="async"
             >
             <div class="absolute inset-0 bg-gradient-to-t from-charcoal/85 via-charcoal/20 to-transparent"></div>
             <div class="absolute top-7 left-7">
