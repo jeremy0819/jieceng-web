@@ -40,11 +40,11 @@
           tag="div"
           class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-20"
         >
-          <NuxtLink
+          <div
             v-for="(project, index) in filteredProjects"
             :key="project.id"
-            :to="`/project/${project.id}`"
-            :class="['group block', index % 2 !== 0 ? 'md:mt-24' : '']"
+            :class="['group block cursor-pointer', index % 2 !== 0 ? 'md:mt-24' : '']"
+            @click="quickView = project"
           >
             <div class="relative aspect-[4/5] overflow-hidden rounded-2xl bg-stone-100 mb-8">
               <img
@@ -89,7 +89,7 @@
                 </div>
               </div>
             </div>
-          </NuxtLink>
+          </div>
         </TransitionGroup>
 
         <!-- 無符合結果 -->
@@ -127,7 +127,15 @@ const filteredProjects = computed(() => {
   return projectsByTech(currentTech.value)
 })
 
-useHead({ title: '建築精選集 - 傑丞建築機構' })
+useSeoMeta({
+  title: '全案管理案例 - 傑丞建築機構',
+  description: '傑丞建築機構精選建案：印象羅芙（2020）、印象天裔（2022），採用 iHome 5.0 百年宅、健康宅、節能宅、智慧宅、履歷宅五大工法建造。',
+  ogTitle: '傑丞建築 - 全案管理案例精選',
+  ogDescription: '結合 iHome 5.0 工法的精品建案集，永續建築與人文美學的實踐。',
+  ogImage: 'https://jeremy0819.github.io/jieceng-web/image/hero-background.jpg',
+  ogType: 'website',
+  twitterCard: 'summary_large_image',
+})
 </script>
 
 <style scoped>
