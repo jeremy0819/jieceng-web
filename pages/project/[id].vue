@@ -134,8 +134,14 @@ const { labelOf } = useIHome()
 
 const project = computed(() => getProject(route.params.id))
 
-useHead({
-  title: project.value ? `${project.value.title} - 傑丞建築機構` : '專案詳情 - 傑丞建築機構'
+useSeoMeta({
+  title: computed(() => project.value ? `${project.value.title} - 傑丞建築機構` : '建案詳情 - 傑丞建築機構'),
+  description: computed(() => project.value?.description ?? '傑丞建築機構精選建案詳情。'),
+  ogTitle: computed(() => project.value?.title ?? '傑丞建築機構'),
+  ogDescription: computed(() => project.value?.description ?? ''),
+  ogImage: computed(() => project.value ? `https://jeremy0819.github.io/jieceng-web/${project.value.image}` : 'https://jeremy0819.github.io/jieceng-web/image/hero-background.jpg'),
+  ogType: 'website',
+  twitterCard: 'summary_large_image',
 })
 </script>
 

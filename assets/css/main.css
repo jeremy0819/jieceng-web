@@ -144,6 +144,24 @@
   @apply max-w-7xl mx-auto px-6 md:px-12;
 }
 
+/* Quick-view portfolio drawer animation */
+.qv-enter-active,
+.qv-leave-active {
+  transition: opacity 0.35s ease;
+}
+.qv-enter-from,
+.qv-leave-to {
+  opacity: 0;
+}
+.qv-enter-active .qv-panel,
+.qv-leave-active .qv-panel {
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.qv-enter-from .qv-panel,
+.qv-leave-to .qv-panel {
+  transform: translateX(100%);
+}
+
 /* Canvas-grid: full-viewport-width horizontal separator
    Use on any section to get a line that bleeds past the container edges */
 .vw-sep {

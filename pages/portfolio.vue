@@ -92,6 +92,89 @@
           </div>
         </TransitionGroup>
 
+        <!-- Quick-view 抽屜 -->
+        <Teleport to="body">
+          <Transition name="qv">
+            <div
+              v-if="quickView"
+              class="fixed inset-0 z-[200] flex justify-end"
+              @click.self="quickView = null"
+            >
+              <div class="absolute inset-0 bg-charcoal/50 backdrop-blur-sm" @click="quickView = null"></div>
+              <div class="qv-panel relative w-full md:max-w-[480px] h-full bg-warm-white shadow-2xl ring-1 ring-black/[0.07] overflow-y-auto flex flex-col">
+                <!-- 建案圖片 -->
+                <div class="relative aspect-[16/10] overflow-hidden shrink-0 bg-stone-100">
+                  <img
+                    :src="quickView.image"
+                    :alt="quickView.title"
+                    class="w-full h-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                  >
+                  <button
+                    @click="quickView = null"
+                    class="absolute top-4 right-4 w-9 h-9 bg-charcoal/50 backdrop-blur-sm text-warm-white flex items-center justify-center rounded-full hover:bg-charcoal transition-colors duration-300 font-sans text-sm"
+                    aria-label="關閉"
+                  >
+                    ✕
+                  </button>
+                </div>
+
+                <!-- 內容 -->
+                <div class="p-8 flex-1 space-y-7">
+                  <div>
+                    <span class="font-mono text-[10px] text-emerald-brand uppercase tracking-widest block mb-2">
+                      {{ quickView.categoryLabel }} · {{ quickView.year }}
+                    </span>
+                    <h2 class="font-serif text-3xl font-light text-charcoal tracking-zh">
+                      {{ quickView.title }}
+                    </h2>
+                  </div>
+                  <p class="font-sans text-charcoal/60 leading-relaxed tracking-zh text-sm">
+                    {{ quickView.fullDescription }}
+                  </p>
+                  <!-- 前兩個亮點 -->
+                  <div class="space-y-3 border-t border-stone-100 pt-6">
+                    <p class="font-mono text-[10px] uppercase tracking-[0.3em] text-charcoal/35">Highlights</p>
+                    <ul class="space-y-3">
+                      <li
+                        v-for="h in quickView.highlights.slice(0, 2)"
+                        :key="h"
+                        class="flex gap-3 text-sm text-charcoal/65 font-light tracking-zh leading-relaxed"
+                      >
+                        <span class="text-emerald-brand shrink-0 mt-0.5 font-sans">—</span>
+                        {{ h }}
+                      </li>
+                    </ul>
+                  </div>
+                  <!-- 五大宅工法標籤 -->
+                  <div class="flex flex-wrap gap-2">
+                    <span
+                      v-for="t in quickView.technologies"
+                      :key="t"
+                      class="font-mono text-[10px] px-3 py-1 rounded-full bg-emerald-brand/8 text-emerald-brand ring-1 ring-emerald-brand/15 tracking-wider"
+                    >
+                      {{ labelOf(t) }}
+                    </span>
+                  </div>
+                </div>
+
+                <!-- CTA：前往完整建案頁 -->
+                <div class="p-8 border-t border-stone-100 shrink-0">
+                  <NuxtLink
+                    :to="`/project/${quickView.id}`"
+                    @click="quickView = null"
+                    class="flex items-center justify-between w-full py-5 px-8 bg-charcoal text-warm-white text-xs tracking-[0.2em] uppercase hover:bg-emerald-brand transition-colors duration-700"
+                  >
+                    查看完整建案詳情
+                    <span>→</span>
+                  </NuxtLink>
+                </div>
+              </div>
+            </div>
+          </Transition>
+        </Teleport>
+
         <!-- 無符合結果 -->
         <p v-if="!filteredProjects.length" class="text-center font-sans text-charcoal/40 tracking-zh py-24">
           目前沒有符合此工法的案例，敬請期待。
@@ -126,6 +209,17 @@ const filteredProjects = computed(() => {
   if (currentTech.value === 'All') return projects
   return projectsByTech(currentTech.value)
 })
+
+// Quick-view drawer
+const quickView = ref(null)
+
+if (process.client) {
+  onMounted(() => {
+    const onKey = (e) => { if (e.key === 'Escape') quickView.value = null }
+    window.addEventListener('keydown', onKey)
+    onUnmounted(() => window.removeEventListener('keydown', onKey))
+  })
+}
 
 useSeoMeta({
   title: '全案管理案例 - 傑丞建築機構',
