@@ -1,14 +1,14 @@
 <template>
-  <div class="bg-warm-white min-h-screen">
+  <div class="bg-[#050505] min-h-screen">
     <!-- 區塊1: 頁面標頭 -->
-    <section class="pt-32 md:pt-40 pb-12">
+    <section class="pt-32 md:pt-40 pb-12 bg-[#050505]">
       <div class="container-custom">
         <div class="max-w-4xl mb-16">
           <div class="flex items-center gap-4 mb-9 animate-fade-in-up">
-            <span class="w-12 h-px bg-emerald-brand"></span>
-            <span class="font-mono text-[10px] uppercase tracking-[0.45em] text-emerald-brand">Architectural Selection</span>
+            <span class="w-12 h-px bg-[#10b981]"></span>
+            <span class="font-mono text-[10px] uppercase tracking-[0.45em] text-[#10b981]">Architectural Selection</span>
           </div>
-          <h1 class="font-serif text-6xl md:text-8xl font-light leading-none tracking-tight text-charcoal animate-fade-in-up" style="animation-delay: 0.1s">
+          <h1 class="font-serif text-6xl md:text-8xl font-light leading-none tracking-tight text-white animate-fade-in-up" style="animation-delay: 0.1s">
             建築精選集。
           </h1>
         </div>
@@ -22,8 +22,8 @@
             :class="[
               'px-5 md:px-7 py-2.5 rounded-full text-sm tracking-zh transition-all duration-500 elegant-transition ring-1',
               currentTech === cat.key
-                ? 'bg-charcoal text-warm-white ring-charcoal'
-                : 'bg-transparent text-charcoal/50 ring-charcoal/15 hover:ring-charcoal/40 hover:text-charcoal'
+                ? 'bg-[#10b981] text-[#050505] ring-[#10b981]'
+                : 'glass text-white/50 ring-white/15 hover:ring-white/40 hover:text-white'
             ]"
           >
             {{ cat.label }}
@@ -33,7 +33,7 @@
     </section>
 
     <!-- 區塊2: 作品網格 -->
-    <section class="pb-32 md:pb-48 overflow-hidden">
+    <section class="pb-32 md:pb-48 overflow-hidden bg-[#050505]">
       <div class="container-custom">
         <TransitionGroup
           name="list"
@@ -46,35 +46,35 @@
             :class="['group block cursor-pointer', index % 2 !== 0 ? 'md:mt-24' : '']"
             @click="quickView = project"
           >
-            <div class="relative aspect-[4/5] overflow-hidden rounded-2xl bg-stone-100 mb-8">
+            <div class="relative aspect-[4/5] overflow-hidden rounded-3xl bg-white/[0.06] mb-8">
               <img
                 :src="project.image"
                 :alt="project.title"
-                class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1200 elegant-transition group-hover:scale-105"
+                class="w-full h-full object-cover opacity-75 group-hover:opacity-100 transition-all duration-1200 elegant-transition group-hover:scale-105"
                 loading="lazy" decoding="async"
               >
               <!-- 漸層 + 探索提示 -->
-              <div class="absolute inset-0 bg-gradient-to-t from-charcoal/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 flex items-end p-8">
-                <span class="inline-flex items-center gap-2 text-warm-white text-xs tracking-[0.2em] uppercase translate-y-3 group-hover:translate-y-0 transition-transform duration-500">
+              <div class="absolute inset-0 bg-gradient-to-t from-[#050505]/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 flex items-end p-8">
+                <span class="inline-flex items-center gap-2 text-[#10b981] text-xs tracking-[0.2em] uppercase translate-y-3 group-hover:translate-y-0 transition-transform duration-500">
                   探索細節
                   <span class="transition-transform duration-500 group-hover:translate-x-1.5">→</span>
                 </span>
               </div>
               <!-- 年份 -->
               <div class="absolute top-6 right-6">
-                <span class="font-mono text-[10px] tracking-widest text-warm-white/80 bg-charcoal/30 backdrop-blur-sm px-3 py-1.5 rounded-full">
+                <span class="font-mono text-[10px] tracking-widest text-white/80 bg-[#050505]/30 backdrop-blur-sm px-3 py-1.5 rounded-full">
                   {{ project.year }}
                 </span>
               </div>
             </div>
 
-            <div class="flex justify-between items-start border-t border-stone-200 pt-7">
+            <div class="flex justify-between items-start border-t border-white/[0.10] pt-7">
               <div class="flex-1">
-                <span class="font-mono text-[10px] text-emerald-brand font-bold uppercase tracking-widest mb-2 block">{{ project.categoryLabel }}</span>
-                <h2 class="font-serif text-3xl font-light text-charcoal group-hover:text-emerald-brand transition-colors duration-500 tracking-zh mb-3">
+                <span class="font-mono text-[10px] text-[#10b981] font-bold uppercase tracking-widest mb-2 block">{{ project.categoryLabel }}</span>
+                <h2 class="font-serif text-3xl font-light text-white group-hover:text-[#10b981] transition-colors duration-500 tracking-zh mb-3">
                   {{ project.title }}
                 </h2>
-                <p class="font-sans text-sm text-charcoal/50 leading-relaxed line-clamp-2 max-w-md">
+                <p class="font-sans text-sm text-white/50 leading-relaxed line-clamp-2 max-w-md">
                   {{ project.description }}
                 </p>
                 <!-- 五大宅標籤 -->
@@ -82,7 +82,7 @@
                   <span
                     v-for="t in project.technologies"
                     :key="t"
-                    class="font-mono text-[10px] tracking-wider px-2.5 py-1 rounded-full bg-emerald-brand/8 text-emerald-brand border border-emerald-brand/15"
+                    class="font-mono text-[10px] tracking-wider px-2.5 py-1 rounded-full bg-[#10b981]/10 text-[#10b981] border border-[#10b981]/20"
                   >
                     {{ labelOf(t) }}
                   </span>
@@ -100,10 +100,10 @@
               class="fixed inset-0 z-[200] flex justify-end"
               @click.self="quickView = null"
             >
-              <div class="absolute inset-0 bg-charcoal/50 backdrop-blur-sm" @click="quickView = null"></div>
-              <div class="qv-panel relative w-full md:max-w-[480px] h-full bg-warm-white shadow-2xl ring-1 ring-black/[0.07] overflow-y-auto flex flex-col">
+              <div class="absolute inset-0 bg-[#050505]/70 backdrop-blur-sm" @click="quickView = null"></div>
+              <div class="qv-panel relative w-full md:max-w-[500px] h-full glass-card overflow-y-auto flex flex-col">
                 <!-- 建案圖片 -->
-                <div class="relative aspect-[16/10] overflow-hidden shrink-0 bg-stone-100">
+                <div class="relative aspect-[16/10] overflow-hidden shrink-0 bg-white/[0.06]">
                   <img
                     :src="quickView.image"
                     :alt="quickView.title"
@@ -113,7 +113,7 @@
                   >
                   <button
                     @click="quickView = null"
-                    class="absolute top-4 right-4 w-9 h-9 bg-charcoal/50 backdrop-blur-sm text-warm-white flex items-center justify-center rounded-full hover:bg-charcoal transition-colors duration-300 font-sans text-sm"
+                    class="absolute top-4 right-4 glass w-9 h-9 text-white flex items-center justify-center rounded-full hover:bg-white/20 transition-colors duration-300 font-sans text-sm"
                     aria-label="關閉"
                   >
                     ✕
@@ -123,26 +123,26 @@
                 <!-- 內容 -->
                 <div class="p-8 flex-1 space-y-7">
                   <div>
-                    <span class="font-mono text-[10px] text-emerald-brand uppercase tracking-widest block mb-2">
+                    <span class="font-mono text-[10px] text-[#10b981] uppercase tracking-widest block mb-2">
                       {{ quickView.categoryLabel }} · {{ quickView.year }}
                     </span>
-                    <h2 class="font-serif text-3xl font-light text-charcoal tracking-zh">
+                    <h2 class="font-serif text-3xl font-light text-white tracking-zh">
                       {{ quickView.title }}
                     </h2>
                   </div>
-                  <p class="font-sans text-charcoal/60 leading-relaxed tracking-zh text-sm">
+                  <p class="font-sans text-white/60 leading-relaxed tracking-zh text-sm">
                     {{ quickView.fullDescription }}
                   </p>
                   <!-- 前兩個亮點 -->
-                  <div class="space-y-3 border-t border-stone-100 pt-6">
-                    <p class="font-mono text-[10px] uppercase tracking-[0.3em] text-charcoal/35">Highlights</p>
+                  <div class="space-y-3 border-t border-white/[0.08] pt-6">
+                    <p class="font-mono text-[10px] uppercase tracking-[0.3em] text-white/35">Highlights</p>
                     <ul class="space-y-3">
                       <li
                         v-for="h in quickView.highlights.slice(0, 2)"
                         :key="h"
-                        class="flex gap-3 text-sm text-charcoal/65 font-light tracking-zh leading-relaxed"
+                        class="flex gap-3 text-sm text-white/65 font-light tracking-zh leading-relaxed"
                       >
-                        <span class="text-emerald-brand shrink-0 mt-0.5 font-sans">—</span>
+                        <span class="text-[#10b981] shrink-0 mt-0.5 font-sans">—</span>
                         {{ h }}
                       </li>
                     </ul>
@@ -152,7 +152,7 @@
                     <span
                       v-for="t in quickView.technologies"
                       :key="t"
-                      class="font-mono text-[10px] px-3 py-1 rounded-full bg-emerald-brand/8 text-emerald-brand ring-1 ring-emerald-brand/15 tracking-wider"
+                      class="font-mono text-[10px] px-3 py-1 rounded-full bg-[#10b981]/10 text-[#10b981] ring-1 ring-[#10b981]/20 tracking-wider"
                     >
                       {{ labelOf(t) }}
                     </span>
@@ -160,11 +160,11 @@
                 </div>
 
                 <!-- CTA：前往完整建案頁 -->
-                <div class="p-8 border-t border-stone-100 shrink-0">
+                <div class="p-8 border-t border-white/[0.08] shrink-0">
                   <NuxtLink
                     :to="`/project/${quickView.id}`"
                     @click="quickView = null"
-                    class="flex items-center justify-between w-full py-5 px-8 bg-charcoal text-warm-white text-xs tracking-[0.2em] uppercase hover:bg-emerald-brand transition-colors duration-700"
+                    class="flex items-center justify-between w-full py-5 px-8 bg-[#10b981] text-[#050505] text-xs tracking-[0.2em] uppercase hover:bg-[#0d9668] transition-colors duration-700"
                   >
                     查看完整建案詳情
                     <span>→</span>
@@ -176,7 +176,7 @@
         </Teleport>
 
         <!-- 無符合結果 -->
-        <p v-if="!filteredProjects.length" class="text-center font-sans text-charcoal/40 tracking-zh py-24">
+        <p v-if="!filteredProjects.length" class="text-center font-sans text-white/40 tracking-zh py-24">
           目前沒有符合此工法的案例，敬請期待。
         </p>
       </div>
@@ -255,5 +255,23 @@ useSeoMeta({
   .list-leave-active {
     max-width: calc(100% - 48px);
   }
+}
+
+/* Quick-view drawer slide-in */
+.qv-enter-active,
+.qv-leave-active {
+  transition: opacity 0.4s ease;
+}
+.qv-enter-active .qv-panel,
+.qv-leave-active .qv-panel {
+  transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.qv-enter-from,
+.qv-leave-to {
+  opacity: 0;
+}
+.qv-enter-from .qv-panel,
+.qv-leave-to .qv-panel {
+  transform: translateX(100%);
 }
 </style>

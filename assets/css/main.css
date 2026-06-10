@@ -5,7 +5,9 @@
 /* ── Base ──────────────────────────────────────── */
 @layer base {
   body {
-    @apply bg-warm-white text-charcoal antialiased;
+    background-color: #050505;
+    color: #f5f5f0;
+    @apply antialiased;
     font-variant-ligatures: none;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -18,23 +20,76 @@
   p { text-wrap: pretty; }
 
   ::selection {
-    background-color: #064e3b;
-    color: #ecfdf5;
+    background-color: #10b981;
+    color: #050505;
   }
 
-  ::-webkit-scrollbar { width: 5px; }
-  ::-webkit-scrollbar-track { background: #fafaf9; }
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: #050505; }
   ::-webkit-scrollbar-thumb {
-    background: #d6d3d1;
+    background: rgba(255,255,255,0.15);
     border-radius: 10px;
   }
-  ::-webkit-scrollbar-thumb:hover { background: #064e3b; }
+  ::-webkit-scrollbar-thumb:hover { background: #10b981; }
 
   html { scroll-behavior: smooth; }
 }
 
-/* ── Global utilities ──────────────────────────── */
+/* ── Glass morphism utilities ──────────────────── */
 @layer utilities {
+  /* Subtle frosted glass panel */
+  .glass {
+    background: rgba(255, 255, 255, 0.07);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  /* Elevated glass card with depth shadow */
+  .glass-card {
+    background: rgba(255, 255, 255, 0.09);
+    backdrop-filter: blur(32px) saturate(200%);
+    -webkit-backdrop-filter: blur(32px) saturate(200%);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow:
+      0 8px 40px rgba(0, 0, 0, 0.5),
+      0 2px 8px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  }
+
+  /* Dark frosted overlay for photo backdrops */
+  .glass-dark {
+    background: rgba(5, 5, 5, 0.65);
+    backdrop-filter: blur(24px) saturate(160%);
+    -webkit-backdrop-filter: blur(24px) saturate(160%);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+  }
+
+  /* Emerald ambient glow */
+  .glow-emerald {
+    box-shadow:
+      0 0 30px rgba(16, 185, 129, 0.25),
+      0 0 60px rgba(16, 185, 129, 0.10);
+  }
+
+  /* Liquid gradient border */
+  .liquid-border {
+    position: relative;
+  }
+  .liquid-border::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    background: linear-gradient(135deg, rgba(16,185,129,0.4), rgba(255,255,255,0.1), rgba(16,185,129,0.2));
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+  .liquid-border:hover::before {
+    opacity: 1;
+  }
+
   .elegant-transition {
     transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
   }
@@ -46,10 +101,6 @@
 
   .animate-slow-zoom {
     animation: slow-zoom 20s linear infinite alternate;
-  }
-
-  .animate-expand-width {
-    animation: expand-width 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
 
   .animate-scroll-bar {
@@ -72,11 +123,6 @@
   to   { transform: scale(1.1); }
 }
 
-@keyframes expand-width {
-  from { width: 0; }
-  to   { width: 100%; }
-}
-
 @keyframes scroll-bar {
   0%   { top: -40%; opacity: 0; }
   20%  { opacity: 1; }
@@ -84,9 +130,7 @@
   100% { top: 140%; opacity: 0; }
 }
 
-/* ── Scroll reveal（捲動進場，漸進增強）────────── */
-/* reveal-ready 由 <head> 早期 inline script 加在 <html> 上，確保 JS 啟用時
-   不會出現「先顯示再隱藏」的閃爍；JS 關閉則退回上面的載入動畫。 */
+/* ── Scroll reveal ─────────────────────────────── */
 .reveal-ready .animate-fade-in-up {
   animation: none;
   opacity: 0;
@@ -117,7 +161,7 @@
 .page-enter-from { opacity: 0; transform: translateY(14px); }
 .page-leave-to   { opacity: 0; transform: translateY(-6px); }
 
-/* ── Grain texture (暗色區塊奢質底紋) ─────────── */
+/* ── Grain texture ─────────────────────────────── */
 .grain-dark {
   position: relative;
   isolation: isolate;
@@ -129,7 +173,7 @@
   inset: 0;
   pointer-events: none;
   z-index: 1;
-  opacity: 0.05;
+  opacity: 0.06;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23g)'/%3E%3C/svg%3E");
   background-size: 200px 200px;
   mix-blend-mode: screen;
@@ -144,7 +188,7 @@
   @apply max-w-7xl mx-auto px-6 md:px-12;
 }
 
-/* Quick-view portfolio drawer animation */
+/* ── Portfolio quick-view drawer ───────────────── */
 .qv-enter-active,
 .qv-leave-active {
   transition: opacity 0.35s ease;
@@ -162,8 +206,7 @@
   transform: translateX(100%);
 }
 
-/* Canvas-grid: full-viewport-width horizontal separator
-   Use on any section to get a line that bleeds past the container edges */
+/* ── Full-viewport-width section separator ─────── */
 .vw-sep {
   position: relative;
 }
@@ -175,7 +218,7 @@
   transform: translateX(-50%);
   width: 100vw;
   height: 1px;
-  background: #e7e5e4;
+  background: rgba(255, 255, 255, 0.08);
   pointer-events: none;
   z-index: 0;
 }

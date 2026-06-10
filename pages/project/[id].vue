@@ -1,25 +1,25 @@
 <template>
-  <div class="bg-warm-white min-h-screen">
+  <div class="bg-[#050505] min-h-screen">
     <div v-if="project">
       <!-- 區塊1: 沉浸式 Hero -->
-      <section class="relative h-[75vh] overflow-hidden bg-charcoal">
+      <section class="relative h-[85vh] overflow-hidden bg-[#050505]">
         <img
           :src="project.image"
           :alt="project.title"
-          class="w-full h-full object-cover opacity-80 scale-105 animate-slow-zoom"
+          class="w-full h-full object-cover opacity-60 scale-105 animate-slow-zoom"
           loading="eager" fetchpriority="high" decoding="async"
         >
-        <div class="absolute inset-0 bg-gradient-to-t from-charcoal/85 via-charcoal/10 to-charcoal/30"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-[#050505]/90 via-[#050505]/30 to-[#050505]/20"></div>
 
         <div class="absolute bottom-0 left-0 w-full pb-16 md:pb-20">
           <div class="container-custom">
             <div class="flex items-center gap-5 mb-6 animate-fade-in-up">
-              <span class="font-mono text-emerald-brand-light text-[10px] uppercase tracking-[0.4em] bg-warm-white/10 backdrop-blur-sm px-4 py-1.5 rounded-full">
+              <span class="glass rounded-full px-4 py-1.5 font-mono text-[10px] text-[#10b981] uppercase tracking-widest">
                 {{ project.categoryLabel }}
               </span>
-              <span class="font-mono text-warm-white/50 text-[10px] uppercase tracking-widest">{{ project.year }} Selection</span>
+              <span class="font-mono text-white/45 text-[10px] uppercase tracking-widest">{{ project.year }} Selection</span>
             </div>
-            <h1 class="font-serif text-5xl md:text-8xl text-warm-white font-light tracking-tight animate-fade-in-up" style="animation-delay: 0.15s">
+            <h1 class="font-serif text-5xl md:text-8xl text-white font-light tracking-tight animate-fade-in-up" style="animation-delay: 0.15s">
               {{ project.title }}
             </h1>
           </div>
@@ -27,24 +27,26 @@
       </section>
 
       <!-- 區塊2: 建案總覽（首字放大）-->
-      <section class="section-spacing">
+      <section class="section-spacing bg-[#050505]">
         <div class="container-custom">
           <div class="grid lg:grid-cols-12 gap-16">
             <!-- 左：側欄資訊 -->
             <aside class="lg:col-span-4 space-y-12 animate-fade-in-up">
               <div>
-                <h3 class="font-mono text-[10px] uppercase tracking-[0.3em] text-emerald-brand mb-6">Technical Standards</h3>
-                <dl class="space-y-6">
-                  <div v-for="(val, key) in project.specs" :key="key" class="border-b border-stone-200 pb-4 group">
-                    <dt class="font-mono text-[10px] text-charcoal/40 uppercase tracking-widest mb-1.5 group-hover:text-emerald-brand transition-colors duration-500">{{ key }}</dt>
-                    <dd class="font-serif text-xl text-charcoal">{{ val }}</dd>
-                  </div>
-                </dl>
+                <h3 class="font-mono text-[10px] uppercase tracking-[0.3em] text-[#10b981] mb-6">Technical Standards</h3>
+                <div class="glass-card rounded-2xl p-8">
+                  <dl class="space-y-6">
+                    <div v-for="(val, key) in project.specs" :key="key" class="border-b border-white/[0.08] pb-4 group">
+                      <dt class="font-mono text-[10px] text-white/35 uppercase tracking-widest mb-1.5 group-hover:text-[#10b981] transition-colors duration-500">{{ key }}</dt>
+                      <dd class="font-serif text-xl text-white">{{ val }}</dd>
+                    </div>
+                  </dl>
+                </div>
               </div>
 
               <NuxtLink
                 to="/portfolio"
-                class="group inline-flex items-center text-charcoal/40 hover:text-emerald-brand transition-colors duration-500"
+                class="group inline-flex items-center text-white/35 hover:text-[#10b981] transition-colors duration-500"
               >
                 <svg class="mr-4 w-12 h-4 transform rotate-180 group-hover:-translate-x-3 transition-transform duration-700 elegant-transition" fill="none" stroke="currentColor" viewBox="0 0 48 16">
                   <path d="M0 8H46M46 8L39 1M46 8L39 15" stroke-width="1" />
@@ -55,31 +57,31 @@
 
             <!-- 右：敘述 -->
             <div class="lg:col-span-8 animate-fade-in-up" style="animation-delay: 0.15s">
-              <h2 class="font-serif text-3xl font-light text-charcoal mb-10 tracking-zh">設計思維與工法實踐</h2>
-              <p class="font-sans text-lg md:text-xl text-charcoal/60 font-light leading-relaxed first-letter:text-6xl first-letter:font-serif first-letter:mr-3 first-letter:float-left first-letter:text-emerald-brand first-letter:leading-none tracking-zh">
+              <h2 class="font-serif text-3xl font-light text-white mb-10 tracking-zh">設計思維與工法實踐</h2>
+              <p class="font-sans text-lg md:text-xl text-white/65 font-light leading-relaxed first-letter:text-6xl first-letter:font-serif first-letter:mr-3 first-letter:float-left first-letter:text-[#10b981] first-letter:leading-none tracking-zh">
                 {{ project.fullDescription }}
               </p>
 
               <!-- 核心亮點 -->
               <div class="mt-20">
                 <div class="flex items-center gap-8 mb-12">
-                  <h3 class="font-mono text-xs font-bold uppercase tracking-[0.4em] text-charcoal/30">Case Highlights</h3>
-                  <div class="h-px flex-1 bg-stone-200"></div>
+                  <h3 class="font-mono text-xs font-bold uppercase tracking-[0.4em] text-white/30">Case Highlights</h3>
+                  <div class="h-px flex-1 bg-white/[0.10]"></div>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-12">
                   <div v-for="(h, i) in project.highlights" :key="i" class="flex gap-7 items-start">
-                    <span class="font-serif italic text-3xl text-stone-200">0{{ i + 1 }}</span>
-                    <p class="font-sans text-charcoal/70 text-lg font-light leading-relaxed tracking-zh pt-1">{{ h }}</p>
+                    <span class="font-serif italic text-3xl text-white/15">0{{ i + 1 }}</span>
+                    <p class="font-sans text-white/65 text-lg font-light leading-relaxed tracking-zh pt-1">{{ h }}</p>
                   </div>
                 </div>
               </div>
 
               <!-- 次圖 -->
               <div class="mt-20 grid grid-cols-2 gap-4">
-                <div class="aspect-square rounded-2xl bg-stone-100 overflow-hidden">
+                <div class="aspect-square rounded-2xl bg-white/[0.06] overflow-hidden">
                   <img :src="project.image" class="w-full h-full object-cover hover:scale-110 transition-transform duration-1200 elegant-transition" loading="lazy" decoding="async">
                 </div>
-                <div class="aspect-square rounded-2xl bg-stone-100 overflow-hidden">
+                <div class="aspect-square rounded-2xl bg-white/[0.06] overflow-hidden">
                   <img src="/image/hero-background.jpg" class="w-full h-full object-cover hover:scale-110 transition-transform duration-1200 elegant-transition" loading="lazy" decoding="async">
                 </div>
               </div>
@@ -89,7 +91,7 @@
       </section>
 
       <!-- 區塊3: iHome 5.0 工法導入（深色）-->
-      <section class="pb-32 md:pb-48">
+      <section class="pb-32 md:pb-48 bg-[#050505]">
         <div class="container-custom">
           <div class="grain-dark relative overflow-hidden rounded-[2.5rem] md:rounded-[3.5rem] bg-[#0a2e26] p-12 md:p-24 animate-fade-in-up">
             <span class="absolute top-0 right-0 p-8 md:p-16 text-white/5 text-[10rem] md:text-[15rem] font-serif pointer-events-none select-none leading-none">iH</span>
@@ -106,7 +108,7 @@
                   v-for="t in project.technologies"
                   :key="t"
                   :to="`/portfolio?tech=${t}`"
-                  class="px-6 py-2.5 bg-white/5 ring-1 ring-white/10 rounded-full font-mono text-[11px] tracking-wider text-emerald-brand-light hover:bg-emerald-brand hover:text-white hover:ring-emerald-brand transition-all duration-500"
+                  class="px-6 py-2.5 bg-white/5 ring-1 ring-white/10 rounded-full font-mono text-[11px] tracking-wider text-emerald-brand-light hover:bg-[#10b981] hover:text-[#050505] hover:ring-[#10b981] transition-all duration-500"
                 >
                   {{ labelOf(t) }}
                 </NuxtLink>
@@ -118,10 +120,10 @@
     </div>
 
     <!-- 找不到專案 -->
-    <div v-else class="h-screen flex items-center justify-center">
+    <div v-else class="h-screen flex items-center justify-center bg-[#050505]">
       <div class="text-center">
-        <h2 class="font-serif text-2xl text-charcoal mb-4">專案資料載入中或不存在</h2>
-        <NuxtLink to="/portfolio" class="text-emerald-brand font-mono text-xs uppercase tracking-widest">Return to Portfolio</NuxtLink>
+        <h2 class="font-serif text-2xl text-white mb-4">專案資料載入中或不存在</h2>
+        <NuxtLink to="/portfolio" class="text-[#10b981] font-mono text-xs uppercase tracking-widest">Return to Portfolio</NuxtLink>
       </div>
     </div>
   </div>
