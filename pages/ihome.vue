@@ -1,7 +1,7 @@
 <template>
   <div class="bg-warm-white min-h-screen">
     <!-- 區塊1: 頁面標頭 -->
-    <section class="pt-40 md:pt-48 pb-20 md:pb-28">
+    <section class="pt-32 md:pt-40 pb-20 md:pb-28">
       <div class="container-custom">
         <div class="max-w-4xl">
           <div class="flex items-center gap-4 mb-10 animate-fade-in-up">

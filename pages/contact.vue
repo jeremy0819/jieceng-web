@@ -17,7 +17,7 @@
     </section>
 
     <!-- 區塊2: 聯絡表單與資訊 -->
-    <section class="section-spacing">
+    <section class="pt-8 md:pt-12 pb-32 md:pb-40">
       <div class="container-custom">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-24 items-start">
 

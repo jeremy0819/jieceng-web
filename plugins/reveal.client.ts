@@ -9,7 +9,7 @@
  *  - 原本以 inline style 設定的 animation-delay 會自動轉成 transition-delay，
  *    讓交錯（stagger）節奏完整保留，無需改任何模板。
  */
-export default defineNuxtPlugin(() => {
+export default defineNuxtPlugin((nuxtApp) => {
   if (!process.client) return
 
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -60,6 +60,7 @@ export default defineNuxtPlugin(() => {
     mo.observe(document.body, { childList: true, subtree: true })
   }
 
-  if (document.body) start()
-  else window.addEventListener('DOMContentLoaded', start)
+  // 必須等 Vue hydration 完成後才接管 DOM；
+  // 提早改 class / style 會造成 hydration mismatch（server 與 client DOM 不一致）。
+  nuxtApp.hook('app:suspense:resolve', start)
 })

@@ -17,7 +17,7 @@
           <p class="font-mono text-[10px] tracking-[0.45em] text-warm-white/50 uppercase mb-8 animate-fade-in-up" style="animation-delay: 0.1s">
             Sustainable Architecture · Centennial Heritage
           </p>
-          <h1 class="font-serif text-7xl md:text-9xl font-light tracking-tight text-warm-white mb-7 animate-fade-in-up">
+          <h1 class="font-serif text-5xl sm:text-7xl md:text-9xl font-light tracking-tight text-warm-white mb-7 animate-fade-in-up">
             傑丞建築機構
           </h1>
           <div class="flex flex-col sm:flex-row sm:items-center gap-7 sm:gap-12 animate-fade-in-up" style="animation-delay: 0.3s">
@@ -95,10 +95,10 @@
             :key="t.key"
             @click="activeKey = t.key"
             :class="[
-              'px-6 md:px-8 py-3 rounded-full text-sm tracking-zh transition-all duration-500 elegant-transition border',
+              'px-6 md:px-8 py-3 rounded-full text-sm tracking-zh transition-all duration-500 elegant-transition ring-1',
               activeKey === t.key
-                ? 'bg-charcoal text-warm-white border-charcoal'
-                : 'bg-transparent text-charcoal/50 border-charcoal/15 hover:border-charcoal/40 hover:text-charcoal'
+                ? 'bg-charcoal text-warm-white ring-charcoal'
+                : 'bg-transparent text-charcoal/50 ring-charcoal/15 hover:ring-charcoal/40 hover:text-charcoal'
             ]"
           >
             <span class="font-mono text-[10px] mr-2 opacity-50">{{ t.num }}</span>{{ t.title }}

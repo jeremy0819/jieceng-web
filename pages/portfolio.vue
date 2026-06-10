@@ -1,7 +1,7 @@
 <template>
   <div class="bg-warm-white min-h-screen">
     <!-- 區塊1: 頁面標頭 -->
-    <section class="pt-40 md:pt-48 pb-12">
+    <section class="pt-32 md:pt-40 pb-12">
       <div class="container-custom">
         <div class="max-w-4xl mb-16">
           <div class="flex items-center gap-4 mb-9 animate-fade-in-up">
@@ -20,10 +20,10 @@
             :key="cat.key"
             @click="currentTech = cat.key"
             :class="[
-              'px-5 md:px-7 py-2.5 rounded-full text-sm tracking-zh transition-all duration-500 elegant-transition border',
+              'px-5 md:px-7 py-2.5 rounded-full text-sm tracking-zh transition-all duration-500 elegant-transition ring-1',
               currentTech === cat.key
-                ? 'bg-charcoal text-warm-white border-charcoal'
-                : 'bg-transparent text-charcoal/50 border-charcoal/15 hover:border-charcoal/40 hover:text-charcoal'
+                ? 'bg-charcoal text-warm-white ring-charcoal'
+                : 'bg-transparent text-charcoal/50 ring-charcoal/15 hover:ring-charcoal/40 hover:text-charcoal'
             ]"
           >
             {{ cat.label }}
