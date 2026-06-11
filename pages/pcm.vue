@@ -62,9 +62,9 @@
     <!-- 區塊2: 四大核心價值 -->
     <section class="section-spacing bg-white">
       <div class="container-custom">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div v-for="(value, index) in coreValues" :key="index"
-            class="animate-fade-in-up" :style="{ animationDelay: `${index * 0.2}s` }">
+            class="glass-card glass-lift rounded-xl p-6 animate-fade-in-up" :style="{ animationDelay: `${index * 0.2}s` }">
             <span class="font-mono text-emerald-brand text-3xl font-light mb-6 block">0{{ index + 1 }}</span>
             <h3 class="font-serif text-xl text-charcoal mb-4">{{ value.title }}</h3>
             <p class="font-sans text-sm text-charcoal/60 leading-relaxed">{{ value.desc }}</p>
@@ -118,9 +118,9 @@
           <div class="h-[1px] w-12 bg-emerald-brand mx-auto animate-fade-in-up" style="animation-delay: 0.2s"></div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-16">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-8">
           <div v-for="(s, i) in serviceScope" :key="i"
-            class="animate-fade-in-up" :style="{ animationDelay: `${i * 0.1}s` }">
+            class="glass-card rounded-xl p-6 animate-fade-in-up" :style="{ animationDelay: `${i * 0.1}s` }">
             <span class="font-mono text-emerald-brand/50 text-xs tracking-widest">0{{ i + 1 }}</span>
             <h3 class="font-serif text-2xl text-charcoal mt-3 mb-5 tracking-zh">{{ s.title }}</h3>
             <ul class="space-y-2.5">
@@ -150,7 +150,7 @@
               class="border-b border-stone-200 animate-fade-in-up" :style="{ animationDelay: `${i * 0.05}s` }">
               <button
                 @click="toggleFaq(i)"
-                class="w-full flex justify-between items-center text-left py-8 group focus:outline-none"
+                class="w-full flex justify-between items-center text-left py-6 group focus:outline-none"
                 :aria-expanded="openFaq === i"
               >
                 <span class="font-serif text-lg md:text-xl text-charcoal tracking-zh group-hover:text-emerald-brand transition-colors duration-500 pr-8">
@@ -168,7 +168,10 @@
                 class="overflow-hidden transition-all duration-700 elegant-transition"
                 :style="{ maxHeight: openFaq === i ? '400px' : '0px', opacity: openFaq === i ? 1 : 0 }"
               >
-                <p class="font-sans text-charcoal/60 leading-relaxed tracking-zh pb-8 pr-4 md:pr-12">
+                <p
+                  class="font-sans text-charcoal/60 leading-relaxed tracking-zh pb-8 pr-4 md:pr-12"
+                  :class="openFaq === i ? 'bg-emerald-brand/[0.03]' : ''"
+                >
                   {{ faq.a }}
                 </p>
               </div>
@@ -243,7 +246,7 @@
         </h2>
         <NuxtLink
           to="/contact"
-          class="inline-block px-12 py-5 border border-warm-white text-warm-white text-xs tracking-[0.2em] uppercase hover:bg-warm-white hover:text-charcoal transition-all duration-1200 elegant-transition animate-fade-in-up"
+          class="inline-block px-12 py-5 ring-1 ring-warm-white/40 text-warm-white text-xs tracking-[0.2em] uppercase rounded-full hover:ring-warm-white/60 hover:bg-warm-white hover:text-charcoal transition-all duration-700 elegant-transition animate-fade-in-up"
         >
           與我們聯繫諮詢
         </NuxtLink>
@@ -297,8 +300,8 @@ const toggleFaq = (i) => {
   openFaq.value = openFaq.value === i ? -1 : i
 }
 
-useHead({
-  title: '全案管理 PCM - 傑丞建築機構'
+useSeoMeta({
+  title: '全案管理 PCM - 傑丞建築機構',
+  description: '傑丞建築機構提供建築全案管理服務，從土地評估、建築設計到施工監理，以iHome 5.0工法確保品質。'
 })
 </script>
-
