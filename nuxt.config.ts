@@ -18,8 +18,10 @@ export default defineNuxtConfig({
         '/ihome',
         '/presentations',
         '/contact',
+        '/briefing',
         '/project/1',
-        '/project/2'
+        '/project/2',
+        '/project/3'
       ]
     }
   },

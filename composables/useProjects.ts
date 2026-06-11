@@ -2,7 +2,7 @@ export interface Project {
   id: number
   title: string
   year: number
-  category: string
+  category: 'residential' | 'renewal'  // 用於 portfolio 篩選
   categoryLabel: string
   location: string
   description: string
@@ -10,14 +10,9 @@ export interface Project {
   image: string
   highlights: string[]
   specs: Record<string, string>
-  technologies: string[] // 對應 useIHome 的 key：centennial / healthy / energy / smart / resume
+  technologies: string[] // iHome 5.0 工法標籤（顯示於建案詳情頁）
 }
 
-/**
- * 全站建案資料的單一來源（真實案例）。
- * 新增建案：在此陣列加一筆物件，並把對應圖片放到 public/image/，
- * 首頁、作品集、案例詳情頁會自動同步。technologies 對應 iHome 5.0 五大宅。
- */
 const projects: Project[] = [
   {
     id: 1,
@@ -58,12 +53,30 @@ const projects: Project[] = [
       基地位置: '桃園'
     },
     technologies: ['energy', 'healthy', 'resume']
+  },
+  {
+    id: 3,
+    title: '新店安和段都更案',
+    year: 2026,
+    category: 'renewal',
+    categoryLabel: '都更案',
+    location: '新北市新店區',
+    description: '安和段都市更新重建計畫，整合多戶住戶共同推動，打造新北市永續都更示範標竿。',
+    fullDescription:
+      '新店安和段都市更新案以「整合共贏、永續宜居」為核心，在傑丞建築全案管理與整合協調下，成功整合區域住戶共同參與重建。本案規劃引入 iHome 5.0 工法，使舊屋換新宅、坪數大幅提升，並導入智慧設備與節能系統，為居住者創造現代化且符合百年耐用標準的生活品質，成為新北市都市更新示範標竿。',
+    image: 'image/project-3.jpg',
+    highlights: ['整合多戶都更共識', '原地重建坪數大幅提升', 'iHome 5.0 全套工法導入', '獲選新北市都更示範案'],
+    specs: {
+      案件類型: '都市更新重建',
+      基地位置: '新北市新店區安和段',
+      整合工法: 'iHome 5.0',
+      預計完工: '2026'
+    },
+    technologies: ['centennial', 'energy', 'smart']
   }
 ]
 
 export const useProjects = () => {
-  // 動態綁定 (:src) 的圖片不會被 Nuxt 自動加上 baseURL，
-  // 因此在這裡依 app.baseURL 補上前綴，子路徑部署 (GitHub Pages) 才能正確載入。
   const base = useRuntimeConfig().app.baseURL
   const withBase = (path: string) => `${base}${path}`.replace(/([^:]\/)\/+/g, '$1')
 
@@ -72,8 +85,13 @@ export const useProjects = () => {
   const getProject = (id: string | number): Project | undefined =>
     resolved.find((p) => p.id === Number(id))
 
+  // 依 iHome 工法篩選（建案詳情頁使用）
   const projectsByTech = (key: string) =>
     resolved.filter((p) => p.technologies.includes(key))
 
-  return { projects: resolved, getProject, projectsByTech }
+  // 依案件類型篩選（portfolio 頁使用）
+  const projectsByCategory = (key: string) =>
+    key === 'All' ? resolved : resolved.filter((p) => p.category === key)
+
+  return { projects: resolved, getProject, projectsByTech, projectsByCategory }
 }

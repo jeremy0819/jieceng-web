@@ -1,15 +1,15 @@
 <template>
-  <div class="bg-[#050505] min-h-screen">
+  <div class="bg-warm-white min-h-screen">
     <!-- 區塊1: 頁面標頭 -->
-    <section class="pt-24 pb-12 bg-[#050505]">
+    <section class="pt-24 pb-12 bg-warm-white">
       <div class="container-custom text-center">
-        <span class="font-mono text-[#10b981] text-xs tracking-[0.3em] uppercase mb-4 block animate-fade-in-up">
+        <span class="text-emerald-brand font-mono text-xs tracking-[0.3em] uppercase mb-4 block animate-fade-in-up">
           Get In Touch
         </span>
-        <h1 class="font-serif text-5xl md:text-6xl font-light text-white mb-8 animate-fade-in-up">
+        <h1 class="font-serif text-5xl md:text-6xl font-light text-charcoal mb-8 animate-fade-in-up">
           聯絡我們
         </h1>
-        <p class="max-w-2xl mx-auto font-sans text-white/55 leading-relaxed animate-fade-in-up" style="animation-delay: 0.2s">
+        <p class="max-w-2xl mx-auto font-sans text-charcoal/55 leading-relaxed animate-fade-in-up" style="animation-delay: 0.2s">
           無論是新的建築計畫、空間改造諮詢，或是媒體採訪邀約，<br class="hidden md:block" />
           我們都期待聆聽您的想法，共同建構理想的空間未來。
         </p>
@@ -17,16 +17,16 @@
     </section>
 
     <!-- 區塊2: 聯絡表單與資訊 -->
-    <section class="pt-8 md:pt-12 pb-32 md:pb-40 bg-[#050505]">
+    <section class="pt-8 md:pt-12 pb-32 md:pb-40 bg-warm-white">
       <div class="container-custom">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-24 items-start">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
 
           <!-- 左側：聯絡表單 -->
           <div class="glass-card rounded-3xl p-8 md:p-12 animate-fade-in-up" style="animation-delay: 0.4s">
-            <form @submit.prevent="submitForm" class="space-y-12">
+            <form @submit.prevent="submitForm" class="space-y-10">
               <!-- 姓名欄位 -->
               <div class="group relative">
-                <label class="block font-mono text-[10px] uppercase tracking-widest text-white/35 mb-2 transition-colors group-focus-within:text-[#10b981]">
+                <label class="block font-mono text-[10px] uppercase tracking-widest text-charcoal/35 mb-2 transition-colors group-focus-within:text-emerald-brand">
                   Full Name
                 </label>
                 <input
@@ -34,17 +34,16 @@
                   type="text"
                   placeholder="您的姓名"
                   required
-                  class="w-full bg-transparent border-b border-white/[0.12] py-3 focus:outline-none focus:border-[#10b981] transition-colors duration-700 font-sans text-white placeholder:text-white/20"
+                  class="w-full bg-transparent border-b border-stone-200 py-3 focus:outline-none focus:border-emerald-brand transition-colors duration-700 font-sans text-charcoal placeholder:text-charcoal/20"
                 >
                 <div
-                  class="absolute bottom-0 left-0 w-0 h-[1px] bg-[#10b981] transition-all duration-700 elegant-transition group-focus-within:w-full"
-                  style="box-shadow: 0 0 8px rgba(16,185,129,0.6)"
+                  class="absolute bottom-0 left-0 w-0 h-[1px] bg-emerald-brand transition-all duration-700 elegant-transition group-focus-within:w-full"
                 ></div>
               </div>
 
               <!-- 信箱欄位 -->
               <div class="group relative">
-                <label class="block font-mono text-[10px] uppercase tracking-widest text-white/35 mb-2 transition-colors group-focus-within:text-[#10b981]">
+                <label class="block font-mono text-[10px] uppercase tracking-widest text-charcoal/35 mb-2 transition-colors group-focus-within:text-emerald-brand">
                   Email Address
                 </label>
                 <input
@@ -52,17 +51,16 @@
                   type="email"
                   placeholder="email@example.com"
                   required
-                  class="w-full bg-transparent border-b border-white/[0.12] py-3 focus:outline-none focus:border-[#10b981] transition-colors duration-700 font-sans text-white placeholder:text-white/20"
+                  class="w-full bg-transparent border-b border-stone-200 py-3 focus:outline-none focus:border-emerald-brand transition-colors duration-700 font-sans text-charcoal placeholder:text-charcoal/20"
                 >
                 <div
-                  class="absolute bottom-0 left-0 w-0 h-[1px] bg-[#10b981] transition-all duration-700 elegant-transition group-focus-within:w-full"
-                  style="box-shadow: 0 0 8px rgba(16,185,129,0.6)"
+                  class="absolute bottom-0 left-0 w-0 h-[1px] bg-emerald-brand transition-all duration-700 elegant-transition group-focus-within:w-full"
                 ></div>
               </div>
 
               <!-- 訊息內容 -->
               <div class="group relative">
-                <label class="block font-mono text-[10px] uppercase tracking-widest text-white/35 mb-2 transition-colors group-focus-within:text-[#10b981]">
+                <label class="block font-mono text-[10px] uppercase tracking-widest text-charcoal/35 mb-2 transition-colors group-focus-within:text-emerald-brand">
                   Message
                 </label>
                 <textarea
@@ -70,11 +68,10 @@
                   rows="4"
                   placeholder="請描述您的需求..."
                   required
-                  class="w-full bg-transparent border-b border-white/[0.12] py-3 focus:outline-none focus:border-[#10b981] transition-colors duration-700 font-sans text-white placeholder:text-white/20 resize-none"
+                  class="w-full bg-transparent border-b border-stone-200 py-3 focus:outline-none focus:border-emerald-brand transition-colors duration-700 font-sans text-charcoal placeholder:text-charcoal/20 resize-none"
                 ></textarea>
                 <div
-                  class="absolute bottom-0 left-0 w-0 h-[1px] bg-[#10b981] transition-all duration-700 elegant-transition group-focus-within:w-full"
-                  style="box-shadow: 0 0 8px rgba(16,185,129,0.6)"
+                  class="absolute bottom-0 left-0 w-0 h-[1px] bg-emerald-brand transition-all duration-700 elegant-transition group-focus-within:w-full"
                 ></div>
               </div>
 
@@ -83,17 +80,18 @@
                 <button
                   type="submit"
                   :disabled="status === 'loading'"
-                  class="group relative inline-flex items-center px-12 py-5 bg-[#10b981] text-[#050505] text-xs tracking-[0.2em] uppercase overflow-hidden transition-all duration-700 rounded-full hover:bg-[#0d9668] disabled:opacity-50 disabled:cursor-not-allowed"
+                  class="group relative inline-flex items-center px-12 py-5 bg-charcoal text-warm-white text-xs tracking-[0.2em] uppercase rounded-full overflow-hidden transition-all duration-700 hover:bg-emerald-brand disabled:opacity-50 disabled:cursor-not-allowed"
                 >
+                  <span class="absolute inset-0 bg-emerald-brand transform translate-y-full group-hover:translate-y-0 transition-transform duration-700 elegant-transition"></span>
                   <span class="relative z-10">
                     {{ status === 'loading' ? '傳送中⋯' : '送出訊息' }}
                   </span>
                 </button>
                 <Transition name="fade-quick">
-                  <p v-if="status === 'success'" class="font-sans text-sm text-[#10b981] tracking-zh">
+                  <p v-if="status === 'success'" class="font-sans text-sm text-emerald-brand tracking-zh">
                     ✓ 訊息已送出，我們將盡快與您聯繫。
                   </p>
-                  <p v-else-if="status === 'error'" class="font-sans text-sm text-red-400 tracking-zh">
+                  <p v-else-if="status === 'error'" class="font-sans text-sm text-red-500 tracking-zh">
                     ✗ 傳送失敗，請直接寄信至 jason.house2007@gmail.com
                   </p>
                 </Transition>
@@ -106,26 +104,26 @@
             <!-- 電話與地址 -->
             <div class="space-y-8">
               <div>
-                <h3 class="font-mono text-xs text-[#10b981] tracking-widest uppercase mb-4">Location</h3>
-                <p class="font-serif text-2xl text-white leading-relaxed">
+                <h3 class="text-emerald-brand font-mono text-xs tracking-widest uppercase mb-4">Location</h3>
+                <p class="font-serif text-2xl text-charcoal leading-relaxed">
                   桃園市桃園區大興西路一段268號<br />
                   印象羅芙19樓
                 </p>
               </div>
               <div>
-                <h3 class="font-mono text-xs text-[#10b981] tracking-widest uppercase mb-4">Inquiry</h3>
-                <p class="font-serif text-2xl text-white">(02) 2345-6789</p>
-                <a href="mailto:jason.house2007@gmail.com" class="font-sans text-white/55 hover:text-[#10b981] transition-colors duration-500 mt-2 block">jason.house2007@gmail.com</a>
+                <h3 class="text-emerald-brand font-mono text-xs tracking-widest uppercase mb-4">Inquiry</h3>
+                <p class="font-serif text-2xl text-charcoal">(02) 2345-6789</p>
+                <a href="mailto:jason.house2007@gmail.com" class="font-sans text-charcoal/55 hover:text-emerald-brand transition-colors duration-500 mt-2 block">jason.house2007@gmail.com</a>
               </div>
             </div>
 
             <!-- 社交媒體 -->
             <div>
-              <h3 class="font-mono text-xs text-[#10b981] tracking-widest uppercase mb-6">Social Connect</h3>
+              <h3 class="text-emerald-brand font-mono text-xs tracking-widest uppercase mb-6">Social Connect</h3>
               <div class="flex space-x-8">
-                <a href="#" class="text-white/35 hover:text-[#10b981] transition-colors duration-500 font-sans text-sm tracking-widest uppercase">Facebook</a>
-                <a href="#" class="text-white/35 hover:text-[#10b981] transition-colors duration-500 font-sans text-sm tracking-widest uppercase">Instagram</a>
-                <a href="#" class="text-white/35 hover:text-[#10b981] transition-colors duration-500 font-sans text-sm tracking-widest uppercase">LinkedIn</a>
+                <a href="#" class="text-charcoal/35 hover:text-emerald-brand transition-colors duration-500 font-sans text-sm tracking-widest uppercase">Facebook</a>
+                <a href="#" class="text-charcoal/35 hover:text-emerald-brand transition-colors duration-500 font-sans text-sm tracking-widest uppercase">Instagram</a>
+                <a href="#" class="text-charcoal/35 hover:text-emerald-brand transition-colors duration-500 font-sans text-sm tracking-widest uppercase">LinkedIn</a>
               </div>
             </div>
 
@@ -146,7 +144,7 @@
               href="https://maps.app.goo.gl/AYb92M8zd5Rp3KuT9"
               target="_blank"
               rel="noopener"
-              class="inline-flex items-center gap-2 font-mono text-[11px] tracking-widest text-white/35 hover:text-[#10b981] transition-colors duration-500 uppercase"
+              class="inline-flex items-center gap-2 text-charcoal/35 hover:text-emerald-brand font-mono text-[11px] tracking-widest uppercase transition-colors duration-500"
             >
               在 Google Maps 開啟 ↗
             </a>

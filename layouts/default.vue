@@ -1,11 +1,9 @@
 <template>
-  <div class="min-h-screen flex flex-col relative bg-[#050505]">
+  <div class="min-h-screen flex flex-col relative bg-warm-white">
     <TheNavbar />
-
     <main class="flex-grow">
       <slot />
     </main>
-
     <TheFooter />
   </div>
 </template>

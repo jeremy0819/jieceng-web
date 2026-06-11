@@ -1,7 +1,7 @@
 <template>
-  <div class="bg-[#050505]">
-    <!-- 區塊1: 首頁 Hero Section -->
-    <section class="grain-dark relative h-[95vh] flex items-end overflow-hidden bg-[#050505]">
+  <div class="bg-warm-white">
+    <!-- 區塊1: 首頁 Hero Section (DARK) -->
+    <section class="grain-dark relative h-[95vh] flex items-end overflow-hidden bg-charcoal">
       <div class="absolute inset-0 z-0">
         <img
           src="/image/hero-background.jpg"
@@ -9,12 +9,12 @@
           class="w-full h-full object-cover opacity-50 scale-105 animate-slow-zoom"
           loading="eager" fetchpriority="high" decoding="async"
         >
-        <div class="absolute inset-0 bg-gradient-to-t from-[#050505]/95 via-[#050505]/40 to-transparent"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-charcoal/92 via-charcoal/40 to-transparent"></div>
       </div>
 
       <div class="relative z-10 w-full pb-20 md:pb-28">
         <div class="container-custom">
-          <p class="font-mono text-[10px] tracking-[0.45em] text-[#10b981] uppercase mb-8 animate-fade-in-up" style="animation-delay: 0.1s">
+          <p class="font-mono text-[10px] tracking-[0.45em] text-emerald-brand-light uppercase mb-8 animate-fade-in-up" style="animation-delay: 0.1s">
             Sustainable Architecture · Centennial Heritage
           </p>
           <h1 class="font-serif text-5xl sm:text-7xl md:text-9xl font-light tracking-tight text-white mb-7 animate-fade-in-up">
@@ -26,7 +26,7 @@
             </p>
             <NuxtLink
               to="/portfolio"
-              class="self-start inline-block px-8 py-3.5 glass rounded-full font-mono text-xs tracking-widest uppercase text-white/70 hover:text-white hover:bg-white/[0.12] transition-all duration-500"
+              class="self-start inline-block glass-dark rounded-full px-8 py-3.5 font-mono text-xs tracking-widest uppercase text-white/80 hover:bg-white/20 transition-all duration-500"
             >
               探索建築誌
             </NuxtLink>
@@ -44,36 +44,36 @@
 
       <!-- 底部 glass 信息條 -->
       <div class="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 animate-fade-in-up" style="animation-delay: 1.6s">
-        <div class="glass rounded-full px-6 py-2.5 flex items-center gap-3">
-          <span class="w-1.5 h-1.5 rounded-full bg-[#10b981] shrink-0"></span>
+        <div class="glass-dark rounded-full px-6 py-2.5 flex items-center gap-3">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-brand-light shrink-0"></span>
           <span class="font-mono text-[10px] tracking-[0.35em] text-white/60 uppercase">桃園 · 雙北 · 20+ 年</span>
         </div>
       </div>
     </section>
 
-    <!-- 區塊2: 品牌策略 -->
-    <section class="section-spacing bg-[#0a0a0a] overflow-hidden border-t border-white/[0.08]">
+    <!-- 區塊2: 品牌策略 (LIGHT) -->
+    <section class="section-spacing bg-white overflow-hidden border-t border-stone-100">
       <div class="container-custom">
         <div class="grid lg:grid-cols-12 gap-16 lg:gap-24 items-center">
           <div class="lg:col-span-5">
-            <h2 class="font-mono text-[10px] uppercase tracking-[0.5em] text-[#10b981] mb-9 flex items-center animate-fade-in-up">
-              <span class="w-8 h-px bg-[#10b981] mr-4"></span>
+            <h2 class="font-mono text-[10px] uppercase tracking-[0.5em] text-emerald-brand mb-9 flex items-center animate-fade-in-up">
+              <span class="w-8 h-px bg-emerald-brand mr-4"></span>
               Creative Strategy
             </h2>
-            <p class="font-serif text-4xl md:text-5xl font-light text-white leading-tight mb-10 tracking-zh animate-fade-in-up" style="animation-delay: 0.1s">
-              我們不只是建造物理結構，更是在策劃一種<span class="italic text-[#10b981]">永續的生活藍圖。</span>
+            <p class="font-serif text-4xl md:text-5xl font-light text-charcoal leading-tight mb-10 tracking-zh animate-fade-in-up" style="animation-delay: 0.1s">
+              我們不只是建造物理結構，更是在策劃一種<span class="italic text-emerald-brand">永續的生活藍圖。</span>
             </p>
-            <div class="space-y-6 font-sans text-lg text-white/55 font-light leading-relaxed tracking-zh animate-fade-in-up" style="animation-delay: 0.2s">
+            <div class="space-y-6 font-sans text-lg text-charcoal/55 font-light leading-relaxed tracking-zh animate-fade-in-up" style="animation-delay: 0.2s">
               <p>傑丞建築機構深耕桃園與雙北逾二十載，我們將「iHome 5.0」專利工法定義為品牌的技術脊樑。</p>
               <p>對我們而言，美學不應是奢侈的堆砌，而是基於物理性能的自然延伸。</p>
             </div>
           </div>
           <div class="lg:col-span-7">
-            <div class="aspect-[4/5] md:aspect-[16/11] rounded-3xl overflow-hidden bg-white/[0.06] shadow-2xl ring-1 ring-white/[0.12] group animate-fade-in-up" style="animation-delay: 0.15s">
+            <div class="aspect-[4/5] md:aspect-[16/11] rounded-3xl overflow-hidden bg-stone-100 shadow-md ring-1 ring-black/[0.07] group animate-fade-in-up" style="animation-delay: 0.15s">
               <img
                 src="/image/project-3.jpg"
                 alt="傑丞設計細節"
-                class="w-full h-full object-cover transition-transform duration-1200 elegant-transition group-hover:scale-105"
+                class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1200 elegant-transition group-hover:scale-105"
                 loading="lazy" decoding="async"
               >
             </div>
@@ -83,15 +83,15 @@
     </section>
 
     <!-- 區塊3: iHome 5.0 互動式展示（蘋果式分頁切換）-->
-    <section class="section-spacing bg-[#050505] vw-sep">
+    <section class="section-spacing bg-warm-white vw-sep">
       <div class="container-custom">
         <div class="mb-14 md:mb-20 animate-fade-in-up">
-          <span class="font-mono text-[#10b981] text-xs tracking-[0.35em] uppercase mb-6 block">The Method</span>
+          <span class="font-mono text-emerald-brand text-xs tracking-[0.35em] uppercase mb-6 block">The Method</span>
           <div class="flex flex-col lg:flex-row lg:items-baseline gap-4 lg:gap-10">
-            <h2 class="font-serif text-5xl md:text-6xl font-light tracking-tight text-white shrink-0 leading-tight">
+            <h2 class="font-serif text-5xl md:text-6xl font-light tracking-tight text-charcoal shrink-0 leading-tight">
               iHome 5.0 五大宅
             </h2>
-            <p class="font-sans text-base md:text-lg font-light text-white/40 max-w-[38ch] leading-relaxed tracking-zh">
+            <p class="font-sans text-base md:text-lg font-light text-charcoal/40 max-w-[38ch] leading-relaxed tracking-zh">
               點選標籤，探索定義傑丞建築的五大工法核心。
             </p>
           </div>
@@ -106,22 +106,22 @@
             :class="[
               'px-6 md:px-8 py-3 rounded-full text-sm tracking-zh transition-all duration-500 elegant-transition',
               activeKey === t.key
-                ? 'bg-[#10b981] text-[#050505] ring-0'
-                : 'glass text-white/50 hover:text-white'
+                ? 'bg-charcoal text-warm-white ring-charcoal'
+                : 'glass rounded-full text-charcoal/50 ring-1 ring-charcoal/15 hover:ring-charcoal/40 hover:text-charcoal'
             ]"
           >
             <span class="font-mono text-[10px] mr-2 opacity-50">{{ t.num }}</span>{{ t.title }}
           </button>
         </div>
 
-        <!-- 內容面板 -->
-        <div class="relative rounded-[2.5rem] overflow-hidden glass-card min-h-[460px] md:min-h-[520px] animate-fade-in-up" style="animation-delay: 0.15s">
+        <!-- 內容面板 (keep dark card on light bg) -->
+        <div class="relative rounded-[2.5rem] overflow-hidden grain-dark bg-charcoal min-h-[460px] md:min-h-[520px] animate-fade-in-up" style="animation-delay: 0.15s">
           <Transition name="ihome-fade" mode="out-in">
             <div :key="active.key" class="grid md:grid-cols-2">
               <!-- 圖片 -->
               <div class="relative h-64 md:h-[520px] overflow-hidden">
                 <img :src="active.image" :alt="active.title" class="w-full h-full object-cover" loading="lazy" decoding="async">
-                <div class="absolute inset-0 bg-gradient-to-r from-[#050505]/10 to-[#050505]/60 md:bg-gradient-to-r md:from-transparent md:to-[#050505]/70"></div>
+                <div class="absolute inset-0 bg-gradient-to-r from-charcoal/10 to-charcoal/60 md:bg-gradient-to-r md:from-transparent md:to-charcoal/70"></div>
               </div>
               <!-- 文字 -->
               <div class="p-9 md:p-16 flex flex-col justify-center">
@@ -145,7 +145,7 @@
         <div class="mt-12 text-center animate-fade-in-up">
           <NuxtLink
             to="/ihome"
-            class="inline-flex items-center gap-3 px-10 py-4 ring-1 ring-white/20 text-white/70 rounded-full font-mono text-xs tracking-[0.2em] uppercase hover:ring-[#10b981] hover:text-[#10b981] transition-all duration-500"
+            class="inline-flex items-center gap-3 px-10 py-4 ring-1 ring-charcoal/20 text-charcoal rounded-full font-mono text-xs tracking-[0.2em] uppercase hover:bg-charcoal hover:text-warm-white transition-all duration-500"
           >
             深入了解 iHome 5.0
           </NuxtLink>
@@ -153,18 +153,18 @@
       </div>
     </section>
 
-    <!-- 區塊4: 精選建築誌（交錯網格）-->
-    <section class="section-spacing bg-[#0a0a0a] vw-sep border-t border-white/[0.08]">
+    <!-- 區塊4: 精選建築誌（交錯網格）(LIGHT) -->
+    <section class="section-spacing bg-white vw-sep border-t border-stone-100">
       <div class="container-custom">
         <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 md:mb-24 gap-8">
-          <h2 class="font-serif text-5xl md:text-7xl font-light leading-none tracking-tight text-white animate-fade-in-up">
+          <h2 class="font-serif text-5xl md:text-7xl font-light leading-none tracking-tight text-charcoal animate-fade-in-up">
             精選
             <br />
-            <span class="italic text-white/25">建築誌。</span>
+            <span class="italic text-charcoal/25">建築誌。</span>
           </h2>
           <NuxtLink
             to="/portfolio"
-            class="px-10 py-4 ring-1 ring-white/20 rounded-full font-mono text-[10px] font-bold uppercase tracking-widest text-white/70 hover:ring-[#10b981] hover:text-[#10b981] transition-all duration-500 animate-fade-in-up"
+            class="px-10 py-4 ring-1 ring-charcoal/20 rounded-full font-mono text-[10px] font-bold uppercase tracking-widest text-charcoal hover:bg-charcoal hover:text-warm-white transition-all duration-500 animate-fade-in-up"
           >
             探索所有案例
           </NuxtLink>
@@ -178,24 +178,24 @@
             :class="['group block animate-fade-in-up', index % 2 !== 0 ? 'md:mt-32' : '']"
             :style="`animation-delay: ${0.1 + index * 0.12}s`"
           >
-            <div class="aspect-[3/4] rounded-2xl overflow-hidden bg-white/[0.06] mb-9 transition-shadow duration-700 group-hover:shadow-2xl relative">
+            <div class="aspect-[3/4] rounded-2xl overflow-hidden bg-stone-100 mb-9 transition-shadow duration-700 group-hover:shadow-2xl relative">
               <img
                 :src="project.image"
                 :alt="project.title"
-                class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-all duration-1200 elegant-transition group-hover:scale-105"
+                class="w-full h-full object-cover grayscale group-hover:grayscale-0 opacity-80 group-hover:opacity-100 transition-all duration-1200 elegant-transition group-hover:scale-105"
                 loading="lazy" decoding="async"
               >
               <!-- Glass hover overlay -->
               <div class="absolute inset-0 glass opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
             </div>
-            <div class="flex justify-between items-start border-t border-white/[0.10] pt-7">
+            <div class="flex justify-between items-start border-t border-stone-200 pt-7">
               <div>
-                <span class="font-mono text-[10px] text-[#10b981] font-bold uppercase tracking-widest mb-2 block">Featured Case</span>
-                <h3 class="font-serif text-3xl font-light text-white group-hover:text-[#10b981] transition-colors duration-500 tracking-zh">
+                <span class="font-mono text-[10px] text-emerald-brand font-bold uppercase tracking-widest mb-2 block">Featured Case</span>
+                <h3 class="font-serif text-3xl font-light text-charcoal group-hover:text-emerald-brand transition-colors duration-500 tracking-zh">
                   {{ project.title }}
                 </h3>
               </div>
-              <span class="font-sans text-sm font-light text-white/40">{{ project.year }}</span>
+              <span class="font-sans text-sm font-light text-charcoal/40">{{ project.year }}</span>
             </div>
           </NuxtLink>
         </div>
@@ -233,5 +233,9 @@ useSeoMeta({
 .ihome-fade-enter-from,
 .ihome-fade-leave-to {
   opacity: 0;
+}
+
+@media (max-width: 640px) {
+  .container-custom { padding-left: 1.25rem; padding-right: 1.25rem; }
 }
 </style>

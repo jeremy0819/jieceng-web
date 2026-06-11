@@ -29,12 +29,12 @@
             :href="withBase(deck.file)"
             target="_blank"
             rel="noopener"
-            class="group block animate-fade-in-up"
+            class="glass-card glass-lift rounded-2xl group block animate-fade-in-up"
             :style="`animation-delay: ${0.2 + index * 0.12}s`"
           >
             <!-- 視覺色塊封面 -->
             <div
-              class="relative aspect-[4/3] overflow-hidden rounded-sm mb-6 flex flex-col justify-between p-8 transition-transform duration-1200 elegant-transition group-hover:scale-[1.02]"
+              class="relative aspect-[4/3] overflow-hidden rounded-t-2xl flex flex-col justify-between p-8 transition-transform duration-1200 elegant-transition group-hover:scale-[1.02]"
               :style="`background:${deck.bg}`"
             >
               <div class="flex justify-between items-start">
@@ -59,7 +59,7 @@
             </div>
 
             <!-- 資訊區 -->
-            <div class="px-1">
+            <div class="px-6 py-5">
               <p class="font-sans text-sm text-charcoal/60 leading-relaxed mb-3">
                 {{ deck.description }}
               </p>
@@ -132,4 +132,3 @@ const decks = [
   },
 ]
 </script>
-
