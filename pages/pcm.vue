@@ -17,6 +17,7 @@
           <span class="font-mono text-emerald-brand-light text-xs tracking-[0.3em] uppercase mb-4 block animate-fade-in-up">
             Professional Case Management
           </span>
+          <div class="dim-line dim-line-light w-20 mb-6 animate-fade-in-up" style="animation-delay: 0.1s"></div>
           <h1 class="font-serif text-5xl md:text-7xl text-warm-white font-light mb-8 animate-fade-in-up" style="animation-delay: 0.2s">
             全案管理 · 價值最大化
           </h1>
@@ -28,8 +29,9 @@
     </section>
 
     <!-- 區塊1.5: 為什麼需要全案管理 -->
-    <section class="section-spacing bg-warm-white border-b border-stone-100">
-      <div class="container-custom">
+    <section class="section-spacing relative overflow-hidden bg-warm-white border-b border-stone-100">
+      <span class="sheet-num top-8 right-0" aria-hidden="true">01</span>
+      <div class="container-custom relative z-10">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           <!-- 左：標題 -->
           <div class="lg:col-span-5">
@@ -74,8 +76,8 @@
     </section>
 
     <!-- 區塊3: PCM 服務流程 (垂直時間軸) -->
-    <section class="section-spacing bg-warm-white overflow-hidden">
-      <div class="container-custom">
+    <section class="blueprint-grid section-spacing bg-warm-white relative overflow-hidden">
+      <div class="container-custom relative z-10">
         <div class="text-center mb-24">
           <h2 class="font-serif text-4xl md:text-5xl font-light text-charcoal mb-4 animate-fade-in-up">服務流程</h2>
           <div class="h-[1px] w-12 bg-emerald-brand mx-auto animate-fade-in-up" style="animation-delay: 0.2s"></div>
@@ -108,8 +110,9 @@
     </section>
 
     <!-- 區塊3.5: 服務範疇 -->
-    <section class="section-spacing bg-white border-t border-stone-100">
-      <div class="container-custom">
+    <section class="section-spacing relative overflow-hidden bg-white border-t border-stone-100">
+      <span class="sheet-num top-8 right-0" aria-hidden="true">02</span>
+      <div class="container-custom relative z-10">
         <div class="text-center mb-24">
           <span class="font-mono text-emerald-brand text-xs tracking-[0.3em] uppercase mb-4 block animate-fade-in-up">
             Service Scope
@@ -246,7 +249,7 @@
         </h2>
         <NuxtLink
           to="/contact"
-          class="inline-block px-12 py-5 ring-1 ring-warm-white/40 text-warm-white text-xs tracking-[0.2em] uppercase rounded-full hover:ring-warm-white/60 hover:bg-warm-white hover:text-charcoal transition-all duration-700 elegant-transition animate-fade-in-up"
+          class="btn-sheen inline-block px-12 py-5 ring-1 ring-warm-white/40 text-warm-white text-xs tracking-[0.2em] uppercase rounded-full hover:ring-warm-white/60 hover:bg-warm-white hover:text-charcoal transition-all duration-700 elegant-transition animate-fade-in-up"
         >
           與我們聯繫諮詢
         </NuxtLink>

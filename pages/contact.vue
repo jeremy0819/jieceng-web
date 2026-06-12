@@ -3,9 +3,10 @@
     <!-- 區塊1: 頁面標頭 -->
     <section class="pt-24 pb-12 bg-warm-white">
       <div class="container-custom text-center">
-        <span class="text-emerald-brand font-mono text-xs tracking-[0.3em] uppercase mb-4 block animate-fade-in-up">
+        <span class="text-emerald-brand font-mono text-xs tracking-[0.3em] uppercase mb-5 block animate-fade-in-up">
           Get In Touch
         </span>
+        <div class="dim-line w-16 mx-auto mb-6 animate-fade-in-up"></div>
         <h1 class="font-serif text-5xl md:text-6xl font-light text-charcoal mb-8 animate-fade-in-up">
           聯絡我們
         </h1>
@@ -17,12 +18,12 @@
     </section>
 
     <!-- 區塊2: 聯絡表單與資訊 -->
-    <section class="pt-8 md:pt-12 pb-32 md:pb-40 bg-warm-white">
-      <div class="container-custom">
+    <section class="blueprint-grid relative overflow-hidden pt-8 md:pt-12 pb-32 md:pb-40 bg-warm-white">
+      <div class="container-custom relative z-10">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
 
           <!-- 左側：聯絡表單 -->
-          <div class="glass-card rounded-3xl p-8 md:p-12 animate-fade-in-up" style="animation-delay: 0.4s">
+          <div class="glass-card relative corner-marks rounded-3xl p-8 md:p-12 animate-fade-in-up" style="animation-delay: 0.4s">
             <form @submit.prevent="submitForm" class="space-y-10">
               <!-- 姓名欄位 -->
               <div class="group relative">
@@ -128,17 +129,20 @@
             </div>
 
             <!-- Google Maps 嵌入 -->
-            <div class="glass rounded-2xl overflow-hidden grayscale hover:grayscale-0 transition-all duration-1200 elegant-transition">
-              <iframe
-                src="https://www.google.com/maps?q=%E6%A1%83%E5%9C%92%E5%B8%82%E6%A1%83%E5%9C%92%E5%8D%80%E5%A4%A7%E8%88%88%E8%A5%BF%E8%B7%AF%E4%B8%80%E6%AE%B5268%E8%99%9F&output=embed&z=17"
-                width="100%"
-                height="280"
-                style="border:0; display:block;"
-                allowfullscreen
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"
-                title="傑丞建築機構位置"
-              ></iframe>
+            <div>
+              <p class="font-mono text-[9px] tracking-[0.25em] uppercase text-charcoal/30 mb-3">24.9937°N 121.2958°E — Taoyuan</p>
+              <div class="glass rounded-2xl overflow-hidden grayscale hover:grayscale-0 transition-all duration-1200 elegant-transition">
+                <iframe
+                  src="https://www.google.com/maps?q=%E6%A1%83%E5%9C%92%E5%B8%82%E6%A1%83%E5%9C%92%E5%8D%80%E5%A4%A7%E8%88%88%E8%A5%BF%E8%B7%AF%E4%B8%80%E6%AE%B5268%E8%99%9F&output=embed&z=17"
+                  width="100%"
+                  height="280"
+                  style="border:0; display:block;"
+                  allowfullscreen
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                  title="傑丞建築機構位置"
+                ></iframe>
+              </div>
             </div>
             <a
               href="https://maps.app.goo.gl/AYb92M8zd5Rp3KuT9"

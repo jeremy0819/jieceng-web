@@ -10,7 +10,7 @@
           <h1 class="font-serif text-5xl md:text-6xl font-light text-charcoal mb-8 animate-fade-in-up">
             標章介紹
           </h1>
-          <div class="h-[1px] w-24 bg-emerald-brand mx-auto mb-8 animate-fade-in-up"></div>
+          <div class="dim-line w-16 mx-auto mb-8 animate-fade-in-up"></div>
           <p class="font-sans text-sm md:text-base text-charcoal/50 max-w-xl mx-auto leading-relaxed animate-fade-in-up" style="animation-delay: 0.15s">
             台灣三大建築標章的專業介紹簡報。點選卡片即可全螢幕開啟，
             使用鍵盤方向鍵 ← → 換頁。
@@ -20,7 +20,7 @@
     </section>
 
     <!-- 區塊2: 簡報卡片 -->
-    <section class="pb-32 md:pb-48">
+    <section class="blueprint-grid pb-32 md:pb-48">
       <div class="container-custom">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
           <a

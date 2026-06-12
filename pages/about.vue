@@ -19,6 +19,7 @@
               Our Philosophy
             </span>
           </div>
+          <div class="dim-line dim-line-light w-20 mb-6 animate-fade-in-up" style="animation-delay: 0.1s"></div>
           <h1 class="font-serif text-6xl md:text-8xl font-light text-warm-white leading-none animate-fade-in-up" style="animation-delay: 0.15s">
             關於
             <br />
@@ -26,10 +27,16 @@
           </h1>
         </div>
       </div>
+
+      <!-- 直書側註 -->
+      <div class="hidden md:flex absolute right-10 bottom-16 z-10 flex-col items-center gap-5">
+        <span class="text-vertical font-serif text-sm tracking-[0.5em] text-warm-white/35">以人為本 · 工藝至上</span>
+        <div class="w-px h-14 bg-warm-white/20"></div>
+      </div>
     </section>
 
     <!-- 區塊2: 數字亮點 (DARK, keep dark) -->
-    <section class="grain-dark py-16 bg-charcoal border-t border-warm-white/5">
+    <section class="grain-dark blueprint-grid-dark py-16 bg-charcoal border-t border-warm-white/5">
       <div class="container-custom relative z-10">
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
           <div
@@ -38,7 +45,7 @@
             class="glass-dark rounded-xl p-5 text-center animate-fade-in-up"
             :style="`animation-delay: ${0.1 + i * 0.1}s`"
           >
-            <div class="font-serif text-5xl text-warm-white font-light mb-3 tracking-tight">{{ stat.value }}</div>
+            <div class="font-serif text-5xl text-warm-white font-light mb-3 tracking-tight" :data-counter="stat.num" :data-suffix="stat.suffix">{{ stat.value }}</div>
             <div class="font-mono text-[9px] tracking-[0.3em] uppercase text-warm-white/35">{{ stat.label }}</div>
           </div>
         </div>
@@ -46,18 +53,21 @@
     </section>
 
     <!-- 區塊3: 品牌故事 + 企業核心 (LIGHT) -->
-    <section class="section-spacing border-t border-stone-100 bg-warm-white">
-      <div class="container-custom">
+    <section class="section-spacing border-t border-stone-100 bg-warm-white blueprint-grid relative overflow-hidden">
+      <span class="sheet-num top-12 -right-6" aria-hidden="true">01</span>
+      <div class="container-custom relative z-10">
         <div class="grid lg:grid-cols-12 gap-16 items-start">
           <!-- 左：大圖 -->
           <div class="lg:col-span-5 space-y-12">
-            <div class="aspect-[3/4] rounded-3xl overflow-hidden bg-stone-100 shadow-xl ring-1 ring-black/[0.07] hover:ring-black/[0.12] transition-all duration-1200 elegant-transition group animate-fade-in-up">
-              <img
-                src="/image/project-4.jpg"
-                alt="傑丞團隊與作品"
-                class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1200 elegant-transition"
-                loading="lazy" decoding="async"
-              >
+            <div class="relative corner-marks">
+              <div class="img-reveal aspect-[3/4] rounded-3xl overflow-hidden bg-stone-100 shadow-xl ring-1 ring-black/[0.07] hover:ring-black/[0.12] transition-all duration-1200 elegant-transition group">
+                <img
+                  src="/image/project-4.jpg"
+                  alt="傑丞團隊與作品"
+                  class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1200 elegant-transition"
+                  loading="lazy" decoding="async"
+                >
+              </div>
             </div>
           </div>
 
@@ -65,7 +75,11 @@
           <div class="lg:col-span-7 lg:pl-12 space-y-16">
             <!-- 品牌故事 -->
             <div class="glass-card rounded-2xl p-8 space-y-8 animate-fade-in-up">
-              <h2 class="font-mono text-xs uppercase tracking-[0.3em] font-bold text-emerald-brand">品牌故事</h2>
+              <div class="flex items-center gap-4">
+                <span class="font-mono text-[10px] tracking-[0.3em] uppercase text-emerald-brand">SEC. 01</span>
+                <div class="dim-line w-12"></div>
+                <span class="font-mono text-[10px] tracking-[0.3em] uppercase text-charcoal/40">Brand Story</span>
+              </div>
               <p class="font-serif text-3xl font-light text-charcoal leading-tight tracking-zh">
                 傑丞建築不僅是建築商，更是您生活夢想的構築者與守護者。
               </p>
@@ -77,7 +91,11 @@
 
             <!-- 企業核心 -->
             <div class="glass-card rounded-2xl p-8 space-y-8 border-t border-stone-200 animate-fade-in-up" style="animation-delay: 0.1s">
-              <h2 class="font-mono text-xs uppercase tracking-[0.3em] font-bold text-emerald-brand">企業核心</h2>
+              <div class="flex items-center gap-4">
+                <span class="font-mono text-[10px] tracking-[0.3em] uppercase text-emerald-brand">SEC. 02</span>
+                <div class="dim-line w-12"></div>
+                <span class="font-mono text-[10px] tracking-[0.3em] uppercase text-charcoal/40">Core Values</span>
+              </div>
               <div class="grid md:grid-cols-2 gap-12">
                 <div class="animate-fade-in-up" style="animation-delay: 0.1s">
                   <h3 class="font-serif text-xl text-charcoal mb-5 tracking-zh">價值觀</h3>
@@ -116,15 +134,18 @@
         </div>
       </div>
     </section>
+
+    <!-- 品牌關鍵字帶 -->
+    <BrandMarquee />
   </div>
 </template>
 
 <script setup>
 const stats = [
-  { value: '20+', label: 'Years of Heritage' },
-  { value: '6', label: 'Green Certifications' },
-  { value: '5', label: 'iHome Systems' },
-  { value: '100%', label: 'Quality Traceability' }
+  { value: '20+', num: 20, suffix: '+', label: 'Years of Heritage' },
+  { value: '6', num: 6, suffix: '', label: 'Green Certifications' },
+  { value: '5', num: 5, suffix: '', label: 'iHome Systems' },
+  { value: '100%', num: 100, suffix: '%', label: 'Quality Traceability' }
 ]
 
 const values = ['誠信開發', '工藝至上', '永續經營', '以人為本']

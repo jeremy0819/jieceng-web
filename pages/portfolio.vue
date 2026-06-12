@@ -1,12 +1,14 @@
 <template>
   <div class="bg-warm-white min-h-screen">
     <!-- 區塊1: 頁面標頭 -->
-    <section class="pt-32 md:pt-40 pb-12 bg-warm-white">
-      <div class="container-custom">
+    <section class="relative overflow-hidden pt-32 md:pt-40 pb-12 bg-warm-white">
+      <span class="sheet-num top-16 -right-8" aria-hidden="true">01</span>
+      <div class="container-custom relative z-10">
         <div class="max-w-4xl mb-16">
           <div class="flex items-center gap-4 mb-9 animate-fade-in-up">
-            <span class="w-12 h-px bg-emerald-brand"></span>
-            <span class="font-mono text-[10px] uppercase tracking-[0.45em] text-emerald-brand">Architectural Selection</span>
+            <span class="font-mono text-[10px] tracking-[0.3em] uppercase text-emerald-brand">INDEX</span>
+            <div class="dim-line w-14"></div>
+            <span class="font-mono text-[10px] tracking-[0.3em] uppercase text-charcoal/40">Architectural Selection</span>
           </div>
           <h1 class="font-serif text-6xl md:text-8xl font-light leading-none tracking-tight text-charcoal animate-fade-in-up" style="animation-delay: 0.1s">
             建築精選集。
@@ -46,7 +48,7 @@
             :class="['group block cursor-pointer', index % 2 !== 0 ? 'md:mt-24' : '']"
             @click="quickView = project"
           >
-            <div class="relative aspect-[16/10] md:aspect-[4/5] overflow-hidden rounded-2xl bg-stone-100 mb-8 shadow-sm ring-1 ring-black/[0.06]">
+            <div class="img-reveal relative aspect-[16/10] md:aspect-[4/5] overflow-hidden rounded-2xl bg-stone-100 mb-8 shadow-sm ring-1 ring-black/[0.06]">
               <img
                 :src="project.image"
                 :alt="project.title"
@@ -111,7 +113,7 @@
                 </div>
 
                 <!-- 內容 -->
-                <div class="p-8 flex-1 space-y-7">
+                <div class="relative corner-marks p-8 flex-1 space-y-7">
                   <div>
                     <span class="font-mono text-[10px] text-emerald-brand uppercase tracking-widest block mb-2">
                       {{ quickView.categoryLabel }} · {{ quickView.year }}

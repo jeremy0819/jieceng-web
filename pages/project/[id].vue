@@ -18,6 +18,7 @@
                 {{ project.categoryLabel }}
               </span>
               <span class="font-mono text-warm-white/45 text-[10px] uppercase tracking-widest">{{ project.year }} Selection</span>
+              <span class="font-mono text-[9px] tracking-[0.25em] text-warm-white/30 uppercase hidden sm:inline">Project Sheet — {{ project.year }}</span>
             </div>
             <h1 class="font-serif text-4xl md:text-8xl text-warm-white font-light tracking-tight animate-fade-in-up" style="animation-delay: 0.15s">
               {{ project.title }}
@@ -27,13 +28,13 @@
       </section>
 
       <!-- 區塊2: 建案總覽（淺色）-->
-      <section class="section-spacing bg-warm-white">
-        <div class="container-custom">
+      <section class="blueprint-grid relative overflow-hidden section-spacing bg-warm-white">
+        <div class="container-custom relative z-10">
           <div class="grid lg:grid-cols-12 gap-16">
             <!-- 左：側欄資訊 -->
             <aside class="lg:col-span-4 space-y-12 animate-fade-in-up">
               <div>
-                <div class="glass-card rounded-2xl p-8">
+                <div class="glass-card relative corner-marks rounded-2xl p-8">
                   <p class="text-emerald-brand font-mono text-[10px] uppercase tracking-[0.3em] mb-6">Technical Standards</p>
                   <dl class="space-y-6">
                     <div v-for="(val, key) in project.specs" :key="key" class="border-b border-stone-200 pb-4 group">
@@ -78,10 +79,10 @@
 
               <!-- 次圖 -->
               <div class="mt-20 grid grid-cols-2 gap-4">
-                <div class="aspect-square rounded-2xl bg-stone-100 overflow-hidden">
+                <div class="img-reveal aspect-square rounded-2xl bg-stone-100 overflow-hidden">
                   <img :src="project.image" class="w-full h-full object-cover hover:scale-110 transition-transform duration-1200 elegant-transition" loading="lazy" decoding="async">
                 </div>
-                <div class="aspect-square rounded-2xl bg-stone-100 overflow-hidden">
+                <div class="img-reveal aspect-square rounded-2xl bg-stone-100 overflow-hidden">
                   <img src="/image/hero-background.jpg" class="w-full h-full object-cover hover:scale-110 transition-transform duration-1200 elegant-transition" loading="lazy" decoding="async">
                 </div>
               </div>
@@ -93,7 +94,7 @@
       <!-- 區塊3: iHome 5.0 工法導入（保留深色）-->
       <section class="pb-32 md:pb-48 bg-warm-white">
         <div class="container-custom">
-          <div class="grain-dark relative overflow-hidden rounded-[2.5rem] md:rounded-[3.5rem] bg-[#0a2e26] p-12 md:p-24 animate-fade-in-up">
+          <div class="grain-dark blueprint-grid-dark relative overflow-hidden rounded-[2.5rem] md:rounded-[3.5rem] bg-[#0a2e26] p-12 md:p-24 animate-fade-in-up">
             <span class="absolute top-0 right-0 p-8 md:p-16 text-white/5 text-[10rem] md:text-[15rem] font-serif pointer-events-none select-none leading-none">iH</span>
             <div class="relative z-10 space-y-12">
               <div class="space-y-6 max-w-xl">

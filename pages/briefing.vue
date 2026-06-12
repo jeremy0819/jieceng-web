@@ -15,11 +15,12 @@
 
       <div class="container-custom relative z-10 pb-16 md:pb-20">
         <div class="max-w-3xl">
-          <div class="flex items-center gap-3 mb-6 animate-fade-in-up">
+          <div class="flex items-center gap-3 mb-5 animate-fade-in-up">
             <span class="glass-dark rounded-full px-4 py-1.5 font-mono text-[10px] text-emerald-brand-light tracking-[0.35em] uppercase">
               Briefing Sessions
             </span>
           </div>
+          <div class="dim-line dim-line-light w-20 mb-6 animate-fade-in-up" style="animation-delay: 0.1s"></div>
           <h1 class="font-serif text-5xl md:text-7xl text-warm-white font-light tracking-tight mb-5 animate-fade-in-up" style="animation-delay: 0.15s">
             都更說明會
           </h1>
@@ -31,8 +32,9 @@
     </section>
 
     <!-- 區塊2: 即將舉辦 -->
-    <section class="section-spacing">
-      <div class="container-custom">
+    <section class="section-spacing relative overflow-hidden">
+      <span class="sheet-num top-8 right-0" aria-hidden="true">01</span>
+      <div class="container-custom relative z-10">
         <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
           <div>
             <span class="font-mono text-emerald-brand text-[10px] uppercase tracking-[0.4em] mb-4 block animate-fade-in-up">
@@ -136,7 +138,7 @@
 
             <div class="mt-10 grid grid-cols-2 gap-6 animate-fade-in-up" style="animation-delay: 0.3s">
               <div v-for="kpi in projectKPIs" :key="kpi.label" class="glass-card rounded-xl p-5">
-                <div class="font-serif text-3xl text-emerald-brand mb-1.5 font-light">{{ kpi.value }}</div>
+                <div class="font-serif text-3xl text-emerald-brand mb-1.5 font-light" :data-counter="kpi.num" :data-suffix="kpi.suffix">{{ kpi.value }}</div>
                 <div class="font-mono text-[10px] uppercase tracking-[0.2em] text-charcoal/40">{{ kpi.label }}</div>
               </div>
             </div>
@@ -154,7 +156,7 @@
           </div>
 
           <div class="animate-fade-in-up" style="animation-delay: 0.15s">
-            <div class="relative aspect-[4/3] overflow-hidden rounded-3xl bg-stone-100 shadow-lg ring-1 ring-black/[0.06] group">
+            <div class="img-reveal corner-marks relative aspect-[4/3] overflow-hidden rounded-3xl bg-stone-100 shadow-lg ring-1 ring-black/[0.06] group">
               <img
                 src="/image/project-3.jpg"
                 alt="新店安和段都更案"
@@ -169,7 +171,7 @@
     </section>
 
     <!-- 區塊4: 說明會流程 -->
-    <section class="section-spacing bg-warm-white border-t border-stone-100">
+    <section class="blueprint-grid section-spacing bg-warm-white border-t border-stone-100">
       <div class="container-custom">
         <div class="text-center mb-16">
           <span class="font-mono text-emerald-brand text-[10px] uppercase tracking-[0.4em] mb-4 block animate-fade-in-up">How It Works</span>
@@ -205,7 +207,7 @@
         <div class="flex flex-wrap justify-center gap-4 animate-fade-in-up" style="animation-delay: 0.2s">
           <NuxtLink
             to="/contact"
-            class="px-10 py-4 bg-warm-white text-charcoal rounded-full font-mono text-xs uppercase tracking-widest hover:bg-emerald-brand hover:text-warm-white transition-all duration-700 elegant-transition"
+            class="btn-sheen px-10 py-4 bg-warm-white text-charcoal rounded-full font-mono text-xs uppercase tracking-widest hover:bg-emerald-brand hover:text-warm-white transition-all duration-700 elegant-transition"
           >
             免費諮詢
           </NuxtLink>
@@ -257,8 +259,8 @@ const upcomingSessions = [
 ]
 
 const projectKPIs = [
-  { value: '20+', label: 'Years Experience' },
-  { value: '6', label: 'Green Certifications' },
+  { value: '20+', num: 20, suffix: '+', label: 'Years Experience' },
+  { value: '6', num: 6, suffix: '', label: 'Green Certifications' },
 ]
 
 const briefingSteps = [

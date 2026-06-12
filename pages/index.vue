@@ -1,4 +1,5 @@
 <template>
+  <!-- 設計語言：建築圖紙（blueprint annotations + sheet numbers）-->
   <div class="bg-warm-white">
     <!-- 區塊1: 首頁 Hero Section (DARK) -->
     <section class="grain-dark relative h-[95vh] flex items-end overflow-hidden bg-charcoal">
@@ -12,11 +13,22 @@
         <div class="absolute inset-0 bg-gradient-to-t from-charcoal/92 via-charcoal/40 to-transparent"></div>
       </div>
 
+      <!-- 直書品牌句：右側垂直註記 -->
+      <div class="hidden md:flex absolute right-10 top-1/2 -translate-y-1/2 z-10 flex-col items-center gap-6">
+        <span class="text-vertical font-serif text-sm tracking-[0.5em] text-warm-white/40">永續建築 · 傳承百年</span>
+        <div class="w-px h-16 bg-warm-white/20"></div>
+      </div>
+
       <div class="relative z-10 w-full pb-20 md:pb-28">
         <div class="container-custom">
-          <p class="font-mono text-[10px] tracking-[0.45em] text-emerald-brand-light uppercase mb-8 animate-fade-in-up" style="animation-delay: 0.1s">
+          <!-- 圖紙座標註記 -->
+          <span class="block font-mono text-[9px] tracking-[0.25em] text-warm-white/30 uppercase mb-5 animate-fade-in-up" style="animation-delay: 0.05s">
+            24.99°N 121.30°E — TAOYUAN
+          </span>
+          <p class="font-mono text-[10px] tracking-[0.45em] text-emerald-brand-light uppercase mb-4 animate-fade-in-up" style="animation-delay: 0.1s">
             Sustainable Architecture · Centennial Heritage
           </p>
+          <div class="dim-line dim-line-light w-20 mb-8 animate-fade-in-up" style="animation-delay: 0.15s"></div>
           <h1 class="font-serif text-5xl sm:text-7xl md:text-9xl font-light tracking-tight text-white mb-7 animate-fade-in-up">
             傑丞建築機構
           </h1>
@@ -26,7 +38,7 @@
             </p>
             <NuxtLink
               to="/portfolio"
-              class="self-start inline-block glass-dark rounded-full px-8 py-3.5 font-mono text-xs tracking-widest uppercase text-white/80 hover:bg-white/20 transition-all duration-500"
+              class="btn-sheen self-start inline-block glass-dark rounded-full px-8 py-3.5 font-mono text-xs tracking-widest uppercase text-white/80 hover:bg-white/20 transition-all duration-500"
             >
               探索建築誌
             </NuxtLink>
@@ -34,8 +46,8 @@
         </div>
       </div>
 
-      <!-- 滾動指示器 -->
-      <div class="absolute bottom-10 right-8 md:right-14 flex flex-col items-center gap-3 z-10 animate-fade-in-up" style="animation-delay: 1.4s">
+      <!-- 滾動指示器（左側，避開右側直書註記）-->
+      <div class="hidden md:flex absolute bottom-10 left-8 md:left-14 flex-col items-center gap-3 z-10 animate-fade-in-up" style="animation-delay: 1.4s">
         <span class="font-mono text-[9px] tracking-[0.4em] text-white/35 uppercase">Scroll</span>
         <div class="relative w-px h-12 overflow-hidden">
           <div class="absolute left-0 w-full bg-white/50 animate-scroll-bar" style="height: 40%"></div>
@@ -46,36 +58,48 @@
       <div class="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 animate-fade-in-up" style="animation-delay: 1.6s">
         <div class="glass-dark rounded-full px-6 py-2.5 flex items-center gap-3">
           <span class="w-1.5 h-1.5 rounded-full bg-emerald-brand-light shrink-0"></span>
-          <span class="font-mono text-[10px] tracking-[0.35em] text-white/60 uppercase">桃園 · 雙北 · 20+ 年</span>
+          <span class="font-mono text-[10px] tracking-[0.35em] text-white/60 uppercase">桃園 · 雙北 · <span data-counter="20" data-suffix="+">20+</span> 年</span>
         </div>
       </div>
     </section>
 
+    <!-- 品牌關鍵字跑馬燈帶 -->
+    <BrandMarquee />
+
     <!-- 區塊2: 品牌策略 (LIGHT) -->
-    <section class="section-spacing bg-white overflow-hidden border-t border-stone-100">
-      <div class="container-custom">
+    <section class="section-spacing bg-white blueprint-grid relative overflow-hidden border-t border-stone-100">
+      <span class="sheet-num top-10 -right-4" aria-hidden="true">01</span>
+      <div class="container-custom relative z-10">
         <div class="grid lg:grid-cols-12 gap-16 lg:gap-24 items-center">
           <div class="lg:col-span-5">
-            <h2 class="font-mono text-[10px] uppercase tracking-[0.5em] text-emerald-brand mb-9 flex items-center animate-fade-in-up">
-              <span class="w-8 h-px bg-emerald-brand mr-4"></span>
-              Creative Strategy
-            </h2>
-            <p class="font-serif text-4xl md:text-5xl font-light text-charcoal leading-tight mb-10 tracking-zh animate-fade-in-up" style="animation-delay: 0.1s">
+            <div class="flex items-center gap-4 mb-9 animate-fade-in-up">
+              <span class="font-mono text-[10px] tracking-[0.3em] uppercase text-emerald-brand">SEC. 01</span>
+              <div class="dim-line w-14"></div>
+              <span class="font-mono text-[10px] tracking-[0.3em] uppercase text-charcoal/40">Creative Strategy</span>
+            </div>
+            <h2 class="font-serif text-4xl md:text-5xl font-light text-charcoal leading-tight mb-10 tracking-zh animate-fade-in-up" style="animation-delay: 0.1s">
               我們不只是建造物理結構，更是在策劃一種<span class="italic text-emerald-brand">永續的生活藍圖。</span>
-            </p>
+            </h2>
             <div class="space-y-6 font-sans text-lg text-charcoal/55 font-light leading-relaxed tracking-zh animate-fade-in-up" style="animation-delay: 0.2s">
               <p>傑丞建築機構深耕桃園與雙北逾二十載，我們將「iHome 5.0」專利工法定義為品牌的技術脊樑。</p>
               <p>對我們而言，美學不應是奢侈的堆砌，而是基於物理性能的自然延伸。</p>
             </div>
           </div>
           <div class="lg:col-span-7">
-            <div class="aspect-[4/5] md:aspect-[16/11] rounded-3xl overflow-hidden bg-stone-100 shadow-md ring-1 ring-black/[0.07] group animate-fade-in-up" style="animation-delay: 0.15s">
-              <img
-                src="/image/project-3.jpg"
-                alt="傑丞設計細節"
-                class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1200 elegant-transition group-hover:scale-105"
-                loading="lazy" decoding="async"
-              >
+            <div class="relative corner-marks">
+              <div class="img-reveal aspect-[4/5] md:aspect-[16/11] rounded-3xl overflow-hidden bg-stone-100 shadow-md ring-1 ring-black/[0.07] group">
+                <img
+                  src="/image/project-3.jpg"
+                  alt="傑丞設計細節"
+                  class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1200 elegant-transition group-hover:scale-105"
+                  loading="lazy" decoding="async"
+                >
+              </div>
+              <!-- 圖紙標註卡：浮貼於影像左下角 -->
+              <div class="absolute -bottom-5 -left-5 glass-card rounded-xl px-5 py-3.5 z-10">
+                <p class="font-mono text-[9px] tracking-[0.25em] uppercase text-emerald-brand mb-0.5">Featured Material</p>
+                <p class="font-serif text-sm text-charcoal">印象羅芙 · 桃園中路特區</p>
+              </div>
             </div>
           </div>
         </div>
@@ -83,10 +107,15 @@
     </section>
 
     <!-- 區塊3: iHome 5.0 互動式展示（蘋果式分頁切換）-->
-    <section class="section-spacing bg-warm-white vw-sep">
-      <div class="container-custom">
+    <section class="section-spacing bg-warm-white vw-sep relative overflow-hidden">
+      <span class="sheet-num top-6 -left-6" aria-hidden="true">02</span>
+      <div class="container-custom relative z-10">
         <div class="mb-14 md:mb-20 animate-fade-in-up">
-          <span class="font-mono text-emerald-brand text-xs tracking-[0.35em] uppercase mb-6 block">The Method</span>
+          <div class="flex items-center gap-4 mb-6">
+            <span class="font-mono text-[10px] tracking-[0.3em] uppercase text-emerald-brand">SEC. 02</span>
+            <div class="dim-line w-14"></div>
+            <span class="font-mono text-[10px] tracking-[0.3em] uppercase text-charcoal/40">The Method</span>
+          </div>
           <div class="flex flex-col lg:flex-row lg:items-baseline gap-4 lg:gap-10">
             <h2 class="font-serif text-5xl md:text-6xl font-light tracking-tight text-charcoal shrink-0 leading-tight">
               iHome 5.0 五大宅
@@ -115,7 +144,7 @@
         </div>
 
         <!-- 內容面板 (keep dark card on light bg) -->
-        <div class="relative rounded-[2.5rem] overflow-hidden grain-dark bg-charcoal min-h-[460px] md:min-h-[520px] animate-fade-in-up" style="animation-delay: 0.15s">
+        <div class="relative rounded-[2.5rem] overflow-hidden grain-dark bg-charcoal blueprint-grid-dark min-h-[460px] md:min-h-[520px] animate-fade-in-up" style="animation-delay: 0.15s">
           <Transition name="ihome-fade" mode="out-in">
             <div :key="active.key" class="grid md:grid-cols-2">
               <!-- 圖片 -->
@@ -154,17 +183,18 @@
     </section>
 
     <!-- 區塊4: 精選建築誌（交錯網格）(LIGHT) -->
-    <section class="section-spacing bg-white vw-sep border-t border-stone-100">
-      <div class="container-custom">
+    <section class="section-spacing bg-white vw-sep border-t border-stone-100 relative overflow-hidden">
+      <span class="sheet-num top-10 -right-4" aria-hidden="true">03</span>
+      <div class="container-custom relative z-10">
         <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 md:mb-24 gap-8">
           <h2 class="font-serif text-5xl md:text-7xl font-light leading-none tracking-tight text-charcoal animate-fade-in-up">
             精選
             <br />
-            <span class="italic text-charcoal/25">建築誌。</span>
+            <span class="italic text-stroke">建築誌。</span>
           </h2>
           <NuxtLink
             to="/portfolio"
-            class="px-10 py-4 ring-1 ring-charcoal/20 rounded-full font-mono text-[10px] font-bold uppercase tracking-widest text-charcoal hover:bg-charcoal hover:text-warm-white transition-all duration-500 animate-fade-in-up"
+            class="btn-sheen px-10 py-4 ring-1 ring-charcoal/20 rounded-full font-mono text-[10px] font-bold uppercase tracking-widest text-charcoal hover:bg-charcoal hover:text-warm-white transition-all duration-500 animate-fade-in-up"
           >
             探索所有案例
           </NuxtLink>
@@ -178,7 +208,7 @@
             :class="['group block animate-fade-in-up', index % 2 !== 0 ? 'md:mt-32' : '']"
             :style="`animation-delay: ${0.1 + index * 0.12}s`"
           >
-            <div class="aspect-[3/4] rounded-2xl overflow-hidden bg-stone-100 mb-9 transition-shadow duration-700 group-hover:shadow-2xl relative">
+            <div class="img-reveal aspect-[3/4] rounded-2xl overflow-hidden bg-stone-100 mb-9 transition-shadow duration-700 group-hover:shadow-2xl relative">
               <img
                 :src="project.image"
                 :alt="project.title"
@@ -225,14 +255,20 @@ useSeoMeta({
 </script>
 
 <style scoped>
-/* iHome 互動面板切換動畫 */
+/* iHome 互動面板切換動畫：淡入 + 輕微上浮，更有生命力 */
 .ihome-fade-enter-active,
 .ihome-fade-leave-active {
-  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  transition:
+    opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.ihome-fade-enter-from,
+.ihome-fade-enter-from {
+  opacity: 0;
+  transform: translateY(14px);
+}
 .ihome-fade-leave-to {
   opacity: 0;
+  transform: translateY(-8px);
 }
 
 @media (max-width: 640px) {
