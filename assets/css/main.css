@@ -238,3 +238,148 @@
 .tab-indicator.is-active::after {
   transform: scaleX(1);
 }
+
+/* ════════════════════════════════════════════════
+   建築圖紙設計語言（Architectural Drawing Language）
+   讓品牌識別回到建築本業：圖紙網格、圖號、標註線。
+   ════════════════════════════════════════════════ */
+
+/* ── 圖紙網格底紋：仿建築方格紙，極淡不搶內容 ── */
+.blueprint-grid {
+  background-image:
+    linear-gradient(rgba(6, 78, 59, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(6, 78, 59, 0.045) 1px, transparent 1px);
+  background-size: 52px 52px;
+}
+.blueprint-grid-dark {
+  background-image:
+    linear-gradient(rgba(245, 243, 238, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(245, 243, 238, 0.045) 1px, transparent 1px);
+  background-size: 52px 52px;
+}
+
+/* ── 巨型圖號水印：如建築圖紙右下的 Sheet Number ── */
+.sheet-num {
+  position: absolute;
+  font-family: 'Playfair Display', 'Noto Serif TC', serif;
+  font-size: clamp(9rem, 22vw, 20rem);
+  line-height: 0.8;
+  font-weight: 400;
+  -webkit-text-stroke: 1.5px rgba(28, 26, 23, 0.10);
+  color: transparent;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+}
+.sheet-num-light {
+  -webkit-text-stroke: 1.5px rgba(245, 243, 238, 0.12);
+}
+
+/* ── 輪廓字：大型展示字的 outline 變體 ── */
+.text-stroke {
+  -webkit-text-stroke: 1px rgba(28, 26, 23, 0.30);
+  color: transparent;
+}
+.text-stroke-light {
+  -webkit-text-stroke: 1px rgba(245, 243, 238, 0.35);
+  color: transparent;
+}
+
+/* ── 直書文字：中文直排，建築誌的東方編輯感 ── */
+.text-vertical {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
+/* ── 標註線：建築圖兩端有刻度的尺寸線 ── */
+.dim-line {
+  position: relative;
+  height: 1px;
+  background: rgba(28, 26, 23, 0.18);
+}
+.dim-line::before,
+.dim-line::after {
+  content: '';
+  position: absolute;
+  top: -3px;
+  width: 1px;
+  height: 7px;
+  background: rgba(28, 26, 23, 0.18);
+}
+.dim-line::before { left: 0; }
+.dim-line::after { right: 0; }
+.dim-line-light { background: rgba(245, 243, 238, 0.25); }
+.dim-line-light::before,
+.dim-line-light::after { background: rgba(245, 243, 238, 0.25); }
+
+/* ── 圖紙角標：對角的 + 십자 crosshair 記號 ── */
+.corner-marks::before,
+.corner-marks::after {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  line-height: 1;
+  color: rgba(6, 78, 59, 0.35);
+  position: absolute;
+  pointer-events: none;
+}
+.corner-marks::before { content: '+'; top: -7px; left: -7px; }
+.corner-marks::after  { content: '+'; bottom: -7px; right: -7px; }
+
+/* ── 按鈕光澤掃過：hover 時一道斜光滑過 ── */
+.btn-sheen {
+  position: relative;
+  overflow: hidden;
+}
+.btn-sheen::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 45%;
+  height: 100%;
+  background: linear-gradient(105deg, transparent, rgba(255, 255, 255, 0.30), transparent);
+  transform: skewX(-20deg);
+  transition: left 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+.btn-sheen:hover::after { left: 130%; }
+
+/* ── 跑馬燈品牌帶：無縫循環的關鍵字捲動 ── */
+.marquee {
+  overflow: hidden;
+  display: flex;
+  user-select: none;
+}
+.marquee-track {
+  display: flex;
+  flex-shrink: 0;
+  width: max-content;
+  animation: marquee 36s linear infinite;
+}
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; }
+}
+
+/* ── 圖片簾幕揭露：滑入視窗時由下往上拉開 ──
+   由 plugins/reveal.client.ts 接管，加上 .is-visible 觸發 */
+.reveal-ready .img-reveal {
+  clip-path: inset(100% 0 0 0);
+  transition: clip-path 1.3s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: clip-path;
+}
+.reveal-ready .img-reveal.is-visible {
+  clip-path: inset(0 0 0 0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal-ready .img-reveal {
+    clip-path: none;
+    transition: none;
+  }
+}

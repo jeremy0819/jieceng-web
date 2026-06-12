@@ -47,8 +47,8 @@ export default defineNuxtPlugin((nuxtApp) => {
 
   const scan = (node) => {
     if (!node || node.nodeType !== 1) return
-    if (node.classList?.contains('animate-fade-in-up')) prep(node)
-    node.querySelectorAll?.('.animate-fade-in-up').forEach(prep)
+    if (node.classList?.contains('animate-fade-in-up') || node.classList?.contains('img-reveal')) prep(node)
+    node.querySelectorAll?.('.animate-fade-in-up, .img-reveal').forEach(prep)
   }
 
   const start = () => {
