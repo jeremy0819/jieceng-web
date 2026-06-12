@@ -1,96 +1,232 @@
 <template>
+  <!-- 設計語言：建築圖紙（blueprint annotations + sheet numbers）-->
   <div class="bg-warm-white">
-    <!-- 區塊1: 首頁 Hero Section -->
-    <section class="relative h-[90vh] flex items-center justify-center overflow-hidden bg-charcoal">
+    <!-- 區塊1: 首頁 Hero Section (DARK) -->
+    <section class="grain-dark relative h-[95vh] flex items-end overflow-hidden bg-charcoal">
       <div class="absolute inset-0 z-0">
         <img
           src="/image/hero-background.jpg"
           alt="傑丞建築首頁背景"
-          class="w-full h-full object-cover opacity-60 scale-105 animate-slow-zoom"
+          class="w-full h-full object-cover opacity-50 scale-105 animate-slow-zoom"
+          loading="eager" fetchpriority="high" decoding="async"
         >
-        <div class="absolute inset-0 bg-gradient-to-b from-charcoal/20 to-charcoal/60"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-charcoal/92 via-charcoal/40 to-transparent"></div>
       </div>
 
-      <div class="relative z-10 text-center px-6">
-        <h1 class="font-serif text-5xl md:text-8xl font-light tracking-zh-wide text-warm-white mb-6 animate-fade-in-up">
-          傑丞建築機構
-        </h1>
-        <p
-          class="font-sans text-lg md:text-2xl font-extralight tracking-[0.25em] text-warm-white/90 mb-12 animate-fade-in-up"
-          style="animation-delay: 0.3s"
-        >
-          構築永續未來 · 定義空間美學
-        </p>
-        <NuxtLink
-          to="/portfolio"
-          class="inline-block px-10 py-4 border border-warm-white text-warm-white text-sm tracking-widest uppercase hover:bg-warm-white hover:text-charcoal transition-all duration-1200 elegant-transition animate-fade-in-up"
-          style="animation-delay: 0.6s"
-        >
-          查看全案管理案例
-        </NuxtLink>
+      <!-- 直書品牌句：右側垂直註記 -->
+      <div class="hidden md:flex absolute right-10 top-1/2 -translate-y-1/2 z-10 flex-col items-center gap-6">
+        <span class="text-vertical font-serif text-sm tracking-[0.5em] text-warm-white/40">永續建築 · 傳承百年</span>
+        <div class="w-px h-16 bg-warm-white/20"></div>
+      </div>
+
+      <div class="relative z-10 w-full pb-20 md:pb-28">
+        <div class="container-custom">
+          <!-- 圖紙座標註記 -->
+          <span class="block font-mono text-[9px] tracking-[0.25em] text-warm-white/30 uppercase mb-5 animate-fade-in-up" style="animation-delay: 0.05s">
+            24.99°N 121.30°E — TAOYUAN
+          </span>
+          <p class="font-mono text-[10px] tracking-[0.45em] text-emerald-brand-light uppercase mb-4 animate-fade-in-up" style="animation-delay: 0.1s">
+            Sustainable Architecture · Centennial Heritage
+          </p>
+          <div class="dim-line dim-line-light w-20 mb-8 animate-fade-in-up" style="animation-delay: 0.15s"></div>
+          <h1 class="font-serif text-5xl sm:text-7xl md:text-9xl font-light tracking-tight text-white mb-7 animate-fade-in-up">
+            傑丞建築機構
+          </h1>
+          <div class="flex flex-col sm:flex-row sm:items-center gap-7 sm:gap-12 animate-fade-in-up" style="animation-delay: 0.3s">
+            <p class="font-sans text-base font-light tracking-[0.25em] text-white/50">
+              永續建築 · 傳承百年
+            </p>
+            <NuxtLink
+              to="/portfolio"
+              class="btn-sheen self-start inline-block glass-dark rounded-full px-8 py-3.5 font-mono text-xs tracking-widest uppercase text-white/80 hover:bg-white/20 transition-all duration-500"
+            >
+              探索建築誌
+            </NuxtLink>
+          </div>
+        </div>
+      </div>
+
+      <!-- 滾動指示器（左側，避開右側直書註記）-->
+      <div class="hidden md:flex absolute bottom-10 left-8 md:left-14 flex-col items-center gap-3 z-10 animate-fade-in-up" style="animation-delay: 1.4s">
+        <span class="font-mono text-[9px] tracking-[0.4em] text-white/35 uppercase">Scroll</span>
+        <div class="relative w-px h-12 overflow-hidden">
+          <div class="absolute left-0 w-full bg-white/50 animate-scroll-bar" style="height: 40%"></div>
+        </div>
+      </div>
+
+      <!-- 底部 glass 信息條 -->
+      <div class="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 animate-fade-in-up" style="animation-delay: 1.6s">
+        <div class="glass-dark rounded-full px-6 py-2.5 flex items-center gap-3">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-brand-light shrink-0"></span>
+          <span class="font-mono text-[10px] tracking-[0.35em] text-white/60 uppercase">桃園 · 雙北 · <span data-counter="20" data-suffix="+">20+</span> 年</span>
+        </div>
       </div>
     </section>
 
-    <!-- 區塊2: 全案管理案例 (Apple 風格大圖卡) -->
-    <section class="section-spacing bg-warm-white">
-      <div class="container-custom">
-        <!-- 大標題區 -->
-        <div class="text-center mb-16 md:mb-24 animate-fade-in-up">
-          <span class="font-mono text-emerald-brand text-xs tracking-[0.3em] uppercase mb-5 block">Featured Cases</span>
-          <h2 class="font-serif text-5xl md:text-7xl font-light tracking-zh text-charcoal mb-6 leading-tight">
-            全案管理案例
-          </h2>
-          <p class="font-sans text-base md:text-xl font-light text-charcoal/50 max-w-2xl mx-auto tracking-zh leading-relaxed">
-            從住宅到商業，每一個案例都是傑丞全案管理與專利工法的具體實踐。
-          </p>
+    <!-- 品牌關鍵字跑馬燈帶 -->
+    <BrandMarquee />
+
+    <!-- 區塊2: 品牌策略 (LIGHT) -->
+    <section class="section-spacing bg-white blueprint-grid relative overflow-hidden border-t border-stone-100">
+      <span class="sheet-num top-10 -right-4" aria-hidden="true">01</span>
+      <div class="container-custom relative z-10">
+        <div class="grid lg:grid-cols-12 gap-16 lg:gap-24 items-center">
+          <div class="lg:col-span-5">
+            <div class="flex items-center gap-4 mb-9 animate-fade-in-up">
+              <span class="font-mono text-[10px] tracking-[0.3em] uppercase text-emerald-brand">SEC. 01</span>
+              <div class="dim-line w-14"></div>
+              <span class="font-mono text-[10px] tracking-[0.3em] uppercase text-charcoal/40">Creative Strategy</span>
+            </div>
+            <h2 class="font-serif text-4xl md:text-5xl font-light text-charcoal leading-tight mb-10 tracking-zh animate-fade-in-up" style="animation-delay: 0.1s">
+              我們不只是建造物理結構，更是在策劃一種<span class="italic text-emerald-brand">永續的生活藍圖。</span>
+            </h2>
+            <div class="space-y-6 font-sans text-lg text-charcoal/55 font-light leading-relaxed tracking-zh animate-fade-in-up" style="animation-delay: 0.2s">
+              <p>傑丞建築機構深耕桃園與雙北逾二十載，我們將「iHome 5.0」專利工法定義為品牌的技術脊樑。</p>
+              <p>對我們而言，美學不應是奢侈的堆砌，而是基於物理性能的自然延伸。</p>
+            </div>
+          </div>
+          <div class="lg:col-span-7">
+            <div class="relative corner-marks">
+              <div class="img-reveal aspect-[4/5] md:aspect-[16/11] rounded-3xl overflow-hidden bg-stone-100 shadow-md ring-1 ring-black/[0.07] group">
+                <img
+                  src="/image/project-3.jpg"
+                  alt="傑丞設計細節"
+                  class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1200 elegant-transition group-hover:scale-105"
+                  loading="lazy" decoding="async"
+                >
+              </div>
+              <!-- 圖紙標註卡：浮貼於影像左下角 -->
+              <div class="absolute -bottom-5 -left-5 glass-card rounded-xl px-5 py-3.5 z-10">
+                <p class="font-mono text-[9px] tracking-[0.25em] uppercase text-emerald-brand mb-0.5">Featured Material</p>
+                <p class="font-serif text-sm text-charcoal">印象羅芙 · 桃園中路特區</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 區塊3: iHome 5.0 互動式展示（蘋果式分頁切換）-->
+    <section class="section-spacing bg-warm-white vw-sep relative overflow-hidden">
+      <span class="sheet-num top-6 -left-6" aria-hidden="true">02</span>
+      <div class="container-custom relative z-10">
+        <div class="mb-14 md:mb-20 animate-fade-in-up">
+          <div class="flex items-center gap-4 mb-6">
+            <span class="font-mono text-[10px] tracking-[0.3em] uppercase text-emerald-brand">SEC. 02</span>
+            <div class="dim-line w-14"></div>
+            <span class="font-mono text-[10px] tracking-[0.3em] uppercase text-charcoal/40">The Method</span>
+          </div>
+          <div class="flex flex-col lg:flex-row lg:items-baseline gap-4 lg:gap-10">
+            <h2 class="font-serif text-5xl md:text-6xl font-light tracking-tight text-charcoal shrink-0 leading-tight">
+              iHome 5.0 五大宅
+            </h2>
+            <p class="font-sans text-base md:text-lg font-light text-charcoal/40 max-w-[38ch] leading-relaxed tracking-zh">
+              點選標籤，探索定義傑丞建築的五大工法核心。
+            </p>
+          </div>
         </div>
 
-        <!-- 大圖卡網格 (2 欄、圓角、滿版照片、漸層字幕) -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-          <NuxtLink
-            v-for="(project, index) in featuredProjects"
-            :key="project.id"
-            :to="`/project/${project.id}`"
-            class="group relative block overflow-hidden rounded-3xl bg-charcoal aspect-[4/3] animate-fade-in-up shadow-sm"
-            :style="`animation-delay: ${0.1 + index * 0.1}s`"
+        <!-- 分段標籤 -->
+        <div class="flex flex-wrap justify-center gap-2 md:gap-3 mb-12 animate-fade-in-up" style="animation-delay: 0.1s">
+          <button
+            v-for="t in iHomeTech"
+            :key="t.key"
+            @click="activeKey = t.key"
+            :class="[
+              'px-6 md:px-8 py-3 rounded-full text-sm tracking-zh transition-all duration-500 elegant-transition',
+              activeKey === t.key
+                ? 'bg-charcoal text-warm-white ring-charcoal'
+                : 'glass rounded-full text-charcoal/50 ring-1 ring-charcoal/15 hover:ring-charcoal/40 hover:text-charcoal'
+            ]"
           >
-            <img
-              :src="project.image"
-              :alt="project.title"
-              class="absolute inset-0 w-full h-full object-cover transition-transform duration-1200 elegant-transition group-hover:scale-105"
-            >
-            <!-- 底部漸層遮罩 -->
-            <div class="absolute inset-0 bg-gradient-to-t from-charcoal/85 via-charcoal/20 to-transparent"></div>
+            <span class="font-mono text-[10px] mr-2 opacity-50">{{ t.num }}</span>{{ t.title }}
+          </button>
+        </div>
 
-            <!-- 分類標籤 -->
-            <div class="absolute top-7 left-7">
-              <span class="font-mono text-[11px] tracking-[0.2em] uppercase text-warm-white/70">
-                {{ categoryLabel(project.category) }}
-              </span>
+        <!-- 內容面板 (keep dark card on light bg) -->
+        <div class="relative rounded-[2.5rem] overflow-hidden grain-dark bg-charcoal blueprint-grid-dark min-h-[460px] md:min-h-[520px] animate-fade-in-up" style="animation-delay: 0.15s">
+          <Transition name="ihome-fade" mode="out-in">
+            <div :key="active.key" class="grid md:grid-cols-2">
+              <!-- 圖片 -->
+              <div class="relative h-64 md:h-[520px] overflow-hidden">
+                <img :src="active.image" :alt="active.title" class="w-full h-full object-cover" loading="lazy" decoding="async">
+                <div class="absolute inset-0 bg-gradient-to-r from-charcoal/10 to-charcoal/60 md:bg-gradient-to-r md:from-transparent md:to-charcoal/70"></div>
+              </div>
+              <!-- 文字 -->
+              <div class="p-9 md:p-16 flex flex-col justify-center">
+                <span class="font-mono text-5xl text-white/15 mb-6 block">{{ active.num }}</span>
+                <h3 class="font-serif text-4xl md:text-5xl font-light text-white mb-2 tracking-zh">
+                  {{ active.title }}
+                </h3>
+                <p class="font-mono text-[11px] uppercase tracking-[0.3em] text-emerald-brand-light mb-7">{{ active.subtitle }}</p>
+                <p class="font-sans text-white/65 font-light leading-relaxed mb-9 tracking-zh">{{ active.desc }}</p>
+                <div class="space-y-5 border-t border-white/[0.10] pt-7">
+                  <div v-for="d in active.details" :key="d.label">
+                    <h4 class="font-mono text-[10px] uppercase tracking-[0.2em] text-white/40 mb-1.5">{{ d.label }}</h4>
+                    <p class="font-sans text-sm text-white/70 font-light leading-relaxed tracking-zh">{{ d.value }}</p>
+                  </div>
+                </div>
+              </div>
             </div>
+          </Transition>
+        </div>
 
-            <!-- 文字內容 -->
-            <div class="absolute bottom-0 left-0 right-0 p-8 md:p-10">
-              <h3 class="font-serif text-3xl md:text-4xl font-light text-warm-white mb-3 tracking-zh">
-                {{ project.title }}
-              </h3>
-              <p class="font-sans text-sm md:text-base text-warm-white/70 leading-relaxed max-w-md mb-5 line-clamp-2">
-                {{ project.description }}
-              </p>
-              <span class="inline-flex items-center gap-2 text-warm-white text-xs tracking-[0.15em] uppercase">
-                了解更多
-                <span class="transition-transform duration-500 group-hover:translate-x-1.5">→</span>
-              </span>
-            </div>
+        <div class="mt-12 text-center animate-fade-in-up">
+          <NuxtLink
+            to="/ihome"
+            class="inline-flex items-center gap-3 px-10 py-4 ring-1 ring-charcoal/20 text-charcoal rounded-full font-mono text-xs tracking-[0.2em] uppercase hover:bg-charcoal hover:text-warm-white transition-all duration-500"
+          >
+            深入了解 iHome 5.0
+          </NuxtLink>
+        </div>
+      </div>
+    </section>
+
+    <!-- 區塊4: 精選建築誌（交錯網格）(LIGHT) -->
+    <section class="section-spacing bg-white vw-sep border-t border-stone-100 relative overflow-hidden">
+      <span class="sheet-num top-10 -right-4" aria-hidden="true">03</span>
+      <div class="container-custom relative z-10">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 md:mb-24 gap-8">
+          <h2 class="font-serif text-5xl md:text-7xl font-light leading-none tracking-tight text-charcoal animate-fade-in-up">
+            精選
+            <br />
+            <span class="italic text-stroke">建築誌。</span>
+          </h2>
+          <NuxtLink
+            to="/portfolio"
+            class="btn-sheen px-10 py-4 ring-1 ring-charcoal/20 rounded-full font-mono text-[10px] font-bold uppercase tracking-widest text-charcoal hover:bg-charcoal hover:text-warm-white transition-all duration-500 animate-fade-in-up"
+          >
+            探索所有案例
           </NuxtLink>
         </div>
 
-        <div class="mt-16 md:mt-24 text-center">
+        <div class="grid md:grid-cols-2 gap-12 lg:gap-24">
           <NuxtLink
-            to="/portfolio"
-            class="inline-flex items-center gap-3 px-12 py-5 bg-charcoal text-warm-white text-xs tracking-[0.2em] uppercase rounded-full hover:bg-emerald-brand transition-colors duration-700 elegant-transition"
+            v-for="(project, index) in projects"
+            :key="project.id"
+            :to="`/project/${project.id}`"
+            :class="['group block animate-fade-in-up', index % 2 !== 0 ? 'md:mt-32' : '']"
+            :style="`animation-delay: ${0.1 + index * 0.12}s`"
           >
-            查看全部案例
+            <div class="img-reveal aspect-[3/4] rounded-2xl overflow-hidden bg-stone-100 mb-9 transition-shadow duration-700 group-hover:shadow-2xl relative">
+              <img
+                :src="project.image"
+                :alt="project.title"
+                class="w-full h-full object-cover grayscale group-hover:grayscale-0 opacity-80 group-hover:opacity-100 transition-all duration-1200 elegant-transition group-hover:scale-105"
+                loading="lazy" decoding="async"
+              >
+              <!-- Glass hover overlay -->
+              <div class="absolute inset-0 glass opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+            </div>
+            <div class="flex justify-between items-start border-t border-stone-200 pt-7">
+              <div>
+                <span class="font-mono text-[10px] text-emerald-brand font-bold uppercase tracking-widest mb-2 block">Featured Case</span>
+                <h3 class="font-serif text-3xl font-light text-charcoal group-hover:text-emerald-brand transition-colors duration-500 tracking-zh">
+                  {{ project.title }}
+                </h3>
+              </div>
+              <span class="font-sans text-sm font-light text-charcoal/40">{{ project.year }}</span>
+            </div>
           </NuxtLink>
         </div>
       </div>
@@ -100,38 +236,42 @@
 
 <script setup>
 const { projects } = useProjects()
-const featuredProjects = projects.slice(0, 4)
+const { iHomeTech } = useIHome()
 
-const categoryLabels = {
-  Residential: '住宅',
-  Commercial: '商業',
-  Landscape: '景觀',
-  Renovation: '改造'
-}
-const categoryLabel = (key) => categoryLabels[key] ?? key
+const activeKey = ref(iHomeTech[0].key)
+const active = computed(() => iHomeTech.find((t) => t.key === activeKey.value) ?? iHomeTech[0])
+
+useSeoMeta({
+  title: '傑丞建築機構 | 構築永續未來，定義空間美學',
+  description: '傑丞建築機構深耕桃園與雙北逾二十載，以 iHome 5.0 專利工法打造百年宅、健康宅、節能宅、智慧宅、履歷宅，提供都更全案管理與永續建築設計。',
+  ogTitle: '傑丞建築機構 | 構築永續未來，定義空間美學',
+  ogDescription: '以 iHome 5.0 專利工法打造永續建築精品，全案管理一條龍服務。',
+  ogImage: 'https://jeremy0819.github.io/jieceng-web/image/hero-background.jpg',
+  ogType: 'website',
+  twitterCard: 'summary_large_image',
+  twitterTitle: '傑丞建築機構 | 永續建築美學',
+  twitterDescription: '以 iHome 5.0 專利工法打造永續建築精品。',
+})
 </script>
 
 <style scoped>
-.elegant-transition {
-  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+/* iHome 互動面板切換動畫：淡入 + 輕微上浮，更有生命力 */
+.ihome-fade-enter-active,
+.ihome-fade-leave-active {
+  transition:
+    opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
-
-@keyframes slow-zoom {
-  from { transform: scale(1); }
-  to { transform: scale(1.1); }
-}
-
-.animate-slow-zoom {
-  animation: slow-zoom 20s linear infinite alternate;
-}
-
-.animate-fade-in-up {
+.ihome-fade-enter-from {
   opacity: 0;
-  animation: fade-in-up 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  transform: translateY(14px);
+}
+.ihome-fade-leave-to {
+  opacity: 0;
+  transform: translateY(-8px);
 }
 
-@keyframes fade-in-up {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
+@media (max-width: 640px) {
+  .container-custom { padding-left: 1.25rem; padding-right: 1.25rem; }
 }
 </style>

@@ -1,79 +1,385 @@
-/* 導入字體與基礎樣式 */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* ── Base ──────────────────────────────────────── */
 @layer base {
   body {
-    @apply bg-warm-white text-charcoal antialiased;
+    background-color: #f5f3ee;
+    color: #1c1a17;
+    @apply antialiased;
     font-variant-ligatures: none;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    /* 提升中英混排的行距節奏與字距，讓內文更易讀、更有設計感 */
     line-height: 1.75;
     letter-spacing: 0.01em;
     text-rendering: optimizeLegibility;
   }
 
-  /* 大標題：現代瀏覽器自動平衡斷行，避免單字落單造成版面破碎 */
-  h1, h2, h3 {
-    text-wrap: balance;
-  }
+  h1, h2, h3 { text-wrap: balance; }
+  p { text-wrap: pretty; }
 
-  /* 內文段落：自動避免段尾孤字 */
-  p {
-    text-wrap: pretty;
-  }
-
-  /* 品牌色選取效果 (翡翠綠) */
   ::selection {
-    background-color: #064e3b; /* emerald-950 */
-    color: #ecfdf5;           /* emerald-50 */
+    background-color: #064e3b;
+    color: #ecfdf5;
   }
 
-  /* 高級感細節：自定義捲軸 */
-  ::-webkit-scrollbar {
-    width: 6px;
-  }
-  ::-webkit-scrollbar-track {
-    background: #fafaf9; /* 暖米白色 */
-  }
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: #f5f3ee; }
   ::-webkit-scrollbar-thumb {
-    background: #e5e5e0;
+    background: rgba(28, 26, 23, 0.18);
     border-radius: 10px;
-    transition: background 0.3s ease;
   }
-  ::-webkit-scrollbar-thumb:hover {
-    background: #10b981; /* 懸停時轉為亮綠 */
+  ::-webkit-scrollbar-thumb:hover { background: #064e3b; }
+
+  html { scroll-behavior: smooth; }
+}
+
+/* ── Glass morphism（磨砂玻璃）——────────────────── */
+/* 設計原則：light glass 浮於暖象牙色底之上，感覺像真實的磨砂玻璃板。
+   backdrop-filter + 飽和度提升讓玻璃板折射環境色彩，邊框與高光模擬光線折射。 */
+@layer utilities {
+
+  /* 輕量玻璃面板 — 適合導覽列、標籤、浮動提示 */
+  .glass {
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.90);
+    box-shadow: 0 2px 12px rgba(28, 26, 23, 0.06);
   }
 
-  /* 平滑滾動基礎設定 */
-  html {
-    scroll-behavior: smooth;
+  /* 立體玻璃卡片 — 適合內容面板、表單容器 */
+  .glass-card {
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(32px) saturate(200%);
+    -webkit-backdrop-filter: blur(32px) saturate(200%);
+    border: 1px solid rgba(255, 255, 255, 0.95);
+    box-shadow:
+      0 4px 24px rgba(28, 26, 23, 0.07),
+      0 1px 4px rgba(28, 26, 23, 0.04),
+      inset 0 1px 0 rgba(255, 255, 255, 0.98);
+  }
+
+  /* 懸浮效果 — 搭配 hover 使用 */
+  .glass-lift {
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .glass-lift:hover {
+    transform: translateY(-4px);
+    box-shadow:
+      0 12px 40px rgba(28, 26, 23, 0.12),
+      0 2px 8px rgba(28, 26, 23, 0.06),
+      inset 0 1px 0 rgba(255, 255, 255, 0.98);
+  }
+
+  /* 深色毛玻璃 — 用於暗色 Hero 上方的浮動元素 */
+  .glass-dark {
+    background: rgba(15, 14, 12, 0.58);
+    backdrop-filter: blur(20px) saturate(160%);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+  }
+
+  /* 翠綠光暈 */
+  .glow-emerald {
+    box-shadow: 0 0 24px rgba(6, 78, 59, 0.20), 0 0 48px rgba(6, 78, 59, 0.08);
+  }
+
+  .elegant-transition {
+    transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .animate-fade-in-up {
+    opacity: 0;
+    animation: fade-in-up 1.1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .animate-slow-zoom {
+    animation: slow-zoom 22s linear infinite alternate;
+  }
+
+  .animate-scroll-bar {
+    animation: scroll-bar 1.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  }
+
+  .text-emerald-brand-light {
+    color: #10b981;
   }
 }
 
-/* Nuxt 頁面切換過渡動畫：採用高級感曲線 */
+/* ── Keyframes ─────────────────────────────────── */
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slow-zoom {
+  from { transform: scale(1); }
+  to   { transform: scale(1.1); }
+}
+
+@keyframes scroll-bar {
+  0%   { top: -40%; opacity: 0; }
+  20%  { opacity: 1; }
+  80%  { opacity: 1; }
+  100% { top: 140%; opacity: 0; }
+}
+
+/* ── Scroll reveal ─────────────────────────────── */
+.reveal-ready .animate-fade-in-up {
+  animation: none;
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-ready .animate-fade-in-up.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-ready .animate-fade-in-up {
+    transition: none;
+    transform: none;
+  }
+}
+
+/* ── Page transitions ──────────────────────────── */
 .page-enter-active,
 .page-leave-active {
-  transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.page-enter-from { opacity: 0; transform: translateY(12px); }
+.page-leave-to   { opacity: 0; transform: translateY(-4px); }
+
+/* ── Grain texture（奢質底紋）───────────────────── */
+.grain-dark {
+  position: relative;
+  isolation: isolate;
+}
+.grain-dark::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.055;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23g)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  mix-blend-mode: screen;
 }
 
-.page-enter-from {
-  opacity: 0;
-  transform: translateY(20px);
-}
-
-.page-leave-to {
-  opacity: 0;
-  transform: translateY(-20px);
-}
-
-/* 全局工具類：極簡留白標準 */
+/* ── Layout utilities ──────────────────────────── */
 .section-spacing {
-  @apply py-32 md:py-40;
+  @apply py-28 md:py-36;
 }
 
 .container-custom {
-  @apply max-w-7xl mx-auto px-6 md:px-12;
+  @apply max-w-7xl mx-auto px-5 md:px-10;
+}
+
+/* ── Portfolio quick-view drawer ───────────────── */
+.qv-enter-active,
+.qv-leave-active {
+  transition: opacity 0.35s ease;
+}
+.qv-enter-from,
+.qv-leave-to {
+  opacity: 0;
+}
+.qv-enter-active .qv-panel,
+.qv-leave-active .qv-panel {
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.qv-enter-from .qv-panel,
+.qv-leave-to .qv-panel {
+  transform: translateX(100%);
+}
+
+/* ── Full-viewport-width section separator ─────── */
+.vw-sep {
+  position: relative;
+}
+.vw-sep::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  height: 1px;
+  background: rgba(28, 26, 23, 0.07);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Emerald tab indicator（iHome 分頁滑動指示器）── */
+.tab-indicator {
+  position: relative;
+}
+.tab-indicator::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #064e3b;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.tab-indicator.is-active::after {
+  transform: scaleX(1);
+}
+
+/* ════════════════════════════════════════════════
+   建築圖紙設計語言（Architectural Drawing Language）
+   讓品牌識別回到建築本業：圖紙網格、圖號、標註線。
+   ════════════════════════════════════════════════ */
+
+/* ── 圖紙網格底紋：仿建築方格紙，極淡不搶內容 ── */
+.blueprint-grid {
+  background-image:
+    linear-gradient(rgba(6, 78, 59, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(6, 78, 59, 0.045) 1px, transparent 1px);
+  background-size: 52px 52px;
+}
+.blueprint-grid-dark {
+  background-image:
+    linear-gradient(rgba(245, 243, 238, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(245, 243, 238, 0.045) 1px, transparent 1px);
+  background-size: 52px 52px;
+}
+
+/* ── 巨型圖號水印：如建築圖紙右下的 Sheet Number ── */
+.sheet-num {
+  position: absolute;
+  font-family: 'Playfair Display', 'Noto Serif TC', serif;
+  font-size: clamp(9rem, 22vw, 20rem);
+  line-height: 0.8;
+  font-weight: 400;
+  -webkit-text-stroke: 1.5px rgba(28, 26, 23, 0.10);
+  color: transparent;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+}
+.sheet-num-light {
+  -webkit-text-stroke: 1.5px rgba(245, 243, 238, 0.12);
+}
+
+/* ── 輪廓字：大型展示字的 outline 變體 ── */
+.text-stroke {
+  -webkit-text-stroke: 1px rgba(28, 26, 23, 0.30);
+  color: transparent;
+}
+.text-stroke-light {
+  -webkit-text-stroke: 1px rgba(245, 243, 238, 0.35);
+  color: transparent;
+}
+
+/* ── 直書文字：中文直排，建築誌的東方編輯感 ── */
+.text-vertical {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
+/* ── 標註線：建築圖兩端有刻度的尺寸線 ── */
+.dim-line {
+  position: relative;
+  height: 1px;
+  background: rgba(28, 26, 23, 0.18);
+}
+.dim-line::before,
+.dim-line::after {
+  content: '';
+  position: absolute;
+  top: -3px;
+  width: 1px;
+  height: 7px;
+  background: rgba(28, 26, 23, 0.18);
+}
+.dim-line::before { left: 0; }
+.dim-line::after { right: 0; }
+.dim-line-light { background: rgba(245, 243, 238, 0.25); }
+.dim-line-light::before,
+.dim-line-light::after { background: rgba(245, 243, 238, 0.25); }
+
+/* ── 圖紙角標：對角的 + 십자 crosshair 記號 ── */
+.corner-marks::before,
+.corner-marks::after {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  line-height: 1;
+  color: rgba(6, 78, 59, 0.35);
+  position: absolute;
+  pointer-events: none;
+}
+.corner-marks::before { content: '+'; top: -7px; left: -7px; }
+.corner-marks::after  { content: '+'; bottom: -7px; right: -7px; }
+
+/* ── 按鈕光澤掃過：hover 時一道斜光滑過 ── */
+.btn-sheen {
+  position: relative;
+  overflow: hidden;
+}
+.btn-sheen::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 45%;
+  height: 100%;
+  background: linear-gradient(105deg, transparent, rgba(255, 255, 255, 0.30), transparent);
+  transform: skewX(-20deg);
+  transition: left 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+.btn-sheen:hover::after { left: 130%; }
+
+/* ── 跑馬燈品牌帶：無縫循環的關鍵字捲動 ── */
+.marquee {
+  overflow: hidden;
+  display: flex;
+  user-select: none;
+}
+.marquee-track {
+  display: flex;
+  flex-shrink: 0;
+  width: max-content;
+  animation: marquee 36s linear infinite;
+}
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; }
+}
+
+/* ── 圖片簾幕揭露：滑入視窗時由下往上拉開 ──
+   由 plugins/reveal.client.ts 接管，加上 .is-visible 觸發 */
+.reveal-ready .img-reveal {
+  clip-path: inset(100% 0 0 0);
+  transition: clip-path 1.3s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: clip-path;
+}
+.reveal-ready .img-reveal.is-visible {
+  clip-path: inset(0 0 0 0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal-ready .img-reveal {
+    clip-path: none;
+    transition: none;
+  }
 }

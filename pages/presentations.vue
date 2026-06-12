@@ -10,7 +10,7 @@
           <h1 class="font-serif text-5xl md:text-6xl font-light text-charcoal mb-8 animate-fade-in-up">
             標章介紹
           </h1>
-          <div class="h-[1px] w-24 bg-emerald-brand mx-auto mb-8 animate-fade-in-up"></div>
+          <div class="dim-line w-16 mx-auto mb-8 animate-fade-in-up"></div>
           <p class="font-sans text-sm md:text-base text-charcoal/50 max-w-xl mx-auto leading-relaxed animate-fade-in-up" style="animation-delay: 0.15s">
             台灣三大建築標章的專業介紹簡報。點選卡片即可全螢幕開啟，
             使用鍵盤方向鍵 ← → 換頁。
@@ -20,7 +20,7 @@
     </section>
 
     <!-- 區塊2: 簡報卡片 -->
-    <section class="pb-32 md:pb-48">
+    <section class="blueprint-grid pb-32 md:pb-48">
       <div class="container-custom">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
           <a
@@ -29,12 +29,12 @@
             :href="withBase(deck.file)"
             target="_blank"
             rel="noopener"
-            class="group block animate-fade-in-up"
+            class="glass-card glass-lift rounded-2xl group block animate-fade-in-up"
             :style="`animation-delay: ${0.2 + index * 0.12}s`"
           >
             <!-- 視覺色塊封面 -->
             <div
-              class="relative aspect-[4/3] overflow-hidden rounded-sm mb-6 flex flex-col justify-between p-8 transition-transform duration-1200 elegant-transition group-hover:scale-[1.02]"
+              class="relative aspect-[4/3] overflow-hidden rounded-t-2xl flex flex-col justify-between p-8 transition-transform duration-1200 elegant-transition group-hover:scale-[1.02]"
               :style="`background:${deck.bg}`"
             >
               <div class="flex justify-between items-start">
@@ -59,7 +59,7 @@
             </div>
 
             <!-- 資訊區 -->
-            <div class="px-1">
+            <div class="px-6 py-5">
               <p class="font-sans text-sm text-charcoal/60 leading-relaxed mb-3">
                 {{ deck.description }}
               </p>
@@ -132,19 +132,3 @@ const decks = [
   },
 ]
 </script>
-
-<style scoped>
-.elegant-transition {
-  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.animate-fade-in-up {
-  opacity: 0;
-  animation: fade-in-up 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-@keyframes fade-in-up {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-</style>

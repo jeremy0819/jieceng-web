@@ -3,17 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>綠建築 EEWH 2023 版 × 傑丞建築機構｜專業簡報</title>
+  <title>綠建築 EEWH 2023 × 傑丞建築機構｜專業簡報</title>
 
-  <!-- Reveal.js -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reset.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css" />
-
-  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
   <style>
-    /* ─── Brand tokens ─────────────────────────────── */
     :root {
       --warm-white : #fafaf9;
       --charcoal   : #1a1a1a;
@@ -24,23 +20,17 @@
       --stone-200  : #e7e5e4;
       --stone-400  : #a8a29e;
     }
-
-    /* ─── Reveal base ──────────────────────────────── */
     .reveal-viewport { background: var(--warm-white); }
     .reveal {
       font-family: 'Inter', 'Noto Sans TC', sans-serif;
-      font-size: 22px;
-      color: var(--charcoal);
+      font-size: 22px; color: var(--charcoal);
     }
     .reveal .slides { text-align: left; }
     .reveal h1, .reveal h2, .reveal h3, .reveal h4 {
       font-family: 'Playfair Display', 'Noto Serif TC', serif;
-      color: var(--charcoal);
-      text-transform: none;
-      letter-spacing: -0.01em;
-      line-height: 1.25;
-      margin-bottom: 0.5em;
-      font-weight: 700;
+      color: var(--charcoal); text-transform: none;
+      letter-spacing: -0.01em; line-height: 1.25;
+      margin-bottom: 0.5em; font-weight: 700;
     }
     .reveal h1 { font-size: 2.5em; }
     .reveal h2 { font-size: 1.7em; }
@@ -51,130 +41,56 @@
     .reveal ul li::before { content: '—'; color: var(--emerald); margin-right: .5em; font-weight: 600; }
     .reveal .controls { color: var(--emerald); }
     .reveal .progress span { background: var(--emerald); }
-    .reveal .slide-number {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: .55em; color: var(--stone-400);
-    }
-
-    /* ─── Layout ───────────────────────────────────── */
+    .reveal .slide-number { font-family: 'JetBrains Mono', monospace; font-size: .55em; color: var(--stone-400); }
     .slide-wrap  { padding: 0 60px; }
-    .slide-inner { max-width: 960px; margin: 0 auto; height: 100%;
-                   display: flex; flex-direction: column; justify-content: center; }
-
-    /* ─── Typography helpers ───────────────────────── */
+    .slide-inner { max-width: 960px; margin: 0 auto; height: 100%; display: flex; flex-direction: column; justify-content: center; }
     .em   { color: var(--emerald); }
     .mono { font-family: 'JetBrains Mono', monospace; font-size: .85em; }
     .small{ font-size: .75em; color: #374151; line-height: 1.65; }
-    .rule { width: 48px; height: 3px; background: var(--emerald);
-            margin-bottom: 1.2em; border-radius: 2px; }
+    .rule { width: 48px; height: 3px; background: var(--emerald); margin-bottom: 1.2em; border-radius: 2px; }
     .rule-full { width: 100%; height: 1px; background: var(--stone-200); margin: .9em 0; }
-    .note { font-size: .62em; color: var(--stone-400);
-            font-family: 'JetBrains Mono', monospace; margin-top: .5em; }
-
-    /* ─── Tag chips ────────────────────────────────── */
-    .tag {
-      display: inline-block;
-      font-family: 'JetBrains Mono', monospace; font-size: .6em;
-      font-weight: 500; padding: .18em .65em; border-radius: 4px;
-      text-transform: uppercase; letter-spacing: .05em;
-      vertical-align: middle; margin-bottom: .4em;
-    }
+    .note { font-size: .62em; color: var(--stone-400); font-family: 'JetBrains Mono', monospace; margin-top: .5em; }
+    .tag { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: .6em; font-weight: 500; padding: .18em .65em; border-radius: 4px; text-transform: uppercase; letter-spacing: .05em; vertical-align: middle; margin-bottom: .4em; }
     .tag-green  { background: var(--emerald-pale); color: var(--emerald); }
     .tag-blue   { background: #dbeafe; color: #1e40af; }
     .tag-amber  { background: #fef3c7; color: #92400e; }
     .tag-gray   { background: #f3f4f6; color: #374151; }
     .tag-red    { background: #fee2e2; color: #991b1b; }
-
-    /* ─── Grid ─────────────────────────────────────── */
     .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.8em; }
     .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.4em; }
-
-    /* ─── Cards ────────────────────────────────────── */
-    .card {
-      background: #fff; border: 1px solid var(--stone-200);
-      border-radius: 12px; padding: 1.2em 1.5em;
-    }
-    .card-em {
-      background: var(--emerald); border-radius: 12px; padding: 1.2em 1.5em;
-    }
+    .grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 1.2em; }
+    .card { background: #fff; border: 1px solid var(--stone-200); border-radius: 12px; padding: 1.2em 1.5em; }
+    .card-em { background: var(--emerald); border-radius: 12px; padding: 1.2em 1.5em; }
     .card-em h3, .card-em h4, .card-em p, .card-em li { color: #fff; }
     .card-em ul li::before { color: var(--emerald-pale); }
-
     .card-bc { border-left: 4px solid #3b82f6; }
     .card-rs { border-left: 4px solid var(--emerald-lg); }
-
-    /* ─── Stats ────────────────────────────────────── */
-    .stat-num {
-      font-family: 'Playfair Display', serif; font-size: 2.8em;
-      font-weight: 700; color: var(--emerald); line-height: 1;
-    }
+    .stat-num { font-family: 'Playfair Display', serif; font-size: 2.8em; font-weight: 700; color: var(--emerald); line-height: 1; }
     .stat-label { font-size: .7em; color: var(--stone-400); margin-top: .3em; }
-
-    /* ─── Indicator grid ───────────────────────────── */
-    .ind-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: .9em; margin-top: .8em;
-    }
-    .ind-item {
-      display: flex; align-items: flex-start; gap: .6em;
-      background: #fff; border: 1px solid var(--stone-200);
-      border-radius: 10px; padding: .85em 1em;
-    }
+    .ind-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: .9em; margin-top: .8em; }
+    .ind-item { display: flex; align-items: flex-start; gap: .6em; background: #fff; border: 1px solid var(--stone-200); border-radius: 10px; padding: .85em 1em; }
     .ind-item.mandatory { border-color: var(--emerald); background: var(--emerald-pale); }
-    .ind-num {
-      font-family: 'JetBrains Mono', monospace; font-size: .65em;
-      font-weight: 500; background: var(--emerald); color: #fff;
-      border-radius: 50%; width: 1.9em; height: 1.9em;
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0; margin-top: .1em;
-    }
+    .ind-num { font-family: 'JetBrains Mono', monospace; font-size: .65em; font-weight: 500; background: var(--emerald); color: #fff; border-radius: 50%; width: 1.9em; height: 1.9em; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: .1em; }
     .ind-item.mandatory .ind-num { background: var(--emerald-mid); }
     .ind-text { font-size: .72em; }
     .ind-text strong { display: block; font-weight: 600; margin-bottom: .1em; }
-
-    /* ─── Category band ────────────────────────────── */
-    .cat-band {
-      display: flex; align-items: center; gap: .6em;
-      font-size: .6em; font-family: 'JetBrains Mono', monospace;
-      font-weight: 600; text-transform: uppercase; letter-spacing: .08em;
-      color: var(--stone-400); margin: .6em 0 .3em;
-    }
-    .cat-band::before {
-      content: ''; flex: 0 0 24px; height: 2px;
-      background: currentColor; border-radius: 1px;
-    }
-
-    /* ─── Comparison table ──────────────────────────── */
+    .cat-band { display: flex; align-items: center; gap: .6em; font-size: .6em; font-family: 'JetBrains Mono', monospace; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: var(--stone-400); margin: .6em 0 .3em; }
+    .cat-band::before { content: ''; flex: 0 0 24px; height: 2px; background: currentColor; border-radius: 1px; }
     .cmp-table { width: 100%; border-collapse: collapse; font-size: .75em; }
-    .cmp-table th {
-      padding: .65em .9em; font-weight: 600; font-family: 'Inter', sans-serif;
-      border-bottom: 2px solid var(--stone-200);
-    }
+    .cmp-table th { padding: .65em .9em; font-weight: 600; font-family: 'Inter', sans-serif; border-bottom: 2px solid var(--stone-200); }
     .cmp-table th:first-child { text-align: left; color: var(--stone-400); }
     .cmp-table th.bc { color: #1e40af; background: #eff6ff; border-radius: 8px 8px 0 0; }
     .cmp-table th.rs { color: var(--emerald); background: var(--emerald-pale); border-radius: 8px 8px 0 0; }
-    .cmp-table td {
-      padding: .6em .9em; border-bottom: 1px solid var(--stone-200);
-      vertical-align: top;
-    }
+    .cmp-table td { padding: .6em .9em; border-bottom: 1px solid var(--stone-200); vertical-align: top; }
     .cmp-table td:first-child { font-weight: 600; color: #374151; white-space: nowrap; }
     .cmp-table tr:last-child td { border-bottom: none; }
     .cmp-table tr:nth-child(even) td { background: #fafafa; }
-
-    /* ─── Badge row ─────────────────────────────────── */
     .badge-row { display: flex; gap: .8em; margin-top: .9em; flex-wrap: wrap; }
-    .badge {
-      flex: 1; min-width: 100px;
-      display: flex; flex-direction: column; align-items: center;
-      padding: .9em 1em; border-radius: 10px;
-      border: 1.5px solid var(--stone-200); font-size: .72em;
-    }
+    .badge { flex: 1; min-width: 100px; display: flex; flex-direction: column; align-items: center; padding: .9em 1em; border-radius: 10px; border: 1.5px solid var(--stone-200); font-size: .72em; }
     .badge-icon { font-size: 2em; line-height: 1; margin-bottom: .25em; }
     .badge-name { font-weight: 700; font-size: 1em; margin-bottom: .1em; }
     .badge-sub  { font-size: .8em; color: var(--stone-400); }
-    .badge-score{ font-family: 'JetBrains Mono', monospace; font-size: .75em;
-                  margin-top: .3em; font-weight: 500; }
-
+    .badge-score{ font-family: 'JetBrains Mono', monospace; font-size: .75em; margin-top: .3em; font-weight: 500; }
     .badge-diamond { border-color: #a78bfa; background: #f5f3ff; }
     .badge-diamond .badge-name { color: #6d28d9; }
     .badge-gold    { border-color: #d97706; background: #fffbeb; }
@@ -185,43 +101,26 @@
     .badge-bronze .badge-name { color: #92400e; }
     .badge-pass    { border-color: var(--emerald); background: var(--emerald-pale); }
     .badge-pass .badge-name { color: var(--emerald); }
-
-    /* ─── Timeline ──────────────────────────────────── */
     .timeline { display: flex; gap: 0; margin-top: .9em; position: relative; }
     .tl-item { flex: 1; text-align: center; position: relative; padding: 0 .3em; }
-    .tl-item::before {
-      content: ''; position: absolute; top: .95em; left: 50%;
-      width: 100%; height: 2px; background: var(--stone-200); z-index: 0;
-    }
+    .tl-item::before { content: ''; position: absolute; top: .95em; left: 50%; width: 100%; height: 2px; background: var(--stone-200); z-index: 0; }
     .tl-item:last-child::before { display: none; }
-    .tl-dot {
-      width: 2em; height: 2em; border-radius: 50%;
-      background: var(--emerald); display: flex; align-items: center;
-      justify-content: center; margin: 0 auto .5em; position: relative; z-index: 1;
-      font-family: 'JetBrains Mono', monospace; font-size: .6em; color: #fff; font-weight: 600;
-    }
-    .tl-year { font-family: 'JetBrains Mono', monospace; font-size: .65em;
-               font-weight: 600; color: var(--emerald); }
+    .tl-dot { width: 2em; height: 2em; border-radius: 50%; background: var(--emerald); display: flex; align-items: center; justify-content: center; margin: 0 auto .5em; position: relative; z-index: 1; font-family: 'JetBrains Mono', monospace; font-size: .6em; color: #fff; font-weight: 600; }
+    .tl-year { font-family: 'JetBrains Mono', monospace; font-size: .65em; font-weight: 600; color: var(--emerald); }
     .tl-desc { font-size: .62em; color: #374151; margin-top: .2em; line-height: 1.4; }
-
-    /* ─── Special BG slides ─────────────────────────── */
     .cover-bg { background: var(--charcoal) !important; }
     .part-bg  { background: var(--emerald)  !important; }
-
-    /* ─── Project card ───────────────────────────────── */
-    .project-card { display: grid; grid-template-columns: 1fr 1.2fr;
-                    gap: 2em; align-items: center; }
-    .project-img {
-      width: 100%; aspect-ratio: 4/3;
-      border-radius: 12px; overflow: hidden;
-      background: linear-gradient(135deg, #d1fae5, #a7f3d0);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 3.5em;
-    }
+    .project-card { display: grid; grid-template-columns: 1fr 1.2fr; gap: 2em; align-items: center; }
+    .project-img { width: 100%; aspect-ratio: 4/3; border-radius: 12px; overflow: hidden; background: linear-gradient(135deg, #d1fae5, #a7f3d0); display: flex; align-items: center; justify-content: center; font-size: 3.5em; }
     .spec-row { display: flex; gap: 1.2em; flex-wrap: wrap; margin-top: .6em; }
-    .spec-key { display: block; font-size: .65em; color: var(--stone-400);
-                text-transform: uppercase; letter-spacing: .07em; margin-bottom: .1em; }
+    .spec-key { display: block; font-size: .65em; color: var(--stone-400); text-transform: uppercase; letter-spacing: .07em; margin-bottom: .1em; }
     .spec-val { font-family: 'JetBrains Mono', monospace; font-size: .75em; font-weight: 500; }
+    .ind-detail { display: grid; grid-template-columns: 1fr 1.6fr; gap: 2em; align-items: start; margin-top: .6em; }
+    .score-box { background: var(--emerald-pale); border: 2px solid var(--emerald); border-radius: 12px; padding: 1.2em; text-align: center; }
+    .score-box .num { font-family: 'Playfair Display', serif; font-size: 3em; font-weight: 700; color: var(--emerald); line-height: 1; }
+    .score-box .lbl { font-size: .65em; color: var(--emerald-mid); margin-top: .3em; }
+    .mandatory-box { background: var(--emerald); border-radius: 8px; padding: .4em .9em; display: inline-block; }
+    .mandatory-box span { color: #fff; font-size: .65em; font-family: 'JetBrains Mono', monospace; font-weight: 600; letter-spacing: .05em; }
   </style>
 </head>
 
@@ -229,977 +128,1021 @@
 <div class="reveal">
 <div class="slides">
 
-<!-- ══════════════════════════════════════════════════
-  01  封面
-═════════════════════════════════════════════════════ -->
+<!-- 01 封面 -->
 <section data-background-color="#1a1a1a">
   <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
     <div style="max-width:900px;margin:0 auto;padding:60px 0;">
-      <p class="mono" style="color:var(--emerald-lg);margin-bottom:1.4em;font-size:.72em;">
-        傑丞建築機構 / Jieceng Architecture
-      </p>
-      <h1 style="color:#fff;font-size:2.7em;line-height:1.1;margin-bottom:.4em;">
-        綠建築標章<br/>
-        <span style="color:var(--emerald-lg);">2023 版解析</span>
-      </h1>
-      <div style="width:60px;height:3px;background:var(--emerald-lg);margin:1.2em 0;border-radius:2px;"></div>
-      <p style="color:#9ca3af;font-size:.82em;margin-bottom:.3em;">
-        基本型（EEWH-BC）× 住宅型（EEWH-RS）完整介紹
-      </p>
-      <p style="color:#9ca3af;font-size:.82em;">
-        暨 傑丞建築機構 永續建築專案成果
-      </p>
-      <p class="mono" style="color:#4b5563;font-size:.6em;margin-top:2.2em;">2026.05.26</p>
+      <p class="mono" style="color:var(--emerald-lg);margin-bottom:.8em;font-size:.68em;letter-spacing:.12em;">EEWH · 2023</p>
+      <h1 style="color:#fff;font-size:2.6em;line-height:1.1;margin-bottom:.35em;">綠建築評估系統</h1>
+      <h2 style="color:var(--emerald-lg);font-size:1.3em;font-family:'Inter',sans-serif;font-weight:400;margin-bottom:.8em;">EEWH 基本型 ─ 制度、九大指標與開發應用</h2>
+      <div style="width:56px;height:3px;background:var(--emerald-lg);margin:1.2em 0;border-radius:2px;"></div>
+      <p style="color:#9ca3af;font-size:.8em;">內部訓練 ／ 專業參考簡報</p>
+      <p style="color:#6b7280;font-size:.76em;margin-top:.4em;">傑丞建築機構　Jieceng Architecture</p>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════
-  02  目錄
-═════════════════════════════════════════════════════ -->
+<!-- 02 今日議程 -->
 <section>
   <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
     <div class="slide-inner">
       <div class="rule"></div>
       <h2>今日議程</h2>
-      <div class="grid-2" style="margin-top:1.4em;">
-        <div>
-          <p class="mono" style="color:var(--emerald);font-size:.63em;margin-bottom:.7em;">PART 01 — 綠建築 EEWH 2023</p>
-          <ul style="font-size:.8em;">
-            <li>制度沿革與 2023 版更新重點</li>
-            <li>EEWH 適用類型總覽</li>
-            <li>九大評估指標架構</li>
-            <li>基本型（EEWH-BC）深度介紹</li>
-            <li>住宅型（EEWH-RS）深度介紹</li>
-            <li>兩型比較 × 五個認證等級</li>
-          </ul>
+      <div class="grid-2" style="margin-top:1.2em;gap:1.4em;">
+        <div class="card">
+          <p class="mono" style="color:var(--emerald);font-size:.6em;margin-bottom:.6em;">PART 01</p>
+          <h3 style="margin-bottom:.5em;">制度與評估架構</h3>
+          <p class="small">綠建築定義、EEWH 沿革、適用類型、四大範疇九大指標</p>
         </div>
-        <div>
-          <p class="mono" style="color:var(--emerald);font-size:.63em;margin-bottom:.7em;">PART 02 — 傑丞建築機構</p>
-          <ul style="font-size:.8em;">
-            <li>公司理念與服務</li>
-            <li>開放建築</li>
-            <li>當層配管</li>
-            <li>複層樓板</li>
-            <li>都市更新</li>
-          </ul>
+        <div class="card">
+          <p class="mono" style="color:var(--emerald);font-size:.6em;margin-bottom:.6em;">PART 02</p>
+          <h3 style="margin-bottom:.5em;">九大指標逐項</h3>
+          <p class="small">生態 / 節能 / 減廢 / 健康 — 各指標基準與評估重點</p>
+        </div>
+        <div class="card">
+          <p class="mono" style="color:var(--emerald);font-size:.6em;margin-bottom:.6em;">PART 03</p>
+          <h3 style="margin-bottom:.5em;">分級、門檻與申請</h3>
+          <p class="small">五大認證等級、門檻指標、計算邏輯、申請程序</p>
+        </div>
+        <div class="card">
+          <p class="mono" style="color:var(--emerald);font-size:.6em;margin-bottom:.6em;">PART 04</p>
+          <h3 style="margin-bottom:.5em;">對開發案的價值</h3>
+          <p class="small">容積獎勵、成本效益、銷售賣點與傑丞實績</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════
-  03  Part 1 過場
-═════════════════════════════════════════════════════ -->
+<!-- 03 Part 01 過場 -->
 <section data-background-color="#064e3b">
   <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
     <div style="max-width:800px;margin:0 auto;">
-      <p class="mono" style="color:var(--emerald-pale);font-size:.62em;margin-bottom:1em;">PART 01</p>
-      <h1 style="color:#fff;font-size:2.6em;line-height:1.1;">
-        綠建築標章<br/>EEWH 2023
-      </h1>
-      <div style="width:48px;height:3px;background:var(--emerald-lg);margin:1.2em 0;border-radius:2px;"></div>
-      <p style="color:#a7f3d0;font-size:.83em;line-height:1.7;">
-        從 1999 年開創亞熱帶綠建築標準到 2023 年配合淨零碳排路徑，
-        EEWH 持續進化，為台灣建築環境品質立下新里程。
-      </p>
+      <p class="mono" style="color:var(--emerald-pale);font-size:.62em;margin-bottom:1em;letter-spacing:.1em;">PART 01</p>
+      <h1 style="color:#fff;font-size:2.6em;line-height:1.1;margin-bottom:.5em;">制度與評估架構</h1>
+      <p style="color:#a7f3d0;font-size:.9em;">綠建築是什麼？EEWH 如何評估？</p>
+      <p style="color:#6ee7b7;font-size:.7em;margin-top:2em;">傑丞建築機構　Jieceng Architecture</p>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════
-  04  制度沿革 & 2023 更新
-═════════════════════════════════════════════════════ -->
+<!-- 04 什麼是綠建築 -->
 <section>
   <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
     <div class="slide-inner">
-      <span class="tag tag-green">EEWH ／ 制度沿革</span>
+      <span class="tag tag-gray">WHAT IS GREEN BUILDING</span>
       <div class="rule"></div>
-      <h2>從 1999 到 2023：持續進化</h2>
+      <h2>什麼是綠建築？</h2>
+      <p class="small" style="max-width:700px;margin-bottom:1.2em;">內政部定義：在建築生命週期中（生產、規劃、施工、使用、維護、拆除），消耗最少地球資源、製造最少廢棄物的「生態、節能、減廢、健康」建築物。</p>
+      <div class="grid-4">
+        <div class="card" style="text-align:center;">
+          <div style="font-size:1.6em;margin-bottom:.4em;">🌿</div>
+          <h4 class="em">生態</h4>
+          <p style="font-size:.68em;color:var(--stone-400);">Ecology</p>
+        </div>
+        <div class="card" style="text-align:center;">
+          <div style="font-size:1.6em;margin-bottom:.4em;">⚡</div>
+          <h4 class="em">節能</h4>
+          <p style="font-size:.68em;color:var(--stone-400);">Energy</p>
+        </div>
+        <div class="card" style="text-align:center;">
+          <div style="font-size:1.6em;margin-bottom:.4em;">♻️</div>
+          <h4 class="em">減廢</h4>
+          <p style="font-size:.68em;color:var(--stone-400);">Waste</p>
+        </div>
+        <div class="card" style="text-align:center;">
+          <div style="font-size:1.6em;margin-bottom:.4em;">❤️</div>
+          <h4 class="em">健康</h4>
+          <p style="font-size:.68em;color:var(--stone-400);">Health</p>
+        </div>
+      </div>
+      <div class="card-em" style="margin-top:1em;padding:.9em 1.4em;">
+        <p style="font-size:.75em;color:#fff;margin:0;"><strong style="color:var(--emerald-pale);">EEWH</strong>　Ecology · Energy saving · Waste reduction · Health　—　我國綠建築標章的英文縮寫，正是四大範疇的字首</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-      <div class="timeline" style="margin-bottom:1.2em;">
+<!-- 05 EEWH 制度沿革 -->
+<section>
+  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
+    <div class="slide-inner">
+      <span class="tag tag-gray">HISTORY</span>
+      <div class="rule"></div>
+      <h2>EEWH 制度沿革</h2>
+      <div class="timeline" style="margin-top:1.4em;">
         <div class="tl-item">
-          <div class="tl-dot">99</div>
+          <div class="tl-dot">1</div>
           <div class="tl-year">1999</div>
-          <div class="tl-desc">EEWH 創立<br/>全球首個<br/>亞熱帶綠建築標章</div>
+          <div class="tl-desc">《綠建築解說與評估手冊》初版，亞洲第一套綠建築評估系統</div>
         </div>
         <div class="tl-item">
-          <div class="tl-dot">07</div>
-          <div class="tl-year">2007</div>
-          <div class="tl-desc">九大指標<br/>系統確立<br/>分類細化</div>
+          <div class="tl-dot">2</div>
+          <div class="tl-year">2003</div>
+          <div class="tl-desc">綠建築標章正式推動，納入公有建築強制申請</div>
         </div>
         <div class="tl-item">
-          <div class="tl-dot">15</div>
-          <div class="tl-year">2015</div>
-          <div class="tl-desc">多類型版本<br/>（BC / RS / RN）<br/>正式推行</div>
+          <div class="tl-dot">3</div>
+          <div class="tl-year">2009</div>
+          <div class="tl-desc">發展 EEWH 家族系統，分眾化為多種評估類型</div>
         </div>
         <div class="tl-item">
-          <div class="tl-dot">22</div>
-          <div class="tl-year">2022</div>
-          <div class="tl-desc">配合 BERS<br/>能效評估<br/>系統銜接</div>
+          <div class="tl-dot">4</div>
+          <div class="tl-year">2012</div>
+          <div class="tl-desc">依十年得分統計調整配分，強化節能減碳比重</div>
         </div>
-        <div class="tl-item" style="position:relative;">
-          <div class="tl-dot" style="background:var(--emerald-lg);color:var(--charcoal);">23</div>
-          <div class="tl-year" style="color:var(--emerald-lg);">2023 ★</div>
-          <div class="tl-desc" style="font-weight:600;color:var(--charcoal);">淨零路徑<br/>版本更新<br/>本次重點</div>
+        <div class="tl-item">
+          <div class="tl-dot">5</div>
+          <div class="tl-year">2023</div>
+          <div class="tl-desc">導入歐盟 EPBD 建築能效指令，日常節能納入台灣建築能效法 TBERS</div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
 
+<!-- 06 EEWH 家族 -->
+<section>
+  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
+    <div class="slide-inner">
+      <span class="tag tag-gray">EEWH FAMILY</span>
+      <div class="rule"></div>
+      <h2>EEWH 家族 ─ 適用類型</h2>
+      <div class="grid-3" style="margin-top:1.2em;">
+        <div class="card card-rs">
+          <h4 class="em">EEWH-BC</h4>
+          <p style="font-size:.72em;font-weight:600;margin:.2em 0 .4em;">基本型</p>
+          <p class="small">一般各類建築物的評估基礎（本簡報主軸）</p>
+        </div>
+        <div class="card">
+          <h4 class="em">EEWH-RS</h4>
+          <p style="font-size:.72em;font-weight:600;margin:.2em 0 .4em;">住宿類</p>
+          <p class="small">住宅、宿舍、飯店等居住型建築</p>
+        </div>
+        <div class="card">
+          <h4 class="em">EEWH-EC</h4>
+          <p style="font-size:.72em;font-weight:600;margin:.2em 0 .4em;">社區類</p>
+          <p class="small">整體社區、開發區與都市更新基地</p>
+        </div>
+        <div class="card">
+          <h4 class="em">EEWH-GF</h4>
+          <p style="font-size:.72em;font-weight:600;margin:.2em 0 .4em;">廠房類</p>
+          <p class="small">工廠廠房與物流倉儲建築</p>
+        </div>
+        <div class="card">
+          <h4 class="em">EEWH-RN</h4>
+          <p style="font-size:.72em;font-weight:600;margin:.2em 0 .4em;">舊建築改善</p>
+          <p class="small">既有建築改造、更新與耐震補強</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 07 評估架構總覽 -->
+<section>
+  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
+    <div class="slide-inner">
+      <span class="tag tag-gray">FRAMEWORK</span>
+      <div class="rule"></div>
+      <h2>EEWH 評估架構總覽</h2>
+      <p style="font-size:.8em;margin-bottom:1em;"><strong>四大範疇 × 九大指標</strong>，滿分 <strong class="em">100 分</strong></p>
+      <div class="grid-4">
+        <div class="card" style="border-top:3px solid var(--emerald);">
+          <div class="stat-num">27</div>
+          <div class="stat-label">生態 分</div>
+          <div class="rule-full"></div>
+          <ul style="font-size:.65em;">
+            <li>生物多樣性 9分</li>
+            <li>綠化量 9分</li>
+            <li>基地保水 9分</li>
+          </ul>
+        </div>
+        <div class="card" style="border-top:3px solid #0284c7;">
+          <div class="stat-num" style="color:#0284c7;">32</div>
+          <div class="stat-label">節能 分</div>
+          <div class="rule-full"></div>
+          <ul style="font-size:.65em;">
+            <li>日常節能 32分</li>
+            <li style="list-style:none;padding-left:1em;font-size:.9em;color:var(--stone-400);">（外殼/空調/照明）</li>
+            <li style="list-style:none;padding-left:1em;font-size:.9em;color:var(--stone-400);">或 建築能效法</li>
+          </ul>
+        </div>
+        <div class="card" style="border-top:3px solid #d97706;">
+          <div class="stat-num" style="color:#d97706;">16</div>
+          <div class="stat-label">減廢 分</div>
+          <div class="rule-full"></div>
+          <ul style="font-size:.65em;">
+            <li>CO₂減量 8分</li>
+            <li>廢棄物減量 8分</li>
+          </ul>
+        </div>
+        <div class="card" style="border-top:3px solid #dc2626;">
+          <div class="stat-num" style="color:#dc2626;">25</div>
+          <div class="stat-label">健康 分</div>
+          <div class="rule-full"></div>
+          <ul style="font-size:.65em;">
+            <li>室內環境 12分</li>
+            <li>水資源 8分</li>
+            <li>污水垃圾 5分</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 08 Part 02 過場 -->
+<section data-background-color="#064e3b">
+  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
+    <div style="max-width:800px;margin:0 auto;">
+      <p class="mono" style="color:var(--emerald-pale);font-size:.62em;margin-bottom:1em;letter-spacing:.1em;">PART 02</p>
+      <h1 style="color:#fff;font-size:2.6em;line-height:1.1;margin-bottom:.5em;">九大指標逐項</h1>
+      <p style="color:#a7f3d0;font-size:.9em;">每一項的基準與評估重點</p>
+      <p style="color:#6ee7b7;font-size:.7em;margin-top:2em;">傑丞建築機構　Jieceng Architecture</p>
+    </div>
+  </div>
+</section>
+
+<!-- 09 生態範疇過場 -->
+<section>
+  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
+    <div class="slide-inner">
+      <span class="tag tag-green">生態 Ecology</span>
+      <div class="rule"></div>
+      <h2>生態範疇</h2>
+      <p style="font-size:.82em;color:#374151;">生物多樣性 · 綠化量 · 基地保水　·　範疇配分 <strong class="em">27 分</strong></p>
       <div class="rule-full"></div>
-      <h3 style="margin-bottom:.7em;">2023 版五大更新重點</h3>
-      <div class="grid-2" style="gap:1em;">
-        <div class="card" style="padding:.9em 1.2em;">
-          <h4 style="color:var(--emerald);margin-bottom:.4em;">① 節能門檻提升</h4>
-          <p class="small">日常節能指標強制門檻提高，新建建築外殼耗能係數（ENVLOAD）要求更嚴格，與 BERS 第 3 級以上銜接。</p>
+      <p class="small" style="margin-bottom:1em;">維護基地的生態品質、固碳能力與水循環</p>
+      <div class="grid-3">
+        <div class="card" style="text-align:center;">
+          <div style="font-size:1.6em;">🦋</div>
+          <h4 class="em" style="margin:.4em 0 .2em;">生物多樣性</h4>
+          <p class="note">9 分</p>
         </div>
-        <div class="card" style="padding:.9em 1.2em;">
-          <h4 style="color:var(--emerald);margin-bottom:.4em;">② 碳排生命週期評估</h4>
-          <p class="small">CO₂ 減量指標納入建材生命週期碳排放（LCA），評估範圍從施工期延伸至建物全生命週期。</p>
+        <div class="card" style="text-align:center;">
+          <div style="font-size:1.6em;">🌳</div>
+          <h4 class="em" style="margin:.4em 0 .2em;">綠化量</h4>
+          <p class="note">9 分</p>
         </div>
-        <div class="card" style="padding:.9em 1.2em;">
-          <h4 style="color:var(--emerald);margin-bottom:.4em;">③ PM2.5 空氣品質</h4>
-          <p class="small">室內環境指標新增 PM2.5 ≤ 35 μg/m³ 監測要求，落實後疫情時代的室內健康標準。</p>
-        </div>
-        <div class="card" style="padding:.9em 1.2em;">
-          <h4 style="color:var(--emerald);margin-bottom:.4em;">④ 生態廊道加分</h4>
-          <p class="small">生物多樣性指標新增「生態廊道」設計加分項，鼓勵基地與周邊環境串聯的生態網絡。</p>
+        <div class="card" style="text-align:center;">
+          <div style="font-size:1.6em;">💧</div>
+          <h4 class="em" style="margin:.4em 0 .2em;">基地保水</h4>
+          <p class="note">9 分</p>
         </div>
       </div>
+      <p class="note" style="margin-top:.8em;">三項指標各 9 分，合計 27 分</p>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════
-  05  EEWH 適用類型
-═════════════════════════════════════════════════════ -->
+<!-- 10 生物多樣性 -->
 <section>
   <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
     <div class="slide-inner">
-      <span class="tag tag-green">EEWH ／ 適用類型</span>
-      <div class="rule"></div>
-      <h2>五種評估版本，本次聚焦兩型</h2>
-      <div class="grid-3" style="margin-top:1em;gap:1em;">
-        <div class="card card-bc" style="background:#eff6ff;">
-          <span class="mono" style="color:#1e40af;font-size:.62em;">EEWH-BC</span>
-          <h3 style="color:#1e40af;margin:.3em 0 .4em;">基本型</h3>
-          <p class="small">辦公、商業、學校、醫院、政府機關等非住宅建築</p>
-          <div style="margin-top:.6em;"><span class="tag tag-blue">★ 本次重點</span></div>
-        </div>
-        <div class="card card-rs" style="background:var(--emerald-pale);">
-          <span class="mono" style="color:var(--emerald);font-size:.62em;">EEWH-RS</span>
-          <h3 style="color:var(--emerald);margin:.3em 0 .4em;">住宅型</h3>
-          <p class="small">集合住宅（公寓大廈）、透天住宅等居住類建築</p>
-          <div style="margin-top:.6em;"><span class="tag tag-green">★ 本次重點</span></div>
-        </div>
-        <div class="card" style="opacity:.6;">
-          <span class="mono" style="color:var(--stone-400);font-size:.62em;">EEWH-RN</span>
-          <h3 style="margin:.3em 0 .4em;">舊建改善型</h3>
-          <p class="small">既有建築節能改善、綠化補強，鼓勵老屋升級</p>
-        </div>
-        <div class="card" style="opacity:.6;">
-          <span class="mono" style="color:var(--stone-400);font-size:.62em;">EEWH-NC</span>
-          <h3 style="margin:.3em 0 .4em;">社區型</h3>
-          <p class="small">社區整體環境與共用設施的綠化評估</p>
-        </div>
-        <div class="card" style="opacity:.6;">
-          <span class="mono" style="color:var(--stone-400);font-size:.62em;">EEWH-OF</span>
-          <h3 style="margin:.3em 0 .4em;">廠房型</h3>
-          <p class="small">工廠、倉儲、廠辦等工業性質建築</p>
-        </div>
-        <div class="card" style="background:var(--charcoal);display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:1.4em;">
-          <div style="font-size:2em;margin-bottom:.3em;">🌱</div>
-          <p style="color:var(--emerald-pale);font-size:.72em;margin:0;line-height:1.5;">五種類型<br/>共用九大指標架構<br/>差異在評估基準值與<br/>必要項目</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════════════════
-  06  九大指標架構（共用）
-═════════════════════════════════════════════════════ -->
-<section>
-  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
-    <div class="slide-inner">
-      <span class="tag tag-green">EEWH ／ 評估架構</span>
-      <div class="rule"></div>
-      <h2>九大指標 — 共用架構</h2>
-
-      <div class="cat-band" style="margin-top:.7em;">生態類 Ecology</div>
-      <div class="ind-grid" style="grid-template-columns:repeat(3,1fr);gap:.7em;margin-top:.2em;">
-        <div class="ind-item">
-          <div class="ind-num">01</div>
-          <div class="ind-text"><strong>生物多樣性</strong>生態棲地與物種保育</div>
-        </div>
-        <div class="ind-item">
-          <div class="ind-num">02</div>
-          <div class="ind-text"><strong>綠化量</strong>植栽固碳效果</div>
-        </div>
-        <div class="ind-item">
-          <div class="ind-num">03</div>
-          <div class="ind-text"><strong>基地保水</strong>雨水入滲與滯洪</div>
-        </div>
-      </div>
-
-      <div class="cat-band">節能類 Energy Saving</div>
-      <div class="ind-grid" style="grid-template-columns:1fr;gap:.7em;margin-top:.2em;">
-        <div class="ind-item mandatory">
-          <div class="ind-num">04</div>
-          <div class="ind-text" style="width:100%;">
-            <strong>日常節能 ★ 必要</strong>
-            建築外殼耗能（ENVLOAD）× 空調效率 × 照明效率
-          </div>
-        </div>
-      </div>
-
-      <div class="cat-band">減廢類 Waste Reduction</div>
-      <div class="ind-grid" style="grid-template-columns:1fr 1fr;gap:.7em;margin-top:.2em;">
-        <div class="ind-item">
-          <div class="ind-num">05</div>
-          <div class="ind-text"><strong>CO₂ 減量</strong>建材生命週期碳排（2023新增LCA）</div>
-        </div>
-        <div class="ind-item">
-          <div class="ind-num">06</div>
-          <div class="ind-text"><strong>廢棄物減量</strong>施工廢料分類管控</div>
-        </div>
-      </div>
-
-      <div class="cat-band">健康類 Health</div>
-      <div class="ind-grid" style="grid-template-columns:repeat(3,1fr);gap:.7em;margin-top:.2em;">
-        <div class="ind-item mandatory">
-          <div class="ind-num">07</div>
-          <div class="ind-text"><strong>室內環境 ★</strong>採光、通風、PM2.5</div>
-        </div>
-        <div class="ind-item mandatory">
-          <div class="ind-num">08</div>
-          <div class="ind-text"><strong>水資源 ★</strong>節水設備與回收利用</div>
-        </div>
-        <div class="ind-item mandatory">
-          <div class="ind-num">09</div>
-          <div class="ind-text"><strong>污水垃圾 ★</strong>廢棄物處理設施</div>
-        </div>
-      </div>
-
-      <p class="note" style="margin-top:.6em;">★ 必要指標：所有類型均需全數通過，方可進入評分；綠色框代表必要項目</p>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════════════════
-  07  基本型 EEWH-BC — 概述
-═════════════════════════════════════════════════════ -->
-<section>
-  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
-    <div class="slide-inner">
-      <span class="tag tag-blue">基本型 EEWH-BC</span>
-      <div class="rule" style="background:#3b82f6;"></div>
-      <h2>基本型 — 商業・辦公・公共建築</h2>
-      <div class="grid-2" style="margin-top:1.1em;align-items:start;">
+      <div class="cat-band">生態範疇</div>
+      <div class="ind-detail">
         <div>
-          <p class="small" style="font-size:.83em;line-height:1.8;">
-            基本型（<strong>EEWH-BC</strong>）適用於學校、辦公、商業、醫院、
-            政府機關等各類<strong>非住宅建築</strong>，是台灣使用最廣泛的綠建築
-            評估版本，側重建築系統整體性能的提升。
-          </p>
-          <div class="rule-full"></div>
-          <div class="grid-2" style="gap:1em;">
-            <div><div class="stat-num">4</div><div class="stat-label">必要指標</div></div>
-            <div><div class="stat-num">9</div><div class="stat-label">評估指標</div></div>
+          <div style="display:flex;align-items:center;gap:.8em;margin-bottom:.8em;">
+            <div class="ind-num" style="font-size:.9em;width:2.2em;height:2.2em;">1</div>
+            <span class="note">配分上限</span>
           </div>
-          <div class="rule-full"></div>
-          <h4 style="margin-bottom:.5em;">強制申請門檻</h4>
-          <ul style="font-size:.72em;">
-            <li>公有建築：樓地板面積 ≥ 500 m²</li>
-            <li>私有建築：依各縣市自治條例</li>
-          </ul>
+          <div class="score-box">
+            <div class="num">9</div>
+            <div class="lbl">分</div>
+          </div>
+          <h3 style="margin:1em 0 .3em;" class="em">生物多樣性指標</h3>
+          <p class="note">Biodiversity (BD)</p>
         </div>
         <div>
-          <div class="card card-bc" style="margin-bottom:.9em;">
-            <h4 style="color:#1e40af;margin-bottom:.6em;">適用建築類型</h4>
-            <div style="display:flex;flex-wrap:wrap;gap:.4em;">
-              <span class="tag tag-blue">辦公大樓</span>
-              <span class="tag tag-blue">商業建築</span>
-              <span class="tag tag-blue">學校教育</span>
-              <span class="tag tag-blue">醫療院所</span>
-              <span class="tag tag-blue">政府機關</span>
-              <span class="tag tag-blue">公共設施</span>
-              <span class="tag tag-blue">旅館飯店</span>
-            </div>
-          </div>
-          <div class="card card-bc">
-            <h4 style="color:#1e40af;margin-bottom:.5em;">評估核心精神</h4>
-            <ul style="font-size:.73em;">
-              <li>建築系統整體能源效率</li>
-              <li>空調 × 照明 × 外殼節能三軸並進</li>
-              <li>建材碳排與廢料管控</li>
-              <li>基地生態環境品質提升</li>
-            </ul>
-          </div>
+          <h4 style="margin-bottom:.5em;">評估基準</h4>
+          <p class="small" style="margin-bottom:.8em;">設計值 BD 與基準值 BDc 比較；基地未達 1 公頃者可免評估。</p>
+          <h4 style="margin-bottom:.5em;">評估重點</h4>
+          <ul style="font-size:.78em;">
+            <li>生態綠網與綠地連貫性</li>
+            <li>小生物棲地（水域、綠塊、生態池）</li>
+            <li>植物多樣化與原生種運用</li>
+            <li>土壤生態與表土保護</li>
+            <li>減少人工照明光害</li>
+          </ul>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════
-  08  基本型 — 評估重點
-═════════════════════════════════════════════════════ -->
+<!-- 11 綠化量 -->
 <section>
   <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
     <div class="slide-inner">
-      <span class="tag tag-blue">基本型 EEWH-BC ／ 評估重點</span>
-      <div class="rule" style="background:#3b82f6;"></div>
-      <h2>基本型四大評估核心</h2>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.1em;margin-top:1em;">
-
-        <div class="card card-bc">
-          <h3 style="color:#1e40af;margin-bottom:.5em;">① 日常節能（必要）</h3>
-          <p class="small">三個子項目：</p>
-          <table style="font-size:.68em;width:100%;margin-top:.4em;border-collapse:collapse;">
-            <tr>
-              <td style="padding:.3em .4em;border-bottom:1px solid var(--stone-200);font-weight:600;">外殼耗能</td>
-              <td style="padding:.3em .4em;border-bottom:1px solid var(--stone-200);">ENVLOAD 值需優於基準 15%（2023版）</td>
-            </tr>
-            <tr>
-              <td style="padding:.3em .4em;border-bottom:1px solid var(--stone-200);font-weight:600;">空調效率</td>
-              <td style="padding:.3em .4em;border-bottom:1px solid var(--stone-200);">COP / EER 達省能標準</td>
-            </tr>
-            <tr>
-              <td style="padding:.3em .4em;font-weight:600;">照明效率</td>
-              <td style="padding:.3em .4em;">LPD 照明功率密度符合規範</td>
-            </tr>
-          </table>
-        </div>
-
-        <div class="card card-bc">
-          <h3 style="color:#1e40af;margin-bottom:.5em;">② 水資源（必要）</h3>
-          <p class="small" style="margin-bottom:.5em;">著重系統性節水設計：</p>
-          <ul style="font-size:.72em;">
-            <li>全棟節水器具省水率 ≥ 20%</li>
-            <li>屋頂雨水回收 × 空調冷凝水利用</li>
-            <li>中水回收系統（免治馬桶／沖廁）</li>
-            <li>自動澆灌節水設計</li>
-          </ul>
-        </div>
-
-        <div class="card card-bc">
-          <h3 style="color:#1e40af;margin-bottom:.5em;">③ CO₂ 減量（選擇）</h3>
-          <p class="small" style="margin-bottom:.5em;">2023 版新增 LCA 評估：</p>
-          <ul style="font-size:.72em;">
-            <li>主結構（鋼筋混凝土 / 鋼構）選材</li>
-            <li>建材隱含碳排放量計算</li>
-            <li>在地建材 × 低碳建材優先使用</li>
-            <li>生命週期碳排 LCA 報告（新增加分）</li>
-          </ul>
-        </div>
-
-        <div class="card card-bc">
-          <h3 style="color:#1e40af;margin-bottom:.5em;">④ 室內環境（必要）</h3>
-          <p class="small" style="margin-bottom:.5em;">工作場域品質指標：</p>
-          <ul style="font-size:.72em;">
-            <li>採光：辦公空間照度達標</li>
-            <li>通風：換氣次數符合規範</li>
-            <li>音環境：隔音量 STC 基準</li>
-            <li><strong>PM2.5 ≤ 35 μg/m³</strong>（2023版新增）</li>
-          </ul>
-        </div>
-
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════════════════
-  09  住宅型 EEWH-RS — 概述
-═════════════════════════════════════════════════════ -->
-<section>
-  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
-    <div class="slide-inner">
-      <span class="tag tag-green">住宅型 EEWH-RS</span>
-      <div class="rule"></div>
-      <h2>住宅型 — 以居住者健康為核心</h2>
-      <div class="grid-2" style="margin-top:1.1em;align-items:start;">
+      <div class="cat-band">生態範疇</div>
+      <div class="ind-detail">
         <div>
-          <p class="small" style="font-size:.83em;line-height:1.8;">
-            住宅型（<strong>EEWH-RS</strong>）專門針對集合住宅及透天住宅設計，
-            住宅是居住者一天中停留時間最長的場所，因此更強調<strong>健康舒適的生活環境</strong>、
-            外殼節能設計及以居住單元為基礎的細緻評估。
-          </p>
-          <div class="rule-full"></div>
-          <div class="grid-2" style="gap:1em;">
-            <div><div class="stat-num">4</div><div class="stat-label">必要指標</div></div>
-            <div><div class="stat-num">24h</div><div class="stat-label">全天居住使用</div></div>
+          <div style="display:flex;align-items:center;gap:.8em;margin-bottom:.8em;">
+            <div class="ind-num" style="font-size:.9em;width:2.2em;height:2.2em;">2</div>
+            <span class="note">配分上限</span>
           </div>
-          <div class="rule-full"></div>
-          <h4 style="margin-bottom:.5em;">強制申請門檻</h4>
-          <ul style="font-size:.72em;">
-            <li>集合住宅：戶數 ≥ 30 戶</li>
-            <li>社區型集合住宅：基地面積 ≥ 3,000 m²</li>
-          </ul>
+          <div class="score-box">
+            <div class="num">9</div>
+            <div class="lbl">分</div>
+          </div>
+          <h3 style="margin:1em 0 .3em;" class="em">綠化量指標</h3>
+          <p class="note">Greenery (TCO₂)</p>
         </div>
         <div>
-          <div class="card card-rs" style="margin-bottom:.9em;">
-            <h4 style="color:var(--emerald);margin-bottom:.6em;">適用建築類型</h4>
-            <div style="display:flex;flex-wrap:wrap;gap:.4em;">
-              <span class="tag tag-green">集合住宅</span>
-              <span class="tag tag-green">公寓大廈</span>
-              <span class="tag tag-green">透天住宅</span>
-              <span class="tag tag-green">社區住宅</span>
-              <span class="tag tag-green">出租住宅</span>
-              <span class="tag tag-green">社會住宅</span>
-            </div>
-          </div>
-          <div class="card card-rs">
-            <h4 style="color:var(--emerald);margin-bottom:.5em;">住宅型核心精神</h4>
-            <ul style="font-size:.73em;">
-              <li>全天使用 → 外殼節能更嚴格</li>
-              <li>居住健康 → 室內環境細化評估</li>
-              <li>以戶計量 → 住戶節水獨立計量</li>
-              <li>社區生態 → 基地共用綠化空間</li>
-            </ul>
-          </div>
+          <h4 style="margin-bottom:.5em;">評估基準</h4>
+          <p class="small" style="margin-bottom:.8em;">以植栽四十年的「固碳量 TCO₂」與基準 TCO₂c 比較。</p>
+          <h4 style="margin-bottom:.5em;">評估重點</h4>
+          <ul style="font-size:.78em;">
+            <li>喬木、灌木、花圃多層次綠化</li>
+            <li>生態複層植栽（大小喬木混植）</li>
+            <li>屋頂與人工地盤綠化</li>
+            <li>原生與誘鳥誘蝶植物優先</li>
+          </ul>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════
-  10  住宅型 — 評估重點
-═════════════════════════════════════════════════════ -->
+<!-- 12 基地保水 -->
 <section>
   <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
     <div class="slide-inner">
-      <span class="tag tag-green">住宅型 EEWH-RS ／ 評估重點</span>
-      <div class="rule"></div>
-      <h2>住宅型四大評估核心</h2>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.1em;margin-top:1em;">
-
-        <div class="card card-rs">
-          <h3 style="color:var(--emerald);margin-bottom:.5em;">① 日常節能（必要）</h3>
-          <p class="small" style="margin-bottom:.5em;">住宅 24 小時使用，外殼節能更重要：</p>
-          <table style="font-size:.68em;width:100%;border-collapse:collapse;">
-            <tr>
-              <td style="padding:.3em .4em;border-bottom:1px solid var(--stone-200);font-weight:600;">外牆隔熱</td>
-              <td style="padding:.3em .4em;border-bottom:1px solid var(--stone-200);">外牆熱傳透率 U 值更嚴（較基本型提高 10%）</td>
-            </tr>
-            <tr>
-              <td style="padding:.3em .4em;border-bottom:1px solid var(--stone-200);font-weight:600;">屋頂隔熱</td>
-              <td style="padding:.3em .4em;border-bottom:1px solid var(--stone-200);">頂層樓板或屋頂遮陽隔熱設計</td>
-            </tr>
-            <tr>
-              <td style="padding:.3em .4em;font-weight:600;">開窗節能</td>
-              <td style="padding:.3em .4em;">窗牆比控制 × 遮陽板 × Low-E 玻璃</td>
-            </tr>
-          </table>
+      <div class="cat-band">生態範疇</div>
+      <div class="ind-detail">
+        <div>
+          <div style="display:flex;align-items:center;gap:.8em;margin-bottom:.8em;">
+            <div class="ind-num" style="font-size:.9em;width:2.2em;height:2.2em;">3</div>
+            <span class="note">配分上限</span>
+          </div>
+          <div class="score-box">
+            <div class="num">9</div>
+            <div class="lbl">分</div>
+          </div>
+          <h3 style="margin:1em 0 .3em;" class="em">基地保水指標</h3>
+          <p class="note">Soil Water Content (λ)</p>
         </div>
-
-        <div class="card card-rs">
-          <h3 style="color:var(--emerald);margin-bottom:.5em;">② 水資源（必要）</h3>
-          <p class="small" style="margin-bottom:.5em;">以戶計量的精細化節水管理：</p>
-          <ul style="font-size:.72em;">
-            <li>每戶獨立水表計量（提高節水意識）</li>
-            <li>省水標章馬桶、水龍頭、蓮蓬頭</li>
-            <li>雨水回收 → 社區庭院澆灌</li>
-            <li>省水率整體 ≥ 20%</li>
+        <div>
+          <h4 style="margin-bottom:.5em;">評估基準</h4>
+          <p class="small" style="margin-bottom:.8em;">以基地保水性能 λ 與基準 λc 比較，衡量基地涵養水分、減洪能力。</p>
+          <h4 style="margin-bottom:.5em;">評估重點</h4>
+          <ul style="font-size:.78em;">
+            <li>透水鋪面、透水性綠地</li>
+            <li>貯留滲透（雨水花園、滲透井）</li>
+            <li>減少不透水硬鋪面比例</li>
+            <li>降低都市熱島與排洪負擔</li>
           </ul>
         </div>
-
-        <div class="card card-rs">
-          <h3 style="color:var(--emerald);margin-bottom:.5em;">③ 室內環境（必要）</h3>
-          <p class="small" style="margin-bottom:.5em;">居住健康環境細化標準：</p>
-          <ul style="font-size:.72em;">
-            <li><strong>採光</strong>：主要居室採光係數 ≥ 0.03</li>
-            <li><strong>通風</strong>：自然通風開口比 ≥ 1/8 樓地板面積</li>
-            <li><strong>隔音</strong>：樓板衝擊音 ≤ 58 dB（住宅比辦公更嚴格）</li>
-            <li><strong>PM2.5</strong>：≤ 35 μg/m³ 年均值（2023新增）</li>
-          </ul>
-        </div>
-
-        <div class="card card-rs">
-          <h3 style="color:var(--emerald);margin-bottom:.5em;">④ 生態指標（選擇）</h3>
-          <p class="small" style="margin-bottom:.5em;">社區共用空間的生態貢獻：</p>
-          <ul style="font-size:.72em;">
-            <li>社區庭院 × 頂樓花園綠化量</li>
-            <li>基地保水：透水鋪面 × 雨水花園</li>
-            <li>生物多樣性：蟲鳥棲地植栽選種</li>
-            <li><strong>生態廊道</strong>銜接設計（2023新增加分）</li>
-          </ul>
-        </div>
-
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════
-  11  基本型 vs 住宅型 比較
-═════════════════════════════════════════════════════ -->
+<!-- 13 節能範疇過場 -->
 <section>
   <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
     <div class="slide-inner">
-      <span class="tag tag-gray">綜合比較</span>
+      <span class="tag tag-blue">節能 Energy</span>
+      <div class="rule" style="background:#0284c7;"></div>
+      <h2>節能範疇</h2>
+      <p style="font-size:.82em;color:#374151;">日常節能指標（含門檻）　·　範疇配分 <strong style="color:#0284c7;">32 分</strong></p>
+      <div class="rule-full"></div>
+      <p class="small">EEWH 配分最高、最關鍵的範疇</p>
+      <div class="card-em" style="margin-top:1.2em;">
+        <p style="color:#fff;font-size:.82em;margin:0;">⚠️　日常節能為<strong style="color:var(--emerald-pale);">『門檻指標』</strong>，未通過無法取得標章</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 14 日常節能 -->
+<section>
+  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
+    <div class="slide-inner">
+      <div class="cat-band">節能範疇</div>
+      <div class="ind-detail">
+        <div>
+          <div style="display:flex;align-items:center;gap:.8em;margin-bottom:.5em;">
+            <div class="mandatory-box"><span>門檻指標</span></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:.8em;margin-bottom:.8em;">
+            <div class="ind-num" style="font-size:.9em;width:2.2em;height:2.2em;">4</div>
+            <span class="note">配分上限</span>
+          </div>
+          <div class="score-box" style="border-color:#0284c7;background:#e0f2fe;">
+            <div class="num" style="color:#0284c7;">32</div>
+            <div class="lbl" style="color:#0284c7;">分</div>
+          </div>
+          <h3 style="margin:1em 0 .3em;color:#0284c7;">日常節能指標</h3>
+          <p class="note">Daily Energy Saving</p>
+        </div>
+        <div>
+          <h4 style="margin-bottom:.5em;">評估基準</h4>
+          <p class="small" style="margin-bottom:.8em;">可二擇一：① 分項評估法（外殼＋空調＋照明）　② 建築能效評估法（直接採 BERS 得分 SCORE_EE）</p>
+          <h4 style="margin-bottom:.5em;">評估重點</h4>
+          <ul style="font-size:.78em;">
+            <li>分項：建築外殼節能 EEV（上限 9 分）</li>
+            <li>分項：空調節能 EAC（上限 16 分，基準 0.8）</li>
+            <li>分項：照明節能 EL（上限 7 分，基準 0.8）</li>
+            <li>建築能效法：依 TBERS／BERS 得分換算，上限 32 分</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 15 日常節能兩種評估法 -->
+<section>
+  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
+    <div class="slide-inner">
+      <span class="tag tag-blue">ENERGY · DEEP DIVE</span>
+      <div class="rule" style="background:#0284c7;"></div>
+      <h2>日常節能 ─ 兩種評估法</h2>
+      <div class="grid-2" style="margin-top:1.2em;">
+        <div class="card card-bc">
+          <h3 style="margin-bottom:.7em;">分項評估法</h3>
+          <ul style="font-size:.78em;">
+            <li>建築外殼節能 EEV　<strong>9 分</strong></li>
+            <li>空調系統節能 EAC　<strong>16 分</strong></li>
+            <li>照明系統節能 EL　<strong>7 分</strong></li>
+          </ul>
+          <div class="rule-full"></div>
+          <p class="note" style="color:#1e40af;">三項合計　32 分</p>
+        </div>
+        <div class="card card-rs">
+          <h3 style="margin-bottom:.7em;">建築能效評估法</h3>
+          <ul style="font-size:.78em;">
+            <li>直接採用建築能效 SCORE_EE</li>
+            <li><span class="mono" style="font-size:.9em;">RS₄ = 32 ×(SCORE_EE − 50)/40</span></li>
+            <li>與 2023 導入之 TBERS 接軌</li>
+            <li>對應建築能效標示 BERS</li>
+          </ul>
+        </div>
+      </div>
+      <p class="note" style="margin-top:.9em;">※ 外殼隔熱（Ueq）、開窗遮陽、高效冰水主機、變頻空調、LED 高效照明為主要設計手法。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 16 減廢範疇過場 -->
+<section>
+  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
+    <div class="slide-inner">
+      <span class="tag tag-amber">減廢 Waste</span>
+      <div class="rule" style="background:#d97706;"></div>
+      <h2>減廢範疇</h2>
+      <p style="font-size:.82em;color:#374151;">CO₂減量 · 廢棄物減量　·　範疇配分 <strong style="color:#d97706;">16 分</strong></p>
+      <div class="rule-full"></div>
+      <p class="small">從建材生產到施工過程，降低碳排與廢棄物</p>
+      <div class="grid-2" style="margin-top:1.2em;">
+        <div class="card" style="text-align:center;">
+          <div style="font-size:1.6em;">🏭</div>
+          <h4 style="margin:.4em 0 .2em;color:#d97706;">CO₂減量</h4>
+          <p class="note">8 分</p>
+        </div>
+        <div class="card" style="text-align:center;">
+          <div style="font-size:1.6em;">🗑️</div>
+          <h4 style="margin:.4em 0 .2em;color:#d97706;">廢棄物減量</h4>
+          <p class="note">8 分</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 17 CO₂減量 -->
+<section>
+  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
+    <div class="slide-inner">
+      <div class="cat-band">減廢範疇</div>
+      <div class="ind-detail">
+        <div>
+          <div style="display:flex;align-items:center;gap:.8em;margin-bottom:.8em;">
+            <div class="ind-num" style="font-size:.9em;width:2.2em;height:2.2em;background:#d97706;">5</div>
+            <span class="note">配分上限</span>
+          </div>
+          <div class="score-box" style="border-color:#d97706;background:#fef3c7;">
+            <div class="num" style="color:#d97706;">8</div>
+            <div class="lbl" style="color:#d97706;">分</div>
+          </div>
+          <h3 style="margin:1em 0 .3em;color:#d97706;">CO₂減量指標</h3>
+          <p class="note">CO₂ Reduction</p>
+        </div>
+        <div>
+          <h4 style="margin-bottom:.5em;">評估基準</h4>
+          <p class="small" style="margin-bottom:.8em;">以建材生產的 CO₂ 排放 CCO₂ 與基準 0.82 比較。</p>
+          <h4 style="margin-bottom:.5em;">評估重點</h4>
+          <ul style="font-size:.78em;">
+            <li>結構合理化、輕量化設計</li>
+            <li>再生與低碳建材運用</li>
+            <li>在地建材、減少運輸碳排</li>
+            <li>鋼構、木構等低碳結構</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 18 廢棄物減量 -->
+<section>
+  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
+    <div class="slide-inner">
+      <div class="cat-band">減廢範疇</div>
+      <div class="ind-detail">
+        <div>
+          <div style="display:flex;align-items:center;gap:.8em;margin-bottom:.8em;">
+            <div class="ind-num" style="font-size:.9em;width:2.2em;height:2.2em;background:#d97706;">6</div>
+            <span class="note">配分上限</span>
+          </div>
+          <div class="score-box" style="border-color:#d97706;background:#fef3c7;">
+            <div class="num" style="color:#d97706;">8</div>
+            <div class="lbl" style="color:#d97706;">分</div>
+          </div>
+          <h3 style="margin:1em 0 .3em;color:#d97706;">廢棄物減量指標</h3>
+          <p class="note">Waste Reduction (PI)</p>
+        </div>
+        <div>
+          <h4 style="margin-bottom:.5em;">評估基準</h4>
+          <p class="small" style="margin-bottom:.8em;">以營建污染指標 PI 與基準 3.30 比較；舊建築再利用另採 RS₆ = 10 × Sr。</p>
+          <h4 style="margin-bottom:.5em;">評估重點</h4>
+          <ul style="font-size:.78em;">
+            <li>土方平衡、減少棄土</li>
+            <li>營建自動化、乾式施工</li>
+            <li>施工空氣污染與噪音防制</li>
+            <li>舊建築再利用、結構保留</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 19 健康範疇過場 -->
+<section>
+  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
+    <div class="slide-inner">
+      <span class="tag tag-red">健康 Health</span>
+      <div class="rule" style="background:#dc2626;"></div>
+      <h2>健康範疇</h2>
+      <p style="font-size:.82em;color:#374151;">室內環境 · 水資源 · 污水垃圾　·　範疇配分 <strong style="color:#dc2626;">25 分</strong></p>
+      <div class="rule-full"></div>
+      <p class="small">關乎使用者健康與基地衛生</p>
+      <div class="card-em" style="margin-top:1.2em;">
+        <p style="color:#fff;font-size:.82em;margin:0;">⚠️　水資源為<strong style="color:var(--emerald-pale);">『門檻指標』</strong>，必須通過</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 20 室內環境 -->
+<section>
+  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
+    <div class="slide-inner">
+      <div class="cat-band">健康範疇</div>
+      <div class="ind-detail">
+        <div>
+          <div style="display:flex;align-items:center;gap:.8em;margin-bottom:.8em;">
+            <div class="ind-num" style="font-size:.9em;width:2.2em;height:2.2em;background:#dc2626;">7</div>
+            <span class="note">配分上限</span>
+          </div>
+          <div class="score-box" style="border-color:#dc2626;background:#fee2e2;">
+            <div class="num" style="color:#dc2626;">12</div>
+            <div class="lbl" style="color:#dc2626;">分</div>
+          </div>
+          <h3 style="margin:1em 0 .3em;color:#dc2626;">室內環境指標</h3>
+          <p class="note">Indoor Environment (IE)</p>
+        </div>
+        <div>
+          <h4 style="margin-bottom:.5em;">評估基準</h4>
+          <p class="small" style="margin-bottom:.8em;">以室內環境綜合指標 IE 與基準 60.0 比較（音、光、通風、建材）。</p>
+          <h4 style="margin-bottom:.5em;">評估重點</h4>
+          <ul style="font-size:.78em;">
+            <li>隔音與樓板衝擊音控制</li>
+            <li>自然採光與照明品質</li>
+            <li>自然通風與室內空氣品質</li>
+            <li>低逸散、健康綠建材</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 21 水資源 -->
+<section>
+  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
+    <div class="slide-inner">
+      <div class="cat-band">健康範疇</div>
+      <div class="ind-detail">
+        <div>
+          <div style="display:flex;align-items:center;gap:.8em;margin-bottom:.5em;">
+            <div class="mandatory-box"><span>門檻指標</span></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:.8em;margin-bottom:.8em;">
+            <div class="ind-num" style="font-size:.9em;width:2.2em;height:2.2em;background:#dc2626;">8</div>
+            <span class="note">配分上限</span>
+          </div>
+          <div class="score-box" style="border-color:#dc2626;background:#fee2e2;">
+            <div class="num" style="color:#dc2626;">8</div>
+            <div class="lbl" style="color:#dc2626;">分</div>
+          </div>
+          <h3 style="margin:1em 0 .3em;color:#dc2626;">水資源指標</h3>
+          <p class="note">Water Resource (WI)</p>
+        </div>
+        <div>
+          <h4 style="margin-bottom:.5em;">評估基準</h4>
+          <p class="small" style="margin-bottom:.8em;">以節水率 WI 與基準 2.00 比較；為門檻指標，必須通過。</p>
+          <h4 style="margin-bottom:.5em;">評估重點</h4>
+          <ul style="font-size:.78em;">
+            <li>省水器材（馬桶、水龍頭）</li>
+            <li>雨水回收再利用</li>
+            <li>中水（生活雜排水）回收</li>
+            <li>節水澆灌與計量管理</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 22 污水垃圾 -->
+<section>
+  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
+    <div class="slide-inner">
+      <div class="cat-band">健康範疇</div>
+      <div class="ind-detail">
+        <div>
+          <div style="display:flex;align-items:center;gap:.8em;margin-bottom:.8em;">
+            <div class="ind-num" style="font-size:.9em;width:2.2em;height:2.2em;background:#dc2626;">9</div>
+            <span class="note">配分上限</span>
+          </div>
+          <div class="score-box" style="border-color:#dc2626;background:#fee2e2;">
+            <div class="num" style="color:#dc2626;">5</div>
+            <div class="lbl" style="color:#dc2626;">分</div>
+          </div>
+          <h3 style="margin:1em 0 .3em;color:#dc2626;">污水垃圾改善指標</h3>
+          <p class="note">Sewage &amp; Garbage (GI)</p>
+        </div>
+        <div>
+          <h4 style="margin-bottom:.5em;">評估基準</h4>
+          <p class="small" style="margin-bottom:.8em;">以污水垃圾改善指標 GI 與基準 10.0 比較。</p>
+          <h4 style="margin-bottom:.5em;">評估重點</h4>
+          <ul style="font-size:.78em;">
+            <li>污水接管或化糞池設置</li>
+            <li>專用垃圾分類與暫存空間</li>
+            <li>資源回收動線與設施</li>
+            <li>景觀化、衛生化的垃圾處理</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 23 Part 03 過場 -->
+<section data-background-color="#064e3b">
+  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
+    <div style="max-width:800px;margin:0 auto;">
+      <p class="mono" style="color:var(--emerald-pale);font-size:.62em;margin-bottom:1em;letter-spacing:.1em;">PART 03</p>
+      <h1 style="color:#fff;font-size:2.6em;line-height:1.1;margin-bottom:.5em;">分級、門檻與申請</h1>
+      <p style="color:#a7f3d0;font-size:.9em;">等級怎麼分？怎麼申請？</p>
+      <p style="color:#6ee7b7;font-size:.7em;margin-top:2em;">傑丞建築機構　Jieceng Architecture</p>
+    </div>
+  </div>
+</section>
+
+<!-- 24 九大指標配分總表 -->
+<section>
+  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
+    <div class="slide-inner">
+      <span class="tag tag-gray">SCORING TABLE</span>
       <div class="rule"></div>
-      <h2>基本型 vs 住宅型 — 差異對照</h2>
+      <h2>九大指標配分總表</h2>
       <table class="cmp-table" style="margin-top:1em;">
         <thead>
           <tr>
-            <th style="width:20%;">比較項目</th>
-            <th class="bc" style="width:38%;">基本型 EEWH-BC</th>
-            <th class="rs" style="width:38%;">住宅型 EEWH-RS</th>
+            <th style="text-align:left;">指標</th>
+            <th style="text-align:left;">範疇</th>
+            <th style="text-align:center;">配分上限</th>
+            <th style="text-align:center;">門檻</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>適用建築</td>
-            <td>辦公、商業、學校、醫院、公共設施</td>
-            <td>集合住宅、公寓大廈、透天住宅</td>
-          </tr>
-          <tr>
-            <td>使用情境</td>
-            <td>日間為主（8–10 小時）</td>
-            <td>全天 24 小時居住使用</td>
-          </tr>
-          <tr>
-            <td>節能重點</td>
-            <td>空調系統效率 COP/EER 為主</td>
-            <td>外殼隔熱設計（外牆 U 值更嚴格）</td>
-          </tr>
-          <tr>
-            <td>水資源</td>
-            <td>系統性節水設備、中水回收</td>
-            <td><strong>每戶獨立水表計量</strong>＋省水標章</td>
-          </tr>
-          <tr>
-            <td>室內環境</td>
-            <td>工作場域：照度、通風、音環境</td>
-            <td>居住健康：採光係數、自然通風、<strong>樓板隔音</strong></td>
-          </tr>
-          <tr>
-            <td>生態指標</td>
-            <td>基地生態與景觀綠化</td>
-            <td>社區共用庭院、頂樓綠化、生態廊道</td>
-          </tr>
-          <tr>
-            <td>強制對象</td>
-            <td>公有建築 ≥ 500 m²</td>
-            <td>集合住宅 ≥ 30 戶</td>
-          </tr>
-          <tr>
-            <td>評估單位</td>
-            <td>整棟建築系統</td>
-            <td>整棟 + 各居住單元細分</td>
-          </tr>
+          <tr><td>1 生物多樣性</td><td>生態</td><td style="text-align:center;">9</td><td style="text-align:center;">—</td></tr>
+          <tr><td>2 綠化量</td><td>生態</td><td style="text-align:center;">9</td><td style="text-align:center;">—</td></tr>
+          <tr><td>3 基地保水</td><td>生態</td><td style="text-align:center;">9</td><td style="text-align:center;">—</td></tr>
+          <tr><td><strong>4 日常節能</strong></td><td>節能</td><td style="text-align:center;"><strong>32</strong></td><td style="text-align:center;color:var(--emerald);font-weight:700;">✓</td></tr>
+          <tr><td>5 CO₂減量</td><td>減廢</td><td style="text-align:center;">8</td><td style="text-align:center;">—</td></tr>
+          <tr><td>6 廢棄物減量</td><td>減廢</td><td style="text-align:center;">8</td><td style="text-align:center;">—</td></tr>
+          <tr><td>7 室內環境</td><td>健康</td><td style="text-align:center;">12</td><td style="text-align:center;">—</td></tr>
+          <tr><td><strong>8 水資源</strong></td><td>健康</td><td style="text-align:center;"><strong>8</strong></td><td style="text-align:center;color:var(--emerald);font-weight:700;">✓</td></tr>
+          <tr><td>9 污水垃圾改善</td><td>健康</td><td style="text-align:center;">5</td><td style="text-align:center;">—</td></tr>
+          <tr style="background:var(--emerald-pale);"><td><strong>合計</strong></td><td></td><td style="text-align:center;font-weight:700;">100</td><td></td></tr>
         </tbody>
       </table>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════
-  12  五個認證等級
-═════════════════════════════════════════════════════ -->
+<!-- 25 門檻指標 -->
 <section>
   <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
     <div class="slide-inner">
-      <span class="tag tag-green">EEWH ／ 認證等級</span>
+      <span class="tag tag-gray">MANDATORY</span>
       <div class="rule"></div>
-      <h2>五個認證等級 — 基本型 × 住宅型共用</h2>
-      <div class="badge-row" style="margin-top:1em;">
-        <div class="badge badge-pass">
-          <div class="badge-icon">🌿</div>
-          <div class="badge-name">合格級</div>
-          <div class="badge-sub">Qualified</div>
-          <div class="badge-score">基礎門檻</div>
+      <h2>門檻指標 ─ 兩項必過</h2>
+      <p class="small" style="margin-bottom:1.2em;">EEWH-BC 設有兩項『門檻指標』，只要任一項未通過，即無法取得綠建築標章，與總分高低無關。</p>
+      <div class="grid-2">
+        <div class="card" style="border:2px solid var(--emerald);background:var(--emerald-pale);">
+          <div style="font-size:1.8em;margin-bottom:.4em;">⚡</div>
+          <h3 class="em">日常節能指標</h3>
+          <p class="small" style="margin-top:.4em;">回應缺電危機 — 建築外殼、空調、照明的節能表現須達基準</p>
         </div>
-        <div class="badge badge-bronze">
-          <div class="badge-icon">🥉</div>
-          <div class="badge-name">銅　級</div>
-          <div class="badge-sub">Bronze</div>
-          <div class="badge-score">良好表現</div>
+        <div class="card" style="border:2px solid var(--emerald);background:var(--emerald-pale);">
+          <div style="font-size:1.8em;margin-bottom:.4em;">💧</div>
+          <h3 class="em">水資源指標</h3>
+          <p class="small" style="margin-top:.4em;">回應缺水危機 — 節水器材與雨中水回收須達節水基準</p>
         </div>
-        <div class="badge badge-silver">
-          <div class="badge-icon">🥈</div>
-          <div class="badge-name">銀　級</div>
-          <div class="badge-sub">Silver</div>
-          <div class="badge-score">優良表現</div>
+      </div>
+      <p class="note" style="margin-top:1em;">其餘七項指標無『合格與否』之認定，並給予基本分；申請者應儘量申請所有指標以爭取高分。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 26 計算邏輯 -->
+<section>
+  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
+    <div class="slide-inner">
+      <span class="tag tag-gray">HOW IT'S SCORED</span>
+      <div class="rule"></div>
+      <h2>分級評估 ─ 計算邏輯</h2>
+      <div class="card-em" style="margin-bottom:1.2em;">
+        <p style="color:#fff;font-size:.85em;margin:0;">總得分　<strong style="color:var(--emerald-pale);">RS ＝ Σ RSi</strong>　　（i = 1～9）</p>
+      </div>
+      <ul style="font-size:.82em;">
+        <li>各指標得分　<span class="mono">RSi ＝ a × Ri ＋ c</span>　（a：權重，Ri：得分變距，c：基本分 1.5）</li>
+        <li><span class="mono">Ri＝（設計值 − 基準值）/ 基準值</span>，反映設計超越基準的比例</li>
+        <li>權重 a 由上千件實例得分分布校準，調整各指標難易差異</li>
+        <li>達基準即給基本分 1.5；免評估項目亦給 1.5 基本分</li>
+        <li>日常節能採建築能效法時：<span class="mono">RS₄ = 32 ×(SCORE_EE − 50)/40</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 27 五大認證等級 -->
+<section>
+  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
+    <div class="slide-inner">
+      <span class="tag tag-gray">CERTIFICATION LEVELS</span>
+      <div class="rule"></div>
+      <h2>五大認證等級</h2>
+      <p class="small" style="margin-bottom:1em;">依得分概率分布劃分五級，特質為『合格容易，高分難』。</p>
+      <div class="badge-row">
+        <div class="badge badge-diamond">
+          <div class="badge-icon">💎</div>
+          <div class="badge-name">鑽石級</div>
+          <div class="badge-score">95%↑</div>
         </div>
         <div class="badge badge-gold">
           <div class="badge-icon">🥇</div>
           <div class="badge-name">黃金級</div>
-          <div class="badge-sub">Gold</div>
-          <div class="badge-score">卓越表現</div>
+          <div class="badge-score">80 – 95%</div>
         </div>
-        <div class="badge badge-diamond">
-          <div class="badge-icon">💎</div>
-          <div class="badge-name">鑽石級</div>
-          <div class="badge-sub">Diamond</div>
-          <div class="badge-score">頂尖典範</div>
+        <div class="badge badge-silver">
+          <div class="badge-icon">🥈</div>
+          <div class="badge-name">銀級</div>
+          <div class="badge-score">60 – 80%</div>
         </div>
-      </div>
-
-      <div class="rule-full" style="margin-top:1.2em;"></div>
-      <h3 style="margin-bottom:.7em;">評分邏輯</h3>
-      <div class="grid-2" style="gap:1em;">
-        <div class="card" style="padding:.9em 1.2em;">
-          <h4 style="margin-bottom:.5em;">通過條件</h4>
-          <ul style="font-size:.73em;">
-            <li>4 項必要指標<strong>全數通過</strong></li>
-            <li>選擇指標累計得分達等級門檻</li>
-            <li>基本型與住宅型分開計算基準值</li>
-          </ul>
+        <div class="badge badge-bronze">
+          <div class="badge-icon">🥉</div>
+          <div class="badge-name">銅級</div>
+          <div class="badge-score">30 – 60%</div>
         </div>
-        <div class="card" style="padding:.9em 1.2em;">
-          <h4 style="margin-bottom:.5em;">有效期限</h4>
-          <ul style="font-size:.73em;">
-            <li>標章有效期 <strong>5 年</strong></li>
-            <li>到期前需重新評定或展延</li>
-            <li>建築改善後可申請升級評定</li>
-          </ul>
+        <div class="badge badge-pass">
+          <div class="badge-icon">✅</div>
+          <div class="badge-name">合格級</div>
+          <div class="badge-score">30%以下</div>
         </div>
       </div>
-
-      <div class="card" style="margin-top:.9em;padding:.8em 1.3em;background:var(--emerald-pale);">
-        <p style="font-size:.72em;color:#065f46;margin:0;">
-          💡 2023 版更新後，鑽石級的節能門檻提高，
-          需較基準值<strong>節能 30% 以上</strong>，且必須通過室內環境 PM2.5 監測，
-          代表台灣頂尖建築對健康與永續的雙重承諾。
-        </p>
-      </div>
+      <p class="note" style="margin-top:.9em;">※ 概率區間指 RS 總分在歷年候選綠建築得分分布中的相對位置。</p>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════
-  13  申請流程
-═════════════════════════════════════════════════════ -->
+<!-- 28 申請程序 -->
 <section>
   <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
     <div class="slide-inner">
-      <span class="tag tag-green">EEWH ／ 申請程序</span>
+      <span class="tag tag-gray">APPLICATION</span>
       <div class="rule"></div>
-      <h2>申請流程（基本型 × 住宅型相同）</h2>
-
-      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:.6em;margin-top:1.1em;text-align:center;">
-        <div class="card" style="padding:.9em .7em;position:relative;">
-          <div style="font-size:1.8em;margin-bottom:.3em;">📋</div>
-          <div class="mono" style="font-size:.55em;color:var(--emerald);margin-bottom:.2em;">STEP 01</div>
-          <h4 style="font-size:.75em;margin-bottom:.3em;">設計階段<br/>申請候選</h4>
-          <p style="font-size:.62em;color:#374151;margin:0;">取得「候選綠建築證書」，確認設計方向符合評估需求</p>
+      <h2>申請程序與時程</h2>
+      <div style="display:flex;align-items:stretch;gap:.6em;margin-top:1.4em;">
+        <div class="card" style="flex:1;text-align:center;">
+          <div style="font-size:1.4em;margin-bottom:.4em;">📐</div>
+          <div class="ind-num" style="margin:0 auto .5em;">1</div>
+          <h4 class="em">規劃設計</h4>
+          <p class="small" style="margin-top:.4em;">設計階段即導入 EEWH 指標，預估得分與等級</p>
         </div>
-        <div style="display:flex;align-items:center;justify-content:center;font-size:1.2em;color:var(--stone-400);">→</div>
-        <div class="card" style="padding:.9em .7em;">
-          <div style="font-size:1.8em;margin-bottom:.3em;">🏗️</div>
-          <div class="mono" style="font-size:.55em;color:var(--emerald);margin-bottom:.2em;">STEP 02</div>
-          <h4 style="font-size:.75em;margin-bottom:.3em;">施工期間<br/>文件蒐集</h4>
-          <p style="font-size:.62em;color:#374151;margin:0;">建材採購單、施工照片、節水設備規格書等文件備齊</p>
+        <div style="display:flex;align-items:center;font-size:1.2em;color:var(--stone-400);">→</div>
+        <div class="card" style="flex:1;text-align:center;">
+          <div style="font-size:1.4em;margin-bottom:.4em;">📋</div>
+          <div class="ind-num" style="margin:0 auto .5em;">2</div>
+          <h4 class="em">候選證書</h4>
+          <p class="small" style="margin-top:.4em;">施工前以設計圖說申請（俗稱 EEWH 候選證書）</p>
         </div>
-        <div style="display:flex;align-items:center;justify-content:center;font-size:1.2em;color:var(--stone-400);">→</div>
-        <div class="card" style="padding:.9em .7em;">
-          <div style="font-size:1.8em;margin-bottom:.3em;">✅</div>
-          <div class="mono" style="font-size:.55em;color:var(--emerald);margin-bottom:.2em;">STEP 03</div>
-          <h4 style="font-size:.75em;margin-bottom:.3em;">竣工後<br/>正式評定</h4>
-          <p style="font-size:.62em;color:#374151;margin:0;">向建研所申請書面審查 + 現場勘查，核發正式標章</p>
+        <div style="display:flex;align-items:center;font-size:1.2em;color:var(--stone-400);">→</div>
+        <div class="card" style="flex:1;text-align:center;">
+          <div style="font-size:1.4em;margin-bottom:.4em;">🔍</div>
+          <div class="ind-num" style="margin:0 auto .5em;">3</div>
+          <h4 class="em">施工查核</h4>
+          <p class="small" style="margin-top:.4em;">依設計落實，保留查驗文件與照片</p>
         </div>
-      </div>
-
-      <div class="rule-full" style="margin-top:1.2em;"></div>
-      <div class="grid-2" style="gap:1em;">
-        <div class="card card-bc" style="padding:.85em 1.2em;">
-          <h4 style="color:#1e40af;margin-bottom:.5em;">基本型申請注意事項</h4>
-          <ul style="font-size:.72em;">
-            <li>空調系統須有機電技師簽證</li>
-            <li>照明計算需附設計圖說</li>
-            <li>建材碳排計算表格（2023版新增）</li>
-          </ul>
-        </div>
-        <div class="card card-rs" style="padding:.85em 1.2em;">
-          <h4 style="color:var(--emerald);margin-bottom:.5em;">住宅型申請注意事項</h4>
-          <ul style="font-size:.72em;">
-            <li>須附每戶水表配置圖</li>
-            <li>隔音工程需有施工說明書</li>
-            <li>頂樓 / 外牆隔熱材料規格文件</li>
-          </ul>
+        <div style="display:flex;align-items:center;font-size:1.2em;color:var(--stone-400);">→</div>
+        <div class="card" style="flex:1;text-align:center;">
+          <div style="font-size:1.4em;margin-bottom:.4em;">🏅</div>
+          <div class="ind-num" style="margin:0 auto .5em;">4</div>
+          <h4 class="em">綠建築標章</h4>
+          <p class="small" style="margin-top:.4em;">完工後申請正式標章，效期 5 年屆期需展延複評</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════
-  14  Part 2 過場
-═════════════════════════════════════════════════════ -->
+<!-- 29 Part 04 過場 -->
 <section data-background-color="#064e3b">
   <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
     <div style="max-width:800px;margin:0 auto;">
-      <p class="mono" style="color:var(--emerald-pale);font-size:.62em;margin-bottom:1em;">PART 02</p>
-      <h1 style="color:#fff;font-size:2.6em;line-height:1.1;">
-        傑丞建築機構<br/>專案成果
-      </h1>
-      <div style="width:48px;height:3px;background:var(--emerald-lg);margin:1.2em 0;border-radius:2px;"></div>
-      <p style="color:#a7f3d0;font-size:.83em;line-height:1.7;">
-        以 EEWH 精神為設計基底，將開放建築、SI 工法、
-        節能外殼設計融入每一個空間，打造符合永續標準的居住與商業環境。
-      </p>
+      <p class="mono" style="color:var(--emerald-pale);font-size:.62em;margin-bottom:1em;letter-spacing:.1em;">PART 04</p>
+      <h1 style="color:#fff;font-size:2.6em;line-height:1.1;margin-bottom:.5em;">對開發案的價值</h1>
+      <p style="color:#a7f3d0;font-size:.9em;">綠建築不只是證書，是開發策略</p>
+      <p style="color:#6ee7b7;font-size:.7em;margin-top:2em;">傑丞建築機構　Jieceng Architecture</p>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════
-  15  傑丞 — 公司簡介
-═════════════════════════════════════════════════════ -->
+<!-- 30 容積獎勵 -->
 <section>
   <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
     <div class="slide-inner">
-      <span class="tag tag-green">傑丞建築機構</span>
+      <span class="tag tag-gray">FLOOR AREA INCENTIVE</span>
       <div class="rule"></div>
-      <h2>理念 · 工法 · 空間美學</h2>
-      <div class="grid-2" style="margin-top:1.1em;align-items:start;">
-        <div>
-          <p class="small" style="font-size:.83em;line-height:1.8;">
-            傑丞建築機構以<strong>極簡留白與優雅動態</strong>傳遞品牌的
-            專業工法與空間美學，致力於將最新建築技術融入人性化設計，
-            打造能隨時間進化的永續居住環境。
-          </p>
-          <div class="rule-full"></div>
-          <ul style="font-size:.8em;">
-            <li>開放建築（Open Building）專利應用</li>
-            <li>SI 管線分離工法（當層配管）</li>
-            <li>全案管理 PCM 顧問服務</li>
-            <li>EEWH 住宅型永續設計規劃</li>
+      <h2>綠建築 × 容積獎勵</h2>
+      <p class="small" style="margin-bottom:1.2em;">取得綠建築標章（或候選證書）可作為都更／危老等容積獎勵的加分項目，提升可建容積與開發效益。</p>
+      <div class="grid-3">
+        <div class="card card-rs">
+          <h4 class="em">都市更新</h4>
+          <p class="small" style="margin-top:.5em;">依《都市更新建築容積獎勵辦法》，綠建築等級對應一定比例容積獎勵</p>
+        </div>
+        <div class="card card-rs">
+          <h4 class="em">危老重建</h4>
+          <p class="small" style="margin-top:.5em;">結合智慧建築、耐震、綠建築等標章爭取重建獎勵額度</p>
+        </div>
+        <div class="card card-rs">
+          <h4 class="em">綠建築自治獎勵</h4>
+          <p class="small" style="margin-top:.5em;">部分縣市對高等級綠建築另有地方容積或回饋優惠</p>
+        </div>
+      </div>
+      <p class="note" style="margin-top:.9em;">※ 容積獎勵之項目、級距與比例，依各主管機關最新法令與核定為準。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 31 成本效益 -->
+<section>
+  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
+    <div class="slide-inner">
+      <span class="tag tag-gray">COST vs BENEFIT</span>
+      <div class="rule"></div>
+      <h2>成本與效益</h2>
+      <div class="grid-2" style="margin-top:1.2em;">
+        <div class="card">
+          <h3 style="margin-bottom:.7em;">初期投入</h3>
+          <ul style="font-size:.78em;">
+            <li>節能設備與外殼隔熱</li>
+            <li>綠化、保水、雨中水設施</li>
+            <li>標章申請與顧問費用</li>
           </ul>
         </div>
-        <div>
-          <div class="grid-2" style="gap:.9em;">
-            <div class="card" style="text-align:center;padding:1.1em;">
-              <div class="stat-num">4+</div>
-              <div class="stat-label">代表作品</div>
-            </div>
-            <div class="card" style="text-align:center;padding:1.1em;">
-              <div class="stat-num" style="font-size:1.8em;">PCM</div>
-              <div class="stat-label">全案管理服務</div>
-            </div>
-            <div class="card" style="text-align:center;padding:1.1em;">
-              <div class="stat-num" style="font-size:2em;">SI</div>
-              <div class="stat-label">管線分離工法</div>
-            </div>
-            <div class="card" style="background:var(--emerald-pale);text-align:center;padding:1.1em;">
-              <div class="stat-num" style="font-size:1.7em;">EEWH</div>
-              <div class="stat-label">綠建築設計導入</div>
-            </div>
-          </div>
+        <div class="card card-rs">
+          <h3 style="margin-bottom:.7em;">長期效益</h3>
+          <ul style="font-size:.78em;">
+            <li>營運水電費降低</li>
+            <li>碳資產與 ESG 形象</li>
+            <li>去化加速、品牌溢價</li>
+            <li>對應淨零建築趨勢</li>
+          </ul>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════
-  16  專案 — 開放建築
-═════════════════════════════════════════════════════ -->
+<!-- 32 銷售語言 -->
 <section>
   <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
     <div class="slide-inner">
-      <span class="tag tag-gray">Residential ／ 台北市 信義區 ／ 2024</span>
       <div class="rule"></div>
-      <h2>開放建築</h2>
-      <div class="project-card" style="margin-top:.9em;">
-        <div class="project-img">🏠</div>
-        <div>
-          <p class="small" style="font-size:.82em;line-height:1.8;">
-            利用自然採光與極簡線條，打造開放式居住空間。採用<strong>可變動的彈性隔間技術</strong>，
-            讓住戶能隨著生命週期的變化，自由調整室內佈局。
-          </p>
-          <div class="rule-full"></div>
-          <div class="spec-row">
-            <div><span class="spec-key">地點</span><span class="spec-val">台北市 信義區</span></div>
-            <div><span class="spec-key">完工年</span><span class="spec-val">2024</span></div>
-            <div><span class="spec-key">面積</span><span class="spec-val">120 sqm</span></div>
-          </div>
-          <div style="margin-top:.9em;display:flex;gap:.5em;flex-wrap:wrap;">
-            <span class="tag tag-green">EEWH-RS 住宅型</span>
-            <span class="tag tag-blue">Open Building Patent</span>
-          </div>
-          <div class="card" style="margin-top:.8em;padding:.8em 1.2em;border-left:3px solid var(--emerald-lg);">
-            <p style="font-size:.72em;color:#374151;margin:0;">
-              彈性隔間設計降低裝修碳排，延長建物使用壽命，
-              契合 EEWH-RS <strong>CO₂ 減量</strong>及<strong>室內環境</strong>指標精神。
-            </p>
-          </div>
-        </div>
-      </div>
+      <h2>綠建築，是最好的銷售語言</h2>
+      <div class="rule-full"></div>
+      <ul style="font-size:.88em;margin-top:.8em;">
+        <li>「綠建築標章」是消費者看得懂的品質保證</li>
+        <li>節能 = 住戶每月實際省下的水電費</li>
+        <li>健康、舒適、低碳，對應新世代購屋價值觀</li>
+        <li>搭配智慧建築、建築能效標示，形成完整賣點組合</li>
+      </ul>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════
-  17  專案 — 當層配管
-═════════════════════════════════════════════════════ -->
+<!-- 33 傑丞實績 -->
 <section>
   <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
     <div class="slide-inner">
-      <span class="tag tag-gray">Commercial ／ 新北市 板橋區 ／ 2023</span>
+      <span class="tag tag-gray">TRACK RECORD</span>
       <div class="rule"></div>
-      <h2>當層配管</h2>
-      <div class="project-card" style="margin-top:.9em;">
-        <div class="project-img" style="background:linear-gradient(135deg,#dbeafe,#bfdbfe);">🏢</div>
-        <div>
-          <p class="small" style="font-size:.82em;line-height:1.8;">
-            引進<strong>當層配管專利技術</strong>，解決傳統建築漏水難以維修的痛點，
-            實現管線與結構體徹底分離，大幅提升建物壽命，並結合工業風格與綠色植物。
-          </p>
-          <div class="rule-full"></div>
-          <div class="spec-row">
-            <div><span class="spec-key">地點</span><span class="spec-val">新北市 板橋區</span></div>
-            <div><span class="spec-key">完工年</span><span class="spec-val">2023</span></div>
-            <div><span class="spec-key">面積</span><span class="spec-val">450 sqm</span></div>
-          </div>
-          <div style="margin-top:.9em;display:flex;gap:.5em;flex-wrap:wrap;">
-            <span class="tag tag-blue">EEWH-BC 基本型</span>
-            <span class="tag tag-gray">SI Separation</span>
-          </div>
-          <div class="card" style="margin-top:.8em;padding:.8em 1.2em;border-left:3px solid #3b82f6;">
-            <p style="font-size:.72em;color:#374151;margin:0;">
-              SI 工法將管線獨立於當層樓板，維修不擾鄰，
-              對應 EEWH-BC <strong>水資源</strong>指標中的管路維護效益。
-            </p>
-          </div>
+      <h2>傑丞建築機構 ─ 綠建築實績</h2>
+      <div class="grid-4" style="margin-top:1.2em;">
+        <div class="card" style="text-align:center;">
+          <p class="mono" style="color:var(--stone-400);font-size:.6em;margin-bottom:.3em;">Residential · 2024</p>
+          <div style="font-size:1.6em;margin:.4em 0;">🏢</div>
+          <h4 class="em">台北市 信義區</h4>
+          <p class="small" style="margin-top:.3em;">住宅型 EEWH-RS</p>
+        </div>
+        <div class="card" style="text-align:center;">
+          <p class="mono" style="color:var(--stone-400);font-size:.6em;margin-bottom:.3em;">Commercial · 2023</p>
+          <div style="font-size:1.6em;margin:.4em 0;">🏬</div>
+          <h4 class="em">新北市 板橋區</h4>
+          <p class="small" style="margin-top:.3em;">商辦複合</p>
+        </div>
+        <div class="card" style="text-align:center;">
+          <p class="mono" style="color:var(--stone-400);font-size:.6em;margin-bottom:.3em;">Landscape · 2024</p>
+          <div style="font-size:1.6em;margin:.4em 0;">🌿</div>
+          <h4 class="em">台中市 西屯區</h4>
+          <p class="small" style="margin-top:.3em;">景觀生態社區</p>
+        </div>
+        <div class="card" style="text-align:center;">
+          <p class="mono" style="color:var(--stone-400);font-size:.6em;margin-bottom:.3em;">Renovation · 2023</p>
+          <div style="font-size:1.6em;margin:.4em 0;">🔄</div>
+          <h4 class="em">台北市 大同區</h4>
+          <p class="small" style="margin-top:.3em;">舊建築改善</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════
-  18  專案 — 複層樓板
-═════════════════════════════════════════════════════ -->
+<!-- 34 重點回顧 -->
 <section>
   <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
     <div class="slide-inner">
-      <span class="tag tag-gray">Landscape ／ 台中市 西屯區 ／ 2024</span>
+      <span class="tag tag-gray">KEY TAKEAWAYS</span>
       <div class="rule"></div>
-      <h2>複層樓板</h2>
-      <div class="project-card" style="margin-top:.9em;">
-        <div class="project-img">🌿</div>
-        <div>
-          <p class="small" style="font-size:.82em;line-height:1.8;">
-            透過<strong>複層樓板設計</strong>創造出極佳的隔音效果與微氣候調節空間，
-            強調人與自然互動，讓室內環境不受外界噪音干擾，維持恆溫舒適。
-          </p>
-          <div class="rule-full"></div>
-          <div class="spec-row">
-            <div><span class="spec-key">地點</span><span class="spec-val">台中市 西屯區</span></div>
-            <div><span class="spec-key">完工年</span><span class="spec-val">2024</span></div>
-            <div><span class="spec-key">面積</span><span class="spec-val">800 sqm</span></div>
-          </div>
-          <div style="margin-top:.9em;display:flex;gap:.5em;flex-wrap:wrap;">
-            <span class="tag tag-green">EEWH-RS 住宅型</span>
-            <span class="tag tag-gray">Double-Layer Floor</span>
-          </div>
-          <div class="card" style="margin-top:.8em;padding:.8em 1.2em;border-left:3px solid var(--emerald-lg);">
-            <p style="font-size:.72em;color:#374151;margin:0;">
-              空氣層設計同步達到隔音（ ≤ 58 dB）、隔熱、管線整合三重效益，
-              完整呼應 EEWH-RS <strong>室內環境指標</strong>樓板隔音要求。
-            </p>
-          </div>
-        </div>
-      </div>
+      <h2>重點回顧</h2>
+      <ul style="font-size:.84em;margin-top:.8em;">
+        <li>EEWH＝生態、節能、減廢、健康四大範疇，九大指標滿分 100</li>
+        <li>配分：生態 27 ／ 節能 32 ／ 減廢 16 ／ 健康 25</li>
+        <li>兩項門檻指標：日常節能、水資源，未過即無法取得標章</li>
+        <li>五等級：鑽石、黃金、銀、銅、合格（依得分概率分布）</li>
+        <li>2023 版導入 EPBD／TBERS，日常節能與建築能效 BERS 接軌</li>
+        <li>對開發案：容積獎勵加分、營運省成本、銷售加值</li>
+      </ul>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════
-  19  專案 — 都市更新
-═════════════════════════════════════════════════════ -->
-<section>
-  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
-    <div class="slide-inner">
-      <span class="tag tag-gray">Renovation ／ 台北市 大同區 ／ 2023</span>
-      <div class="rule"></div>
-      <h2>都市更新</h2>
-      <div class="project-card" style="margin-top:.9em;">
-        <div class="project-img" style="background:linear-gradient(135deg,#fef3c7,#fde68a);">🏛️</div>
-        <div>
-          <p class="small" style="font-size:.82em;line-height:1.8;">
-            保留歷史紋理，注入現代機能，賦予老建築新生命。
-            在尊重原有結構與街區記憶的前提下，導入現代化機能與安全規範，
-            讓老屋<strong>延續城市文化</strong>的同時滿足當代居住需求。
-          </p>
-          <div class="rule-full"></div>
-          <div class="spec-row">
-            <div><span class="spec-key">地點</span><span class="spec-val">台北市 大同區</span></div>
-            <div><span class="spec-key">完工年</span><span class="spec-val">2023</span></div>
-            <div><span class="spec-key">面積</span><span class="spec-val">320 sqm</span></div>
-          </div>
-          <div style="margin-top:.9em;display:flex;gap:.5em;flex-wrap:wrap;">
-            <span class="tag tag-amber">EEWH-RN 舊建改善型</span>
-            <span class="tag tag-gray">Urban Renewal</span>
-          </div>
-          <div class="card" style="margin-top:.8em;padding:.8em 1.2em;border-left:3px solid #d97706;">
-            <p style="font-size:.72em;color:#374151;margin:0;">
-              都市更新結合 EEWH-RN（舊建築改善型）申請，在保存原有結構的前提下
-              導入節能外窗、節水器具，降低整體碳排放。
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════════════════
-  20  結語
-═════════════════════════════════════════════════════ -->
+<!-- 35 Thank You -->
 <section data-background-color="#1a1a1a">
   <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
-    <div style="max-width:900px;margin:0 auto;padding:60px 0;">
-      <p class="mono" style="color:var(--emerald-lg);font-size:.65em;margin-bottom:1em;">傑丞建築機構</p>
-      <h1 style="color:#fff;font-size:2.4em;line-height:1.15;margin-bottom:.5em;">
-        以標準為基石，<br/>
-        <span style="color:var(--emerald-lg);">以設計為靈魂</span>
-      </h1>
-      <div style="width:60px;height:3px;background:var(--emerald-lg);margin:1.2em 0;border-radius:2px;"></div>
-      <p style="color:#9ca3af;font-size:.82em;line-height:1.8;max-width:580px;">
-        EEWH 2023 版的更新，代表台灣建築走向更高標準的永續未來。
-        傑丞建築機構將持續以開放工法與人本設計，
-        協助每一個建築專案取得綠建築認證，
-        為居住者打造值得傳承的健康空間。
-      </p>
-      <div style="margin-top:2em;display:flex;gap:2.5em;flex-wrap:wrap;">
-        <div>
-          <div style="color:#6b7280;font-size:.62em;margin-bottom:.3em;text-transform:uppercase;letter-spacing:.08em;">Website</div>
-          <div class="mono" style="color:#e5e7eb;font-size:.72em;">jeremy0819.github.io/jieceng-web</div>
-        </div>
-        <div>
-          <div style="color:#6b7280;font-size:.62em;margin-bottom:.3em;text-transform:uppercase;letter-spacing:.08em;">Service</div>
-          <div style="color:#e5e7eb;font-size:.72em;">建築設計 ／ PCM 全案管理 ／ EEWH 綠建築顧問</div>
-        </div>
-      </div>
+    <div style="max-width:800px;margin:0 auto;text-align:center;">
+      <h1 style="color:#fff;font-size:3em;margin-bottom:.5em;">Thank You</h1>
+      <div style="width:56px;height:3px;background:var(--emerald-lg);margin:1em auto;border-radius:2px;"></div>
+      <p style="color:#9ca3af;font-size:.88em;">綠建築 EEWH 2023 ─ 邁向生態、節能、減廢、健康的建築</p>
+      <p style="color:#6b7280;font-size:.78em;margin-top:1.2em;">傑丞建築機構　Jieceng Architecture</p>
     </div>
   </div>
 </section>
 
-</div><!-- .slides -->
-</div><!-- .reveal -->
+</div>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
 <script>
   Reveal.initialize({
     hash: true,
     transition: 'fade',
-    transitionSpeed: 'slow',
-    backgroundTransition: 'fade',
-    controls: true,
-    controlsTutorial: false,
-    progress: true,
-    center: false,
-    slideNumber: 'c/t',
+    transitionSpeed: 'fast',
     width: 1280,
     height: 720,
     margin: 0.04,
-    minScale: 0.2,
-    maxScale: 2.0,
+    slideNumber: true,
+    controls: true,
+    progress: true,
+    center: false,
   });
 </script>
 </body>

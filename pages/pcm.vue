@@ -7,6 +7,7 @@
           src="/image/hero-background.jpg"
           alt="PCM 全案管理"
           class="w-full h-full object-cover opacity-40 scale-105 animate-slow-zoom"
+          loading="eager" fetchpriority="high" decoding="async"
         >
         <div class="absolute inset-0 bg-gradient-to-b from-charcoal/60 to-charcoal/20"></div>
       </div>
@@ -16,6 +17,7 @@
           <span class="font-mono text-emerald-brand-light text-xs tracking-[0.3em] uppercase mb-4 block animate-fade-in-up">
             Professional Case Management
           </span>
+          <div class="dim-line dim-line-light w-20 mb-6 animate-fade-in-up" style="animation-delay: 0.1s"></div>
           <h1 class="font-serif text-5xl md:text-7xl text-warm-white font-light mb-8 animate-fade-in-up" style="animation-delay: 0.2s">
             全案管理 · 價值最大化
           </h1>
@@ -27,8 +29,9 @@
     </section>
 
     <!-- 區塊1.5: 為什麼需要全案管理 -->
-    <section class="section-spacing bg-warm-white border-b border-stone-100">
-      <div class="container-custom">
+    <section class="section-spacing relative overflow-hidden bg-warm-white border-b border-stone-100">
+      <span class="sheet-num top-8 right-0" aria-hidden="true">01</span>
+      <div class="container-custom relative z-10">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           <!-- 左：標題 -->
           <div class="lg:col-span-5">
@@ -61,9 +64,9 @@
     <!-- 區塊2: 四大核心價值 -->
     <section class="section-spacing bg-white">
       <div class="container-custom">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div v-for="(value, index) in coreValues" :key="index"
-            class="animate-fade-in-up" :style="{ animationDelay: `${index * 0.2}s` }">
+            class="glass-card glass-lift rounded-xl p-6 animate-fade-in-up" :style="{ animationDelay: `${index * 0.2}s` }">
             <span class="font-mono text-emerald-brand text-3xl font-light mb-6 block">0{{ index + 1 }}</span>
             <h3 class="font-serif text-xl text-charcoal mb-4">{{ value.title }}</h3>
             <p class="font-sans text-sm text-charcoal/60 leading-relaxed">{{ value.desc }}</p>
@@ -73,8 +76,8 @@
     </section>
 
     <!-- 區塊3: PCM 服務流程 (垂直時間軸) -->
-    <section class="section-spacing bg-warm-white overflow-hidden">
-      <div class="container-custom">
+    <section class="blueprint-grid section-spacing bg-warm-white relative overflow-hidden">
+      <div class="container-custom relative z-10">
         <div class="text-center mb-24">
           <h2 class="font-serif text-4xl md:text-5xl font-light text-charcoal mb-4 animate-fade-in-up">服務流程</h2>
           <div class="h-[1px] w-12 bg-emerald-brand mx-auto animate-fade-in-up" style="animation-delay: 0.2s"></div>
@@ -107,8 +110,9 @@
     </section>
 
     <!-- 區塊3.5: 服務範疇 -->
-    <section class="section-spacing bg-white border-t border-stone-100">
-      <div class="container-custom">
+    <section class="section-spacing relative overflow-hidden bg-white border-t border-stone-100">
+      <span class="sheet-num top-8 right-0" aria-hidden="true">02</span>
+      <div class="container-custom relative z-10">
         <div class="text-center mb-24">
           <span class="font-mono text-emerald-brand text-xs tracking-[0.3em] uppercase mb-4 block animate-fade-in-up">
             Service Scope
@@ -117,9 +121,9 @@
           <div class="h-[1px] w-12 bg-emerald-brand mx-auto animate-fade-in-up" style="animation-delay: 0.2s"></div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-16">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-8">
           <div v-for="(s, i) in serviceScope" :key="i"
-            class="animate-fade-in-up" :style="{ animationDelay: `${i * 0.1}s` }">
+            class="glass-card rounded-xl p-6 animate-fade-in-up" :style="{ animationDelay: `${i * 0.1}s` }">
             <span class="font-mono text-emerald-brand/50 text-xs tracking-widest">0{{ i + 1 }}</span>
             <h3 class="font-serif text-2xl text-charcoal mt-3 mb-5 tracking-zh">{{ s.title }}</h3>
             <ul class="space-y-2.5">
@@ -149,7 +153,7 @@
               class="border-b border-stone-200 animate-fade-in-up" :style="{ animationDelay: `${i * 0.05}s` }">
               <button
                 @click="toggleFaq(i)"
-                class="w-full flex justify-between items-center text-left py-8 group focus:outline-none"
+                class="w-full flex justify-between items-center text-left py-6 group focus:outline-none"
                 :aria-expanded="openFaq === i"
               >
                 <span class="font-serif text-lg md:text-xl text-charcoal tracking-zh group-hover:text-emerald-brand transition-colors duration-500 pr-8">
@@ -167,12 +171,72 @@
                 class="overflow-hidden transition-all duration-700 elegant-transition"
                 :style="{ maxHeight: openFaq === i ? '400px' : '0px', opacity: openFaq === i ? 1 : 0 }"
               >
-                <p class="font-sans text-charcoal/60 leading-relaxed tracking-zh pb-8 pr-4 md:pr-12">
+                <p
+                  class="font-sans text-charcoal/60 leading-relaxed tracking-zh pb-8 pr-4 md:pr-12"
+                  :class="openFaq === i ? 'bg-emerald-brand/[0.03]' : ''"
+                >
                   {{ faq.a }}
                 </p>
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 區塊4.5: 全案管理案例 -->
+    <section class="section-spacing bg-white border-t border-stone-100">
+      <div class="container-custom">
+        <div class="text-center mb-16 md:mb-24">
+          <span class="font-mono text-emerald-brand text-xs tracking-[0.3em] uppercase mb-5 block animate-fade-in-up">Cases</span>
+          <h2 class="font-serif text-4xl md:text-5xl font-light tracking-zh text-charcoal mb-6 animate-fade-in-up">
+            全案管理案例
+          </h2>
+          <div class="h-[1px] w-12 bg-emerald-brand mx-auto animate-fade-in-up"></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+          <NuxtLink
+            v-for="(project, index) in projects"
+            :key="project.id"
+            :to="`/project/${project.id}`"
+            class="group relative block overflow-hidden rounded-3xl bg-charcoal aspect-[4/3] animate-fade-in-up shadow-sm"
+            :style="`animation-delay: ${0.1 + index * 0.1}s`"
+          >
+            <img
+              :src="project.image"
+              :alt="project.title"
+              class="absolute inset-0 w-full h-full object-cover transition-transform duration-1200 elegant-transition group-hover:scale-105"
+              loading="lazy" decoding="async"
+            >
+            <div class="absolute inset-0 bg-gradient-to-t from-charcoal/85 via-charcoal/20 to-transparent"></div>
+            <div class="absolute top-7 left-7">
+              <span class="font-mono text-[11px] tracking-[0.2em] uppercase text-warm-white/70">
+                {{ project.categoryLabel }} · {{ project.year }}
+              </span>
+            </div>
+            <div class="absolute bottom-0 left-0 right-0 p-8 md:p-10">
+              <h3 class="font-serif text-3xl md:text-4xl font-light text-warm-white mb-3 tracking-zh">
+                {{ project.title }}
+              </h3>
+              <p class="font-sans text-sm md:text-base text-warm-white/70 leading-relaxed max-w-md mb-5 line-clamp-2">
+                {{ project.description }}
+              </p>
+              <span class="inline-flex items-center gap-2 text-warm-white text-xs tracking-[0.15em] uppercase">
+                了解更多
+                <span class="transition-transform duration-500 group-hover:translate-x-1.5">→</span>
+              </span>
+            </div>
+          </NuxtLink>
+        </div>
+
+        <div class="mt-16 text-center">
+          <NuxtLink
+            to="/portfolio"
+            class="inline-flex items-center gap-3 px-12 py-5 bg-charcoal text-warm-white text-xs tracking-[0.2em] uppercase rounded-full hover:bg-emerald-brand transition-colors duration-700 elegant-transition"
+          >
+            查看全部案例
+          </NuxtLink>
         </div>
       </div>
     </section>
@@ -185,7 +249,7 @@
         </h2>
         <NuxtLink
           to="/contact"
-          class="inline-block px-12 py-5 border border-warm-white text-warm-white text-xs tracking-[0.2em] uppercase hover:bg-warm-white hover:text-charcoal transition-all duration-1200 elegant-transition animate-fade-in-up"
+          class="btn-sheen inline-block px-12 py-5 ring-1 ring-warm-white/40 text-warm-white text-xs tracking-[0.2em] uppercase rounded-full hover:ring-warm-white/60 hover:bg-warm-white hover:text-charcoal transition-all duration-700 elegant-transition animate-fade-in-up"
         >
           與我們聯繫諮詢
         </NuxtLink>
@@ -232,41 +296,15 @@ const faqs = [
   { q: '傑丞的專利工法能帶來什麼價值？', a: '當層配管、複層樓板等專利工法，從結構源頭解決傳統建築漏水、噪音與維修困難的痛點，大幅延長建物壽命並提升資產轉手價值。' }
 ]
 
+const { projects } = useProjects()
+
 const openFaq = ref(0)
 const toggleFaq = (i) => {
   openFaq.value = openFaq.value === i ? -1 : i
 }
 
-useHead({
-  title: '全案管理 PCM - 傑丞建築機構'
+useSeoMeta({
+  title: '全案管理 PCM - 傑丞建築機構',
+  description: '傑丞建築機構提供建築全案管理服務，從土地評估、建築設計到施工監理，以iHome 5.0工法確保品質。'
 })
 </script>
-
-<style scoped>
-.elegant-transition {
-  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-@keyframes slow-zoom {
-  from { transform: scale(1); }
-  to { transform: scale(1.1); }
-}
-
-.animate-slow-zoom {
-  animation: slow-zoom 20s linear infinite alternate;
-}
-
-.animate-fade-in-up {
-  opacity: 0;
-  animation: fade-in-up 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-@keyframes fade-in-up {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.text-emerald-brand-light {
-  color: #10b981;
-}
-</style>

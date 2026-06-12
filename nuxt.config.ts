@@ -15,12 +15,13 @@ export default defineNuxtConfig({
         '/about',
         '/portfolio',
         '/pcm',
+        '/ihome',
         '/presentations',
         '/contact',
+        '/briefing',
         '/project/1',
         '/project/2',
-        '/project/3',
-        '/project/4'
+        '/project/3'
       ]
     }
   },
@@ -38,7 +39,15 @@ export default defineNuxtConfig({
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        { hid: 'description', name: 'description', content: '傑丞建築機構，致力於永續未來與空間美學。' }
+        { hid: 'description', name: 'description', content: '傑丞建築機構深耕桃園與雙北逾二十載，以 iHome 5.0 專利工法打造百年宅、健康宅、節能宅、智慧宅、履歷宅，提供都更全案管理與永續建築設計。' }
+      ],
+      // 在內容繪製前於 <html> 加上 reveal-ready，讓捲動進場不閃爍（見 plugins/reveal.client.ts）
+      script: [
+        { innerHTML: "document.documentElement.classList.add('reveal-ready')", tagPosition: 'head' },
+        // ← 將 G-XXXXXXXXXX 替換為您的 Google Analytics 4 Measurement ID
+        { src: 'https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX', async: true },
+        { innerHTML: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');`, tagPosition: 'head' as const },
+        { type: 'application/ld+json', innerHTML: JSON.stringify({ "@context": "https://schema.org", "@type": "RealEstateAgent", "name": "傑丞建築機構", "url": "https://jeremy0819.github.io/jieceng-web/", "description": "傑丞建築機構，致力於永續建築與空間美學，以 iHome 5.0 工法提供全案管理服務。", "address": { "@type": "PostalAddress", "streetAddress": "桃園市桃園區大興西路一段268號 印象羅芙19樓", "addressLocality": "桃園市", "addressCountry": "TW" }, "telephone": "+886223456789", "email": "jason.house2007@gmail.com" }) }
       ],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
