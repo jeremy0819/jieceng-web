@@ -1,22 +1,34 @@
 <template>
   <div class="bg-warm-white min-h-screen">
-    <!-- 區塊1: 頁面標頭 -->
-    <section class="relative overflow-hidden pt-32 md:pt-40 pb-12 bg-warm-white">
-      <span class="sheet-num top-16 -right-8" aria-hidden="true">01</span>
-      <div class="container-custom relative z-10">
-        <div class="max-w-4xl mb-16">
-          <div class="flex items-center gap-4 mb-9 animate-fade-in-up">
-            <span class="font-mono text-[10px] tracking-[0.3em] uppercase text-emerald-brand">INDEX</span>
-            <div class="dim-line w-14"></div>
-            <span class="font-mono text-[10px] tracking-[0.3em] uppercase text-charcoal/40">Architectural Selection</span>
-          </div>
-          <h1 class="font-serif text-6xl md:text-8xl font-light leading-none tracking-tight text-charcoal animate-fade-in-up" style="animation-delay: 0.1s">
-            建築精選集。
-          </h1>
+    <!-- 區塊1: 暗色 Hero -->
+    <section class="grain-dark relative h-[45vh] flex items-end overflow-hidden bg-charcoal">
+      <div class="absolute inset-0 z-0">
+        <img
+          src="/image/project-1.jpg"
+          alt="傑丞建築精選集"
+          class="w-full h-full object-cover opacity-45 animate-slow-zoom"
+          loading="eager" fetchpriority="high" decoding="async"
+        >
+        <div class="absolute inset-0 bg-gradient-to-t from-charcoal/90 via-charcoal/40 to-transparent"></div>
+      </div>
+      <div class="container-custom relative z-10 pb-14">
+        <div class="flex items-center gap-4 mb-5 animate-fade-in-up">
+          <span class="glass-dark rounded-full px-4 py-1.5 font-mono text-[10px] text-emerald-brand-light tracking-[0.35em] uppercase">
+            Architectural Selection · INDEX
+          </span>
         </div>
+        <div class="dim-line dim-line-light w-20 mb-5 animate-fade-in-up" style="animation-delay: 0.1s"></div>
+        <h1 class="font-serif text-5xl md:text-7xl text-warm-white font-light leading-none tracking-tight animate-fade-in-up" style="animation-delay: 0.15s">
+          建築精選集。
+        </h1>
+      </div>
+    </section>
 
-        <!-- 以案件類型篩選 -->
-        <div class="flex flex-wrap gap-2 md:gap-3 animate-fade-in-up" style="animation-delay: 0.2s">
+    <!-- 篩選條 -->
+    <section class="relative overflow-hidden py-5 bg-warm-white border-b border-stone-100">
+      <span class="sheet-num top-2 -right-8" aria-hidden="true">01</span>
+      <div class="container-custom relative z-10">
+        <div class="flex flex-wrap gap-2 md:gap-3 animate-fade-in-up">
           <button
             v-for="cat in filters"
             :key="cat.key"

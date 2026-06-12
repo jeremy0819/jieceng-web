@@ -1,31 +1,56 @@
 <template>
   <div class="bg-warm-white min-h-screen">
-    <!-- 區塊1: 頁面標頭 -->
-    <section class="pt-32 md:pt-40 pb-20 md:pb-28 bg-warm-white">
-      <div class="container-custom">
-        <div class="max-w-4xl">
-          <div class="flex items-center gap-4 mb-10 animate-fade-in-up">
-            <span class="w-12 h-px bg-emerald-brand"></span>
-            <span class="font-mono text-[10px] uppercase tracking-[0.45em] text-emerald-brand">Architectural Strategy</span>
+    <!-- 區塊1: 沉浸式 Hero -->
+    <section class="grain-dark relative h-[55vh] flex items-center overflow-hidden bg-charcoal">
+      <div class="absolute inset-0 z-0">
+        <img
+          src="/image/hero-background.jpg"
+          alt="iHome 5.0 五大宅工法"
+          class="w-full h-full object-cover opacity-35 scale-105 animate-slow-zoom"
+          loading="eager" fetchpriority="high" decoding="async"
+        >
+        <div class="absolute inset-0 bg-gradient-to-r from-charcoal/90 via-charcoal/60 to-transparent"></div>
+      </div>
+      <div class="container-custom relative z-10">
+        <div class="max-w-3xl">
+          <div class="glass-dark rounded-full px-4 py-1.5 inline-block mb-4 animate-fade-in-up">
+            <span class="font-mono text-emerald-brand-light text-[10px] tracking-[0.4em] uppercase">Architectural Strategy</span>
           </div>
-          <h1 class="text-charcoal font-serif text-5xl md:text-[7rem] font-light leading-[0.9] tracking-tight mb-10 animate-fade-in-up" style="animation-delay: 0.1s">
-            iHome 5.0
-            <br />
-            <span class="italic text-stroke">The Method.</span>
+          <div class="dim-line dim-line-light w-20 mb-6 animate-fade-in-up" style="animation-delay: 0.1s"></div>
+          <h1 class="font-serif text-5xl md:text-7xl text-warm-white font-light tracking-tight mb-5 animate-fade-in-up" style="animation-delay: 0.15s">
+            iHome 5.0<br />
+            <span class="italic text-warm-white/40">The Method.</span>
           </h1>
-          <p class="text-charcoal/55 font-sans text-lg md:text-xl font-light leading-relaxed max-w-2xl tracking-zh animate-fade-in-up" style="animation-delay: 0.25s">
-            我們將「iHome 5.0」專利工法定義為品牌的技術脊樑。對傑丞而言，美學不應是奢侈的堆砌，而是基於物理性能的自然延伸——五大宅，是我們對一個家百年承諾的具體實踐。
+          <p class="font-sans text-lg text-warm-white/60 max-w-xl leading-relaxed tracking-zh animate-fade-in-up" style="animation-delay: 0.3s">
+            傑丞建築的技術脊樑——五大宅系統，是我們對每個家百年承諾的具體實踐。
           </p>
-          <div class="flex items-center gap-5 mt-10 animate-fade-in-up" style="animation-delay: 0.35s">
-            <div class="dim-line w-24"></div>
-            <span class="font-mono text-[9px] tracking-[0.3em] uppercase text-charcoal/35">Five Systems — Patented Methodology</span>
+        </div>
+      </div>
+      <div class="hidden md:flex absolute right-10 bottom-16 z-10 flex-col items-center gap-5">
+        <span class="text-vertical font-serif text-sm tracking-[0.5em] text-warm-white/35">五大系統 · 專利工法</span>
+        <div class="w-px h-14 bg-warm-white/20"></div>
+      </div>
+    </section>
+
+    <!-- 五大宅系統概覽帶 (DARK) -->
+    <section class="grain-dark py-12 bg-charcoal border-t border-warm-white/5">
+      <div class="container-custom">
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-3">
+          <div
+            v-for="(t, i) in iHomeTech" :key="t.key"
+            class="glass-dark rounded-xl p-4 text-center animate-fade-in-up group hover:bg-warm-white/[0.05] transition-colors duration-500"
+            :style="`animation-delay: ${i * 0.08}s`"
+          >
+            <div class="font-mono text-2xl text-warm-white/20 font-light mb-1">{{ t.num }}</div>
+            <div class="font-serif text-lg text-warm-white mb-1 tracking-zh">{{ t.title }}</div>
+            <div class="font-mono text-[9px] tracking-[0.25em] uppercase text-emerald-brand-light opacity-70">{{ t.en }}</div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- 區塊2: 五大宅 左右交錯陳列 -->
-    <section class="pb-32 md:pb-48 bg-warm-white relative overflow-hidden">
+    <section class="pt-20 pb-32 md:pt-28 md:pb-48 bg-warm-white relative overflow-hidden">
       <div class="container-custom">
         <div class="space-y-32 md:space-y-56">
           <div

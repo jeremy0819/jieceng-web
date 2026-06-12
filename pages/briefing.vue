@@ -178,24 +178,66 @@
           <h2 class="font-serif text-4xl md:text-5xl font-light text-charcoal animate-fade-in-up" style="animation-delay: 0.1s">說明會流程</h2>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5">
           <div
             v-for="(step, i) in briefingSteps"
             :key="i"
-            class="text-center animate-fade-in-up"
+            class="glass-card rounded-2xl p-6 animate-fade-in-up relative overflow-hidden"
             :style="`animation-delay: ${0.1 + i * 0.1}s`"
           >
-            <div class="w-12 h-12 rounded-full bg-emerald-brand/8 flex items-center justify-center mx-auto mb-5">
-              <span class="font-mono text-sm text-emerald-brand font-medium">0{{ i + 1 }}</span>
+            <span class="absolute top-3 right-4 font-mono text-5xl font-light text-emerald-brand/[0.08] leading-none select-none">
+              0{{ i + 1 }}
+            </span>
+            <div class="w-10 h-10 rounded-full bg-emerald-brand/10 flex items-center justify-center mb-5">
+              <span class="font-mono text-xs text-emerald-brand font-medium">0{{ i + 1 }}</span>
             </div>
-            <h3 class="font-serif text-xl text-charcoal mb-3">{{ step.title }}</h3>
+            <h3 class="font-serif text-xl text-charcoal mb-3 tracking-zh">{{ step.title }}</h3>
             <p class="font-sans text-sm text-charcoal/55 leading-relaxed tracking-zh">{{ step.desc }}</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 區塊5: CTA -->
+    <!-- 區塊5: 都更常見問題 -->
+    <section class="section-spacing bg-white border-t border-stone-100">
+      <div class="container-custom">
+        <div class="max-w-3xl mx-auto">
+          <div class="text-center mb-16 animate-fade-in-up">
+            <span class="font-mono text-emerald-brand text-[10px] uppercase tracking-[0.4em] mb-4 block">FAQ</span>
+            <h2 class="font-serif text-4xl md:text-5xl font-light text-charcoal">都更常見問題</h2>
+          </div>
+          <div class="space-y-3">
+            <div
+              v-for="(faq, i) in renewalFaqs"
+              :key="i"
+              class="glass-card rounded-2xl overflow-hidden animate-fade-in-up"
+              :style="`animation-delay: ${i * 0.06}s`"
+            >
+              <button
+                @click="openRenewalFaq = openRenewalFaq === i ? -1 : i"
+                class="w-full flex justify-between items-center text-left p-6 group focus:outline-none"
+              >
+                <span class="font-serif text-lg text-charcoal tracking-zh group-hover:text-emerald-brand transition-colors duration-500 pr-6">
+                  {{ faq.q }}
+                </span>
+                <span class="shrink-0 w-5 h-5 relative transition-transform duration-500 elegant-transition" :class="openRenewalFaq === i ? 'rotate-45' : ''">
+                  <span class="absolute top-1/2 left-0 w-full h-[1px] bg-emerald-brand -translate-y-1/2"></span>
+                  <span class="absolute left-1/2 top-0 h-full w-[1px] bg-emerald-brand -translate-x-1/2"></span>
+                </span>
+              </button>
+              <div
+                class="overflow-hidden transition-all duration-700 elegant-transition"
+                :style="{ maxHeight: openRenewalFaq === i ? '300px' : '0px', opacity: openRenewalFaq === i ? 1 : 0 }"
+              >
+                <p class="font-sans text-charcoal/60 leading-relaxed tracking-zh pb-6 px-6">{{ faq.a }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 區塊6: CTA -->
     <section class="py-24 grain-dark bg-charcoal border-t border-white/5">
       <div class="container-custom text-center">
         <h2 class="font-serif text-3xl md:text-5xl text-warm-white font-light mb-4 animate-fade-in-up">
@@ -268,6 +310,15 @@ const briefingSteps = [
   { title: '現場說明', desc: '專業團隊解說都更法規、時程、設計規劃與坪數試算。' },
   { title: 'Q&A 交流', desc: '現場逐一解答地主疑問，並提供個案初步評估。' },
   { title: '後續跟進', desc: '說明會結束後，專人提供書面資料與一對一深度諮詢。' }
+]
+
+const openRenewalFaq = ref(-1)
+const renewalFaqs = [
+  { q: '什麼是都市更新？', a: '都市更新是依據都市計畫，對老舊、危險或環境惡劣的建築進行整合重建。地主可透過重建取得更大坪數、更安全的全新建物，提升資產價值與居住品質。' },
+  { q: '參與都更需要多少人同意？', a: '依現行《都市更新條例》，重建實施需取得同一更新單元內土地及建築物所有權人總數及面積的一定比例同意（通常為75%或三分之二），由主管機關審查核定後方可推動。' },
+  { q: '都更期間我的房子怎麼辦？', a: '拆遷重建期間，傑丞會協助地主安排過渡租金補貼、搬遷協助，並提供完整時程規劃。全案管理確保每一個階段都有專人溝通，讓地主清楚掌握進度。' },
+  { q: '都更後我能拿回多少坪數？', a: '依容積率試算，扣除開發成本後地主通常可取得「原坪數 + 增加坪數」的全新建物。具體比例依地塊位置與法規容積而定，歡迎親洽說明會或聯繫我們進行個案試算。' },
+  { q: '傑丞如何確保都更過程透明公正？', a: '傑丞以「透明都更」為核心，所有地主均可參與每次說明會取得完整資訊，財務試算、設計方案與時程均公開呈現，並提供一對一諮詢服務，確保每位地主的權益都得到充分保障。' },
 ]
 
 useSeoMeta({
