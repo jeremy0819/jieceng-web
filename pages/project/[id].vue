@@ -18,7 +18,7 @@
                 {{ project.categoryLabel }}
               </span>
               <span class="font-mono text-warm-white/45 text-[10px] uppercase tracking-widest">{{ project.year }} Selection</span>
-              <span class="font-mono text-[9px] tracking-[0.25em] text-warm-white/30 uppercase hidden sm:inline">Project Sheet — {{ project.year }}</span>
+              <span class="font-mono text-[9px] tracking-[0.25em] text-warm-white/30 uppercase hidden sm:inline">Project Sheet — {{ project.fileCode }}</span>
             </div>
             <h1 class="font-serif text-4xl md:text-8xl text-warm-white font-light tracking-tight animate-fade-in-up" style="animation-delay: 0.15s">
               {{ project.title }}

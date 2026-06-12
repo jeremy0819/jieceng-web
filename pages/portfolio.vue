@@ -74,7 +74,12 @@
                   <span class="transition-transform duration-500 group-hover:translate-x-1.5">→</span>
                 </span>
               </div>
-              <!-- 年份 -->
+              <!-- 卷宗編號（左上）與年份（右上） -->
+              <div class="absolute top-6 left-6">
+                <span class="font-mono text-[10px] tracking-[0.25em] text-warm-white/70 bg-black/25 backdrop-blur-sm px-3 py-1.5 rounded-full">
+                  {{ project.fileCode }}
+                </span>
+              </div>
               <div class="absolute top-6 right-6">
                 <span class="font-mono text-[10px] tracking-widest text-warm-white/80 bg-black/25 backdrop-blur-sm px-3 py-1.5 rounded-full">
                   {{ project.year }}
@@ -128,7 +133,7 @@
                 <div class="relative corner-marks p-8 flex-1 space-y-7">
                   <div>
                     <span class="font-mono text-[10px] text-emerald-brand uppercase tracking-widest block mb-2">
-                      {{ quickView.categoryLabel }} · {{ quickView.year }}
+                      {{ quickView.fileCode }} · {{ quickView.categoryLabel }} · {{ quickView.year }}
                     </span>
                     <h2 class="font-serif text-3xl font-light text-charcoal tracking-zh">
                       {{ quickView.title }}

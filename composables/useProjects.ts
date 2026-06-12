@@ -73,6 +73,26 @@ const projects: Project[] = [
       預計完工: '2026'
     },
     technologies: ['centennial', 'energy', 'smart']
+  },
+  {
+    id: 4,
+    title: '傑丞。印象丞裔',
+    year: 2025,
+    category: 'residential',
+    categoryLabel: '住宅建案',
+    location: '桃園市桃園區',
+    description: '傑丞新世代旗艦作，iHome 5.0 五大宅工法全系統導入的永續住宅。',
+    fullDescription:
+      '印象丞裔承襲「印象系列」的工藝血統，是傑丞建築新世代的旗艦力作。本案將 iHome 5.0 五大宅工法全系統導入——SI 結構純化讓建築壽命以百年為單位計算，當層排氣遮斷系統守護每一口呼吸，Low-E 複層外殼與 EMS 能源管理讓節能成為日常，Jobdone APP 全程施工錄影搭配 SGS 第三方驗證，讓品質全程可溯。從結構到生活，印象丞裔定義了傑丞對「家」的下一個世代答案。',
+    image: 'image/project-4.jpg',
+    highlights: ['iHome 5.0 五大宅全系統導入', 'SI 工法結構與管線完全分離', 'EMS 能源管理＋AI 智慧門禁', 'SGS 驗證生產履歷完整交付'],
+    specs: {
+      案件類型: '住宅建案',
+      基地位置: '桃園市桃園區',
+      導入工法: 'iHome 5.0 全系統',
+      完工年份: '2025'
+    },
+    technologies: ['centennial', 'healthy', 'energy', 'smart', 'resume']
   }
 ]
 
@@ -80,7 +100,13 @@ export const useProjects = () => {
   const base = useRuntimeConfig().app.baseURL
   const withBase = (path: string) => `${base}${path}`.replace(/([^:]\/)\/+/g, '$1')
 
-  const resolved = projects.map((p) => ({ ...p, image: withBase(p.image) }))
+  // fileCode：卷宗編號（JC-001 …），沿用品牌早期資料的 jc-xxx 命名慣例，
+  // 供建築圖紙設計語言的「案卷索引」標註使用（portfolio 卡片、詳情頁 Hero）。
+  const resolved = projects.map((p) => ({
+    ...p,
+    image: withBase(p.image),
+    fileCode: `JC-${String(p.id).padStart(3, '0')}`
+  }))
 
   const getProject = (id: string | number): Project | undefined =>
     resolved.find((p) => p.id === Number(id))

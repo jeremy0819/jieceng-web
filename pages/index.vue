@@ -220,7 +220,7 @@
             </div>
             <div class="flex justify-between items-start border-t border-stone-200 pt-7">
               <div>
-                <span class="font-mono text-[10px] text-emerald-brand font-bold uppercase tracking-widest mb-2 block">Featured Case</span>
+                <span class="font-mono text-[10px] text-emerald-brand font-bold uppercase tracking-widest mb-2 block">{{ project.fileCode }} · Featured Case</span>
                 <h3 class="font-serif text-3xl font-light text-charcoal group-hover:text-emerald-brand transition-colors duration-500 tracking-zh">
                   {{ project.title }}
                 </h3>
