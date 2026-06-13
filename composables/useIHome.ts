@@ -3,82 +3,125 @@ export interface IHomeDetail {
   value: string
 }
 
+export interface IHomeMetric {
+  value: string   // 顯示用數值，如 '100'、'1'、'0–99'、'14290+'
+  unit: string    // 單位，如 'YEARS'、'ACH'、'LEVEL'、'AGE'（可為空字串）
+  caption: string // 中文說明，如 '耐久結構年限'
+}
+
 export interface IHomeTech {
   key: string
   num: string
   title: string
-  en: string
-  subtitle: string
+  en: string         // 英文案名，如 'Centennial Residence'
+  dna: string        // 品牌 DNA 標語，如 '百年建築DNA'
+  subtitle: string   // 英文小標
+  metric: IHomeMetric
   desc: string
+  features: string[] // 工法/設備清單（簡報目錄）
   details: IHomeDetail[]
   image: string
 }
 
 /**
  * iHome 5.0 五大宅工法 — 傑丞建築機構的技術脊樑（單一資料來源）。
- * 內容萃取自品牌既有資料；圖片沿用 public/image/ 既有素材（離線可用）。
+ *
+ * 內容萃取自品牌官方簡報《超未來建築・傑丞先進 DNA — EVOLVED LIVING》：
+ *  - 每一宅皆有專屬「DNA 標語」與量化指標（100 YEARS / 1 ACH / 1 LEVEL / 0–99 AGE / 14290+）。
+ *  - features 取自簡報各章節目錄；details 為兩項核心技術亮點。
+ * 圖片沿用 public/image/ 既有素材（離線可用）。
  */
 const tech: Omit<IHomeTech, 'image'>[] = [
   {
     key: 'centennial',
     num: '01',
     title: '百年宅',
-    en: 'Centennial',
-    subtitle: 'Open Building & SI Methodology',
-    desc: '源自日本「開放建築」思維，透過專利 SI 工法將主體結構與內裝管線徹底分離，讓建築的物理壽命設定為百年標準。',
+    en: 'Centennial Residence',
+    dna: '百年建築DNA',
+    subtitle: 'Open Building × SI System',
+    metric: { value: '100', unit: 'YEARS', caption: '耐久結構年限' },
+    desc: '引入日本 SI 百年宅與開放建築思維，以「支撐體」與「填充體」分離的原則，研發符合台灣居住習慣的 SI 工法，將結構主體的物理壽命設定為百年標準。',
+    features: ['開放建築', '結構板純化', '明管施工', '複層隔音樓板', '當層配管', '參與式隔間'],
     details: [
-      { label: '結構純化', value: '管線不入版、不入柱，結構體物理壽命設定為百年標準。' },
-      { label: '維修正義', value: '當層明管施工，故障維修不需敲除牆面，亦不干擾樓下鄰居。' }
+      { label: '結構純化', value: '管線不入版、不入柱，主結構物理壽命以百年為單位計算。' },
+      { label: '維修正義', value: '當層明管施工，維修不需敲牆、不擾鄰，故障即時可修。' }
     ]
   },
   {
     key: 'healthy',
     num: '02',
     title: '健康宅',
-    en: 'Healthy',
-    subtitle: 'Active Defense & Shielding',
-    desc: '建立主動防禦機制，確保每一口呼吸、每一滴水源的純淨，從源頭守護居住者的健康。',
+    en: 'Protection Crafts',
+    dna: '健康循環DNA',
+    subtitle: 'Active Defense & Air Hygiene',
+    metric: { value: '1', unit: 'ACH', caption: '當層防疫系統' },
+    desc: '針對傳統大樓「煙囪效應、水封破口、負壓吸引」三大防疫破口，導入專利當層防疫系統，將各樓層氣流徹底隔絕，從源頭阻斷病毒與細菌的垂直交叉感染。',
+    features: ['當層防疫系統', '健康綠建材', '全棟淨水', '全室換氣', '過敏防護', '空氣品質監測'],
     details: [
-      { label: '防疫屏蔽', value: '導入當層排氣遮斷系統與 STUDOR 吸氣閥，阻絕氣流交叉感染。' },
-      { label: '無毒家園', value: '全案採用內政部認證綠建材，打造零負擔的呼吸環境。' }
+      { label: '當層遮斷', value: '每層獨立排氣、互不串氣，阻斷垂直交叉感染路徑。' },
+      { label: '純淨呼吸', value: '全棟淨水、健康綠建材與室內空氣品質即時監測。' }
     ]
   },
   {
     key: 'energy',
     num: '03',
     title: '節能宅',
-    en: 'Energy',
-    subtitle: 'Passive Design & Efficiency',
-    desc: '透過科學計算引導自然能量，降低對機電設備的依賴，實踐能效一級的低碳生活。',
+    en: 'Energy Efficient',
+    dna: '高效節能DNA',
+    subtitle: 'Green Building × BERS Lv.1',
+    metric: { value: '1', unit: 'LEVEL', caption: '第1級建築能效' },
+    desc: '取得銀級綠建築標章與第 1 級建築能效評估（BERS），以綠建築九大指標為設計基礎，從建築外殼到設備系統全面降載，讓節能成為可被量化、可被驗證的日常。',
+    features: ['銀級綠建築', '第1級建築能效', '高效隔熱外殼', '節能照明', '雨水回收', '地下室送排風'],
     details: [
-      { label: '微候風路', value: '精密計算基地風路，體感溫度顯著降低 2-3°C，節能潛力達 69%。' },
-      { label: '隔熱工法', value: 'Low-E 複層中空玻璃與深遮陽設計，從建築外殼阻絕熱負荷。' }
+      { label: '銀級綠建築', value: '涵蓋綠化量、基地保水、日常節能等九大指標。' },
+      { label: 'BERS 第1級', value: '以耗能與碳密度量化分級，能效一目了然。' }
     ]
   },
   {
     key: 'smart',
     num: '04',
     title: '智慧宅',
-    en: 'Smart',
-    subtitle: 'Intelligent Energy & Living',
-    desc: '以數位科技串聯建築的每一個環節，讓能源管理與生活服務在一指之間完成。',
+    en: 'Intelligent Habitation',
+    dna: '全齡智控DNA',
+    subtitle: 'Smart Living for All Ages',
+    metric: { value: '0–99', unit: 'AGE', caption: '銀級智慧建築' },
+    desc: '取得銀級智慧建築標章，從 EMS 電能管理、防災系統到環境監測全面數位化，並預留電動車充電與未來擴充模組，打造 0 到 99 歲都便利安全的全齡之家。',
+    features: ['銀級智慧建築', '社區人臉辨識', 'EMS 電能管理', '智慧瓦斯表', '訪客系統', '門禁電子鎖'],
     details: [
-      { label: '能源管理', value: 'EMS 能源管理系統即時監控用電，讓節能成果可被量化與追蹤。' },
-      { label: '智慧生活', value: '一鍵叫梯、AI 人臉辨識門禁，重新定義回家的儀式感與安全。' }
+      { label: 'EMS 能源管理', value: '每層配電盤即時監控，預留電動車充電模組。' },
+      { label: '全齡智控', value: '人臉辨識門禁、一鍵叫梯與環境監測一指掌握。' }
     ]
   },
   {
     key: 'resume',
     num: '05',
     title: '履歷宅',
-    en: 'Resume',
-    subtitle: 'Quality Traceability',
-    desc: '讓每一道工序都被記錄、被驗證，把看不見的施工品質，化為可被檢視的生產履歷。',
+    en: 'Architecture Pedigree',
+    dna: '全程履歷DNA',
+    subtitle: 'Quality Traceability & SGS',
+    metric: { value: '14290+', unit: '', caption: '結構安全性能評估' },
+    desc: '以「源頭管理 → 取樣送驗 → 施工錄影 → 完整交付」的建築安全履歷 SOP，導入 SGS 第三方驗證與 BIM 建築資訊模型，讓每一道隱蔽工程都可被檢視、可被追溯。',
+    features: ['源頭材料管理', 'SGS 取樣送驗', '建築安全履歷 SOP', '結構安全性能', 'Jobdone 施工錄影', 'BIM 建築資訊模型'],
     details: [
-      { label: '施工透明', value: 'Jobdone APP 全程施工錄影存證，每一個隱蔽工程都有跡可循。' },
-      { label: '品質驗證', value: 'SGS 第三方驗證，生產履歷完整交付，給居住者百分百的安心。' }
+      { label: '源頭把關', value: 'SGS 國際級驗證，逾 30 年國家級工程材料檢驗經驗。' },
+      { label: '全程留痕', value: 'Jobdone APP 施工錄影＋BIM 模型，交屋附完整履歷。' }
     ]
   }
+]
+
+/**
+ * 品牌核心理念：超未來建築・EVOLVED LIVING 的三大支柱（簡報封面）。
+ */
+export interface IHomePillar {
+  code: string
+  title: string
+  desc: string
+}
+
+const pillars: IHomePillar[] = [
+  { code: 'DURABLE', title: '耐久', desc: '融合開放建築的結構思維，提升結構耐久年限，讓家的安心一代一代傳承。' },
+  { code: 'NATURE', title: '自然', desc: '將每一件作品視為綠建築，把自然引入生活，打開純粹而舒適的生活節奏。' },
+  { code: 'ARCH.', title: '建築', desc: '導入參與式設計機制，讓空間隨生活階段調整，讓生活與設計一同進化。' }
 ]
 
 // 五大宅對應的視覺素材（沿用既有圖庫）
@@ -99,5 +142,5 @@ export const useIHome = () => {
   // 標籤對照：把技術 key 轉成中文（供作品標籤、下拉選單使用）
   const labelOf = (key: string) => tech.find((t) => t.key === key)?.title ?? key
 
-  return { iHomeTech, labelOf }
+  return { iHomeTech, iHomePillars: pillars, labelOf }
 }
