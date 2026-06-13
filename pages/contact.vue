@@ -1,18 +1,26 @@
 <template>
   <div class="bg-warm-white min-h-screen">
-    <!-- 區塊1: 頁面標頭 -->
-    <section class="pt-24 pb-12 bg-warm-white">
-      <div class="container-custom text-center">
-        <span class="text-emerald-brand font-mono text-xs tracking-[0.3em] uppercase mb-5 block animate-fade-in-up">
-          Get In Touch
-        </span>
-        <div class="dim-line w-16 mx-auto mb-6 animate-fade-in-up"></div>
-        <h1 class="font-serif text-5xl md:text-6xl font-light text-charcoal mb-8 animate-fade-in-up">
+    <!-- 區塊1: 沉浸式 Hero -->
+    <section class="grain-dark relative h-[45vh] flex items-center overflow-hidden bg-charcoal">
+      <div class="absolute inset-0 z-0">
+        <img
+          src="/image/hero-background.jpg"
+          alt="聯絡傑丞建築"
+          class="w-full h-full object-cover opacity-35 scale-105 animate-slow-zoom"
+          loading="eager" fetchpriority="high" decoding="async"
+        >
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-charcoal/40 to-charcoal/80"></div>
+      </div>
+      <div class="container-custom relative z-10 text-center">
+        <div class="glass-dark rounded-full px-4 py-1.5 inline-block mb-5 animate-fade-in-up">
+          <span class="font-mono text-emerald-brand-light text-[10px] tracking-[0.4em] uppercase">Get In Touch</span>
+        </div>
+        <div class="dim-line dim-line-light w-16 mx-auto mb-6 animate-fade-in-up" style="animation-delay: 0.1s"></div>
+        <h1 class="font-serif text-5xl md:text-7xl text-warm-white font-light mb-5 animate-fade-in-up" style="animation-delay: 0.15s">
           聯絡我們
         </h1>
-        <p class="max-w-2xl mx-auto font-sans text-charcoal/55 leading-relaxed animate-fade-in-up" style="animation-delay: 0.2s">
-          無論是新的建築計畫、空間改造諮詢，或是媒體採訪邀約，<br class="hidden md:block" />
-          我們都期待聆聽您的想法，共同建構理想的空間未來。
+        <p class="max-w-2xl mx-auto font-sans text-warm-white/60 leading-relaxed animate-fade-in-up" style="animation-delay: 0.3s">
+          無論是新的建築計畫、空間改造諮詢，或是媒體採訪邀約，我們都期待聆聽您的想法。
         </p>
       </div>
     </section>

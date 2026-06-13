@@ -135,6 +135,38 @@
       </div>
     </section>
 
+    <!-- 里程碑時間軸 (LIGHT) -->
+    <section class="section-spacing bg-white border-t border-stone-100 relative overflow-hidden">
+      <span class="sheet-num top-12 -left-6" aria-hidden="true">02</span>
+      <div class="container-custom relative z-10">
+        <div class="flex items-center gap-4 mb-16 animate-fade-in-up">
+          <span class="font-mono text-[10px] tracking-[0.3em] uppercase text-emerald-brand">SEC. 03</span>
+          <div class="dim-line w-12"></div>
+          <span class="font-mono text-[10px] tracking-[0.3em] uppercase text-charcoal/40">Milestones</span>
+        </div>
+        <div class="max-w-3xl">
+          <div
+            v-for="(milestone, i) in milestones"
+            :key="milestone.year"
+            class="grid grid-cols-[72px_1px_1fr] md:grid-cols-[96px_1px_1fr] gap-0 items-stretch animate-fade-in-up"
+            :style="`animation-delay: ${i * 0.08}s`"
+          >
+            <div class="py-6 pr-4 flex items-start justify-end">
+              <span class="font-mono text-sm text-emerald-brand/70 tracking-wider">{{ milestone.year }}</span>
+            </div>
+            <div class="relative flex flex-col items-center">
+              <div class="w-2 h-2 rounded-full bg-emerald-brand mt-7 shrink-0 z-10 ring-4 ring-white"></div>
+              <div class="flex-1 w-px bg-stone-200"></div>
+            </div>
+            <div class="py-6 pl-6">
+              <h3 class="font-serif text-xl text-charcoal mb-1.5 tracking-zh">{{ milestone.title }}</h3>
+              <p class="font-sans text-sm text-charcoal/50 leading-relaxed tracking-zh">{{ milestone.desc }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- 品牌關鍵字帶 -->
     <BrandMarquee />
   </div>
@@ -150,6 +182,15 @@ const stats = [
 
 const values = ['誠信開發', '工藝至上', '永續經營', '以人為本']
 const goals = ['打造零碳建築', '提升居住品質', '活化都市空間', '引領建築潮流']
+
+const milestones = [
+  { year: '2004', title: '傑丞建築機構成立', desc: '於桃園創立，以「誠信開發、品質至上」為創業信念，深耕桃園建築市場。' },
+  { year: '2013', title: '導入 SI 工法研發', desc: '引進日本「開放建築」概念，自主研發管線與結構分離之專利工法，成為 iHome 5.0 的技術起點。' },
+  { year: '2019', title: 'iHome 5.0 系統完整化', desc: '五大宅系統正式定型，百年宅、健康宅、節能宅、智慧宅、履歷宅成為傑丞建築的核心技術品牌。' },
+  { year: '2020', title: '印象羅芙完工', desc: '傑丞旗艦力作，台灣首座榮獲六大建築標章認證的頂級豪宅，創下桃園住宅標竿。' },
+  { year: '2022', title: '印象天裔獲鑽石級綠建築', desc: '全台唯一住宅類「鑽石級」綠建築標章，以被動式降載設計樹立永續住宅新高度。' },
+  { year: '2024', title: '啟動新店安和段都更整合', desc: '導入 iHome 5.0 全套工法協助都更重建，成為新北市都市更新示範案。' },
+]
 
 useSeoMeta({
   title: '關於我們 - 傑丞建築機構',

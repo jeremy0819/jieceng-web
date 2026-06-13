@@ -151,14 +151,22 @@
               <div class="relative h-64 md:h-[520px] overflow-hidden">
                 <img :src="active.image" :alt="active.title" class="w-full h-full object-cover" loading="lazy" decoding="async">
                 <div class="absolute inset-0 bg-gradient-to-r from-charcoal/10 to-charcoal/60 md:bg-gradient-to-r md:from-transparent md:to-charcoal/70"></div>
+                <!-- DNA 量化指標徽章 -->
+                <div class="absolute bottom-7 left-7 glass-dark rounded-xl px-5 py-4">
+                  <div class="flex items-baseline gap-1.5">
+                    <span class="font-serif text-4xl text-warm-white font-light leading-none">{{ active.metric.value }}</span>
+                    <span v-if="active.metric.unit" class="font-mono text-xs tracking-widest uppercase text-emerald-brand-light">{{ active.metric.unit }}</span>
+                  </div>
+                  <p class="font-mono text-[9px] tracking-[0.2em] uppercase text-warm-white/50 mt-1">{{ active.metric.caption }}</p>
+                </div>
               </div>
               <!-- 文字 -->
               <div class="p-9 md:p-16 flex flex-col justify-center">
-                <span class="font-mono text-5xl text-white/15 mb-6 block">{{ active.num }}</span>
+                <span class="font-mono text-[11px] tracking-[0.3em] uppercase text-emerald-brand-light mb-5 block">{{ active.dna }}</span>
                 <h3 class="font-serif text-4xl md:text-5xl font-light text-white mb-2 tracking-zh">
                   {{ active.title }}
                 </h3>
-                <p class="font-mono text-[11px] uppercase tracking-[0.3em] text-emerald-brand-light mb-7">{{ active.subtitle }}</p>
+                <p class="font-mono text-[11px] uppercase tracking-[0.3em] text-white/35 mb-7">{{ active.subtitle }}</p>
                 <p class="font-sans text-white/65 font-light leading-relaxed mb-9 tracking-zh">{{ active.desc }}</p>
                 <div class="space-y-5 border-t border-white/[0.10] pt-7">
                   <div v-for="d in active.details" :key="d.label">
@@ -220,7 +228,7 @@
             </div>
             <div class="flex justify-between items-start border-t border-stone-200 pt-7">
               <div>
-                <span class="font-mono text-[10px] text-emerald-brand font-bold uppercase tracking-widest mb-2 block">Featured Case</span>
+                <span class="font-mono text-[10px] text-emerald-brand font-bold uppercase tracking-widest mb-2 block">{{ project.fileCode }} · Featured Case</span>
                 <h3 class="font-serif text-3xl font-light text-charcoal group-hover:text-emerald-brand transition-colors duration-500 tracking-zh">
                   {{ project.title }}
                 </h3>

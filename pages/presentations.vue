@@ -1,26 +1,34 @@
 <template>
   <div class="bg-warm-white min-h-screen">
-    <!-- 區塊1: 頁面標頭 -->
-    <section class="pt-24 pb-12">
-      <div class="container-custom">
-        <div class="text-center">
-          <span class="font-mono text-emerald-brand text-xs tracking-[0.3em] uppercase mb-4 block animate-fade-in-up">
-            Certifications
-          </span>
-          <h1 class="font-serif text-5xl md:text-6xl font-light text-charcoal mb-8 animate-fade-in-up">
+    <!-- 區塊1: 暗色 Hero -->
+    <section class="grain-dark relative h-[45vh] flex items-center overflow-hidden bg-charcoal">
+      <div class="absolute inset-0 z-0">
+        <img
+          src="/image/hero-background.jpg"
+          alt="建築標章介紹"
+          class="w-full h-full object-cover opacity-35 animate-slow-zoom"
+          loading="eager" fetchpriority="high" decoding="async"
+        >
+        <div class="absolute inset-0 bg-gradient-to-r from-charcoal/90 via-charcoal/60 to-transparent"></div>
+      </div>
+      <div class="container-custom relative z-10">
+        <div class="max-w-3xl">
+          <div class="glass-dark rounded-full px-4 py-1.5 inline-block mb-4 animate-fade-in-up">
+            <span class="font-mono text-emerald-brand-light text-[10px] tracking-[0.4em] uppercase">Certifications</span>
+          </div>
+          <div class="dim-line dim-line-light w-20 mb-5 animate-fade-in-up" style="animation-delay: 0.1s"></div>
+          <h1 class="font-serif text-5xl md:text-7xl text-warm-white font-light mb-5 animate-fade-in-up" style="animation-delay: 0.15s">
             標章介紹
           </h1>
-          <div class="dim-line w-16 mx-auto mb-8 animate-fade-in-up"></div>
-          <p class="font-sans text-sm md:text-base text-charcoal/50 max-w-xl mx-auto leading-relaxed animate-fade-in-up" style="animation-delay: 0.15s">
-            台灣三大建築標章的專業介紹簡報。點選卡片即可全螢幕開啟，
-            使用鍵盤方向鍵 ← → 換頁。
+          <p class="font-sans text-lg text-warm-white/60 max-w-xl leading-relaxed animate-fade-in-up" style="animation-delay: 0.3s">
+            台灣三大建築標章完整簡報——綠建築 EEWH、智慧建築、建築能效 BERS，點擊卡片即可全螢幕瀏覽。
           </p>
         </div>
       </div>
     </section>
 
     <!-- 區塊2: 簡報卡片 -->
-    <section class="blueprint-grid pb-32 md:pb-48">
+    <section class="blueprint-grid pt-16 md:pt-24 pb-32 md:pb-48">
       <div class="container-custom">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
           <a
