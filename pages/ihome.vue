@@ -81,9 +81,9 @@
     </section>
 
     <!-- 區塊2: 五大宅 左右交錯陳列 -->
-    <section class="pt-20 pb-32 md:pt-28 md:pb-48 bg-warm-white relative overflow-hidden">
+    <section class="pt-20 pb-24 md:pt-24 md:pb-32 bg-warm-white relative overflow-hidden">
       <div class="container-custom">
-        <div class="space-y-32 md:space-y-56">
+        <div class="space-y-20 md:space-y-28">
           <div
             v-for="(t, idx) in iHomeTech"
             :key="t.key"
@@ -140,8 +140,8 @@
             </div>
 
             <!-- 圖片側 -->
-            <div :class="['lg:col-span-7 relative corner-marks', idx % 2 !== 0 ? 'lg:order-1' : '']">
-              <div class="img-reveal relative aspect-[16/11] overflow-hidden rounded-[2.5rem] bg-stone-100 shadow-md ring-1 ring-black/[0.07] group" style="animation-delay: 0.15s">
+            <div :class="['lg:col-span-7 relative corner-marks pb-6', idx % 2 !== 0 ? 'lg:order-1' : '']">
+              <div class="relative aspect-[16/11] overflow-hidden rounded-[2.5rem] bg-stone-100 shadow-md ring-1 ring-black/[0.07] group animate-fade-in-up" :style="`animation-delay: 0.15s`">
                 <img
                   :src="t.image"
                   :alt="t.title"
