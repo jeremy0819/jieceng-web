@@ -93,6 +93,31 @@ const projects: Project[] = [
       完工年份: '2025'
     },
     technologies: ['centennial', 'healthy', 'energy', 'smart', 'resume']
+  },
+  {
+    id: 5,
+    title: '傑丞。新竹竹蓮段',
+    year: 2026,
+    category: 'residential',
+    categoryLabel: '住宅建案',
+    location: '新竹市',
+    description: '竹科矽谷核心×百年建築工法，謝樹林建築師操刀設計，為竹科菁英打造走在時代前端的精品綠宅。',
+    fullDescription:
+      '英奇永盛聯合開發案・竹蓮段，坐落新竹市竹科商圈核心，緊鄰南大路商圈與新竹科學工業區。由謝樹林建築師事務所以 Light・Wind・Planting 三大設計主軸操刀，全棟15層精品住宅導入傑丞 iHome 5.0 百年建築工法，嚴選頂規建材——冠軍磁磚、科技門窗、電子門鎖，搭配 EMS 電能管理與 AI 智慧系統，為竹科菁英打造走在時代前端、可傳承百年的安居之所。',
+    image: 'image/project-5.jpg',
+    highlights: [
+      'iHome 5.0 百年建築工法全系統導入',
+      '謝樹林建築師事務所 Light・Wind・Planting 設計主軸',
+      '新竹竹科核心 × 南大路商圈舉步繁華',
+      '地上15層・地下B3~RF 頂規精品格局'
+    ],
+    specs: {
+      案件類型: '住宅建案',
+      基地位置: '新竹市竹蓮段',
+      設計建築師: '謝樹林建築師事務所',
+      完工年份: '2026'
+    },
+    technologies: ['centennial', 'healthy', 'energy', 'smart', 'resume']
   }
 ]
 
