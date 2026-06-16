@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>建築能效評估 BERS 2024 × 傑丞建築機構｜專業簡報</title>
+  <title>建築能效評估 BERS ─ 能效分級與淨零路徑 × 傑丞建築機構</title>
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reset.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css" />
@@ -19,7 +19,8 @@
       --amber-pale : #fef3c7;
       --stone-200  : #e7e5e4;
       --stone-400  : #a8a29e;
-      --stone-800  : #292524;
+      --g-1plus: #047857; --g-1: #059669; --g-2: #34d399; --g-3: #a3e635;
+      --g-4: #facc15; --g-5: #fb923c; --g-6: #f87171; --g-7: #dc2626;
     }
     .reveal-viewport { background: var(--warm-white); }
     .reveal { font-family: 'Inter', 'Noto Sans TC', sans-serif; font-size: 22px; color: var(--charcoal); }
@@ -27,83 +28,80 @@
     .reveal h1, .reveal h2, .reveal h3, .reveal h4 {
       font-family: 'Playfair Display', 'Noto Serif TC', serif;
       color: var(--charcoal); text-transform: none; letter-spacing: -0.01em;
-      line-height: 1.25; margin-bottom: 0.5em; font-weight: 700;
+      line-height: 1.3; margin-bottom: .5em; font-weight: 700;
     }
-    .reveal h1 { font-size: 2.5em; }
-    .reveal h2 { font-size: 1.7em; }
-    .reveal h3 { font-size: 1.15em; font-weight: 600; font-family: 'Inter', sans-serif; }
+    .reveal h1 { font-size: 2.4em; }
+    .reveal h2 { font-size: 1.6em; }
+    .reveal h3 { font-size: 1.12em; font-weight: 600; font-family: 'Inter', sans-serif; }
     .reveal h4 { font-size: .95em; font-weight: 600; font-family: 'Inter', sans-serif; }
     .reveal p, .reveal li { line-height: 1.7; }
     .reveal ul { list-style: none; padding: 0; }
-    .reveal ul li::before { content: '—'; color: var(--amber); margin-right: .5em; font-weight: 600; }
-    .reveal .controls { color: var(--amber); }
-    .reveal .progress span { background: var(--amber); }
+    .reveal ul li { margin: .25em 0; }
+    .reveal ul li::before { content: ''; display: inline-block; width: 5px; height: 5px; background: var(--amber-mid); margin-right: .7em; vertical-align: middle; }
+    .reveal .controls { color: var(--amber-mid); }
+    .reveal .progress span { background: var(--amber-mid); }
     .reveal .slide-number { font-family: 'JetBrains Mono', monospace; font-size: .55em; color: var(--stone-400); }
-    .slide-wrap  { padding: 0 60px; }
-    .slide-inner { max-width: 960px; margin: 0 auto; height: 100%; display: flex; flex-direction: column; justify-content: center; }
+    .slide-wrap  { padding: 0 64px; }
+    .slide-inner { max-width: 980px; margin: 0 auto; height: 100%; display: flex; flex-direction: column; justify-content: center; }
     .em   { color: var(--amber); }
     .mono { font-family: 'JetBrains Mono', monospace; font-size: .85em; }
-    .small{ font-size: .75em; color: #374151; line-height: 1.65; }
-    .rule { width: 48px; height: 3px; background: var(--amber); margin-bottom: 1.2em; border-radius: 2px; }
+    .small{ font-size: .76em; color: #44403c; line-height: 1.7; }
+    .lead { font-size: .92em; color: #292524; line-height: 1.7; max-width: 770px; }
+    .kicker { font-family: 'JetBrains Mono', monospace; font-size: .6em; letter-spacing: .18em; text-transform: uppercase; color: var(--stone-400); margin-bottom: .9em; }
+    .rule { width: 44px; height: 2px; background: var(--amber-mid); margin: 0 0 1.1em; }
     .rule-full { width: 100%; height: 1px; background: var(--stone-200); margin: .9em 0; }
-    .note { font-size: .62em; color: var(--stone-400); font-family: 'JetBrains Mono', monospace; margin-top: .5em; }
-    .tag { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: .6em; font-weight: 500; padding: .18em .65em; border-radius: 4px; text-transform: uppercase; letter-spacing: .05em; vertical-align: middle; margin-bottom: .4em; }
-    .tag-amber { background: var(--amber-pale); color: var(--amber); }
-    .tag-green { background: #d1fae5; color: #064e3b; }
-    .tag-gray  { background: #f3f4f6; color: #374151; }
-    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.8em; }
-    .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.4em; }
-    .grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 1.2em; }
-    .card { background: #fff; border: 1px solid var(--stone-200); border-radius: 12px; padding: 1.2em 1.5em; }
-    .card-em { background: var(--amber); border-radius: 12px; padding: 1.2em 1.5em; }
+    .note { font-size: .62em; color: var(--stone-400); line-height: 1.6; margin-top: .8em; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.6em; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.3em; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.1em; }
+    .card { background: #fff; border: 1px solid var(--stone-200); border-radius: 4px; padding: 1.15em 1.35em; }
+    .card.top { border-top: 3px solid var(--amber-mid); }
+    .card .idx { font-family: 'JetBrains Mono', monospace; font-size: .62em; color: var(--stone-400); letter-spacing: .12em; }
+    .card-em { background: var(--amber); border-radius: 4px; padding: 1.15em 1.45em; }
     .card-em h3, .card-em h4, .card-em p, .card-em li { color: #fff; }
-    .card-em ul li::before { color: var(--amber-pale); }
-    .card-acc { border-left: 4px solid var(--amber); }
-    .card-alt { border-left: 4px solid var(--amber-mid); }
-    .stat-num { font-family: 'Playfair Display', serif; font-size: 2.8em; font-weight: 700; color: var(--amber); line-height: 1; }
-    .stat-label { font-size: .7em; color: var(--stone-400); margin-top: .3em; }
-    .badge-row { display: flex; gap: .5em; margin-top: .9em; flex-wrap: wrap; }
-    .badge { flex: 1; min-width: 70px; display: flex; flex-direction: column; align-items: center; padding: .7em .6em; border-radius: 10px; border: 1.5px solid var(--stone-200); font-size: .7em; }
-    .badge-icon { font-size: 1.4em; line-height: 1; margin-bottom: .2em; }
-    .badge-name { font-weight: 700; font-size: 1em; margin-bottom: .1em; }
-    .badge-sub  { font-size: .78em; color: var(--stone-400); text-align: center; }
-    .badge-nzcb { border-color: #7c3aed; background: #f5f3ff; }
-    .badge-nzcb .badge-name { color: #6d28d9; }
-    .badge-t1 { border-color: var(--amber); background: var(--amber-pale); }
-    .badge-t1 .badge-name { color: var(--amber); }
-    .badge-t2 { border-color: #d97706; background: #fffbeb; }
-    .badge-t2 .badge-name { color: #d97706; }
-    .badge-t3 { border-color: #92400e; background: #fef9ee; }
-    .badge-t3 .badge-name { color: #92400e; }
-    .badge-t4 { border-color: #78716c; background: #fafaf9; }
-    .badge-t4 .badge-name { color: #57534e; }
-    .badge-t5 { border-color: #ca8a04; background: #fefce8; }
-    .badge-t5 .badge-name { color: #a16207; }
-    .badge-t6 { border-color: #dc2626; background: #fef2f2; }
-    .badge-t6 .badge-name { color: #dc2626; }
-    .badge-t7 { border-color: #991b1b; background: #fee2e2; }
-    .badge-t7 .badge-name { color: #991b1b; }
-    .timeline { display: flex; gap: 0; margin-top: .9em; position: relative; }
-    .tl-item { flex: 1; text-align: center; position: relative; padding: 0 .3em; }
-    .tl-item::before { content: ''; position: absolute; top: .95em; left: 50%; width: 100%; height: 2px; background: var(--stone-200); z-index: 0; }
+    .card-em ul li::before { background: var(--amber-pale); }
+    .stat-num { font-family: 'Playfair Display', serif; font-size: 2.6em; font-weight: 700; color: var(--amber); line-height: 1; }
+    .stat-cap { font-size: .68em; color: var(--stone-400); margin-top: .35em; letter-spacing: .04em; }
+    .timeline { display: flex; gap: 0; margin-top: 1.4em; position: relative; }
+    .tl-item { flex: 1; text-align: center; position: relative; padding: 0 .4em; }
+    .tl-item::before { content: ''; position: absolute; top: .5em; left: 50%; width: 100%; height: 2px; background: var(--stone-200); z-index: 0; }
     .tl-item:last-child::before { display: none; }
-    .tl-dot { width: 2em; height: 2em; border-radius: 50%; background: var(--amber); display: flex; align-items: center; justify-content: center; margin: 0 auto .5em; position: relative; z-index: 1; font-family: 'JetBrains Mono', monospace; font-size: .6em; color: #fff; font-weight: 600; }
-    .tl-year { font-family: 'JetBrains Mono', monospace; font-size: .65em; font-weight: 600; color: var(--amber); }
-    .tl-desc { font-size: .62em; color: #374151; margin-top: .2em; line-height: 1.4; }
-    .cmp-table { width: 100%; border-collapse: collapse; font-size: .75em; }
-    .cmp-table th { padding: .65em .9em; font-weight: 600; border-bottom: 2px solid var(--stone-200); }
-    .cmp-table th:first-child { text-align: left; color: var(--stone-400); }
-    .cmp-table th.a1 { color: var(--amber); background: var(--amber-pale); border-radius: 8px 8px 0 0; }
-    .cmp-table th.a2 { color: #064e3b; background: #d1fae5; border-radius: 8px 8px 0 0; }
-    .cmp-table td { padding: .6em .9em; border-bottom: 1px solid var(--stone-200); vertical-align: top; }
-    .cmp-table td:first-child { font-weight: 600; color: #374151; }
-    .cmp-table tr:last-child td { border-bottom: none; }
-    .cmp-table tr:nth-child(even) td { background: #fafafa; }
-    .road-item { display: flex; align-items: flex-start; gap: 1.2em; margin-bottom: .7em; }
-    .road-year { font-family: 'JetBrains Mono', monospace; font-size: .78em; font-weight: 700; color: var(--amber); white-space: nowrap; min-width: 3.5em; margin-top: .12em; }
-    .road-desc { font-size: .78em; color: #374151; line-height: 1.5; }
+    .tl-dot { width: 1em; height: 1em; border-radius: 50%; background: var(--amber-mid); margin: 0 auto .8em; position: relative; z-index: 1; }
+    .tl-year { font-family: 'JetBrains Mono', monospace; font-size: .72em; font-weight: 600; color: var(--amber); }
+    .tl-desc { font-size: .66em; color: #44403c; margin-top: .35em; line-height: 1.5; }
+    .road { margin-top: 1.2em; }
+    .road-item { display: grid; grid-template-columns: 4.2em 1fr; gap: 1.4em; align-items: baseline; padding: .55em 0; border-bottom: 1px solid var(--stone-200); }
+    .road-item:last-child { border-bottom: none; }
+    .road-year { font-family: 'JetBrains Mono', monospace; font-size: .8em; font-weight: 700; color: var(--amber); }
+    .road-desc { font-size: .8em; color: #292524; }
+    .scale { display: flex; gap: 4px; margin-top: 1.4em; }
+    .tier { flex: 1; text-align: center; }
+    .tier .bar { height: 2.6em; border-radius: 3px; display: flex; align-items: center; justify-content: center; color: #fff; font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: .9em; }
+    .tier .lab { font-size: .56em; color: var(--stone-400); margin-top: .5em; line-height: 1.3; }
+    .scale-ends { display: flex; justify-content: space-between; margin-top: .9em; font-family: 'JetBrains Mono', monospace; font-size: .6em; color: var(--stone-400); letter-spacing: .08em; }
+    .ptbox { border: 1px solid var(--stone-200); border-left: 3px solid var(--amber-mid); border-radius: 4px; padding: 1.1em 1.2em; background: #fff; }
+    .ptbox .num { font-family: 'Playfair Display', serif; font-size: 2.6em; font-weight: 700; line-height: 1; color: var(--amber); }
+    .ptbox .unit { font-size: .5em; font-weight: 400; color: var(--stone-400); margin-left: .15em; }
+    .ptbox .en { font-family: 'JetBrains Mono', monospace; font-size: .58em; color: var(--stone-400); margin-top: .6em; letter-spacing: .04em; }
+    .ind-detail { display: grid; grid-template-columns: 230px 1fr; gap: 2.2em; align-items: start; margin-top: .4em; }
+    .cat-tab { font-family: 'JetBrains Mono', monospace; font-size: .58em; letter-spacing: .14em; text-transform: uppercase; color: var(--stone-400); margin-bottom: .7em; }
+    .feel { font-size: .78em; color: var(--amber); font-style: italic; margin-top: 1em; padding-left: .9em; border-left: 2px solid var(--amber-lg); }
+    .flow { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.1em; margin-top: 1.2em; }
+    .step { border: 1px solid var(--stone-200); border-radius: 4px; padding: 1em 1.1em; }
+    .step .n { font-family: 'JetBrains Mono', monospace; font-size: .62em; color: var(--amber); letter-spacing: .12em; }
+    .step h4 { margin: .35em 0; }
+    .divider-wrap { max-width: 820px; margin: 0 auto; }
+    .divider-kicker { font-family: 'JetBrains Mono', monospace; font-size: .6em; letter-spacing: .16em; color: var(--amber-pale); margin-bottom: 1.1em; }
+    .scope { font-family: 'JetBrains Mono', monospace; font-size: .66em; color: var(--amber-lg); margin-top: 1.1em; letter-spacing: .03em; }
+    .cmp { width: 100%; border-collapse: collapse; font-size: .8em; margin-top: 1em; }
+    .cmp th { padding: .6em .9em; font-weight: 600; border-bottom: 2px solid var(--stone-200); text-align: left; }
+    .cmp th.a { color: #064e3b; } .cmp th.b { color: var(--amber); }
+    .cmp td { padding: .55em .9em; border-bottom: 1px solid var(--stone-200); vertical-align: top; }
+    .cmp tr:last-child td { border-bottom: none; }
+    .cmp td:first-child, .cmp th:first-child { color: var(--stone-400); font-weight: 500; }
   </style>
 </head>
+
 <body>
 <div class="reveal">
 <div class="slides">
@@ -111,57 +109,40 @@
 <!-- 01 封面 -->
 <section data-background-color="#1c1917">
   <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
-    <div style="max-width:900px;margin:0 auto;padding:60px 0;">
-      <p class="mono" style="color:var(--amber-lg);margin-bottom:.8em;font-size:.68em;letter-spacing:.12em;">BUILDING ENERGY-EFFICIENCY RATING SYSTEM · 2024</p>
-      <h1 style="color:#fff;font-size:2.6em;line-height:1.1;margin-bottom:.35em;">建築能效評估 BERS</h1>
-      <h2 style="color:var(--amber-lg);font-size:1.3em;font-family:'Inter',sans-serif;font-weight:400;margin-bottom:.8em;">能效分級、近零碳建築與淨零路徑</h2>
-      <div style="width:56px;height:3px;background:var(--amber-lg);margin:1.2em 0;border-radius:2px;"></div>
-      <p style="color:#9ca3af;font-size:.8em;">內部訓練 ／ 專業參考簡報</p>
-      <p style="color:#6b7280;font-size:.76em;margin-top:.4em;">傑丞建築機構　Jieceng Architecture</p>
+    <div style="max-width:920px;margin:0 auto;padding:60px 0;">
+      <p class="mono" style="color:var(--amber-lg);margin-bottom:1em;font-size:.66em;letter-spacing:.2em;">BERS ｜ 建築能效評估標示</p>
+      <h1 style="color:#fff;font-size:2.6em;line-height:1.2;margin-bottom:.5em;">把建築的能效<br/>標示出來</h1>
+      <div style="width:52px;height:2px;background:var(--amber-lg);margin:1.1em 0;"></div>
+      <p style="color:#a8a29e;font-size:.86em;line-height:1.7;max-width:620px;">能效分級、近零碳建築，以及邁向 2050 淨零的這條路，<br/>對開發案到底意味著什麼。</p>
+      <p style="color:#78716c;font-size:.72em;margin-top:2.4em;">傑丞建築機構　Jieceng Architecture</p>
     </div>
   </div>
 </section>
 
-<!-- 02 今日議程 -->
+<!-- 02 議程 -->
 <section>
   <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
     <div class="slide-inner">
       <div class="rule"></div>
-      <h2>今日議程</h2>
-      <div class="grid-2" style="margin-top:1.2em;gap:1.4em;">
-        <div class="card">
-          <p class="mono" style="color:var(--amber);font-size:.6em;margin-bottom:.6em;">PART 01</p>
-          <h3 style="margin-bottom:.5em;">為什麼需要建築能效</h3>
-          <p class="small">淨零趨勢、台灣淨零路徑、制度沿革、仿歐盟 EPBD</p>
-        </div>
-        <div class="card">
-          <p class="mono" style="color:var(--amber);font-size:.6em;margin-bottom:.6em;">PART 02</p>
-          <h3 style="margin-bottom:.5em;">能效分級制度</h3>
-          <p class="small">BERS 核心概念、七階段分級 1+~7、近零碳建築、能效標示</p>
-        </div>
-        <div class="card">
-          <p class="mono" style="color:var(--amber);font-size:.6em;margin-bottom:.6em;">PART 03</p>
-          <h3 style="margin-bottom:.5em;">評估系統與範圍</h3>
-          <p class="small">能效計算邊界、六項設計項目、次系統、適用類組、與綠建築關係</p>
-        </div>
-        <div class="card">
-          <p class="mono" style="color:var(--amber);font-size:.6em;margin-bottom:.6em;">PART 04</p>
-          <h3 style="margin-bottom:.5em;">對開發案與淨零</h3>
-          <p class="small">政策強制要求、容積與賣點、三標章整合、申請流程</p>
-        </div>
+      <h2>本場簡報的四個部分</h2>
+      <div class="grid-2" style="margin-top:1.1em;gap:1.3em;">
+        <div class="card top"><div class="idx">PART 01</div><h3 style="margin:.35em 0 .3em;">為什麼需要建築能效</h3><p class="small">淨零趨勢、台灣淨零路徑、制度沿革、師法歐盟 EPBD</p></div>
+        <div class="card top"><div class="idx">PART 02</div><h3 style="margin:.35em 0 .3em;">能效分級制度</h3><p class="small">相對分級的核心概念、七階段分級、近零碳建築、能效標示</p></div>
+        <div class="card top"><div class="idx">PART 03</div><h3 style="margin:.35em 0 .3em;">評估系統與範圍</h3><p class="small">能效計算邊界、設計策略、新建與既有、適用類組、與綠建築的關係</p></div>
+        <div class="card top"><div class="idx">PART 04</div><h3 style="margin:.35em 0 .3em;">對開發案與淨零</h3><p class="small">政策強制要求、產品價值、三標章整合、申請流程</p></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 03 Part 01 過場 -->
-<section data-background-color="#292524">
+<!-- 03 PART01 -->
+<section data-background-color="#1c1917">
   <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
-    <div style="max-width:800px;margin:0 auto;">
-      <p class="mono" style="color:var(--amber-pale);font-size:.62em;margin-bottom:1em;letter-spacing:.1em;">PART 01</p>
-      <h1 style="color:#fff;font-size:2.6em;line-height:1.1;margin-bottom:.5em;">為什麼需要建築能效</h1>
-      <p style="color:var(--amber-lg);font-size:.9em;">從淨零目標看 BERS 的誕生</p>
-      <p style="color:var(--amber-mid);font-size:.7em;margin-top:2em;">傑丞建築機構　Jieceng Architecture</p>
+    <div class="divider-wrap">
+      <p class="divider-kicker">PART 01</p>
+      <h1 style="color:#fff;font-size:2.4em;line-height:1.25;margin-bottom:.45em;">為什麼需要建築能效</h1>
+      <p style="color:var(--amber-lg);font-size:.9em;">從淨零目標，看 BERS 為什麼誕生。</p>
+      <p style="color:#78716c;font-size:.7em;margin-top:1.8em;">傑丞建築機構　Jieceng Architecture</p>
     </div>
   </div>
 </section>
@@ -170,26 +151,14 @@
 <section>
   <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
     <div class="slide-inner">
-      <span class="tag tag-amber">WHAT IS BERS</span>
+      <p class="kicker">定義</p>
       <div class="rule"></div>
-      <h2>什麼是建築能效評估（BERS）？</h2>
-      <p class="small" style="max-width:720px;margin-bottom:1.2em;">BERS（Building Energy-efficiency Rating System）將建築物的能源效率量化、分級並「標示」出來，讓能效像家電能效標章一樣一目了然，是推動淨零建築最有效的政策工具。</p>
+      <h2>什麼是建築能效評估（BERS）</h2>
+      <p class="lead" style="margin-bottom:1.3em;">BERS（Building Energy-efficiency Rating System）把一棟建築的能源效率量化、分級，再「標示」出來。就像家電的能效標章一樣，讓建築的耗能表現一眼就看得懂，是推動淨零建築最有效的政策工具之一。</p>
       <div class="grid-3">
-        <div class="card card-acc" style="text-align:center;">
-          <div style="font-size:1.6em;margin-bottom:.4em;">📊</div>
-          <h4 class="em">量化</h4>
-          <p class="small" style="margin-top:.3em;">以耗能/碳排密度計算能效</p>
-        </div>
-        <div class="card card-acc" style="text-align:center;">
-          <div style="font-size:1.6em;margin-bottom:.4em;">📈</div>
-          <h4 class="em">分級</h4>
-          <p class="small" style="margin-top:.3em;">對照市場基準分為七階段</p>
-        </div>
-        <div class="card card-acc" style="text-align:center;">
-          <div style="font-size:1.6em;margin-bottom:.4em;">🏷️</div>
-          <h4 class="em">標示</h4>
-          <p class="small" style="margin-top:.3em;">公開揭露、有感且可監督</p>
-        </div>
+        <div class="card top"><h4 class="em">量化</h4><p class="small" style="margin-top:.4em;">以耗能與碳排密度計算能效</p></div>
+        <div class="card top"><h4 class="em">分級</h4><p class="small" style="margin-top:.4em;">對照市場基準，分為七個階段</p></div>
+        <div class="card top"><h4 class="em">標示</h4><p class="small" style="margin-top:.4em;">公開揭露，能被檢視也能被比較</p></div>
       </div>
     </div>
   </div>
@@ -199,60 +168,44 @@
 <section>
   <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
     <div class="slide-inner">
-      <span class="tag tag-amber">GLOBAL NET-ZERO</span>
+      <p class="kicker">背景</p>
       <div class="rule"></div>
-      <h2>全球淨零趨勢</h2>
-      <div class="timeline" style="margin-top:1.6em;">
-        <div class="tl-item">
-          <div class="tl-dot">1</div>
-          <div class="tl-year">1997</div>
-          <div class="tl-desc">《京都議定書》溫室氣體減量倡議</div>
-        </div>
-        <div class="tl-item">
-          <div class="tl-dot">2</div>
-          <div class="tl-year">2015</div>
-          <div class="tl-desc">《巴黎協定》提出淨零排放 Net Zero 目標</div>
-        </div>
-        <div class="tl-item">
-          <div class="tl-dot">3</div>
-          <div class="tl-year">2021</div>
-          <div class="tl-desc">國際能源署 IEA 發表「2050 淨零路徑」報告</div>
-        </div>
-        <div class="tl-item">
-          <div class="tl-dot">4</div>
-          <div class="tl-year">2022</div>
-          <div class="tl-desc">國發會發布「臺灣 2050 淨零排放路徑及策略」</div>
-        </div>
+      <h2>全球淨零的脈絡</h2>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">1997</div><div class="tl-desc">《京都議定書》提出溫室氣體減量</div></div>
+        <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">2015</div><div class="tl-desc">《巴黎協定》提出淨零排放目標</div></div>
+        <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">2021</div><div class="tl-desc">國際能源署發表 2050 淨零路徑報告</div></div>
+        <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">2022</div><div class="tl-desc">國發會發布台灣 2050 淨零排放路徑</div></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 06 台灣淨零建築三大里程碑 -->
+<!-- 06 台灣淨零三里程碑 -->
 <section>
   <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
     <div class="slide-inner">
-      <span class="tag tag-amber">TAIWAN ROADMAP</span>
+      <p class="kicker">台灣淨零建築路徑</p>
       <div class="rule"></div>
-      <h2>台灣淨零建築 ─ 三大里程碑</h2>
-      <div class="grid-3" style="margin-top:1.4em;">
-        <div class="card" style="border-top:3px solid var(--amber);text-align:center;">
-          <div class="stat-num" style="font-size:2.2em;">2030</div>
+      <h2>三個法定的時間點</h2>
+      <div class="grid-3" style="margin-top:1.2em;">
+        <div class="card" style="border-top:3px solid var(--amber);">
+          <div class="stat-num" style="font-size:2.1em;">2030</div>
           <div class="rule-full"></div>
-          <p class="small">所有公有新建建築物達建築能效 <strong>1 級</strong>或近零碳建築</p>
+          <p class="small">所有公有新建建築，須達建築能效 1 級或近零碳建築。</p>
         </div>
-        <div class="card" style="border-top:3px solid var(--amber-mid);text-align:center;">
-          <div class="stat-num" style="font-size:2.2em;color:var(--amber-mid);">2040</div>
+        <div class="card" style="border-top:3px solid var(--amber-mid);">
+          <div class="stat-num" style="font-size:2.1em;color:var(--amber-mid);">2040</div>
           <div class="rule-full"></div>
-          <p class="small"><strong>50%</strong> 既有建築物更新為能效 1 級或近零碳建築</p>
+          <p class="small">50% 既有建築更新為能效 1 級或近零碳建築。</p>
         </div>
-        <div class="card" style="border-top:3px solid #92400e;text-align:center;">
-          <div class="stat-num" style="font-size:2.2em;color:#92400e;">2050</div>
+        <div class="card" style="border-top:3px solid #92400e;">
+          <div class="stat-num" style="font-size:2.1em;color:#92400e;">2050</div>
           <div class="rule-full"></div>
-          <p class="small"><strong>100%</strong> 新建建築物、逾 <strong>85%</strong> 建築物為近零碳建築</p>
+          <p class="small">100% 新建、逾 85% 建築為近零碳建築。</p>
         </div>
       </div>
-      <p class="note" style="margin-top:.9em;">淨零建築政策的法定時程，BERS 是落實與檢核的關鍵工具。</p>
+      <p class="note">這是淨零建築政策的法定時程，而 BERS 正是落實與檢核的關鍵工具。</p>
     </div>
   </div>
 </section>
@@ -261,19 +214,15 @@
 <section>
   <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
     <div class="slide-inner">
-      <span class="tag tag-amber">POLICY HISTORY</span>
+      <p class="kicker">制度沿革</p>
       <div class="rule"></div>
-      <h2>制度沿革</h2>
-      <div style="margin-top:1.2em;">
+      <h2>從節能法規到能效標示</h2>
+      <div class="road">
         <div class="road-item"><div class="road-year">1995</div><div class="road-desc">制訂建築節約能源設計法規</div></div>
-        <div class="rule-full" style="margin:.3em 0;"></div>
         <div class="road-item"><div class="road-year">1999</div><div class="road-desc">啟動綠建築標章制度</div></div>
-        <div class="rule-full" style="margin:.3em 0;"></div>
-        <div class="road-item"><div class="road-year">2022</div><div class="road-desc">開始實施建築能效評估及標示；公布 EEWH-BERS 前導版（6 類 12 組）</div></div>
-        <div class="rule-full" style="margin:.3em 0;"></div>
-        <div class="road-item"><div class="road-year">2023</div><div class="road-desc">修正「綠建築標章及建築能效標示申請審核認可及使用作業要點」</div></div>
-        <div class="rule-full" style="margin:.3em 0;"></div>
-        <div class="road-item" style="margin-bottom:0;"><div class="road-year">2024</div><div class="road-desc">發布 BERS 手冊，幾乎適用大部分建築類組</div></div>
+        <div class="road-item"><div class="road-year">2022</div><div class="road-desc">開始實施建築能效評估及標示，公布 EEWH-BERS 前導版（6 類 12 組）</div></div>
+        <div class="road-item"><div class="road-year">2023</div><div class="road-desc">修正綠建築標章及建築能效標示的申請審核作業要點</div></div>
+        <div class="road-item"><div class="road-year">2024</div><div class="road-desc">發布 BERS 手冊，適用範圍擴及大部分建築類組</div></div>
       </div>
     </div>
   </div>
@@ -283,105 +232,73 @@
 <section>
   <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
     <div class="slide-inner">
-      <span class="tag tag-amber">EU EPBD MODEL</span>
+      <p class="kicker">制度源頭</p>
       <div class="rule"></div>
-      <h2>師法歐盟 ─ EPBD 能效標示</h2>
-      <p class="small" style="max-width:720px;margin-bottom:1.2em;">BERS 仿自歐盟建築能效法令 EPBD，採用 EN 15217（2007）所建議的 A~G 七階段分級標示，是國際公認最有效的淨零建築政策之一。</p>
+      <h2>師法歐盟的 EPBD 能效標示</h2>
+      <p class="lead" style="margin-bottom:1.2em;">BERS 仿自歐盟建築能效法令 EPBD，採用 EN 15217 建議的七階段分級標示，是國際公認最有效的淨零建築政策之一。</p>
       <div class="grid-4">
-        <div class="card card-acc" style="text-align:center;">
-          <div style="font-size:1.3em;margin-bottom:.3em;">👁️</div>
-          <h4 class="em">公開揭露</h4>
-          <p class="small" style="margin-top:.3em;">能效資訊透明、可公民監督</p>
-        </div>
-        <div class="card card-acc" style="text-align:center;">
-          <div style="font-size:1.3em;margin-bottom:.3em;">🏷️</div>
-          <h4 class="em">有感標示</h4>
-          <p class="small" style="margin-top:.3em;">像家電能效標章，民眾看得懂</p>
-        </div>
-        <div class="card card-acc" style="text-align:center;">
-          <div style="font-size:1.3em;margin-bottom:.3em;">📊</div>
-          <h4 class="em">市場基準</h4>
-          <p class="small" style="margin-top:.3em;">以現行市場平均能效為比較基準</p>
-        </div>
-        <div class="card card-acc" style="text-align:center;">
-          <div style="font-size:1.3em;margin-bottom:.3em;">🌱</div>
-          <h4 class="em">1+ 額外級</h4>
-          <p class="small" style="margin-top:.3em;">EN15217 允許的近零碳額外等級</p>
-        </div>
+        <div class="card top"><h4 class="em">公開揭露</h4><p class="small" style="margin-top:.4em;">能效資訊透明，能被檢視</p></div>
+        <div class="card top"><h4 class="em">有感標示</h4><p class="small" style="margin-top:.4em;">像家電能效標章，民眾看得懂</p></div>
+        <div class="card top"><h4 class="em">市場基準</h4><p class="small" style="margin-top:.4em;">以現行市場平均能效為比較基準</p></div>
+        <div class="card top"><h4 class="em">1+ 額外級</h4><p class="small" style="margin-top:.4em;">允許標示更高的近零碳等級</p></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 09 建築是淨零的關鍵戰場 -->
+<!-- 09 建築是淨零關鍵戰場 -->
 <section>
   <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
     <div class="slide-inner">
-      <span class="tag tag-amber">WHY BUILDINGS</span>
+      <p class="kicker">為什麼是建築</p>
       <div class="rule"></div>
       <h2>建築，是淨零的關鍵戰場</h2>
-      <p class="small" style="max-width:720px;margin-bottom:1.2em;">建築物的營建與長期使用，佔全國能源消耗與碳排放相當高的比重，是淨零政策的優先對象。提升建築能效，是減碳最直接、最有效的途徑之一。</p>
+      <p class="lead" style="margin-bottom:1.2em;">建築物的營建與長期使用，佔全國能源消耗與碳排放相當高的比重。提升建築能效，是最直接、也最有效的減碳途徑之一。</p>
       <div class="grid-4">
-        <div class="card" style="text-align:center;">
-          <div style="font-size:1.4em;margin-bottom:.3em;">🌡️</div>
-          <h4 class="em">營運能耗</h4>
-          <p class="small" style="margin-top:.3em;">空調、照明、設備長期用電</p>
-        </div>
-        <div class="card" style="text-align:center;">
-          <div style="font-size:1.4em;margin-bottom:.3em;">🏭</div>
-          <h4 class="em">隱含碳</h4>
-          <p class="small" style="margin-top:.3em;">建材生產與營建過程碳排</p>
-        </div>
-        <div class="card" style="text-align:center;">
-          <div style="font-size:1.4em;margin-bottom:.3em;">⏳</div>
-          <h4 class="em">長生命週期</h4>
-          <p class="small" style="margin-top:.3em;">建築使用數十年，影響深遠</p>
-        </div>
-        <div class="card" style="text-align:center;">
-          <div style="font-size:1.4em;margin-bottom:.3em;">✅</div>
-          <h4 class="em">可管理</h4>
-          <p class="small" style="margin-top:.3em;">能效可量化、可改善、可檢核</p>
-        </div>
+        <div class="card top"><h4 class="em">營運能耗</h4><p class="small" style="margin-top:.4em;">空調、照明、設備的長期用電</p></div>
+        <div class="card top"><h4 class="em">隱含碳</h4><p class="small" style="margin-top:.4em;">建材生產與營建過程的碳排</p></div>
+        <div class="card top"><h4 class="em">長生命週期</h4><p class="small" style="margin-top:.4em;">建築一用數十年，影響深遠</p></div>
+        <div class="card top"><h4 class="em">可管理</h4><p class="small" style="margin-top:.4em;">能效可量化、可改善、可檢核</p></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 10 Part 02 過場 -->
-<section data-background-color="#292524">
+<!-- 10 PART02 -->
+<section data-background-color="#1c1917">
   <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
-    <div style="max-width:800px;margin:0 auto;">
-      <p class="mono" style="color:var(--amber-pale);font-size:.62em;margin-bottom:1em;letter-spacing:.1em;">PART 02</p>
-      <h1 style="color:#fff;font-size:2.6em;line-height:1.1;margin-bottom:.5em;">能效分級制度</h1>
-      <p style="color:var(--amber-lg);font-size:.9em;">1+ 到 7，建築能效一目了然</p>
-      <p style="color:var(--amber-mid);font-size:.7em;margin-top:2em;">傑丞建築機構　Jieceng Architecture</p>
+    <div class="divider-wrap">
+      <p class="divider-kicker">PART 02</p>
+      <h1 style="color:#fff;font-size:2.4em;line-height:1.25;margin-bottom:.45em;">能效分級制度</h1>
+      <p style="color:var(--amber-lg);font-size:.9em;">從 1+ 到 7，把建築能效講清楚。</p>
+      <p style="color:#78716c;font-size:.7em;margin-top:1.8em;">傑丞建築機構　Jieceng Architecture</p>
     </div>
   </div>
 </section>
 
-<!-- 11 BERS 核心概念 -->
+<!-- 11 相對分級核心概念 -->
 <section>
   <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
     <div class="slide-inner">
-      <span class="tag tag-amber">CORE CONCEPT</span>
+      <p class="kicker">核心概念</p>
       <div class="rule"></div>
-      <h2>BERS 核心概念 ─ 相對分級</h2>
-      <p class="small" style="margin-bottom:1.2em;">BERS 以「現行建築市場平均能效水準（GB 基準值）」作為合格分界點，再依設計能效相對基準的優劣，向上、向下分級。</p>
+      <h2>BERS 是一種「相對分級」</h2>
+      <p class="lead" style="margin-bottom:1.2em;">BERS 以現行建築市場的平均能效水準作為合格分界，再依設計能效相對基準的優劣，往上或往下分級。</p>
       <div class="grid-2">
-        <div class="card card-acc">
-          <h3 style="margin-bottom:.6em;color:#064e3b;">優於基準</h3>
-          <ul style="font-size:.78em;">
+        <div class="card" style="border-top:3px solid var(--g-1);">
+          <h3 style="color:#047857;">優於基準</h3>
+          <ul style="font-size:.8em;margin-top:.4em;">
             <li>切割為 5 個等分間距</li>
-            <li>由佳至差：1+、1、2、3、4</li>
-            <li>≧90 分為 1+ 近零碳區間</li>
+            <li>由佳至差為 1+、1、2、3、4</li>
+            <li>達 90 分以上即進入 1+ 近零碳區間</li>
           </ul>
         </div>
-        <div class="card" style="border-left:4px solid #dc2626;">
-          <h3 style="margin-bottom:.6em;color:#dc2626;">劣於基準</h3>
-          <ul style="font-size:.78em;">
-            <li>不及格區間：5、6、7</li>
-            <li>6、7 為能效極差建築</li>
-            <li>給予兩倍較寬間距</li>
+        <div class="card" style="border-top:3px solid var(--g-7);">
+          <h3 style="color:#dc2626;">劣於基準</h3>
+          <ul style="font-size:.8em;margin-top:.4em;">
+            <li>不及格區間為 5、6、7</li>
+            <li>6、7 屬能效極差的建築</li>
+            <li>給予兩倍較寬的間距</li>
           </ul>
         </div>
       </div>
@@ -389,97 +306,86 @@
   </div>
 </section>
 
-<!-- 12 七階段能效分級 -->
+<!-- 12 七階段分級 scale -->
 <section>
   <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
     <div class="slide-inner">
-      <span class="tag tag-amber">7-TIER RATING</span>
+      <p class="kicker">七階段分級</p>
       <div class="rule"></div>
-      <h2>七階段能效分級（1+ ~ 7）</h2>
-      <div class="badge-row" style="margin-top:1.2em;">
-        <div class="badge badge-nzcb"><div class="badge-icon">🌟</div><div class="badge-name">1+</div><div class="badge-sub">近零碳</div></div>
-        <div class="badge badge-t1"><div class="badge-icon">🟡</div><div class="badge-name">1</div><div class="badge-sub">能效最佳</div></div>
-        <div class="badge badge-t2"><div class="badge-icon">🟠</div><div class="badge-name">2</div><div class="badge-sub">優於基準</div></div>
-        <div class="badge badge-t3"><div class="badge-icon">🟤</div><div class="badge-name">3</div><div class="badge-sub">良好</div></div>
-        <div class="badge badge-t4"><div class="badge-icon">⬜</div><div class="badge-name">4</div><div class="badge-sub">基準合格</div></div>
-        <div class="badge badge-t5"><div class="badge-icon">🔶</div><div class="badge-name">5</div><div class="badge-sub">略低基準</div></div>
-        <div class="badge badge-t6"><div class="badge-icon">🔴</div><div class="badge-name">6</div><div class="badge-sub">能效差</div></div>
-        <div class="badge badge-t7"><div class="badge-icon">⛔</div><div class="badge-name">7</div><div class="badge-sub">能效極差</div></div>
+      <h2>1+ 到 7，一眼看懂能效</h2>
+      <div class="scale">
+        <div class="tier"><div class="bar" style="background:var(--g-1plus);">1+</div><div class="lab">近零碳</div></div>
+        <div class="tier"><div class="bar" style="background:var(--g-1);">1</div><div class="lab">能效最佳</div></div>
+        <div class="tier"><div class="bar" style="background:var(--g-2);">2</div><div class="lab">優於基準</div></div>
+        <div class="tier"><div class="bar" style="background:var(--g-3);color:#1c1917;">3</div><div class="lab">良好</div></div>
+        <div class="tier"><div class="bar" style="background:var(--g-4);color:#1c1917;">4</div><div class="lab">合格分界</div></div>
+        <div class="tier"><div class="bar" style="background:var(--g-5);">5</div><div class="lab">略低基準</div></div>
+        <div class="tier"><div class="bar" style="background:var(--g-6);">6</div><div class="lab">能效差</div></div>
+        <div class="tier"><div class="bar" style="background:var(--g-7);">7</div><div class="lab">能效極差</div></div>
       </div>
-      <p class="note" style="margin-top:.9em;">「1+」為近零碳建築（NZCB）；「4」與「5」之間為市場平均能效的合格分界點。</p>
+      <div class="scale-ends"><span>能效佳</span><span>能效差</span></div>
+      <p class="note">「1+」為近零碳建築（NZCB）；「4」與「5」之間，是市場平均能效的合格分界點。</p>
     </div>
   </div>
 </section>
 
-<!-- 13 近零碳建築 -->
+<!-- 13 近零碳建築 1+ -->
 <section>
   <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
     <div class="slide-inner">
+      <p class="kicker">最高等級</p>
       <div class="rule"></div>
-      <div style="display:flex;align-items:center;gap:.8em;margin-bottom:1em;">
-        <div style="background:#6d28d9;color:#fff;font-family:'JetBrains Mono',monospace;font-size:1.4em;font-weight:700;padding:.3em .7em;border-radius:8px;">1+</div>
-        <h2 style="margin:0;">近零碳建築（NZCB）</h2>
-      </div>
+      <h2>1+　近零碳建築（NZCB）</h2>
       <div class="grid-2" style="margin-top:1em;">
-        <div class="card" style="border-top:3px solid #6d28d9;text-align:center;">
-          <div style="font-size:1.6em;margin-bottom:.4em;">🏠</div>
+        <div class="card" style="border-top:3px solid var(--g-1plus);">
           <h4>住宅建築</h4>
-          <div style="font-family:'Playfair Display',serif;font-size:2.4em;font-weight:700;color:#6d28d9;line-height:1;">30%</div>
-          <p class="small" style="margin-top:.3em;">減碳率 30% 以上</p>
+          <div style="font-family:'Playfair Display',serif;font-size:2.4em;font-weight:700;color:var(--g-1plus);line-height:1;margin:.2em 0;">30%</div>
+          <p class="small">減碳率達 30% 以上</p>
         </div>
-        <div class="card" style="border-top:3px solid var(--amber);text-align:center;">
-          <div style="font-size:1.6em;margin-bottom:.4em;">🏢</div>
+        <div class="card" style="border-top:3px solid var(--amber);">
           <h4>非住宅建築</h4>
-          <div style="font-family:'Playfair Display',serif;font-size:2.4em;font-weight:700;color:var(--amber);line-height:1;">50%</div>
-          <p class="small" style="margin-top:.3em;">節能率 50% 以上</p>
+          <div style="font-family:'Playfair Display',serif;font-size:2.4em;font-weight:700;color:var(--amber);line-height:1;margin:.2em 0;">50%</div>
+          <p class="small">節能率達 50% 以上</p>
         </div>
       </div>
-      <div class="card-em" style="margin-top:1em;padding:.8em 1.2em;">
-        <p style="color:#fff;font-size:.78em;margin:0;">對應能效分級 ≧ 90 分區間　—　是 2050 淨零建築政策的核心目標</p>
-      </div>
+      <p class="feel">對應能效分級 90 分以上的區間，是 2050 淨零建築政策的核心目標。</p>
     </div>
   </div>
 </section>
 
-<!-- 14 能效標示 EUI 與 CEI -->
+<!-- 14 EUI / CEI -->
 <section>
   <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
     <div class="slide-inner">
-      <span class="tag tag-amber">ENERGY LABEL</span>
+      <p class="kicker">能效標示</p>
       <div class="rule"></div>
-      <h2>能效標示 ─ EUI 與 CEI</h2>
-      <div class="grid-2" style="margin-top:1.4em;">
-        <div class="card card-acc">
-          <h3 style="margin-bottom:.5em;">EUI 用電密度</h3>
-          <p class="note" style="margin-bottom:.5em;">Energy Use Intensity</p>
-          <ul style="font-size:.78em;">
-            <li>單位樓地板面積的年用電量</li>
-            <li>反映建築物耗能強度</li>
-          </ul>
-          <div style="margin-top:.8em;font-family:'JetBrains Mono',monospace;font-size:.82em;font-weight:600;color:var(--amber);">kWh/(m²·年)</div>
+      <h2>用兩個指標衡量能效</h2>
+      <div class="grid-2" style="margin-top:1.1em;">
+        <div class="card" style="border-top:3px solid var(--amber);">
+          <h3 class="em">EUI　用電密度</h3>
+          <p class="mono" style="color:var(--stone-400);font-size:.62em;margin:.3em 0 .6em;">ENERGY USE INTENSITY</p>
+          <ul style="font-size:.8em;"><li>單位樓地板面積的年用電量</li><li>反映建築物的耗能強度</li></ul>
+          <p class="mono" style="font-size:.7em;color:var(--amber);margin-top:.7em;">kWh / (m²·年)</p>
         </div>
-        <div class="card card-alt">
-          <h3 style="margin-bottom:.5em;">CEI 碳排密度</h3>
-          <p class="note" style="margin-bottom:.5em;">Carbon Emission Intensity</p>
-          <ul style="font-size:.78em;">
-            <li>單位樓地板面積的年碳排量</li>
-            <li>反映建築物碳足跡</li>
-          </ul>
-          <div style="margin-top:.8em;font-family:'JetBrains Mono',monospace;font-size:.82em;font-weight:600;color:var(--amber-mid);">kgCO₂e/(m²·年)</div>
+        <div class="card" style="border-top:3px solid var(--amber-mid);">
+          <h3 style="color:var(--amber-mid);">CEI　碳排密度</h3>
+          <p class="mono" style="color:var(--stone-400);font-size:.62em;margin:.3em 0 .6em;">CARBON EMISSION INTENSITY</p>
+          <ul style="font-size:.8em;"><li>單位樓地板面積的年碳排量</li><li>反映建築物的碳足跡</li></ul>
+          <p class="mono" style="font-size:.7em;color:var(--amber-mid);margin-top:.7em;">kgCO₂e / (m²·年)</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 15 Part 03 過場 -->
-<section data-background-color="#292524">
+<!-- 15 PART03 -->
+<section data-background-color="#1c1917">
   <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
-    <div style="max-width:800px;margin:0 auto;">
-      <p class="mono" style="color:var(--amber-pale);font-size:.62em;margin-bottom:1em;letter-spacing:.1em;">PART 03</p>
-      <h1 style="color:#fff;font-size:2.6em;line-height:1.1;margin-bottom:.5em;">評估系統與範圍</h1>
-      <p style="color:var(--amber-lg);font-size:.9em;">算什麼？算哪些？怎麼算？</p>
-      <p style="color:var(--amber-mid);font-size:.7em;margin-top:2em;">傑丞建築機構　Jieceng Architecture</p>
+    <div class="divider-wrap">
+      <p class="divider-kicker">PART 03</p>
+      <h1 style="color:#fff;font-size:2.4em;line-height:1.25;margin-bottom:.45em;">評估系統與範圍</h1>
+      <p style="color:var(--amber-lg);font-size:.9em;">算什麼、算哪些、怎麼算。</p>
+      <p style="color:#78716c;font-size:.7em;margin-top:1.8em;">傑丞建築機構　Jieceng Architecture</p>
     </div>
   </div>
 </section>
@@ -488,42 +394,204 @@
 <section>
   <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
     <div class="slide-inner">
-      <span class="tag tag-amber">CALCULATION BOUNDARY</span>
+      <p class="kicker">能效計算邊界 ECB</p>
       <div class="rule"></div>
-      <h2>能效計算邊界 ECB ─ 六項耗能</h2>
-      <p class="small" style="margin-bottom:1em;">BERS 以「能效計算邊界（ECB）」界定納入評估的耗能項目，約一成使用能源不含在邊界內。</p>
+      <h2>納入評估的六項耗能</h2>
+      <p class="lead" style="margin-bottom:1em;">BERS 以「能效計算邊界（ECB）」界定納入評估的耗能項目，逐一檢視如下六項。</p>
       <div class="grid-3">
-        <div class="card card-acc" style="text-align:center;"><div style="font-size:1.3em;margin-bottom:.3em;">🏗️</div><h4 class="em">建築外殼</h4><p class="small" style="margin-top:.3em;">隔熱、遮陽、開窗</p></div>
-        <div class="card card-acc" style="text-align:center;"><div style="font-size:1.3em;margin-bottom:.3em;">❄️</div><h4 class="em">空調系統</h4><p class="small" style="margin-top:.3em;">主機效率、變頻</p></div>
-        <div class="card card-acc" style="text-align:center;"><div style="font-size:1.3em;margin-bottom:.3em;">💡</div><h4 class="em">照明系統</h4><p class="small" style="margin-top:.3em;">LED、智慧控制</p></div>
-        <div class="card" style="text-align:center;"><div style="font-size:1.3em;margin-bottom:.3em;">🛗</div><h4 class="em">電梯</h4><p class="small" style="margin-top:.3em;">高效率電梯設備</p></div>
-        <div class="card" style="text-align:center;"><div style="font-size:1.3em;margin-bottom:.3em;">🚿</div><h4 class="em">熱水（選項）</h4><p class="small" style="margin-top:.3em;">熱水系統能耗</p></div>
-        <div class="card" style="text-align:center;"><div style="font-size:1.3em;margin-bottom:.3em;">☀️</div><h4 class="em">再生能源（選項）</h4><p class="small" style="margin-top:.3em;">太陽能等自發電</p></div>
+        <div class="card top"><h4 class="em">外殼</h4><p class="small" style="margin-top:.3em;">隔熱、遮陽、開窗</p></div>
+        <div class="card top"><h4 class="em">空調</h4><p class="small" style="margin-top:.3em;">主機效率、變頻</p></div>
+        <div class="card top"><h4 class="em">照明</h4><p class="small" style="margin-top:.3em;">LED、智慧控制</p></div>
+        <div class="card"><h4 class="em">電梯</h4><p class="small" style="margin-top:.3em;">馬達效率、群控調度</p></div>
+        <div class="card"><h4 class="em">揚水泵</h4><p class="small" style="margin-top:.3em;">給水加壓、屋頂水箱</p></div>
+        <div class="card"><h4 class="em">機械設備</h4><p class="small" style="margin-top:.3em;">通風、熱水等公共機電</p></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 17 設計策略 -->
+<!-- 16a 外殼 -->
 <section>
   <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
     <div class="slide-inner">
-      <span class="tag tag-amber">DESIGN STRATEGY</span>
+      <p class="cat-tab">EUI 檢核項目　01 / 06</p>
+      <div class="ind-detail">
+        <div>
+          <div class="ptbox" style="border-left-color:var(--amber);">
+            <div class="num" style="color:var(--amber);">01<span class="unit">/ 06</span></div>
+            <div class="en">Building Envelope</div>
+          </div>
+          <h3 style="margin-top:1em;color:var(--amber);">外殼</h3>
+        </div>
+        <div>
+          <h4 style="margin-bottom:.5em;">決定空調負荷的起點</h4>
+          <ul style="font-size:.82em;">
+            <li>外牆與屋頂的隔熱性能</li>
+            <li>開窗面積、玻璃選用與外遮陽</li>
+            <li>朝向配置與開窗位置的優化</li>
+          </ul>
+          <p class="feel" style="border-left-color:var(--amber);color:var(--amber);">外殼做得好，後面的空調可以用更小的容量，達到一樣的舒適。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 16b 空調 -->
+<section>
+  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
+    <div class="slide-inner">
+      <p class="cat-tab">EUI 檢核項目　02 / 06</p>
+      <div class="ind-detail">
+        <div>
+          <div class="ptbox" style="border-left-color:var(--amber);">
+            <div class="num" style="color:var(--amber);">02<span class="unit">/ 06</span></div>
+            <div class="en">Air Conditioning</div>
+          </div>
+          <h3 style="margin-top:1em;color:var(--amber);">空調</h3>
+        </div>
+        <div>
+          <h4 style="margin-bottom:.5em;">通常是最大宗的用電負載</h4>
+          <ul style="font-size:.82em;">
+            <li>主機效率（COP／IPLV）</li>
+            <li>變頻控制與分區送風</li>
+            <li>新風與熱回收設計</li>
+          </ul>
+          <p class="feel" style="border-left-color:var(--amber);color:var(--amber);">主機效率提高一級，長期電費單上的差異就很可觀。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 16c 照明 -->
+<section>
+  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
+    <div class="slide-inner">
+      <p class="cat-tab">EUI 檢核項目　03 / 06</p>
+      <div class="ind-detail">
+        <div>
+          <div class="ptbox" style="border-left-color:var(--amber);">
+            <div class="num" style="color:var(--amber);">03<span class="unit">/ 06</span></div>
+            <div class="en">Lighting</div>
+          </div>
+          <h3 style="margin-top:1em;color:var(--amber);">照明</h3>
+        </div>
+        <div>
+          <h4 style="margin-bottom:.5em;">長時間運轉的固定負載</h4>
+          <ul style="font-size:.82em;">
+            <li>燈具發光效率（lm／W）</li>
+            <li>公共空間的分區與時段控制</li>
+            <li>自然採光與感應控制整合</li>
+          </ul>
+          <p class="feel" style="border-left-color:var(--amber);color:var(--amber);">走廊、停車場的燈一開就是一整天 —— 效率差一點，全年下來都是電費。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 16d 電梯 -->
+<section>
+  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
+    <div class="slide-inner">
+      <p class="cat-tab">EUI 檢核項目　04 / 06</p>
+      <div class="ind-detail">
+        <div>
+          <div class="ptbox" style="border-left-color:var(--amber);">
+            <div class="num" style="color:var(--amber);">04<span class="unit">/ 06</span></div>
+            <div class="en">Elevators</div>
+          </div>
+          <h3 style="margin-top:1em;color:var(--amber);">電梯</h3>
+        </div>
+        <div>
+          <h4 style="margin-bottom:.5em;">中高樓層住宅的公共用電大宗</h4>
+          <ul style="font-size:.82em;">
+            <li>馬達效率與驅動方式</li>
+            <li>待機與低載運轉的能耗控制</li>
+            <li>群控調度，減少空跑與等待</li>
+          </ul>
+          <p class="feel" style="border-left-color:var(--amber);color:var(--amber);">電梯的效率住戶看不到，但每個月的公電費單看得到。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 16e 揚水泵 -->
+<section>
+  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
+    <div class="slide-inner">
+      <p class="cat-tab">EUI 檢核項目　05 / 06</p>
+      <div class="ind-detail">
+        <div>
+          <div class="ptbox" style="border-left-color:var(--amber);">
+            <div class="num" style="color:var(--amber);">05<span class="unit">/ 06</span></div>
+            <div class="en">Water Pump</div>
+          </div>
+          <h3 style="margin-top:1em;color:var(--amber);">揚水泵</h3>
+        </div>
+        <div>
+          <h4 style="margin-bottom:.5em;">容易被忽略，卻全天候運轉</h4>
+          <ul style="font-size:.82em;">
+            <li>給水加壓與屋頂水箱揚水</li>
+            <li>變頻泵與分區減壓設計</li>
+            <li>馬達效率與管路損耗</li>
+          </ul>
+          <p class="feel" style="border-left-color:var(--amber);color:var(--amber);">揚水泵安靜地運轉一整年，是公電費單上常被忽略的一筆。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 16f 機械設備 -->
+<section>
+  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
+    <div class="slide-inner">
+      <p class="cat-tab">EUI 檢核項目　06 / 06</p>
+      <div class="ind-detail">
+        <div>
+          <div class="ptbox" style="border-left-color:var(--amber);">
+            <div class="num" style="color:var(--amber);">06<span class="unit">/ 06</span></div>
+            <div class="en">Other Equipment</div>
+          </div>
+          <h3 style="margin-top:1em;color:var(--amber);">機械設備</h3>
+        </div>
+        <div>
+          <h4 style="margin-bottom:.5em;">把剩下的公共機電都算進去</h4>
+          <ul style="font-size:.82em;">
+            <li>地下停車場通風與排風機</li>
+            <li>公共空間的熱水系統</li>
+            <li>消防、給排水等其餘固定設備</li>
+          </ul>
+          <p class="feel" style="border-left-color:var(--amber);color:var(--amber);">能效計算邊界把這些細節都納入，標示才貼近建築實際耗能的全貌。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 23 設計策略 -->
+<section>
+  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
+    <div class="slide-inner">
+      <p class="kicker">設計策略</p>
       <div class="rule"></div>
-      <h2>如何提升能效 ─ 設計策略</h2>
-      <div class="grid-2" style="margin-top:1.2em;">
-        <div class="card card-acc">
-          <h3 style="margin-bottom:.7em;">被動式設計</h3>
-          <ul style="font-size:.78em;">
-            <li>建築外殼隔熱與遮陽</li>
-            <li>自然採光與通風</li>
-            <li>座向與開窗最佳化</li>
-            <li>從源頭降低空調照明需求</li>
+      <h2>提升能效的兩條路</h2>
+      <div class="grid-2" style="margin-top:1.1em;">
+        <div class="card" style="border-top:3px solid var(--amber);">
+          <h3 class="em">被動式設計</h3>
+          <ul style="font-size:.8em;margin-top:.4em;">
+            <li>建築外殼的隔熱與遮陽</li>
+            <li>自然採光與自然通風</li>
+            <li>座向與開窗的最佳化</li>
+            <li>從源頭降低空調與照明需求</li>
           </ul>
         </div>
-        <div class="card card-alt">
-          <h3 style="margin-bottom:.7em;">主動式設計</h3>
-          <ul style="font-size:.78em;">
+        <div class="card" style="border-top:3px solid var(--amber-mid);">
+          <h3 style="color:var(--amber-mid);">主動式設計</h3>
+          <ul style="font-size:.8em;margin-top:.4em;">
             <li>高效率空調主機與變頻</li>
             <li>LED 高效照明與智慧控制</li>
             <li>高效率電梯與設備</li>
@@ -535,362 +603,233 @@
   </div>
 </section>
 
-<!-- 18 次系統分類 -->
+<!-- 24 新建 vs 既有 -->
 <section>
   <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
     <div class="slide-inner">
-      <span class="tag tag-amber">SUB-SYSTEMS</span>
+      <p class="kicker">評估方式</p>
       <div class="rule"></div>
-      <h2>BERS 次系統分類</h2>
-      <p class="small" style="margin-bottom:1.2em;">BERS 依「新建／既有」與建築性質分為多類次系統，對應不同的計算與查證方式。</p>
+      <h2>新建與既有，算法不同</h2>
+      <p class="lead" style="margin-bottom:1em;">手冊依「新建／既有」與建築性質分為多類次系統，對應不同的計算與查證方式。</p>
       <div class="grid-2">
-        <div class="card card-acc">
-          <h3 style="margin-bottom:.6em;">新建建築</h3>
-          <ul style="font-size:.78em;">
-            <li>BERSn — 新建建築能效標示</li>
-            <li>以設計圖說理論計算</li>
-            <li>設備與使用採標準情境</li>
+        <div class="card" style="border-top:3px solid var(--amber);">
+          <h3 class="em">新建建築</h3>
+          <ul style="font-size:.8em;margin-top:.4em;">
+            <li>以設計圖說做理論計算</li>
+            <li>設備與使用情境採標準假設</li>
+            <li>屬理論值，不保證等同實際耗能</li>
           </ul>
         </div>
-        <div class="card card-alt">
-          <h3 style="margin-bottom:.6em;">既有建築</h3>
-          <ul style="font-size:.78em;">
-            <li>BERSe — 以真實電費單換算</li>
-            <li>E-BERSe — 市場虛擬 EUI 基準</li>
-            <li>支援公開揭露 DEC 作法</li>
+        <div class="card" style="border-top:3px solid var(--amber-mid);">
+          <h3 style="color:var(--amber-mid);">既有建築</h3>
+          <ul style="font-size:.8em;margin-top:.4em;">
+            <li>以真實電費單換算、可查證</li>
+            <li>可採市場虛擬 EUI 作為基準</li>
+            <li>能對照實際營運表現、支援公開揭露</li>
           </ul>
         </div>
       </div>
-      <p class="note" style="margin-top:.9em;">※ 手冊共規範六類次系統能效標示法；新建為理論計算值，不保證與實際耗能一致。</p>
+      <p class="note">手冊共規範六類次系統的能效標示法；新建為理論計算值，與實際耗能可能有落差。</p>
     </div>
   </div>
 </section>
 
-<!-- 19 適用建築類組 -->
+<!-- 25 適用類組 -->
 <section>
   <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
     <div class="slide-inner">
-      <span class="tag tag-amber">APPLICABILITY</span>
+      <p class="kicker">適用範圍</p>
       <div class="rule"></div>
-      <h2>適用建築類組</h2>
-      <p class="small" style="margin-bottom:1em;">2022 年前導版適用 6 類 12 組；2024 年版幾乎適用大部分建築類組，並將所有規定集結於單一手冊。</p>
+      <h2>幾乎涵蓋各類建築</h2>
+      <p class="lead" style="margin-bottom:1em;">2022 年前導版適用 6 類 12 組；2024 年版幾乎適用大部分建築類組，並把所有規定集結於單一手冊。</p>
       <div class="grid-3">
-        <div class="card" style="text-align:center;"><h4 class="em">住宅類</h4><p class="small" style="margin-top:.3em;">H-2 等住宅建築</p></div>
-        <div class="card" style="text-align:center;"><h4 class="em">文教類</h4><p class="small" style="margin-top:.3em;">D-2 文教設施等</p></div>
-        <div class="card" style="text-align:center;"><h4 class="em">辦公類</h4><p class="small" style="margin-top:.3em;">辦公、服務業建築</p></div>
-        <div class="card" style="text-align:center;"><h4 class="em">商業類</h4><p class="small" style="margin-top:.3em;">賣場、餐飲、旅館</p></div>
-        <div class="card" style="text-align:center;"><h4 class="em">醫療類</h4><p class="small" style="margin-top:.3em;">醫院、照護機構</p></div>
-        <div class="card" style="text-align:center;"><h4 class="em">其他非住宅</h4><p class="small" style="margin-top:.3em;">多數一般建築類組</p></div>
+        <div class="card"><h4 class="em">住宅類</h4><p class="small" style="margin-top:.3em;">H-2 等住宅建築</p></div>
+        <div class="card"><h4 class="em">文教類</h4><p class="small" style="margin-top:.3em;">D-2 文教設施等</p></div>
+        <div class="card"><h4 class="em">辦公類</h4><p class="small" style="margin-top:.3em;">辦公與服務業建築</p></div>
+        <div class="card"><h4 class="em">商業類</h4><p class="small" style="margin-top:.3em;">賣場、餐飲、旅館</p></div>
+        <div class="card"><h4 class="em">醫療類</h4><p class="small" style="margin-top:.3em;">醫院與照護機構</p></div>
+        <div class="card"><h4 class="em">其他非住宅</h4><p class="small" style="margin-top:.3em;">多數一般建築類組</p></div>
       </div>
-      <p class="note" style="margin-top:.8em;">※ 不適用於特殊廠庫、戒護場所、危險廠庫及海拔 800 公尺以上等特定類組。</p>
+      <p class="note">不適用於特殊廠庫、戒護場所、危險廠庫，及海拔 800 公尺以上等特定類組。</p>
     </div>
   </div>
 </section>
 
-<!-- 20 新建 vs 既有 -->
+<!-- 26 開發案能效目標 -->
 <section>
   <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
     <div class="slide-inner">
-      <span class="tag tag-amber">CALCULATION NATURE</span>
+      <p class="kicker">給開發案</p>
       <div class="rule"></div>
-      <h2>計算特性 ─ 新建 vs 既有</h2>
-      <div class="grid-2" style="margin-top:1.2em;">
-        <div class="card card-acc">
-          <h3 style="margin-bottom:.7em;">新建建築</h3>
-          <ul style="font-size:.78em;">
-            <li>以設計圖說理論計算</li>
-            <li>設備與使用採標準情境</li>
-            <li>為理論值，不保證等同實際耗能</li>
-            <li>適用 BERSn 等系統</li>
-          </ul>
-        </div>
-        <div class="card card-alt">
-          <h3 style="margin-bottom:.7em;">既有建築</h3>
-          <ul style="font-size:.78em;">
-            <li>BERSe 以真實電費單換算、可查證</li>
-            <li>E-BERSe 採市場虛擬 EUI 基準</li>
-            <li>可對照實際營運表現</li>
-            <li>支援公開揭露 DEC 作法</li>
-          </ul>
-        </div>
+      <h2>能效目標怎麼設</h2>
+      <div class="grid-4" style="margin-top:1.1em;">
+        <div class="card top"><h4 class="em">法定門檻</h4><p class="small" style="margin-top:.4em;">至少達主管機關要求的能效等級</p></div>
+        <div class="card top"><h4 class="em">市場定位</h4><p class="small" style="margin-top:.4em;">能效等級對應產品的低碳賣點</p></div>
+        <div class="card top"><h4 class="em">容積策略</h4><p class="small" style="margin-top:.4em;">結合綠建築爭取容積獎勵</p></div>
+        <div class="card top"><h4 class="em">淨零超前</h4><p class="small" style="margin-top:.4em;">朝近零碳 1+ 級超前部署</p></div>
       </div>
+      <p class="note">建議規劃初期就設定目標能效等級，再回推外殼、空調、照明與再生能源的規格。</p>
     </div>
   </div>
 </section>
 
-<!-- 21 開發案能效目標設定 -->
+<!-- 27 BERS x EEWH -->
 <section>
   <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
     <div class="slide-inner">
-      <span class="tag tag-amber">TARGET SETTING</span>
+      <p class="kicker">與綠建築的關係</p>
       <div class="rule"></div>
-      <h2>開發案的能效目標設定</h2>
-      <div class="grid-4" style="margin-top:1.2em;">
-        <div class="card" style="text-align:center;border-top:3px solid var(--amber);">
-          <div style="font-size:1.3em;margin-bottom:.3em;">⚖️</div>
-          <h4 class="em">法定門檻</h4>
-          <p class="small" style="margin-top:.3em;">至少達主管機關要求的能效等級</p>
-        </div>
-        <div class="card" style="text-align:center;border-top:3px solid var(--amber);">
-          <div style="font-size:1.3em;margin-bottom:.3em;">🎯</div>
-          <h4 class="em">市場定位</h4>
-          <p class="small" style="margin-top:.3em;">能效等級對應產品低碳賣點</p>
-        </div>
-        <div class="card" style="text-align:center;border-top:3px solid var(--amber);">
-          <div style="font-size:1.3em;margin-bottom:.3em;">📐</div>
-          <h4 class="em">容積策略</h4>
-          <p class="small" style="margin-top:.3em;">結合綠建築爭取容積獎勵</p>
-        </div>
-        <div class="card" style="text-align:center;border-top:3px solid var(--amber);">
-          <div style="font-size:1.3em;margin-bottom:.3em;">🌱</div>
-          <h4 class="em">淨零超前</h4>
-          <p class="small" style="margin-top:.3em;">朝近零碳 1+ 級超前部署</p>
-        </div>
-      </div>
-      <p class="note" style="margin-top:.9em;">建議規劃初期即設定目標能效等級，回推外殼、空調、照明與再生能源規格。</p>
-    </div>
-  </div>
-</section>
-
-<!-- 22 BERS 與綠建築的關係 -->
-<section>
-  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
-    <div class="slide-inner">
-      <span class="tag tag-amber">BERS × EEWH</span>
-      <div class="rule"></div>
-      <h2>BERS 與綠建築的關係</h2>
-      <p class="small" style="margin-bottom:1.2em;">綠建築標章與建築能效標示「分進合擊」：綠建築 EEWH 的「日常節能指標」可採建築能效評估法，直接以 BERS 得分換算。</p>
-      <div style="display:flex;align-items:stretch;gap:1.5em;">
-        <div class="card card-acc" style="flex:1;">
-          <h3 style="margin-bottom:.6em;color:#064e3b;">綠建築 EEWH</h3>
-          <ul style="font-size:.78em;">
-            <li>四大範疇九大指標</li>
-            <li>日常節能指標可採建築能效法</li>
-          </ul>
-        </div>
-        <div style="display:flex;align-items:center;font-size:1.6em;color:var(--amber);flex-shrink:0;">→</div>
-        <div class="card card-em" style="flex:1;">
-          <h3 style="margin-bottom:.6em;color:#fff;">建築能效 BERS</h3>
-          <ul style="font-size:.78em;">
-            <li>量化能效、SCORE_EE 得分</li>
-            <li>回饋綠建築日常節能評分</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 23 Part 04 過場 -->
-<section data-background-color="#292524">
-  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
-    <div style="max-width:800px;margin:0 auto;">
-      <p class="mono" style="color:var(--amber-pale);font-size:.62em;margin-bottom:1em;letter-spacing:.1em;">PART 04</p>
-      <h1 style="color:#fff;font-size:2.6em;line-height:1.1;margin-bottom:.5em;">對開發案與淨零</h1>
-      <p style="color:var(--amber-lg);font-size:.9em;">BERS 不只是標示，是政策門檻</p>
-      <p style="color:var(--amber-mid);font-size:.7em;margin-top:2em;">傑丞建築機構　Jieceng Architecture</p>
-    </div>
-  </div>
-</section>
-
-<!-- 24 政策強制要求 -->
-<section>
-  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
-    <div class="slide-inner">
-      <span class="tag tag-amber">MANDATORY POLICY</span>
-      <div class="rule"></div>
-      <h2>政策強制要求</h2>
-      <p class="small" style="margin-bottom:1.2em;">建築能效已從「鼓勵」走向「強制」，是開發案必須提前因應的法定門檻。</p>
-      <div class="grid-3">
-        <div class="card" style="border-top:3px solid var(--amber);text-align:center;">
-          <div style="font-family:'Playfair Display',serif;font-size:2em;font-weight:700;color:var(--amber);">2030</div>
-          <h4 style="margin:.4em 0;">公有新建建築</h4>
-          <p class="small">須達能效 1 級或近零碳建築</p>
-        </div>
-        <div class="card" style="border-top:3px solid var(--amber-mid);text-align:center;">
-          <div style="font-family:'Playfair Display',serif;font-size:2em;font-weight:700;color:var(--amber-mid);">2040</div>
-          <h4 style="margin:.4em 0;">既有建築更新</h4>
-          <p class="small">50% 既有建築更新為能效 1 級或近零碳</p>
-        </div>
-        <div class="card" style="border-top:3px solid #92400e;text-align:center;">
-          <div style="font-family:'Playfair Display',serif;font-size:2em;font-weight:700;color:#92400e;">2050</div>
-          <h4 style="margin:.4em 0;">全面近零碳</h4>
-          <p class="small">100% 新建、逾 85% 建築為近零碳</p>
-        </div>
-      </div>
-      <p class="note" style="margin-top:.9em;">※ 實際適用範圍與時程，依主管機關最新法令與公告為準。</p>
-    </div>
-  </div>
-</section>
-
-<!-- 25 能效是賣點 -->
-<section>
-  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
-    <div class="slide-inner">
-      <div class="rule"></div>
-      <h2>能效，是碳資產也是賣點</h2>
-      <div class="rule-full"></div>
-      <ul style="font-size:.88em;margin-top:.8em;">
-        <li>高能效 = 住戶長期電費實際降低</li>
-        <li>能效標示是看得懂的低碳保證，助銷售溢價</li>
-        <li>可結合綠建築爭取容積獎勵</li>
-        <li>提前布局，避免未來法規門檻風險</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- 26 三標章整合 -->
-<section>
-  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
-    <div class="slide-inner">
-      <span class="tag tag-amber">INTEGRATION</span>
-      <div class="rule"></div>
-      <h2>三標章整合 ─ 綠建築 × 智慧 × 能效</h2>
-      <p class="small" style="margin-bottom:1.2em;">三套標章相互呼應，共同支撐淨零建築與開發效益。</p>
-      <div class="grid-3">
-        <div class="card" style="text-align:center;border-left:4px solid #064e3b;">
-          <div style="font-size:1.6em;margin-bottom:.4em;">🌿</div>
-          <h4 style="color:#064e3b;">綠建築 EEWH</h4>
-          <p class="small" style="margin-top:.4em;">生態、節能、減廢、健康</p>
-        </div>
-        <div class="card" style="text-align:center;border-left:4px solid #1e40af;">
-          <div style="font-size:1.6em;margin-bottom:.4em;">🏙️</div>
-          <h4 style="color:#1e40af;">智慧建築</h4>
-          <p class="small" style="margin-top:.4em;">偵知、顯示、連動的智慧化</p>
-        </div>
-        <div class="card-em" style="text-align:center;">
-          <div style="font-size:1.6em;margin-bottom:.4em;">⚡</div>
-          <h4 style="color:#fff;">建築能效 BERS</h4>
-          <p style="font-size:.75em;color:var(--amber-pale);margin-top:.4em;">量化能效、邁向近零碳</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 27 申請流程 -->
-<section>
-  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
-    <div class="slide-inner">
-      <span class="tag tag-amber">APPLICATION</span>
-      <div class="rule"></div>
-      <h2>申請流程</h2>
-      <div style="display:flex;align-items:stretch;gap:.6em;margin-top:1.4em;">
-        <div class="card" style="flex:1;text-align:center;">
-          <div style="font-size:1.3em;margin-bottom:.4em;">📊</div>
-          <div style="background:var(--amber);color:#fff;border-radius:50%;width:1.8em;height:1.8em;display:flex;align-items:center;justify-content:center;margin:0 auto .5em;font-family:'JetBrains Mono',monospace;font-size:.75em;font-weight:700;">1</div>
-          <h4 class="em">能效計算</h4>
-          <p class="small" style="margin-top:.3em;">依 ECB 計算 EUI／CEI 與能效分數</p>
-        </div>
-        <div style="display:flex;align-items:center;font-size:1.2em;color:var(--stone-400);">→</div>
-        <div class="card" style="flex:1;text-align:center;">
-          <div style="font-size:1.3em;margin-bottom:.4em;">📋</div>
-          <div style="background:var(--amber);color:#fff;border-radius:50%;width:1.8em;height:1.8em;display:flex;align-items:center;justify-content:center;margin:0 auto .5em;font-family:'JetBrains Mono',monospace;font-size:.75em;font-weight:700;">2</div>
-          <h4 class="em">候選證書</h4>
-          <p class="small" style="margin-top:.3em;">新建以設計圖說申請能效評估</p>
-        </div>
-        <div style="display:flex;align-items:center;font-size:1.2em;color:var(--stone-400);">→</div>
-        <div class="card" style="flex:1;text-align:center;">
-          <div style="font-size:1.3em;margin-bottom:.4em;">🔍</div>
-          <div style="background:var(--amber);color:#fff;border-radius:50%;width:1.8em;height:1.8em;display:flex;align-items:center;justify-content:center;margin:0 auto .5em;font-family:'JetBrains Mono',monospace;font-size:.75em;font-weight:700;">3</div>
-          <h4 class="em">查核確認</h4>
-          <p class="small" style="margin-top:.3em;">施工落實、文件查驗</p>
-        </div>
-        <div style="display:flex;align-items:center;font-size:1.2em;color:var(--stone-400);">→</div>
-        <div class="card" style="flex:1;text-align:center;">
-          <div style="font-size:1.3em;margin-bottom:.4em;">🏷️</div>
-          <div style="background:var(--amber);color:#fff;border-radius:50%;width:1.8em;height:1.8em;display:flex;align-items:center;justify-content:center;margin:0 auto .5em;font-family:'JetBrains Mono',monospace;font-size:.75em;font-weight:700;">4</div>
-          <h4 class="em">能效標示</h4>
-          <p class="small" style="margin-top:.3em;">完工取得標示（1+~7 級），公開揭露</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 28 BERS × 2050 淨零路徑 -->
-<section>
-  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
-    <div class="slide-inner">
-      <div class="rule"></div>
-      <h2>BERS × 2050 淨零路徑</h2>
-      <div class="rule-full"></div>
-      <ul style="font-size:.88em;margin-top:.8em;">
-        <li>建築部門是國家淨零十二項關鍵戰略之一</li>
-        <li>BERS 提供量化、分級、可檢核的政策工具</li>
-        <li>公有建築先行，帶動民間市場跟進</li>
-        <li>逐步邁向 2050 全面近零碳建築</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- 29 BERS vs EEWH 比較 -->
-<section>
-  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
-    <div class="slide-inner">
-      <span class="tag tag-amber">BERS vs EEWH</span>
-      <div class="rule"></div>
-      <h2>建築能效 與 綠建築 有何不同？</h2>
-      <div class="grid-2" style="margin-top:1.2em;">
+      <h2>BERS 與綠建築，分進合擊</h2>
+      <p class="lead" style="margin-bottom:1.2em;">綠建築 EEWH 的「日常節能指標」可採建築能效評估法，直接以 BERS 的得分換算 —— 兩套制度彼此銜接、互相加分。</p>
+      <div class="grid-2">
         <div class="card" style="border-top:3px solid #064e3b;">
-          <h3 style="color:#064e3b;margin-bottom:.7em;">綠建築 EEWH</h3>
-          <ul style="font-size:.78em;">
-            <li>四大範疇、九大指標</li>
-            <li>涵蓋生態／節能／減廢／健康</li>
-            <li>綜合性的環境評估</li>
-            <li>分鑽石～合格五級</li>
-          </ul>
+          <h3 style="color:#064e3b;">綠建築 EEWH</h3>
+          <ul style="font-size:.8em;margin-top:.4em;"><li>四大範疇、九大指標</li><li>日常節能可採建築能效法計分</li></ul>
         </div>
-        <div class="card card-em">
-          <h3 style="color:#fff;margin-bottom:.7em;">建築能效 BERS</h3>
-          <ul style="font-size:.78em;">
-            <li>專注於『能源效率』單一面向</li>
-            <li>量化 EUI／CEI 並分級</li>
-            <li>對接近零碳建築目標</li>
-            <li>分 1+～7 七階段</li>
-          </ul>
+        <div class="card-em">
+          <h3 style="color:#fff;">建築能效 BERS</h3>
+          <ul style="font-size:.8em;margin-top:.4em;"><li>量化能效、產生能效得分</li><li>回饋綠建築的日常節能評分</li></ul>
         </div>
       </div>
-      <p class="note" style="margin-top:.9em;">兩者相輔相成：綠建築看整體環境、建築能效專精能源，且可互相換算。</p>
     </div>
   </div>
 </section>
 
-<!-- 30 重點回顧 -->
-<section>
-  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
-    <div class="slide-inner">
-      <span class="tag tag-amber">KEY TAKEAWAYS</span>
-      <div class="rule"></div>
-      <h2>重點回顧</h2>
-      <ul style="font-size:.84em;margin-top:.8em;">
-        <li>BERS 將建築能效「量化、分級、標示」，仿歐盟 EPBD</li>
-        <li>七階段分級 1+、1、2、3、4、5、6、7，以市場平均為合格分界</li>
-        <li>1+ ＝ 近零碳建築：住宅減碳 30%↑／非住宅節能 50%↑</li>
-        <li>計算邊界 ECB：外殼、空調、照明、電梯、熱水、再生能源</li>
-        <li>標示以 EUI（用電密度）或 CEI（碳排密度）呈現</li>
-        <li>對接 2050 淨零：2030 公有新建須達能效 1 級或近零碳</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- 31 Thank You -->
+<!-- 28 PART04 -->
 <section data-background-color="#1c1917">
   <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
-    <div style="max-width:800px;margin:0 auto;text-align:center;">
-      <h1 style="color:#fff;font-size:3em;margin-bottom:.5em;">Thank You</h1>
-      <div style="width:56px;height:3px;background:var(--amber-lg);margin:1em auto;border-radius:2px;"></div>
-      <p style="color:#9ca3af;font-size:.88em;">建築能效 BERS 2024 ─ 量化能效，邁向 2050 淨零建築</p>
-      <p style="color:#6b7280;font-size:.78em;margin-top:1.2em;">傑丞建築機構　Jieceng Architecture</p>
+    <div class="divider-wrap">
+      <p class="divider-kicker">PART 04</p>
+      <h1 style="color:#fff;font-size:2.4em;line-height:1.25;margin-bottom:.45em;">對開發案與淨零</h1>
+      <p style="color:var(--amber-lg);font-size:.9em;">能效不只是標示，更是政策門檻。</p>
+      <p style="color:#78716c;font-size:.7em;margin-top:1.8em;">傑丞建築機構　Jieceng Architecture</p>
+    </div>
+  </div>
+</section>
+
+<!-- 29 政策強制要求 -->
+<section>
+  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
+    <div class="slide-inner">
+      <p class="kicker">從鼓勵到強制</p>
+      <div class="rule"></div>
+      <h2>能效已成為法定門檻</h2>
+      <p class="lead" style="margin-bottom:1.2em;">建築能效正從「鼓勵」走向「強制」，是開發案必須提前因應的政策。</p>
+      <div class="grid-3">
+        <div class="card" style="border-top:3px solid var(--amber);"><div style="font-family:'Playfair Display',serif;font-size:1.8em;font-weight:700;color:var(--amber);">2030</div><h4 style="margin:.3em 0;">公有新建建築</h4><p class="small">須達能效 1 級或近零碳建築</p></div>
+        <div class="card" style="border-top:3px solid var(--amber-mid);"><div style="font-family:'Playfair Display',serif;font-size:1.8em;font-weight:700;color:var(--amber-mid);">2040</div><h4 style="margin:.3em 0;">既有建築更新</h4><p class="small">50% 更新為能效 1 級或近零碳</p></div>
+        <div class="card" style="border-top:3px solid #92400e;"><div style="font-family:'Playfair Display',serif;font-size:1.8em;font-weight:700;color:#92400e;">2050</div><h4 style="margin:.3em 0;">全面近零碳</h4><p class="small">100% 新建、逾 85% 為近零碳</p></div>
+      </div>
+      <p class="note">實際適用範圍與時程，依主管機關最新法令與公告為準。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 30 能效作為產品價值 -->
+<section>
+  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
+    <div class="slide-inner">
+      <p class="kicker">產品價值</p>
+      <div class="rule"></div>
+      <h2>能效，是碳資產也是賣點</h2>
+      <div class="grid-2" style="margin-top:1.1em;">
+        <div class="card top"><h4 class="em">對住戶</h4><ul style="font-size:.8em;margin-top:.4em;"><li>高能效代表長期電費實際降低</li><li>能效標示是看得懂的低碳保證</li></ul></div>
+        <div class="card top"><h4 class="em">對開發</h4><ul style="font-size:.8em;margin-top:.4em;"><li>可結合綠建築爭取容積獎勵</li><li>提前布局，避開未來的法規門檻風險</li></ul></div>
+      </div>
+      <p class="feel">在淨零成為市場語言的當下，高能效既是產品的差異化賣點，也是長期保值的籌碼。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 31 三標章整合 -->
+<section>
+  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
+    <div class="slide-inner">
+      <p class="kicker">標章整合</p>
+      <div class="rule"></div>
+      <h2>綠建築 × 智慧 × 能效</h2>
+      <p class="lead" style="margin-bottom:1.2em;">三套標章彼此呼應、可合併申請，共同支撐淨零建築與開發效益。</p>
+      <div class="grid-3">
+        <div class="card" style="border-top:3px solid #064e3b;"><h4 style="color:#064e3b;">綠建築 EEWH</h4><p class="small" style="margin-top:.4em;">生態、節能、減廢、健康</p></div>
+        <div class="card" style="border-top:3px solid #1e40af;"><h4 style="color:#1e40af;">智慧建築</h4><p class="small" style="margin-top:.4em;">偵知、顯示、連動的智慧化</p></div>
+        <div class="card-em"><h4 style="color:#fff;">建築能效 BERS</h4><p style="font-size:.76em;color:var(--amber-pale);margin-top:.4em;">量化能效，邁向近零碳</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 32 申請流程 -->
+<section>
+  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
+    <div class="slide-inner">
+      <p class="kicker">申請流程</p>
+      <div class="rule"></div>
+      <h2>從計算到取得標示</h2>
+      <div class="flow">
+        <div class="step"><div class="n">01</div><h4>能效計算</h4><p class="small">依 ECB 計算 EUI／CEI 與能效分數</p></div>
+        <div class="step"><div class="n">02</div><h4>候選證書</h4><p class="small">新建以設計圖說申請能效評估</p></div>
+        <div class="step"><div class="n">03</div><h4>查核確認</h4><p class="small">施工落實，文件查驗</p></div>
+        <div class="step"><div class="n">04</div><h4>能效標示</h4><p class="small">完工取得 1+ 至 7 級標示，公開揭露</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 33 BERS vs EEWH 比較 -->
+<section>
+  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
+    <div class="slide-inner">
+      <p class="kicker">兩者差異</p>
+      <div class="rule"></div>
+      <h2>建築能效 與 綠建築 有何不同</h2>
+      <table class="cmp">
+        <thead><tr><th></th><th class="a">綠建築 EEWH</th><th class="b">建築能效 BERS</th></tr></thead>
+        <tbody>
+          <tr><td>關注面向</td><td>生態／節能／減廢／健康，綜合環境評估</td><td>專注於能源效率單一面向</td></tr>
+          <tr><td>衡量方式</td><td>四大範疇、九大指標</td><td>量化 EUI／CEI 並分級</td></tr>
+          <tr><td>分級</td><td>鑽石至合格，共五級</td><td>1+ 至 7，共七階段</td></tr>
+          <tr><td>目標</td><td>整體環境品質</td><td>對接近零碳建築</td></tr>
+        </tbody>
+      </table>
+      <p class="note">兩者相輔相成：綠建築看整體環境、建築能效專精能源，且可互相換算。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 34 重點回顧 -->
+<section>
+  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
+    <div class="slide-inner">
+      <p class="kicker">重點回顧</p>
+      <div class="rule"></div>
+      <h2>關於 BERS，記住這幾點</h2>
+      <ul style="font-size:.84em;margin-top:.6em;">
+        <li>BERS 把建築能效「量化、分級、標示」，制度仿自歐盟 EPBD</li>
+        <li>七階段分級 1+ 到 7，以市場平均能效為合格分界</li>
+        <li>1+ 為近零碳建築：住宅減碳 30% 以上、非住宅節能 50% 以上</li>
+        <li>計算邊界 ECB 涵蓋外殼、空調、照明、電梯、熱水與再生能源</li>
+        <li>標示以 EUI（用電密度）或 CEI（碳排密度）呈現</li>
+        <li>對接 2050 淨零：2030 年起公有新建須達能效 1 級或近零碳</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 35 結尾 -->
+<section data-background-color="#1c1917">
+  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
+    <div style="max-width:820px;margin:0 auto;">
+      <p class="mono" style="color:var(--amber-lg);font-size:.66em;letter-spacing:.2em;margin-bottom:1em;">BERS ｜ 量化能效・邁向淨零</p>
+      <h1 style="color:#fff;font-size:2.3em;line-height:1.3;margin-bottom:.5em;">把能效講清楚，<br/>讓淨零看得見</h1>
+      <div style="width:52px;height:2px;background:var(--amber-lg);margin:1.1em 0;"></div>
+      <p style="color:#78716c;font-size:.74em;margin-top:1.6em;">傑丞建築機構　Jieceng Architecture</p>
     </div>
   </div>
 </section>
 
 </div>
 </div>
+
 <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
 <script>
   Reveal.initialize({
