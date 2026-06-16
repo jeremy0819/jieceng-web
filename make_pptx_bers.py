@@ -1,394 +1,467 @@
-"""Generate BERS PPTX."""
-from pptx import Presentation
+"""Build the BERS building-energy deck (presentation-BERS.pptx).
+
+Mirrors public/presentation-bers.html: energy-efficiency rating, near-zero-carbon
+building and the net-zero pathway. Emoji-free; uses an EU-style 7-tier energy
+gradient scale.
+"""
 from pptx.util import Inches, Pt
-from pptx.dml.color import RGBColor
 from pptx.enum.text import PP_ALIGN
+import deck_lib as D
 
-W = Inches(13.33)
-H = Inches(7.5)
+DARK = "#1c1917"
+AMBER = "#b45309"; AMBER_MID = "#d97706"; AMBER_LG = "#fbbf24"; AMBER_PALE = "#fef3c7"
+TIERS = ["#047857", "#059669", "#34d399", "#a3e635", "#facc15", "#fb923c", "#f87171", "#dc2626"]
+WARM = D.WARM; CHAR = D.CHAR; BODY = D.BODY; STONE4 = D.STONE4; LINE = D.LINE; WHITE = D.WHITE
 
-def rgb(h):
-    h = h.lstrip('#')
-    return RGBColor(int(h[0:2],16), int(h[2:4],16), int(h[4:6],16))
 
-def new_prs():
-    prs = Presentation()
-    prs.slide_width  = W
-    prs.slide_height = H
-    return prs
+def content(prs):
+    sl = D.blank(prs); D.fill_bg(sl, WARM)
+    return sl
 
-def blank_slide(prs):
-    return prs.slides.add_slide(prs.slide_layouts[6])
 
-def fill_bg(slide, hex_color):
-    bg = slide.background
-    fill = bg.fill
-    fill.solid()
-    fill.fore_color.rgb = rgb(hex_color)
+def eui_item(prs, idx, en, name, subhead, items, feel):
+    sl = content(prs)
+    D.text(sl, f"EUI 檢核項目　{idx:02d} / 06", Inches(0.9), Inches(0.7), Inches(9), Inches(0.3),
+           size=10, color=STONE4, font=D.MONO)
+    lx, ly = Inches(0.9), Inches(1.75)
+    D.rect(sl, lx, ly, Inches(2.45), Inches(1.5), fill=WHITE, line=LINE)
+    D.rect(sl, lx, ly, Pt(2.6), Inches(1.5), fill=AMBER)
+    D.text(sl, f"{idx:02d}", lx + Inches(0.22), ly + Inches(0.16), Inches(2.1), Inches(0.7),
+           size=34, bold=True, color=AMBER)
+    D.text(sl, en, lx + Inches(0.22), ly + Inches(1.02), Inches(2.15), Inches(0.3),
+           size=8.5, color=STONE4, font=D.MONO)
+    D.text(sl, name, lx, ly + Inches(1.7), Inches(2.7), Inches(0.5),
+           size=18, bold=True, color=AMBER)
+    rx, ry = Inches(4.0), Inches(1.75)
+    D.text(sl, subhead, rx, ry, Inches(8.3), Inches(0.4), size=14, bold=True, color=CHAR)
+    D.bullets(sl, items, rx, ry + Inches(0.55), Inches(8.3), Inches(2.3),
+              size=12.5, color=BODY, marker_color=AMBER, gap=5, spacing=1.18)
+    fy = ry + Inches(0.55) + Inches(0.44) * len(items) + Inches(0.25)
+    if fy > Inches(5.5):
+        fy = Inches(5.5)
+    D.rect(sl, rx, fy, Pt(2), Inches(0.95), fill=AMBER)
+    D.text(sl, feel, rx + Inches(0.2), fy, Inches(7.9), Inches(1.0),
+           size=12, italic=True, color=AMBER, spacing=1.2)
 
-def txb(slide, text, left, top, width, height,
-        size=18, bold=False, color='#1a1a1a', align=PP_ALIGN.LEFT, italic=False):
-    tf_box = slide.shapes.add_textbox(left, top, width, height)
-    tf = tf_box.text_frame
-    tf.word_wrap = True
-    p = tf.paragraphs[0]
-    p.alignment = align
-    run = p.add_run()
-    run.text = text
-    run.font.size = Pt(size)
-    run.font.bold = bold
-    run.font.italic = italic
-    run.font.color.rgb = rgb(color)
-    return tf_box
 
-def txb_lines(slide, lines, left, top, width, height,
-              size=14, color='#1a1a1a', bullet=False):
-    tf_box = slide.shapes.add_textbox(left, top, width, height)
-    tf = tf_box.text_frame
-    tf.word_wrap = True
-    for i, line in enumerate(lines):
-        p = tf.paragraphs[0] if i == 0 else tf.add_paragraph()
-        run = p.add_run()
-        run.text = ('• ' if bullet else '') + line
-        run.font.size = Pt(size)
-        run.font.color.rgb = rgb(color)
-    return tf_box
+def build(path):
+    prs = D.new_prs()
 
-def rect(slide, left, top, width, height, hex_color):
-    shape = slide.shapes.add_shape(1, left, top, width, height)
-    shape.fill.solid()
-    shape.fill.fore_color.rgb = rgb(hex_color)
-    shape.line.fill.background()
-    return shape
+    # 01 cover
+    D.cover(prs, DARK, "BERS ｜ 建築能效評估標示", "把建築的能效\n標示出來", AMBER_LG,
+            "能效分級、近零碳建築，以及邁向 2050 淨零的這條路，\n對開發案到底意味著什麼。")
 
-def accent_bar(slide, left, top, width, hex_color):
-    rect(slide, left, top, width, Pt(3), hex_color)
+    # 02 議程
+    sl = content(prs)
+    D.header(sl, "AGENDA", "本場簡報的四個部分", AMBER_MID)
+    D.card_row(sl, [
+        dict(accent=AMBER_MID, idx="PART 01", head="為什麼需要建築能效", head_color=CHAR,
+             body="淨零趨勢、台灣淨零路徑、制度沿革、師法歐盟 EPBD"),
+        dict(accent=AMBER_MID, idx="PART 02", head="能效分級制度", head_color=CHAR,
+             body="相對分級的核心概念、七階段分級、近零碳建築、能效標示"),
+    ], y=Inches(2.1), h=Inches(2.1))
+    D.card_row(sl, [
+        dict(accent=AMBER_MID, idx="PART 03", head="評估系統與範圍", head_color=CHAR,
+             body="能效計算邊界、設計策略、新建與既有、適用類組、與綠建築的關係"),
+        dict(accent=AMBER_MID, idx="PART 04", head="對開發案與淨零", head_color=CHAR,
+             body="政策強制要求、產品價值、三標章整合、申請流程"),
+    ], y=Inches(4.45), h=Inches(2.1))
 
-STONE    = '#1c1917'
-AMBER    = '#b45309'
-AMBER_L  = '#d97706'
-AMBER_LG = '#fbbf24'
-AMBER_BG = '#fef3c7'
-AMBER_XP = '#fffbeb'
-CHARCOAL = '#1a1a1a'
-WHITE    = '#ffffff'
-GRAY     = '#6b7280'
+    # 03 divider
+    D.divider(prs, DARK, "PART 01", "為什麼需要建築能效",
+              "從淨零目標，看 BERS 為什麼誕生。", AMBER_PALE, AMBER_LG)
 
-# Energy level colors
-G_1PLUS = '#14532d'  # dark green
-G_1     = '#166534'
-G_2     = '#15803d'
-G_3     = '#65a30d'
-G_4     = '#ca8a04'
-G_5     = '#ea580c'
-G_6     = '#dc2626'
-G_7     = '#991b1b'
+    # 04 什麼是 BERS
+    sl = content(prs)
+    D.header(sl, "定義", "什麼是建築能效評估（BERS）", AMBER_MID)
+    D.lead(sl, "BERS 把一棟建築的能源效率量化、分級，再「標示」出來。就像家電的能效標章一樣，"
+               "讓建築的耗能表現一眼就看得懂，是推動淨零建築最有效的政策工具之一。", y=Inches(1.95))
+    D.card_row(sl, [
+        dict(accent=AMBER_MID, head="量化", head_color=AMBER, body="以耗能與碳排密度計算能效"),
+        dict(accent=AMBER_MID, head="分級", head_color=AMBER, body="對照市場基準，分為七個階段"),
+        dict(accent=AMBER_MID, head="標示", head_color=AMBER, body="公開揭露，能被檢視也能被比較"),
+    ], y=Inches(3.5), h=Inches(1.8))
 
-def build_bers(path):
-    prs = new_prs()
+    # 05 全球淨零趨勢
+    sl = content(prs)
+    D.header(sl, "背景", "全球淨零的脈絡", AMBER_MID)
+    D.card_row(sl, [
+        dict(accent=AMBER_MID, idx="1997", body="《京都議定書》提出溫室氣體減量"),
+        dict(accent=AMBER_MID, idx="2015", body="《巴黎協定》提出淨零排放目標"),
+        dict(accent=AMBER_MID, idx="2021", body="國際能源署發表 2050 淨零路徑報告"),
+        dict(accent=AMBER_MID, idx="2022", body="國發會發布台灣 2050 淨零排放路徑"),
+    ], y=Inches(2.5), h=Inches(1.9))
 
-    # ── 01 Cover ──────────────────────────────
-    sl = blank_slide(prs)
-    fill_bg(sl, STONE)
-    txb(sl,'內政部 / 建築能效評估標示制度',
-        Inches(1),Inches(.6),Inches(11),Inches(.4),size=13,color=AMBER_LG)
-    txb(sl,'建築能效評估標示',
-        Inches(1),Inches(1.2),Inches(11),Inches(1.0),size=44,bold=True,color=WHITE)
-    txb(sl,'BERS 2024 版解析',
-        Inches(1),Inches(2.1),Inches(11),Inches(.9),size=38,bold=True,color=AMBER_LG)
-    rect(sl,Inches(1),Inches(3.15),Inches(.7),Pt(4),AMBER_LG)
-    txb(sl,'Building Energy-efficiency Rating System',
-        Inches(1),Inches(3.35),Inches(11),Inches(.4),size=15,color='#a8a29e')
-    txb(sl,'EUI 能源使用強度 × 八個能效等級 × 2050 淨零建築路徑',
-        Inches(1),Inches(3.78),Inches(11),Inches(.4),size=15,color='#a8a29e')
-    txb(sl,'2026.05.26',Inches(1),Inches(6.8),Inches(4),Inches(.4),size=12,color='#44403c')
+    # 06 台灣三里程碑
+    sl = content(prs)
+    D.header(sl, "台灣淨零建築路徑", "三個法定的時間點", AMBER_MID)
+    miles = [("2030", AMBER, "所有公有新建建築，須達建築能效 1 級或近零碳建築。"),
+             ("2040", AMBER_MID, "50% 既有建築更新為能效 1 級或近零碳建築。"),
+             ("2050", "#92400e", "100% 新建、逾 85% 建築為近零碳建築。")]
+    cw = (Inches(11.53) - Inches(0.28) * 2) / 3
+    for i, (yr, ac, desc) in enumerate(miles):
+        x = Inches(0.9) + (cw + Inches(0.28)) * i
+        D.rect(sl, x, Inches(2.3), cw, Inches(2.4), fill=WHITE, line=LINE)
+        D.rect(sl, x, Inches(2.3), cw, Pt(2.6), fill=ac)
+        D.text(sl, yr, x + Inches(0.25), Inches(2.55), cw - Inches(0.4), Inches(0.7),
+               size=32, bold=True, color=ac)
+        D.rect(sl, x + Inches(0.25), Inches(3.35), cw - Inches(0.5), Pt(1), fill=LINE)
+        D.text(sl, desc, x + Inches(0.25), Inches(3.55), cw - Inches(0.5), Inches(1.0),
+               size=12, color=BODY, spacing=1.3)
+    D.note(sl, "這是淨零建築政策的法定時程，而 BERS 正是落實與檢核的關鍵工具。")
 
-    # ── 02 目錄 ────────────────────────────────
-    sl = blank_slide(prs)
-    fill_bg(sl,'#fafaf9')
-    accent_bar(sl,Inches(1),Inches(.8),Inches(1.2),AMBER)
-    txb(sl,'今日議程',Inches(1),Inches(1.0),Inches(11),Inches(.6),size=32,bold=True,color=CHARCOAL)
-    txb(sl,'PART 01 — 制度與核心',Inches(1),Inches(1.85),Inches(5.5),Inches(.35),size=13,color=AMBER)
-    txb_lines(sl,['什麼是 BERS？制度背景','2024 版更新重點','核心概念：EUI 能源使用強度','評估方法與節能率'],
-        Inches(1),Inches(2.25),Inches(5.5),Inches(1.8),size=15,color=CHARCOAL,bullet=True)
-    txb(sl,'PART 02 — 等級與應用',Inches(7),Inches(1.85),Inches(5.5),Inches(.35),size=13,color=AMBER)
-    txb_lines(sl,['八個能效等級','BERS vs BERSh（一般 / 住宅）','評估系統範圍',
-                   '與綠建築、智慧建築的關係','淨零路徑 × 申請流程'],
-        Inches(7),Inches(2.25),Inches(5.5),Inches(2.4),size=15,color=CHARCOAL,bullet=True)
+    # 07 制度沿革
+    sl = content(prs)
+    D.header(sl, "制度沿革", "從節能法規到能效標示", AMBER_MID)
+    road = [("1995", "制訂建築節約能源設計法規"),
+            ("1999", "啟動綠建築標章制度"),
+            ("2022", "開始實施建築能效評估及標示，公布 EEWH-BERS 前導版（6 類 12 組）"),
+            ("2023", "修正綠建築標章及建築能效標示的申請審核作業要點"),
+            ("2024", "發布 BERS 手冊，適用範圍擴及大部分建築類組")]
+    y = Inches(2.2)
+    for yr, desc in road:
+        D.text(sl, yr, Inches(0.9), y, Inches(1.1), Inches(0.4), size=15, bold=True,
+               color=AMBER, font=D.MONO)
+        D.text(sl, desc, Inches(2.2), y, Inches(10.2), Inches(0.5), size=13, color=BODY)
+        D.rect(sl, Inches(0.9), y + Inches(0.55), Inches(11.53), Pt(0.75), fill=LINE)
+        y += Inches(0.78)
 
-    # ── 03 制度背景 ────────────────────────────
-    sl = blank_slide(prs)
-    fill_bg(sl,'#fafaf9')
-    txb(sl,'BERS ／ 制度背景',Inches(1),Inches(.5),Inches(5),Inches(.4),size=12,color=AMBER)
-    accent_bar(sl,Inches(1),Inches(.93),Inches(1.2),AMBER)
-    txb(sl,'為什麼需要建築能效標示？',Inches(1),Inches(1.07),Inches(11),Inches(.6),size=28,bold=True,color=CHARCOAL)
-    txb(sl,'建築部門佔台灣總能源消費約三成，是淨零碳排的關鍵戰場。建築能效評估標示（BERS）由內政部推動，\n如同冷氣、冰箱的能源效率分級，讓建築物的能源表現可量化、可比較、可揭示，引導市場走向節能建築。',
-        Inches(1),Inches(1.8),Inches(6.8),Inches(1.4),size=14,color=CHARCOAL)
-    txb(sl,'三大政策目的',Inches(1),Inches(3.3),Inches(6),Inches(.35),size=13,bold=True,color=CHARCOAL)
-    txb_lines(sl,['建立建築能效的客觀評比基準','揭示能效資訊，保障消費者知情權','銜接 2050 淨零碳排國家路徑'],
-        Inches(1),Inches(3.7),Inches(6.5),Inches(1.0),size=13,color=CHARCOAL,bullet=True)
-    # timeline (vertical)
-    tl=[('2021','制度試行，建立評估方法學','#6b7280'),
-        ('2022','正式推動，鼓勵自願申請','#6b7280'),
-        ('2023','住宅版 BERSh 完善上線','#6b7280'),
-        ('2024★','公有新建強制申請',AMBER_LG)]
-    for i,(yr,desc,fc) in enumerate(tl):
-        bx=Inches(8.5); by=Inches(1.8+i*1.2)
-        rect(sl,bx,by,Inches(.6),Inches(.6),fc)
-        txb(sl,yr.replace('★',''),bx,by,Inches(.6),Inches(.6),
-            size=11,bold=True,color=WHITE if '★' not in yr else CHARCOAL,align=PP_ALIGN.CENTER)
-        txb(sl,yr,bx+Inches(.7),by,Inches(1.2),Inches(.3),
-            size=11,bold=('★' in yr),color=AMBER if '★' in yr else CHARCOAL)
-        txb(sl,desc,bx+Inches(.7),by+Inches(.3),Inches(3.5),Inches(.5),size=11,color=GRAY)
-    rect(sl,Inches(1),Inches(4.85),Inches(2.2),Inches(1.5),AMBER_BG)
-    txb(sl,'~30%',Inches(1),Inches(4.95),Inches(2.2),Inches(.7),size=28,bold=True,color=AMBER,align=PP_ALIGN.CENTER)
-    txb(sl,'建築佔全國能耗',Inches(1),Inches(5.65),Inches(2.2),Inches(.35),size=11,color=GRAY,align=PP_ALIGN.CENTER)
-    rect(sl,Inches(3.4),Inches(4.85),Inches(2.2),Inches(1.5),AMBER_XP)
-    txb(sl,'8',Inches(3.4),Inches(4.95),Inches(2.2),Inches(.7),size=40,bold=True,color=AMBER,align=PP_ALIGN.CENTER)
-    txb(sl,'能效等級',Inches(3.4),Inches(5.65),Inches(2.2),Inches(.35),size=11,color=GRAY,align=PP_ALIGN.CENTER)
+    # 08 EPBD
+    sl = content(prs)
+    D.header(sl, "制度源頭", "師法歐盟的 EPBD 能效標示", AMBER_MID)
+    D.lead(sl, "BERS 仿自歐盟建築能效法令 EPBD，採用 EN 15217 建議的七階段分級標示，是國際公認"
+               "最有效的淨零建築政策之一。", y=Inches(1.95))
+    D.card_row(sl, [
+        dict(accent=AMBER_MID, head="公開揭露", head_color=AMBER, body="能效資訊透明，能被檢視"),
+        dict(accent=AMBER_MID, head="有感標示", head_color=AMBER, body="像家電能效標章，民眾看得懂"),
+        dict(accent=AMBER_MID, head="市場基準", head_color=AMBER, body="以現行市場平均能效為比較基準"),
+        dict(accent=AMBER_MID, head="1+ 額外級", head_color=AMBER, body="允許標示更高的近零碳等級"),
+    ], y=Inches(3.4), h=Inches(1.9))
 
-    # ── 04 2024 更新重點 ────────────────────────
-    sl = blank_slide(prs)
-    fill_bg(sl,'#fafaf9')
-    txb(sl,'2024 版 ／ 修訂重點',Inches(1),Inches(.5),Inches(5),Inches(.4),size=12,color=AMBER)
-    accent_bar(sl,Inches(1),Inches(.93),Inches(1.2),AMBER)
-    txb(sl,'2024 版六大更新重點',Inches(1),Inches(1.07),Inches(11),Inches(.6),size=28,bold=True,color=CHARCOAL)
-    updates=[
-        ('① 強制範圍','公有新建建築強制申請\n新建公有建築正式納入強制申請對象，公部門帶頭示範，逐步擴大至大型民間建築。'),
-        ('② 住宅完善','BERSh 住宅版全面上線\n住宅建築能效評估系統（BERSh）評估方法完善，涵蓋集合住宅與透天，回應居住節能需求。'),
-        ('③ 基準更新','EUI 基準值校正\n依最新建築耗能調查數據，重新校正各類建築的基準能源使用強度，使分級更貼近現況。'),
-        ('④ 數據整合','智慧電表實測數據\n鼓勵以智慧電表（AMI）實際用電數據佐證，結合智慧建築系統，提升評估準確度。'),
-        ('⑤ 淨零銜接','近零碳建築（1+ 級）路徑\n明確定義 1+ 級「近零能耗建築」標準，作為 2050 淨零建築的具體里程碑。'),
-        ('⑥ 標示揭示','能效標示公開揭示\n取得標示的建築需於明顯處揭示能效等級貼標，如同家電能效標章，強化市場辨識度。'),
+    # 09 關鍵戰場
+    sl = content(prs)
+    D.header(sl, "為什麼是建築", "建築，是淨零的關鍵戰場", AMBER_MID)
+    D.lead(sl, "建築物的營建與長期使用，佔全國能源消耗與碳排放相當高的比重。提升建築能效，是最"
+               "直接、也最有效的減碳途徑之一。", y=Inches(1.95))
+    D.card_row(sl, [
+        dict(accent=AMBER_MID, head="營運能耗", head_color=AMBER, body="空調、照明、設備的長期用電"),
+        dict(accent=AMBER_MID, head="隱含碳", head_color=AMBER, body="建材生產與營建過程的碳排"),
+        dict(accent=AMBER_MID, head="長生命週期", head_color=AMBER, body="建築一用數十年，影響深遠"),
+        dict(accent=AMBER_MID, head="可管理", head_color=AMBER, body="能效可量化、可改善、可檢核"),
+    ], y=Inches(3.4), h=Inches(1.9))
+
+    # 10 divider
+    D.divider(prs, DARK, "PART 02", "能效分級制度",
+              "從 1+ 到 7，把建築能效講清楚。", AMBER_PALE, AMBER_LG)
+
+    # 11 相對分級
+    sl = content(prs)
+    D.header(sl, "核心概念", "BERS 是一種「相對分級」", AMBER_MID)
+    D.lead(sl, "BERS 以現行建築市場的平均能效水準作為合格分界，再依設計能效相對基準的優劣，往上"
+               "或往下分級。", y=Inches(1.95))
+    D.card_row(sl, [
+        dict(accent=TIERS[1], head="優於基準", head_color="#047857",
+             body_items=["切割為 5 個等分間距", "由佳至差為 1+、1、2、3、4", "達 90 分以上即進入 1+ 近零碳區間"]),
+        dict(accent=TIERS[7], head="劣於基準", head_color="#dc2626",
+             body_items=["不及格區間為 5、6、7", "6、7 屬能效極差的建築", "給予兩倍較寬的間距"]),
+    ], y=Inches(3.3), h=Inches(2.0))
+
+    # 12 七階段分級 scale
+    sl = content(prs)
+    D.header(sl, "七階段分級", "1+ 到 7，一眼看懂能效", AMBER_MID)
+    labels = [("1+", "近零碳"), ("1", "能效最佳"), ("2", "優於基準"), ("3", "良好"),
+              ("4", "合格分界"), ("5", "略低基準"), ("6", "能效差"), ("7", "能效極差")]
+    gap = Inches(0.08)
+    cw = (Inches(11.53) - gap * 7) / 8
+    for i, (tier, cap) in enumerate(labels):
+        x = Inches(0.9) + (cw + gap) * i
+        D.rect(sl, x, Inches(2.7), cw, Inches(1.0), fill=TIERS[i])
+        tc = "#1c1917" if i in (2, 3, 4) else WHITE
+        D.text(sl, tier, x, Inches(2.98), cw, Inches(0.5), size=18, bold=True,
+               color=tc, align=PP_ALIGN.CENTER, font=D.MONO)
+        D.text(sl, cap, x, Inches(3.85), cw, Inches(0.3), size=8.5, color=STONE4,
+               align=PP_ALIGN.CENTER)
+    D.text(sl, "能效佳", Inches(0.9), Inches(4.35), Inches(3), Inches(0.3), size=10,
+           color=STONE4, font=D.MONO)
+    D.text(sl, "能效差", Inches(9.43), Inches(4.35), Inches(3), Inches(0.3), size=10,
+           color=STONE4, font=D.MONO, align=PP_ALIGN.RIGHT)
+    D.note(sl, "「1+」為近零碳建築（NZCB）；「4」與「5」之間，是市場平均能效的合格分界點。")
+
+    # 13 近零碳 1+
+    sl = content(prs)
+    D.header(sl, "最高等級", "1+　近零碳建築（NZCB）", AMBER_MID)
+    pairs = [("住宅建築", "30%", "減碳率達 30% 以上", TIERS[0]),
+             ("非住宅建築", "50%", "節能率達 50% 以上", AMBER)]
+    cw = (Inches(11.53) - Inches(0.28)) / 2
+    for i, (h, big, b, ac) in enumerate(pairs):
+        x = Inches(0.9) + (cw + Inches(0.28)) * i
+        D.rect(sl, x, Inches(2.2), cw, Inches(2.0), fill=WHITE, line=LINE)
+        D.rect(sl, x, Inches(2.2), cw, Pt(2.6), fill=ac)
+        D.text(sl, h, x + Inches(0.25), Inches(2.45), cw - Inches(0.4), Inches(0.4),
+               size=14, bold=True, color=CHAR)
+        D.text(sl, big, x + Inches(0.25), Inches(2.9), cw - Inches(0.4), Inches(0.8),
+               size=38, bold=True, color=ac)
+        D.text(sl, b, x + Inches(0.25), Inches(3.75), cw - Inches(0.4), Inches(0.3),
+               size=12, color=BODY)
+    D.rect(sl, Inches(0.9), Inches(4.6), Pt(2), Inches(0.6), fill=AMBER_LG)
+    D.text(sl, "對應能效分級 90 分以上的區間，是 2050 淨零建築政策的核心目標。",
+           Inches(1.1), Inches(4.65), Inches(10.5), Inches(0.6), size=13,
+           italic=True, color=AMBER)
+
+    # 14 EUI/CEI
+    sl = content(prs)
+    D.header(sl, "能效標示", "用兩個指標衡量能效", AMBER_MID)
+    metrics = [("EUI　用電密度", "ENERGY USE INTENSITY", AMBER,
+                ["單位樓地板面積的年用電量", "反映建築物的耗能強度"], "kWh / (m²·年)"),
+               ("CEI　碳排密度", "CARBON EMISSION INTENSITY", AMBER_MID,
+                ["單位樓地板面積的年碳排量", "反映建築物的碳足跡"], "kgCO₂e / (m²·年)")]
+    cw = (Inches(11.53) - Inches(0.28)) / 2
+    for i, (h, en, ac, items, unit) in enumerate(metrics):
+        x = Inches(0.9) + (cw + Inches(0.28)) * i
+        D.rect(sl, x, Inches(2.2), cw, Inches(2.7), fill=WHITE, line=LINE)
+        D.rect(sl, x, Inches(2.2), cw, Pt(2.6), fill=ac)
+        D.text(sl, h, x + Inches(0.25), Inches(2.45), cw - Inches(0.4), Inches(0.4),
+               size=16, bold=True, color=ac)
+        D.text(sl, en, x + Inches(0.25), Inches(2.92), cw - Inches(0.4), Inches(0.3),
+               size=9, color=STONE4, font=D.MONO)
+        D.bullets(sl, items, x + Inches(0.25), Inches(3.35), cw - Inches(0.5), Inches(1.0),
+                  size=12, color=BODY, marker_color=ac, gap=4)
+        D.text(sl, unit, x + Inches(0.25), Inches(4.4), cw - Inches(0.4), Inches(0.3),
+               size=12, color=ac, font=D.MONO)
+
+    # 15 divider
+    D.divider(prs, DARK, "PART 03", "評估系統與範圍",
+              "算什麼、算哪些、怎麼算。", AMBER_PALE, AMBER_LG)
+
+    # 16 ECB 六項
+    sl = content(prs)
+    D.header(sl, "能效計算邊界 ECB", "納入評估的六項耗能", AMBER_MID)
+    D.lead(sl, "BERS 以「能效計算邊界（ECB）」界定納入評估的耗能項目，逐一檢視如下六項。",
+           y=Inches(1.9), size=13)
+    items = [
+        dict(accent=AMBER_MID, head="外殼", head_color=AMBER, body="隔熱、遮陽、開窗"),
+        dict(accent=AMBER_MID, head="空調", head_color=AMBER, body="主機效率、變頻"),
+        dict(accent=AMBER_MID, head="照明", head_color=AMBER, body="LED、智慧控制"),
+        dict(accent=AMBER_MID, head="電梯", head_color=AMBER, body="馬達效率、群控調度"),
+        dict(accent=AMBER_MID, head="揚水泵", head_color=AMBER, body="給水加壓、屋頂水箱"),
+        dict(accent=AMBER_MID, head="機械設備", head_color=AMBER, body="通風、熱水等公共機電"),
     ]
-    for i,(badge,body) in enumerate(updates):
-        col=i%3; row=i//3
-        bx=Inches(1+col*4.1); by=Inches(1.85+row*2.55)
-        rect(sl,bx,by,Inches(3.9),Inches(2.4),AMBER_BG)
-        txb(sl,badge,bx+Inches(.12),by+Inches(.1),Inches(3.65),Inches(.35),size=13,bold=True,color=AMBER)
-        title,desc=body.split('\n',1)
-        txb(sl,title,bx+Inches(.12),by+Inches(.52),Inches(3.65),Inches(.35),size=13,bold=True,color=CHARCOAL)
-        txb(sl,desc, bx+Inches(.12),by+Inches(.92),Inches(3.65),Inches(1.3),size=11,color=GRAY)
+    D.card_row(sl, items[:3], y=Inches(2.85), h=Inches(1.55))
+    D.card_row(sl, items[3:], y=Inches(4.6), h=Inches(1.55))
 
-    # ── 05 EUI 核心概念 ────────────────────────
-    sl = blank_slide(prs)
-    fill_bg(sl,'#fafaf9')
-    txb(sl,'BERS ／ 核心概念',Inches(1),Inches(.5),Inches(5),Inches(.4),size=12,color=AMBER)
-    accent_bar(sl,Inches(1),Inches(.93),Inches(1.2),AMBER)
-    txb(sl,'EUI — 能源使用強度',Inches(1),Inches(1.07),Inches(11),Inches(.6),size=28,bold=True,color=CHARCOAL)
-    rect(sl,Inches(1),Inches(1.85),Inches(6.5),Inches(3.0),AMBER_BG)
-    txb(sl,'EUI 是什麼？',Inches(1.15),Inches(1.95),Inches(6.2),Inches(.35),size=13,bold=True,color=AMBER)
-    txb(sl,'Energy Use Intensity（能源使用強度）\n指建築物每年每平方公尺的能源使用量：',
-        Inches(1.15),Inches(2.35),Inches(6.2),Inches(.7),size=13,color=CHARCOAL)
-    rect(sl,Inches(1.5),Inches(3.1),Inches(5.5),Inches(.75),WHITE)
-    txb(sl,'EUI = 年總耗電量 ÷ 樓地板面積　　單位：kWh / m² · 年',
-        Inches(1.6),Inches(3.18),Inches(5.3),Inches(.58),size=14,bold=True,color=AMBER,align=PP_ALIGN.CENTER)
-    txb(sl,'數值越低，代表建築越節能、能效越好。',
-        Inches(1.15),Inches(3.95),Inches(6.2),Inches(.4),size=13,color=CHARCOAL)
-    txb(sl,'評分邏輯：與基準值比較',Inches(7.8),Inches(1.85),Inches(5),Inches(.35),size=13,bold=True,color=AMBER)
-    txb(sl,'每一類建築（辦公、學校、醫院、住宅…）都有一個基準 EUI。\n將實際 EUI 與基準比較，算出節能率：',
-        Inches(7.8),Inches(2.25),Inches(5),Inches(.9),size=13,color=CHARCOAL)
-    rect(sl,Inches(7.8),Inches(3.2),Inches(5),Inches(.65),AMBER_BG)
-    txb(sl,'節能率 = (基準EUI − 實際EUI) ÷ 基準EUI',
-        Inches(7.9),Inches(3.28),Inches(4.8),Inches(.5),size=13,bold=True,color=AMBER)
-    txb(sl,'舉例說明',Inches(7.8),Inches(4.0),Inches(5),Inches(.35),size=13,bold=True,color=CHARCOAL)
-    txb(sl,'某辦公大樓基準 EUI 為 150，\n實際 EUI 為 90，\n節能率 = (150−90)/150 = 40%\n→ 達到約 1 級 高效能建築。',
-        Inches(7.8),Inches(4.42),Inches(5),Inches(1.4),size=13,color=CHARCOAL)
+    # 16a-16f EUI 檢核項目逐項說明
+    eui_item(prs, 1, "Building Envelope", "外殼", "決定空調負荷的起點",
+             ["外牆與屋頂的隔熱性能", "開窗面積、玻璃選用與外遮陽", "朝向配置與開窗位置的優化"],
+             "外殼做得好，後面的空調可以用更小的容量，達到一樣的舒適。")
+    eui_item(prs, 2, "Air Conditioning", "空調", "通常是最大宗的用電負載",
+             ["主機效率（COP／IPLV）", "變頻控制與分區送風", "新風與熱回收設計"],
+             "主機效率提高一級，長期電費單上的差異就很可觀。")
+    eui_item(prs, 3, "Lighting", "照明", "長時間運轉的固定負載",
+             ["燈具發光效率（lm／W）", "公共空間的分區與時段控制", "自然採光與感應控制整合"],
+             "走廊、停車場的燈一開就是一整天 —— 效率差一點，全年下來都是電費。")
+    eui_item(prs, 4, "Elevators", "電梯", "中高樓層住宅的公共用電大宗",
+             ["馬達效率與驅動方式", "待機與低載運轉的能耗控制", "群控調度，減少空跑與等待"],
+             "電梯的效率住戶看不到，但每個月的公電費單看得到。")
+    eui_item(prs, 5, "Water Pump", "揚水泵", "容易被忽略，卻全天候運轉",
+             ["給水加壓與屋頂水箱揚水", "變頻泵與分區減壓設計", "馬達效率與管路損耗"],
+             "揚水泵安靜地運轉一整年，是公電費單上常被忽略的一筆。")
+    eui_item(prs, 6, "Other Equipment", "機械設備", "把剩下的公共機電都算進去",
+             ["地下停車場通風與排風機", "公共空間的熱水系統", "消防、給排水等其餘固定設備"],
+             "能效計算邊界把這些細節都納入，標示才貼近建築實際耗能的全貌。")
 
-    # ── 06 八個能效等級 ────────────────────────
-    sl = blank_slide(prs)
-    fill_bg(sl,'#fafaf9')
-    txb(sl,'BERS ／ 能效等級',Inches(1),Inches(.5),Inches(5),Inches(.4),size=12,color=AMBER)
-    accent_bar(sl,Inches(1),Inches(.93),Inches(1.2),AMBER)
-    txb(sl,'八個能效等級',Inches(1),Inches(1.07),Inches(11),Inches(.6),size=28,bold=True,color=CHARCOAL)
-    energy_levels=[
-        ('1+', G_1PLUS, WHITE,  '近零能耗建築',  '節能率 ≥ 50%，邁向淨零碳排'),
-        ('1',  G_1,     WHITE,  '頂尖能效',      '節能率 40–50%'),
-        ('2',  G_2,     WHITE,  '優良能效',      '節能率 30–40%（2030 新建目標）'),
-        ('3',  G_3,     CHARCOAL,'良好能效',     '節能率 20–30%'),
-        ('4',  G_4,     CHARCOAL,'合格能效',     '達現行法規節能基準'),
-        ('5',  G_5,     WHITE,  '待改善',        '低於基準，建議節能改善'),
-        ('6',  G_6,     WHITE,  '耗能偏高',      '優先輔導改善對象'),
-        ('7',  G_7,     WHITE,  '高耗能',        '能效最差，亟需全面改善'),
+    # 23 設計策略
+    sl = content(prs)
+    D.header(sl, "設計策略", "提升能效的兩條路", AMBER_MID)
+    D.card_row(sl, [
+        dict(accent=AMBER, head="被動式設計", head_color=AMBER,
+             body_items=["建築外殼的隔熱與遮陽", "自然採光與自然通風", "座向與開窗的最佳化", "從源頭降低空調與照明需求"]),
+        dict(accent=AMBER_MID, head="主動式設計", head_color=AMBER_MID,
+             body_items=["高效率空調主機與變頻", "LED 高效照明與智慧控制", "高效率電梯與設備", "再生能源與儲能整合"]),
+    ], y=Inches(2.3), h=Inches(2.6))
+
+    # 24 新建vs既有
+    sl = content(prs)
+    D.header(sl, "評估方式", "新建與既有，算法不同", AMBER_MID)
+    D.lead(sl, "手冊依「新建／既有」與建築性質分為多類次系統，對應不同的計算與查證方式。",
+           y=Inches(1.95), size=13)
+    D.card_row(sl, [
+        dict(accent=AMBER, head="新建建築", head_color=AMBER,
+             body_items=["以設計圖說做理論計算", "設備與使用情境採標準假設", "屬理論值，不保證等同實際耗能"]),
+        dict(accent=AMBER_MID, head="既有建築", head_color=AMBER_MID,
+             body_items=["以真實電費單換算、可查證", "可採市場虛擬 EUI 作為基準", "能對照實際營運表現、支援公開揭露"]),
+    ], y=Inches(2.85), h=Inches(2.1))
+    D.note(sl, "手冊共規範六類次系統的能效標示法；新建為理論計算值，與實際耗能可能有落差。")
+
+    # 25 適用類組
+    sl = content(prs)
+    D.header(sl, "適用範圍", "幾乎涵蓋各類建築", AMBER_MID)
+    D.lead(sl, "2022 年前導版適用 6 類 12 組；2024 年版幾乎適用大部分建築類組，並把所有規定集結"
+               "於單一手冊。", y=Inches(1.9), size=13)
+    cats = [
+        dict(accent=AMBER_MID, head="住宅類", head_color=AMBER, body="H-2 等住宅建築"),
+        dict(accent=AMBER_MID, head="文教類", head_color=AMBER, body="D-2 文教設施等"),
+        dict(accent=AMBER_MID, head="辦公類", head_color=AMBER, body="辦公與服務業建築"),
+        dict(accent=AMBER_MID, head="商業類", head_color=AMBER, body="賣場、餐飲、旅館"),
+        dict(accent=AMBER_MID, head="醫療類", head_color=AMBER, body="醫院與照護機構"),
+        dict(accent=AMBER_MID, head="其他非住宅", head_color=AMBER, body="多數一般建築類組"),
     ]
-    for i,(num,fc,tc,name,desc) in enumerate(energy_levels):
-        bar_w=Inches(2.5+i*.35)
-        by=Inches(1.9+i*.62)
-        rect(sl,Inches(1),by,bar_w,Inches(.55),fc)
-        txb(sl,num,Inches(1),by+Pt(2),bar_w,Inches(.5),size=16,bold=True,color=tc,align=PP_ALIGN.CENTER)
-        txb(sl,f'{name}　{desc}',Inches(1)+bar_w+Inches(.2),by+Pt(5),Inches(9),Inches(.45),size=13,color=CHARCOAL)
-    txb(sl,'節能率區間為說明示意，實際分級門檻依各類建築與建研所公告為準',
-        Inches(1),Inches(6.85),Inches(11),Inches(.35),size=11,color=GRAY,italic=True)
+    D.card_row(sl, cats[:3], y=Inches(2.8), h=Inches(1.4))
+    D.card_row(sl, cats[3:], y=Inches(4.35), h=Inches(1.4))
+    D.note(sl, "不適用於特殊廠庫、戒護場所、危險廠庫，及海拔 800 公尺以上等特定類組。")
 
-    # ── 07 BERS vs BERSh ───────────────────────
-    sl = blank_slide(prs)
-    fill_bg(sl,'#fafaf9')
-    txb(sl,'BERS ／ 系統分類',Inches(1),Inches(.5),Inches(5),Inches(.4),size=12,color=AMBER)
-    accent_bar(sl,Inches(1),Inches(.93),Inches(1.2),AMBER)
-    txb(sl,'BERS vs BERSh — 一般建築 vs 住宅',Inches(1),Inches(1.07),Inches(11),Inches(.6),size=28,bold=True,color=CHARCOAL)
-    # header
-    rect(sl,Inches(1),Inches(1.85),Inches(2.5),Inches(.42),'#44403c')
-    txb(sl,'比較項目',Inches(1.05),Inches(1.9),Inches(2.4),Inches(.35),size=12,bold=True,color=WHITE)
-    rect(sl,Inches(3.55),Inches(1.85),Inches(4.5),Inches(.42),AMBER)
-    txb(sl,'BERS（一般建築）',Inches(3.6),Inches(1.9),Inches(4.4),Inches(.35),size=12,bold=True,color=WHITE)
-    rect(sl,Inches(8.1),Inches(1.85),Inches(4.5),Inches(.42),'#92400e')
-    txb(sl,'BERSh（住宅建築）',Inches(8.15),Inches(1.9),Inches(4.4),Inches(.35),size=12,bold=True,color=WHITE)
-    cmp=[
-        ('適用對象','辦公、商業、學校、醫院、旅館等非住宅','集合住宅、公寓大廈、透天住宅'),
-        ('評估重點','空調、照明等系統能源效率為主','外殼隔熱、家電待機、自然通風採光'),
-        ('使用模式','日間集中使用，空調負荷大','全天居住，耗能型態分散'),
-        ('基準依據','各用途別建築實測 EUI 基準','住宅單元能耗模擬 + 實測校正'),
-        ('分級方式','皆採 1+ 至 7 共八個能效等級（標示形式一致）','←同左'),
-    ]
-    for i,(rh,a,b) in enumerate(cmp):
-        bg='#fefce8' if i%2==0 else WHITE
-        y=Inches(2.35+i*.7)
-        rect(sl,Inches(1),y,Inches(2.5),Inches(.65),bg)
-        txb(sl,rh,Inches(1.05),y+Pt(4),Inches(2.4),Inches(.58),size=12,bold=True,color=CHARCOAL)
-        if i==4:
-            rect(sl,Inches(3.55),y,Inches(9.05),Inches(.65),AMBER_XP)
-            txb(sl,'皆採 1+ 至 7 共八個能效等級，標示形式一致',
-                Inches(3.65),y+Pt(4),Inches(8.8),Inches(.58),size=12,bold=True,color=AMBER,align=PP_ALIGN.CENTER)
+    # 26 開發案能效目標
+    sl = content(prs)
+    D.header(sl, "給開發案", "能效目標怎麼設", AMBER_MID)
+    D.card_row(sl, [
+        dict(accent=AMBER_MID, head="法定門檻", head_color=AMBER, body="至少達主管機關要求的能效等級"),
+        dict(accent=AMBER_MID, head="市場定位", head_color=AMBER, body="能效等級對應產品的低碳賣點"),
+        dict(accent=AMBER_MID, head="容積策略", head_color=AMBER, body="結合綠建築爭取容積獎勵"),
+        dict(accent=AMBER_MID, head="淨零超前", head_color=AMBER, body="朝近零碳 1+ 級超前部署"),
+    ], y=Inches(2.4), h=Inches(2.0))
+    D.note(sl, "建議規劃初期就設定目標能效等級，再回推外殼、空調、照明與再生能源的規格。")
+
+    # 27 BERS x EEWH
+    sl = content(prs)
+    D.header(sl, "與綠建築的關係", "BERS 與綠建築，分進合擊", AMBER_MID)
+    D.lead(sl, "綠建築 EEWH 的「日常節能指標」可採建築能效評估法，直接以 BERS 的得分換算 —— "
+               "兩套制度彼此銜接、互相加分。", y=Inches(1.95))
+    cw = (Inches(11.53) - Inches(0.28)) / 2
+    D.rect(sl, Inches(0.9), Inches(3.3), cw, Inches(1.9), fill=WHITE, line=LINE)
+    D.rect(sl, Inches(0.9), Inches(3.3), cw, Pt(2.6), fill="#064e3b")
+    D.text(sl, "綠建築 EEWH", Inches(1.15), Inches(3.55), cw - Inches(0.4), Inches(0.4),
+           size=15, bold=True, color="#064e3b")
+    D.bullets(sl, ["四大範疇、九大指標", "日常節能可採建築能效法計分"],
+              Inches(1.15), Inches(4.1), cw - Inches(0.5), Inches(1.0), size=12,
+              color=BODY, marker_color="#064e3b", gap=4)
+    x2 = Inches(0.9) + cw + Inches(0.28)
+    D.rect(sl, x2, Inches(3.3), cw, Inches(1.9), fill=AMBER)
+    D.text(sl, "建築能效 BERS", x2 + Inches(0.25), Inches(3.55), cw - Inches(0.4), Inches(0.4),
+           size=15, bold=True, color=WHITE)
+    D.bullets(sl, ["量化能效、產生能效得分", "回饋綠建築的日常節能評分"],
+              x2 + Inches(0.25), Inches(4.1), cw - Inches(0.5), Inches(1.0), size=12,
+              color=WHITE, marker_color=AMBER_PALE, gap=4)
+
+    # 28 divider
+    D.divider(prs, DARK, "PART 04", "對開發案與淨零",
+              "能效不只是標示，更是政策門檻。", AMBER_PALE, AMBER_LG)
+
+    # 29 政策強制要求
+    sl = content(prs)
+    D.header(sl, "從鼓勵到強制", "能效已成為法定門檻", AMBER_MID)
+    D.lead(sl, "建築能效正從「鼓勵」走向「強制」，是開發案必須提前因應的政策。", y=Inches(1.95), size=13)
+    pol = [("2030", AMBER, "公有新建建築", "須達能效 1 級或近零碳建築"),
+           ("2040", AMBER_MID, "既有建築更新", "50% 更新為能效 1 級或近零碳"),
+           ("2050", "#92400e", "全面近零碳", "100% 新建、逾 85% 為近零碳")]
+    cw = (Inches(11.53) - Inches(0.28) * 2) / 3
+    for i, (yr, ac, h, b) in enumerate(pol):
+        x = Inches(0.9) + (cw + Inches(0.28)) * i
+        D.rect(sl, x, Inches(2.85), cw, Inches(2.0), fill=WHITE, line=LINE)
+        D.rect(sl, x, Inches(2.85), cw, Pt(2.6), fill=ac)
+        D.text(sl, yr, x + Inches(0.25), Inches(3.05), cw - Inches(0.4), Inches(0.6),
+               size=26, bold=True, color=ac)
+        D.text(sl, h, x + Inches(0.25), Inches(3.7), cw - Inches(0.4), Inches(0.4),
+               size=14, bold=True, color=CHAR)
+        D.text(sl, b, x + Inches(0.25), Inches(4.15), cw - Inches(0.4), Inches(0.6),
+               size=11.5, color=BODY, spacing=1.2)
+    D.note(sl, "實際適用範圍與時程，依主管機關最新法令與公告為準。")
+
+    # 30 能效作為產品價值
+    sl = content(prs)
+    D.header(sl, "產品價值", "能效，是碳資產也是賣點", AMBER_MID)
+    D.card_row(sl, [
+        dict(accent=AMBER_MID, head="對住戶", head_color=AMBER,
+             body_items=["高能效代表長期電費實際降低", "能效標示是看得懂的低碳保證"]),
+        dict(accent=AMBER_MID, head="對開發", head_color=AMBER,
+             body_items=["可結合綠建築爭取容積獎勵", "提前布局，避開未來的法規門檻風險"]),
+    ], y=Inches(2.3), h=Inches(1.9))
+    D.rect(sl, Inches(0.9), Inches(4.6), Pt(2), Inches(0.6), fill=AMBER_LG)
+    D.text(sl, "在淨零成為市場語言的當下，高能效既是產品的差異化賣點，也是長期保值的籌碼。",
+           Inches(1.1), Inches(4.65), Inches(10.5), Inches(0.6), size=13,
+           italic=True, color=AMBER)
+
+    # 31 三標章整合
+    sl = content(prs)
+    D.header(sl, "標章整合", "綠建築 × 智慧 × 能效", AMBER_MID)
+    D.lead(sl, "三套標章彼此呼應、可合併申請，共同支撐淨零建築與開發效益。", y=Inches(1.95), size=13)
+    cw = (Inches(11.53) - Inches(0.28) * 2) / 3
+    trio = [("綠建築 EEWH", "#064e3b", "生態、節能、減廢、健康", None),
+            ("智慧建築", "#1e40af", "偵知、顯示、連動的智慧化", None),
+            ("建築能效 BERS", AMBER, "量化能效，邁向近零碳", AMBER)]
+    for i, (h, ac, b, fillc) in enumerate(trio):
+        x = Inches(0.9) + (cw + Inches(0.28)) * i
+        if fillc:
+            D.rect(sl, x, Inches(2.9), cw, Inches(1.8), fill=fillc)
+            hc, bc = WHITE, "#fef3c7"
         else:
-            rect(sl,Inches(3.55),y,Inches(4.5),Inches(.65),bg)
-            rect(sl,Inches(8.1),y,Inches(4.5),Inches(.65),bg)
-            txb(sl,a,Inches(3.6),y+Pt(4),Inches(4.4),Inches(.58),size=11,color=CHARCOAL)
-            txb(sl,b,Inches(8.15),y+Pt(4),Inches(4.4),Inches(.58),size=11,color=CHARCOAL)
-    rect(sl,Inches(1),Inches(5.95),Inches(11.3),Inches(.95),AMBER_XP)
-    txb(sl,'💡 兩套系統評估方法不同，但分級標示一致，讓民眾無論購買辦公室或住宅，\n都能用同一套「1+ 到 7」的語言理解建築能效。',
-        Inches(1.15),Inches(6.0),Inches(11),Inches(.85),size=13,color=AMBER)
+            D.rect(sl, x, Inches(2.9), cw, Inches(1.8), fill=WHITE, line=LINE)
+            D.rect(sl, x, Inches(2.9), cw, Pt(2.6), fill=ac)
+            hc, bc = ac, BODY
+        D.text(sl, h, x + Inches(0.25), Inches(3.2), cw - Inches(0.4), Inches(0.4),
+               size=15, bold=True, color=hc)
+        D.text(sl, b, x + Inches(0.25), Inches(3.75), cw - Inches(0.4), Inches(0.6),
+               size=11.5, color=bc, spacing=1.2)
 
-    # ── 08 評估系統範圍 ────────────────────────
-    sl = blank_slide(prs)
-    fill_bg(sl,'#fafaf9')
-    txb(sl,'BERS ／ 評估範圍',Inches(1),Inches(.5),Inches(5),Inches(.4),size=12,color=AMBER)
-    accent_bar(sl,Inches(1),Inches(.93),Inches(1.2),AMBER)
-    txb(sl,'能效評估涵蓋哪些系統？',Inches(1),Inches(1.07),Inches(11),Inches(.6),size=28,bold=True,color=CHARCOAL)
-    systems=[
-        ('❄️','空調系統','主機效率 COP/IPLV、冰水系統、變頻控制'),
-        ('💡','照明系統','LED 比例、照明功率密度 LPD、自動調光'),
-        ('🧱','建築外殼','外牆/屋頂隔熱、開窗比、Low-E 玻璃遮陽'),
-        ('🚿','熱水系統','熱泵、太陽能熱水、鍋爐效率'),
-        ('🛗','電梯動力','變頻電梯、電力回生、群控調度'),
-        ('☀️','再生能源','太陽光電自發自用、儲能系統扣減'),
-    ]
-    for i,(icon,name,desc) in enumerate(systems):
-        col=i%3; row=i//3
-        bx=Inches(1+col*4.1); by=Inches(2.0+row*2.4)
-        rect(sl,bx,by,Inches(3.9),Inches(2.2),AMBER_BG)
-        txb(sl,icon,bx+Inches(.12),by+Inches(.1),Inches(3.65),Inches(.5),size=26)
-        txb(sl,name,bx+Inches(.12),by+Inches(.7),Inches(3.65),Inches(.4),size=15,bold=True,color=AMBER)
-        txb(sl,desc,bx+Inches(.12),by+Inches(1.15),Inches(3.65),Inches(.85),size=12,color=CHARCOAL)
-    rect(sl,Inches(1),Inches(6.5),Inches(11.3),Inches(.75),AMBER_XP)
-    txb(sl,'各系統能耗加總後換算為建築整體 EUI；其中再生能源（如屋頂太陽能）所發的電可扣減建築總耗能，\n是衝刺 1+ 近零能耗等級的關鍵。',
-        Inches(1.15),Inches(6.55),Inches(11),Inches(.65),size=12,color=AMBER)
+    # 32 申請流程
+    sl = content(prs)
+    D.header(sl, "申請流程", "從計算到取得標示", AMBER_MID)
+    steps = [("01", "能效計算", "依 ECB 計算 EUI／CEI 與能效分數"),
+             ("02", "候選證書", "新建以設計圖說申請能效評估"),
+             ("03", "查核確認", "施工落實，文件查驗"),
+             ("04", "能效標示", "完工取得 1+ 至 7 級標示，公開揭露")]
+    cw = (Inches(11.53) - Inches(0.28) * 3) / 4
+    for i, (n, h, b) in enumerate(steps):
+        x = Inches(0.9) + (cw + Inches(0.28)) * i
+        D.rect(sl, x, Inches(2.6), cw, Inches(2.1), fill=WHITE, line=LINE)
+        D.text(sl, n, x + Inches(0.22), Inches(2.82), cw - Inches(0.4), Inches(0.3),
+               size=11, color=AMBER, font=D.MONO)
+        D.text(sl, h, x + Inches(0.22), Inches(3.2), cw - Inches(0.4), Inches(0.4),
+               size=14, bold=True, color=CHAR)
+        D.text(sl, b, x + Inches(0.22), Inches(3.7), cw - Inches(0.4), Inches(0.9),
+               size=11, color=BODY, spacing=1.25)
 
-    # ── 09 三大制度關係 ────────────────────────
-    sl = blank_slide(prs)
-    fill_bg(sl,'#fafaf9')
-    txb(sl,'BERS ／ 制度關係',Inches(1),Inches(.5),Inches(5),Inches(.4),size=12,color=AMBER)
-    accent_bar(sl,Inches(1),Inches(.93),Inches(1.2),AMBER)
-    txb(sl,'三大制度如何分工？',Inches(1),Inches(1.07),Inches(11),Inches(.6),size=28,bold=True,color=CHARCOAL)
-    rel=[
-        ('#a7f3d0','#f0fdf4','綠建築 EEWH','全面環境品質',
-         '生態、節能、減廢、健康九大面向，節能只是其中一項，範圍最廣。','#065f46'),
-        ('#bfdbfe','#eff6ff','智慧建築',  '智慧化系統',
-         '資訊、安全、節能管理等六大智慧系統，用科技達成管理效率。','#1e40af'),
-        (AMBER_LG, AMBER_XP,'BERS 能效', '純粹能源效率',
-         '聚焦單一指標 EUI，把建築能源表現量化成 1+ 到 7 的分級。',AMBER),
-    ]
-    for i,(bc,bg,tag,name,desc,fc) in enumerate(rel):
-        bx=Inches(1+i*4.1)
-        rect(sl,bx,Inches(2.0),Inches(3.9),Inches(3.3),bg)
-        txb(sl,tag, bx+Inches(.15),Inches(2.1),Inches(3.6),Inches(.35),size=13,bold=True,color=fc)
-        txb(sl,name,bx+Inches(.15),Inches(2.52),Inches(3.6),Inches(.4),size=16,bold=True,color=fc)
-        txb(sl,desc,bx+Inches(.15),Inches(3.0),Inches(3.6),Inches(1.0),size=12,color=CHARCOAL)
-    txb(sl,'三者互補而非取代：綠建築是建築的「全面健檢」，智慧建築是「智慧大腦」，而 BERS 是專注的「能效成績單」。',
-        Inches(1),Inches(5.5),Inches(11.3),Inches(.55),size=14,color=CHARCOAL)
-    rect(sl,Inches(1),Inches(6.1),Inches(11.3),Inches(1.0),AMBER_XP)
-    txb(sl,'💡 2023 版綠建築的日常節能指標已與 BERS 銜接，智慧建築的節能管理碳足跡監控也能為 BERS 提供實測數據，\n三大制度逐步整合成完整的永續建築評估體系。',
-        Inches(1.15),Inches(6.18),Inches(11),Inches(.85),size=13,color=AMBER)
+    # 33 BERS vs EEWH table
+    sl = content(prs)
+    D.header(sl, "兩者差異", "建築能效 與 綠建築 有何不同", AMBER_MID)
+    rows = [("關注面向", "生態／節能／減廢／健康，綜合環境評估", "專注於能源效率單一面向"),
+            ("衡量方式", "四大範疇、九大指標", "量化 EUI／CEI 並分級"),
+            ("分級", "鑽石至合格，共五級", "1+ 至 7，共七階段"),
+            ("目標", "整體環境品質", "對接近零碳建築")]
+    cols = [(Inches(0.9), Inches(2.0)), (Inches(2.95), Inches(4.6)), (Inches(7.65), Inches(4.78))]
+    hy = Inches(2.3)
+    heads = [("", STONE4), ("綠建築 EEWH", "#064e3b"), ("建築能效 BERS", AMBER)]
+    for (cx, cwd), (htext, hc) in zip(cols, heads):
+        if htext:
+            D.text(sl, htext, cx, hy, cwd, Inches(0.4), size=13, bold=True, color=hc)
+    D.rect(sl, Inches(0.9), hy + Inches(0.5), Inches(11.53), Pt(1.5), fill="#d6d3d1")
+    ry = hy + Inches(0.65)
+    for k, a, b in rows:
+        D.text(sl, k, cols[0][0], ry, cols[0][1], Inches(0.6), size=12, color=STONE4)
+        D.text(sl, a, cols[1][0], ry, cols[1][1], Inches(0.7), size=12, color=BODY, spacing=1.15)
+        D.text(sl, b, cols[2][0], ry, cols[2][1], Inches(0.7), size=12, color=BODY, spacing=1.15)
+        D.rect(sl, Inches(0.9), ry + Inches(0.72), Inches(11.53), Pt(0.75), fill=LINE)
+        ry += Inches(0.88)
+    D.note(sl, "兩者相輔相成：綠建築看整體環境、建築能效專精能源，且可互相換算。")
 
-    # ── 10 淨零路徑 ────────────────────────────
-    sl = blank_slide(prs)
-    fill_bg(sl,'#fafaf9')
-    txb(sl,'BERS ／ 淨零路徑',Inches(1),Inches(.5),Inches(5),Inches(.4),size=12,color=AMBER)
-    accent_bar(sl,Inches(1),Inches(.93),Inches(1.2),AMBER)
-    txb(sl,'邁向 2050 淨零建築',Inches(1),Inches(1.07),Inches(11),Inches(.6),size=28,bold=True,color=CHARCOAL)
-    tl=[('2024','公有新建強制申請能效標示',G_4),
-        ('2027','擴大至大型民間建築',G_3),
-        ('2030','新建建築達能效 2 級以上',G_2),
-        ('2040','既有建築逐步改善升級',G_1),
-        ('2050★','全面淨零建築 1+ 級',G_1PLUS)]
-    for i,(yr,desc,fc) in enumerate(tl):
-        x=Inches(1+i*2.4)
-        rect(sl,x,Inches(2.0),Inches(.65),Inches(.65),fc)
-        txb(sl,yr.replace('★',''),x,Inches(2.0),Inches(.65),Inches(.65),
-            size=11,bold=True,color=WHITE,align=PP_ALIGN.CENTER)
-        txb(sl,yr,x-Inches(.1),Inches(2.72),Inches(.95),Inches(.3),
-            size=11,bold=('★' in yr),color=G_1PLUS if '★' in yr else CHARCOAL)
-        txb(sl,desc,x-Inches(.2),Inches(3.05),Inches(1.05),Inches(1.0),size=10,color=GRAY)
-    for i,(num,lbl,fc) in enumerate([('2 級','2030 新建目標',G_2),('1+ 級','2050 淨零目標',G_1PLUS),('≥50%','近零能耗節能率',AMBER)]):
-        bx=Inches(1+i*4.1)
-        rect(sl,bx,Inches(4.5),Inches(3.9),Inches(1.6),'#f9fafb')
-        txb(sl,num,bx,Inches(4.6),Inches(3.9),Inches(.75),size=32,bold=True,color=fc,align=PP_ALIGN.CENTER)
-        txb(sl,lbl,bx,Inches(5.35),Inches(3.9),Inches(.4),size=12,color=GRAY,align=PP_ALIGN.CENTER)
+    # 34 重點回顧
+    sl = content(prs)
+    D.header(sl, "重點回顧", "關於 BERS，記住這幾點", AMBER_MID)
+    D.bullets(sl, [
+        "BERS 把建築能效「量化、分級、標示」，制度仿自歐盟 EPBD",
+        "七階段分級 1+ 到 7，以市場平均能效為合格分界",
+        "1+ 為近零碳建築：住宅減碳 30% 以上、非住宅節能 50% 以上",
+        "計算邊界 ECB 涵蓋外殼、空調、照明、電梯、揚水泵與機械設備",
+        "標示以 EUI（用電密度）或 CEI（碳排密度）呈現",
+        "對接 2050 淨零：2030 年起公有新建須達能效 1 級或近零碳",
+    ], Inches(0.9), Inches(2.1), Inches(11.3), Inches(3.5), size=14, color=BODY,
+        marker_color=AMBER_MID, gap=9, spacing=1.2)
 
-    # ── 11 申請流程 ────────────────────────────
-    sl = blank_slide(prs)
-    fill_bg(sl,'#fafaf9')
-    txb(sl,'BERS ／ 申請流程',Inches(1),Inches(.5),Inches(5),Inches(.4),size=12,color=AMBER)
-    accent_bar(sl,Inches(1),Inches(.93),Inches(1.2),AMBER)
-    txb(sl,'申請流程 — 四大階段',Inches(1),Inches(1.07),Inches(11),Inches(.6),size=28,bold=True,color=CHARCOAL)
-    steps=[
-        ('STEP 01','📐','資料準備','蒐集建築圖說、空調照明設備規格、用電資料或能耗模擬報告'),
-        ('STEP 02','🧮','EUI 計算','依評估手冊計算各系統能耗，換算建築整體 EUI 與節能率'),
-        ('STEP 03','🔍','評定審查','向評定機構提送，經書面審查與必要現勘，核定能效等級'),
-        ('STEP 04','🏷️','標示揭示','取得能效標示證書，於建築明顯處張貼 1+～7 級能效貼標'),
-    ]
-    for i,(num,icon,title,desc) in enumerate(steps):
-        bx=Inches(1+i*3.1)
-        rect(sl,bx,Inches(2.0),Inches(2.9),Inches(2.8),AMBER_BG)
-        txb(sl,num, bx+Inches(.12),Inches(2.1),Inches(2.65),Inches(.3),size=11,color=AMBER)
-        txb(sl,icon,bx+Inches(.12),Inches(2.45),Inches(2.65),Inches(.45),size=22)
-        txb(sl,title,bx+Inches(.12),Inches(2.97),Inches(2.65),Inches(.4),size=14,bold=True,color=CHARCOAL)
-        txb(sl,desc, bx+Inches(.12),Inches(3.42),Inches(2.65),Inches(1.15),size=11,color=GRAY)
-        if i<3:
-            txb(sl,'→',Inches(3.9+i*3.1),Inches(3.2),Inches(.3),Inches(.4),size=16,color=GRAY)
-    rect(sl,Inches(1),Inches(5.0),Inches(5.8),Inches(2.15),AMBER_BG)
-    txb(sl,'兩種評估途徑',Inches(1.15),Inches(5.1),Inches(5.5),Inches(.35),size=13,bold=True,color=AMBER)
-    txb_lines(sl,['設計評估：以設計圖說與模擬數據申請（新建建築）','實測評估：以智慧電表實際用電佐證（既有建築）'],
-        Inches(1.15),Inches(5.5),Inches(5.5),Inches(.9),size=12,color=CHARCOAL,bullet=True)
-    rect(sl,Inches(7.1),Inches(5.0),Inches(5.8),Inches(2.15),AMBER_XP)
-    txb(sl,'標示有效期',Inches(7.25),Inches(5.1),Inches(5.5),Inches(.35),size=13,bold=True,color=AMBER)
-    txb(sl,'能效標示證書有效期一般為 3～5 年，\n建築完成節能改善後可重新評估升級，\n鼓勵持續精進能源表現。',
-        Inches(7.25),Inches(5.5),Inches(5.5),Inches(1.4),size=12,color=CHARCOAL)
-
-    # ── 12 結語 ────────────────────────────────
-    sl = blank_slide(prs)
-    fill_bg(sl, STONE)
-    txb(sl,'建築能效評估標示 BERS 2024 版',
-        Inches(1),Inches(.8),Inches(10),Inches(.4),size=13,color=AMBER_LG)
-    txb(sl,'把建築的能源表現，',
-        Inches(1),Inches(1.4),Inches(11),Inches(.7),size=36,bold=True,color=WHITE)
-    txb(sl,'變成看得懂的一張成績單',
-        Inches(1),Inches(2.1),Inches(11),Inches(.7),size=36,bold=True,color=AMBER_LG)
-    rect(sl,Inches(1),Inches(2.95),Inches(.7),Pt(4),AMBER_LG)
-    txb(sl,'從 EUI 量化到 1+ 至 7 的能效分級，BERS 讓建築節能不再是模糊概念。\n配合 2050 淨零路徑，每一棟達到高能效等級的建築，\n都是邁向永續未來的一塊堅實基石。',
-        Inches(1),Inches(3.15),Inches(10),Inches(1.5),size=16,color='#a8a29e')
-    # mini energy scale
-    for i,(num,fc) in enumerate([('1+',G_1PLUS),('1',G_1),('2',G_2),('3',G_3),
-                                   ('4',G_4),('5',G_5),('6',G_6),('7',G_7)]):
-        bx=Inches(1+i*.65)
-        h=Inches(.55-i*.04) if i<6 else Inches(.25)
-        rect(sl,bx,Inches(5.5),Inches(.55),h,fc)
-        if i==0:
-            txb(sl,num,bx,Inches(5.5),Inches(.55),h,size=9,bold=True,color=WHITE,align=PP_ALIGN.CENTER)
-    txb(sl,'資料來源：內政部建築研究所 建築能效評估手冊 2024 版',
-        Inches(1),Inches(6.8),Inches(11),Inches(.35),size=11,color='#44403c',italic=True)
+    # 35 closing
+    D.closing(prs, DARK, "BERS ｜ 量化能效・邁向淨零",
+              "把能效講清楚，\n讓淨零看得見", AMBER_LG)
 
     prs.save(path)
-    print(f'Saved {path}')
+    print(f"saved {path} · {len(prs.slides._sldIdLst)} slides")
 
-build_bers('/home/user/jieceng-web/presentation-BERS.pptx')
-print('BERS done')
+
+if __name__ == "__main__":
+    build("/home/user/jieceng-web/presentation-BERS.pptx")
