@@ -121,7 +121,7 @@
               </div>
               <div>
                 <h3 class="text-emerald-brand font-mono text-xs tracking-widest uppercase mb-4">Inquiry</h3>
-                <p class="font-serif text-2xl text-charcoal">(02) 2345-6789</p>
+                <p class="font-serif text-2xl text-charcoal">(03) 316-7799</p>
                 <a href="mailto:jason.house2007@gmail.com" class="font-sans text-charcoal/55 hover:text-emerald-brand transition-colors duration-500 mt-2 block">jason.house2007@gmail.com</a>
               </div>
             </div>
