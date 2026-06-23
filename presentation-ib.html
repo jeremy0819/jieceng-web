@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>智慧建築標章 2024 × 傑丞建築機構｜專業簡報</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reset.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --warm-white : #f8fafc;
+      --charcoal   : #0f172a;
+      --blue       : #1e3a8a;
+      --blue-mid   : #1d4ed8;
+      --blue-lg    : #60a5fa;
+      --blue-pale  : #dbeafe;
+      --slate-200  : #e2e8f0;
+      --slate-400  : #94a3b8;
+      --slate-800  : #1e293b;
+    }
+    .reveal-viewport { background: var(--warm-white); }
+    .reveal { font-family: 'Inter', 'Noto Sans TC', sans-serif; font-size: 22px; color: var(--charcoal); }
+    .reveal .slides { text-align: left; }
+    .reveal h1, .reveal h2, .reveal h3, .reveal h4 {
+      font-family: 'Playfair Display', 'Noto Serif TC', serif;
+      color: var(--charcoal); text-transform: none; letter-spacing: -0.01em;
+      line-height: 1.25; margin-bottom: 0.5em; font-weight: 700;
+    }
+    .reveal h1 { font-size: 2.5em; }
+    .reveal h2 { font-size: 1.7em; }
+    .reveal h3 { font-size: 1.15em; font-weight: 600; font-family: 'Inter', sans-serif; }
+    .reveal h4 { font-size: .95em; font-weight: 600; font-family: 'Inter', sans-serif; }
+    .reveal p, .reveal li { line-height: 1.7; }
+    .reveal ul { list-style: none; padding: 0; }
+    .reveal ul li::before { content: '—'; color: var(--blue-mid); margin-right: .5em; font-weight: 600; }
+    .reveal .controls { color: var(--blue-mid); }
+    .reveal .progress span { background: var(--blue-mid); }
+    .reveal .slide-number { font-family: 'JetBrains Mono', monospace; font-size: .55em; color: var(--slate-400); }
+    .slide-wrap  { padding: 0 60px; }
+    .slide-inner { max-width: 960px; margin: 0 auto; height: 100%; display: flex; flex-direction: column; justify-content: center; }
+    .em   { color: var(--blue-mid); }
+    .mono { font-family: 'JetBrains Mono', monospace; font-size: .85em; }
+    .small{ font-size: .75em; color: #334155; line-height: 1.65; }
+    .rule { width: 48px; height: 3px; background: var(--blue-mid); margin-bottom: 1.2em; border-radius: 2px; }
+    .rule-full { width: 100%; height: 1px; background: var(--slate-200); margin: .9em 0; }
+    .note { font-size: .62em; color: var(--slate-400); font-family: 'JetBrains Mono', monospace; margin-top: .5em; }
+    .tag { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: .6em; font-weight: 500; padding: .18em .65em; border-radius: 4px; text-transform: uppercase; letter-spacing: .05em; vertical-align: middle; margin-bottom: .4em; }
+    .tag-blue  { background: var(--blue-pale); color: var(--blue); }
+    .tag-green { background: #d1fae5; color: #064e3b; }
+    .tag-gray  { background: #f1f5f9; color: #475569; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.8em; }
+    .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.4em; }
+    .grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 1.2em; }
+    .card { background: #fff; border: 1px solid var(--slate-200); border-radius: 12px; padding: 1.2em 1.5em; }
+    .card-em { background: var(--blue); border-radius: 12px; padding: 1.2em 1.5em; }
+    .card-em h3, .card-em h4, .card-em p, .card-em li { color: #fff; }
+    .card-em ul li::before { color: var(--blue-pale); }
+    .card-acc { border-left: 4px solid var(--blue-mid); }
+    .card-alt { border-left: 4px solid var(--blue-lg); }
+    .stat-num { font-family: 'Playfair Display', serif; font-size: 2.8em; font-weight: 700; color: var(--blue-mid); line-height: 1; }
+    .stat-label { font-size: .7em; color: var(--slate-400); margin-top: .3em; }
+    .badge-row { display: flex; gap: .7em; margin-top: .9em; flex-wrap: wrap; }
+    .badge { flex: 1; min-width: 90px; display: flex; flex-direction: column; align-items: center; padding: .85em .8em; border-radius: 10px; border: 1.5px solid var(--slate-200); font-size: .72em; }
+    .badge-icon { font-size: 1.6em; line-height: 1; margin-bottom: .2em; }
+    .badge-name { font-weight: 700; font-size: 1em; margin-bottom: .1em; }
+    .badge-sub  { font-size: .78em; color: var(--slate-400); text-align: center; }
+    .badge-score{ font-family: 'JetBrains Mono', monospace; font-size: .75em; margin-top: .3em; font-weight: 500; }
+    .badge-diamond { border-color: #a78bfa; background: #f5f3ff; }
+    .badge-diamond .badge-name { color: #6d28d9; }
+    .badge-gold    { border-color: #d97706; background: #fffbeb; }
+    .badge-gold .badge-name { color: #b45309; }
+    .badge-silver  { border-color: #475569; background: #f8fafc; }
+    .badge-silver .badge-name { color: #334155; }
+    .badge-bronze  { border-color: #92400e; background: #fef3c7; }
+    .badge-bronze .badge-name { color: #92400e; }
+    .badge-pass    { border-color: var(--blue-mid); background: var(--blue-pale); }
+    .badge-pass .badge-name { color: var(--blue); }
+    .timeline { display: flex; gap: 0; margin-top: .9em; position: relative; }
+    .tl-item { flex: 1; text-align: center; position: relative; padding: 0 .3em; }
+    .tl-item::before { content: ''; position: absolute; top: .95em; left: 50%; width: 100%; height: 2px; background: var(--slate-200); z-index: 0; }
+    .tl-item:last-child::before { display: none; }
+    .tl-dot { width: 2em; height: 2em; border-radius: 50%; background: var(--blue-mid); display: flex; align-items: center; justify-content: center; margin: 0 auto .5em; position: relative; z-index: 1; font-family: 'JetBrains Mono', monospace; font-size: .6em; color: #fff; font-weight: 600; }
+    .tl-year { font-family: 'JetBrains Mono', monospace; font-size: .65em; font-weight: 600; color: var(--blue-mid); }
+    .tl-desc { font-size: .62em; color: #334155; margin-top: .2em; line-height: 1.4; }
+    .cmp-table { width: 100%; border-collapse: collapse; font-size: .75em; }
+    .cmp-table th { padding: .65em .9em; font-weight: 600; border-bottom: 2px solid var(--slate-200); }
+    .cmp-table th:first-child { text-align: left; color: var(--slate-400); }
+    .cmp-table th.b1 { color: var(--blue); background: var(--blue-pale); border-radius: 8px 8px 0 0; }
+    .cmp-table td { padding: .6em .9em; border-bottom: 1px solid var(--slate-200); vertical-align: top; }
+    .cmp-table td:first-child { font-weight: 600; color: #334155; }
+    .cmp-table tr:last-child td { border-bottom: none; }
+    .cmp-table tr:nth-child(even) td { background: #f8fafc; }
+    .ind-item { display: flex; align-items: flex-start; gap: .7em; background: #fff; border: 1px solid var(--slate-200); border-radius: 10px; padding: .85em 1em; }
+    .ind-num { font-family: 'JetBrains Mono', monospace; font-size: .65em; font-weight: 500; background: var(--blue-mid); color: #fff; border-radius: 50%; width: 1.9em; height: 1.9em; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: .1em; }
+    .ind-text { font-size: .72em; }
+    .ind-text strong { display: block; font-weight: 600; margin-bottom: .1em; }
+    .ind-detail { display: grid; grid-template-columns: 1fr 1.6fr; gap: 2em; align-items: start; margin-top: .6em; }
+    .score-box { background: var(--blue-pale); border: 2px solid var(--blue-mid); border-radius: 12px; padding: 1.2em; text-align: center; }
+    .score-box .num { font-family: 'Playfair Display', serif; font-size: 3em; font-weight: 700; color: var(--blue); line-height: 1; }
+    .score-box .lbl { font-size: .65em; color: var(--blue); margin-top: .3em; }
+    .cat-band { display: flex; align-items: center; gap: .6em; font-size: .6em; font-family: 'JetBrains Mono', monospace; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: var(--slate-400); margin: .4em 0 .6em; }
+    .cat-band::before { content: ''; flex: 0 0 24px; height: 2px; background: currentColor; border-radius: 1px; }
+  </style>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+
+<!-- 01 封面 -->
+<section data-background-color="#0f172a">
+  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
+    <div style="max-width:900px;margin:0 auto;padding:60px 0;">
+      <p class="mono" style="color:var(--blue-lg);margin-bottom:.8em;font-size:.68em;letter-spacing:.12em;">INTELLIGENT BUILDING · 2024</p>
+      <h1 style="color:#fff;font-size:2.6em;line-height:1.1;margin-bottom:.35em;">智慧建築標章</h1>
+      <h2 style="color:var(--blue-lg);font-size:1.3em;font-family:'Inter',sans-serif;font-weight:400;margin-bottom:.8em;">六大指標、IoT 應用與開發價值</h2>
+      <div style="width:56px;height:3px;background:var(--blue-lg);margin:1.2em 0;border-radius:2px;"></div>
+      <p style="color:#94a3b8;font-size:.8em;">內部訓練 ／ 專業參考簡報</p>
+      <p style="color:#64748b;font-size:.76em;margin-top:.4em;">傑丞建築機構　Jieceng Architecture</p>
+    </div>
+  </div>
+</section>
+
+<!-- 02 今日議程 -->
+<section>
+  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
+    <div class="slide-inner">
+      <div class="rule"></div>
+      <h2>今日議程</h2>
+      <div class="grid-2" style="margin-top:1.2em;gap:1.4em;">
+        <div class="card">
+          <p class="mono" style="color:var(--blue-mid);font-size:.6em;margin-bottom:.6em;">PART 01</p>
+          <h3 style="margin-bottom:.5em;">制度與評估架構</h3>
+          <p class="small">定義、IoT 趨勢、2024 修訂、六大指標架構</p>
+        </div>
+        <div class="card">
+          <p class="mono" style="color:var(--blue-mid);font-size:.6em;margin-bottom:.6em;">PART 02</p>
+          <h3 style="margin-bottom:.5em;">六大指標逐項</h3>
+          <p class="small">基礎設施／維運管理／安全防災／節能管理／健康舒適／智慧創新</p>
+        </div>
+        <div class="card">
+          <p class="mono" style="color:var(--blue-mid);font-size:.6em;margin-bottom:.6em;">PART 03</p>
+          <h3 style="margin-bottom:.5em;">分級、配分與申請</h3>
+          <p class="small">五大認證等級、240 分配分權重、申請流程、適用對象</p>
+        </div>
+        <div class="card">
+          <p class="mono" style="color:var(--blue-mid);font-size:.6em;margin-bottom:.6em;">PART 04</p>
+          <h3 style="margin-bottom:.5em;">對開發案的價值</h3>
+          <p class="small">容積獎勵、智慧賣點、三標章整合</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 Part 01 過場 -->
+<section data-background-color="#1e293b">
+  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
+    <div style="max-width:800px;margin:0 auto;">
+      <p class="mono" style="color:var(--blue-pale);font-size:.62em;margin-bottom:1em;letter-spacing:.1em;">PART 01</p>
+      <h1 style="color:#fff;font-size:2.6em;line-height:1.1;margin-bottom:.5em;">制度與評估架構</h1>
+      <p style="color:var(--blue-lg);font-size:.9em;">智慧建築是什麼？怎麼評？</p>
+      <p style="color:#60a5fa80;font-size:.7em;margin-top:2em;">傑丞建築機構　Jieceng Architecture</p>
+    </div>
+  </div>
+</section>
+
+<!-- 04 什麼是智慧建築 -->
+<section>
+  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
+    <div class="slide-inner">
+      <span class="tag tag-blue">WHAT IS INTELLIGENT BUILDING</span>
+      <div class="rule"></div>
+      <h2>什麼是智慧建築？</h2>
+      <p class="small" style="max-width:720px;margin-bottom:1.2em;">導入資通訊（ICT）與物聯網（IoT）技術，使建築物對環境、行為與設備狀態具備「感知、判斷、回應」能力，提供安全、健康、節能、便利且永續的使用環境。</p>
+      <div class="grid-3">
+        <div class="card card-acc" style="text-align:center;">
+          <div style="font-size:1.6em;margin-bottom:.4em;">👁️</div>
+          <h4 class="em">感知</h4>
+          <p class="small" style="margin-top:.3em;">遍佈感測器，偵測環境與設備</p>
+        </div>
+        <div class="card card-acc" style="text-align:center;">
+          <div style="font-size:1.6em;margin-bottom:.4em;">🧠</div>
+          <h4 class="em">判斷</h4>
+          <p class="small" style="margin-top:.3em;">系統整合資料、分析狀態</p>
+        </div>
+        <div class="card card-acc" style="text-align:center;">
+          <div style="font-size:1.6em;margin-bottom:.4em;">⚡</div>
+          <h4 class="em">回應</h4>
+          <p class="small" style="margin-top:.3em;">連動設備自動調節與應變</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 三大核心功能 -->
+<section>
+  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
+    <div class="slide-inner">
+      <span class="tag tag-blue">CORE FUNCTIONS</span>
+      <div class="rule"></div>
+      <h2>三大核心功能 ─ 偵知 · 顯示 · 連動</h2>
+      <div class="grid-3" style="margin-top:1.4em;">
+        <div class="card card-em" style="text-align:center;">
+          <div style="font-size:1.6em;margin-bottom:.4em;">📡</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:.65em;font-weight:700;color:var(--blue-pale);margin-bottom:.3em;">01</div>
+          <h3 style="color:#fff;margin-bottom:.4em;">偵知　Sensing</h3>
+          <p style="font-size:.75em;color:#bfdbfe;">感測器偵測溫濕度、空氣、能耗、人流、設備運轉等狀態</p>
+        </div>
+        <div class="card card-em" style="text-align:center;">
+          <div style="font-size:1.6em;margin-bottom:.4em;">📊</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:.65em;font-weight:700;color:var(--blue-pale);margin-bottom:.3em;">02</div>
+          <h3 style="color:#fff;margin-bottom:.4em;">顯示　Display</h3>
+          <p style="font-size:.75em;color:#bfdbfe;">以數值、圖形、影像即時呈現，供管理者與使用者掌握</p>
+        </div>
+        <div class="card card-em" style="text-align:center;">
+          <div style="font-size:1.6em;margin-bottom:.4em;">🔗</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:.65em;font-weight:700;color:var(--blue-pale);margin-bottom:.3em;">03</div>
+          <h3 style="color:#fff;margin-bottom:.4em;">連動　Reaction</h3>
+          <p style="font-size:.75em;color:#bfdbfe;">依狀態自動連動系統設備，進行回復、緩和、紀錄與應變</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 IoT × 智慧城市趨勢 -->
+<section>
+  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
+    <div class="slide-inner">
+      <span class="tag tag-blue">TREND</span>
+      <div class="rule"></div>
+      <h2>物聯網 × 智慧城市趨勢</h2>
+      <p class="small" style="max-width:720px;margin-bottom:1.2em;">感測器輕薄化與物聯網成熟，使「建築物內遍佈感測器」的時代來臨。智慧建築是智慧城市的基本單元，也是建築產業數位轉型的核心。</p>
+      <div class="grid-4">
+        <div class="card" style="text-align:center;border-top:3px solid var(--blue-mid);">
+          <div style="font-size:1.4em;margin-bottom:.3em;">🌐</div>
+          <h4 class="em">IoT 物聯網</h4>
+          <p class="small" style="margin-top:.3em;">設備互聯、資料即時匯流</p>
+        </div>
+        <div class="card" style="text-align:center;border-top:3px solid var(--blue-mid);">
+          <div style="font-size:1.4em;margin-bottom:.3em;">🤖</div>
+          <h4 class="em">AIoT 智慧分析</h4>
+          <p class="small" style="margin-top:.3em;">資料驅動的預測與最佳化</p>
+        </div>
+        <div class="card" style="text-align:center;border-top:3px solid var(--blue-mid);">
+          <div style="font-size:1.4em;margin-bottom:.3em;">🏗️</div>
+          <h4 class="em">數位轉型</h4>
+          <p class="small" style="margin-top:.3em;">BIM、智慧營造、雲平台</p>
+        </div>
+        <div class="card" style="text-align:center;border-top:3px solid var(--blue-mid);">
+          <div style="font-size:1.4em;margin-bottom:.3em;">🌱</div>
+          <h4 class="em">淨零永續</h4>
+          <p class="small" style="margin-top:.3em;">與綠建築、建築能效並進</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 07 制度沿革 -->
+<section>
+  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
+    <div class="slide-inner">
+      <span class="tag tag-blue">BACKGROUND</span>
+      <div class="rule"></div>
+      <h2>制度背景與沿革</h2>
+      <div class="timeline" style="margin-top:1.6em;">
+        <div class="tl-item">
+          <div class="tl-dot">1</div>
+          <div class="tl-year">2004</div>
+          <div class="tl-desc">內政部推動「智慧建築標章」制度，建立評估指標</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot">2</div>
+          <div class="tl-year">2016</div>
+          <div class="tl-desc">配合物聯網發展全面改版，導入智慧化整合應用</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot">3</div>
+          <div class="tl-year">2021</div>
+          <div class="tl-desc">強化資訊安全與雲端管理，呼應數位轉型</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot">4</div>
+          <div class="tl-year">2024</div>
+          <div class="tl-desc">整併為六大指標，導入智慧營造、智慧建材與標準資料格式</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 08 2024 版修訂重點 -->
+<section>
+  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
+    <div class="slide-inner">
+      <span class="tag tag-blue">2024 REVISION</span>
+      <div class="rule"></div>
+      <h2>2024 版 ─ 修訂重點</h2>
+      <ul style="font-size:.84em;margin-top:1em;">
+        <li>評估架構整併為「六大指標」：基礎設施為基礎性，其餘五項為功能性</li>
+        <li>強調 IoT「偵知／顯示／連動」三大功能所帶來的效益</li>
+        <li>導入建築產業數位轉型：智慧營造、智慧建材、智慧管理雲平台</li>
+        <li>建立標準資料格式，強化全生命週期管理與資料互通</li>
+        <li>評估項目共 98 項，分「基本規定（不計分）」與「鼓勵項目（計分）」</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 09 評估架構總覽 -->
+<section>
+  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
+    <div class="slide-inner">
+      <span class="tag tag-blue">FRAMEWORK</span>
+      <div class="rule"></div>
+      <h2>評估架構總覽</h2>
+      <div class="grid-2" style="margin-top:1.2em;">
+        <div class="card card-em">
+          <h3 style="color:#fff;margin-bottom:.5em;">基礎性指標</h3>
+          <p style="font-size:.78em;color:#bfdbfe;">基礎設施指標</p>
+          <p class="small" style="color:#93c5fd;margin-top:.4em;">評估綜合佈線、資訊通信及資訊安全等規劃設計是否達一定要求，是智慧建築的數位基礎。</p>
+        </div>
+        <div class="card card-acc">
+          <h3 style="margin-bottom:.5em;">功能性指標（五項）</h3>
+          <ul style="font-size:.78em;">
+            <li>維運管理</li>
+            <li>安全防災</li>
+            <li>節能管理</li>
+            <li>健康舒適</li>
+            <li>智慧創新</li>
+          </ul>
+          <p class="note" style="margin-top:.5em;">從管理、安全、健康、節能評估效益，並鼓勵前瞻創新</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 10 六大指標配分 -->
+<section>
+  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
+    <div class="slide-inner">
+      <span class="tag tag-blue">SCORING WEIGHT</span>
+      <div class="rule"></div>
+      <h2>六大指標 ─ 配分與權重</h2>
+      <table class="cmp-table" style="margin-top:1em;">
+        <thead>
+          <tr>
+            <th style="text-align:left;">指標</th>
+            <th style="text-align:left;">類型</th>
+            <th class="b1" style="text-align:center;">鼓勵配分</th>
+            <th style="text-align:center;">佔比</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>1 基礎設施</td><td>基礎性</td><td style="text-align:center;font-weight:700;">42</td><td style="text-align:center;">17.5%</td></tr>
+          <tr><td>2 維運管理</td><td>功能性</td><td style="text-align:center;font-weight:700;">38</td><td style="text-align:center;">15.8%</td></tr>
+          <tr><td>3 安全防災</td><td>功能性</td><td style="text-align:center;font-weight:700;">40</td><td style="text-align:center;">16.7%</td></tr>
+          <tr><td><strong>4 節能管理</strong></td><td>功能性</td><td style="text-align:center;font-weight:700;color:var(--blue);">45</td><td style="text-align:center;"><strong>18.7%</strong></td></tr>
+          <tr><td>5 健康舒適</td><td>功能性</td><td style="text-align:center;font-weight:700;">39</td><td style="text-align:center;">16.3%</td></tr>
+          <tr><td>6 智慧創新</td><td>功能性</td><td style="text-align:center;font-weight:700;">36</td><td style="text-align:center;">15.0%</td></tr>
+          <tr style="background:var(--blue-pale);"><td><strong>合計</strong></td><td></td><td style="text-align:center;font-weight:700;color:var(--blue);">240</td><td style="text-align:center;font-weight:700;">100%</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 11 基本規定 vs 鼓勵項目 -->
+<section>
+  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
+    <div class="slide-inner">
+      <span class="tag tag-blue">MECHANISM</span>
+      <div class="rule"></div>
+      <h2>基本規定 vs 鼓勵項目</h2>
+      <div class="grid-2" style="margin-top:1.4em;">
+        <div class="card" style="border-top:3px solid #dc2626;">
+          <h3 style="color:#dc2626;margin-bottom:.6em;">基本規定</h3>
+          <ul style="font-size:.78em;">
+            <li>門檻性要求、不計分</li>
+            <li>須「全部符合」才能取得標章</li>
+            <li>確保智慧化的基本品質</li>
+          </ul>
+        </div>
+        <div class="card card-acc">
+          <h3 style="margin-bottom:.6em;">鼓勵項目</h3>
+          <ul style="font-size:.78em;">
+            <li>實際計分項目</li>
+            <li>鼓勵項目得分上限 <strong>240 分</strong></li>
+            <li>得分越高、等級越高</li>
+            <li>智慧創新指標僅有鼓勵分數</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 12 Part 02 過場 -->
+<section data-background-color="#1e293b">
+  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
+    <div style="max-width:800px;margin:0 auto;">
+      <p class="mono" style="color:var(--blue-pale);font-size:.62em;margin-bottom:1em;letter-spacing:.1em;">PART 02</p>
+      <h1 style="color:#fff;font-size:2.6em;line-height:1.1;margin-bottom:.5em;">六大指標逐項</h1>
+      <p style="color:var(--blue-lg);font-size:.9em;">每一項評什麼、怎麼設計</p>
+      <p style="color:#60a5fa80;font-size:.7em;margin-top:2em;">傑丞建築機構　Jieceng Architecture</p>
+    </div>
+  </div>
+</section>
+
+<!-- 13 基礎設施 -->
+<section>
+  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
+    <div class="slide-inner">
+      <div class="cat-band">基礎性指標</div>
+      <div class="ind-detail">
+        <div>
+          <div style="display:flex;align-items:center;gap:.8em;margin-bottom:.8em;">
+            <div class="ind-num" style="font-size:.9em;width:2.2em;height:2.2em;">1</div>
+            <span class="note">鼓勵配分</span>
+          </div>
+          <div class="score-box">
+            <div class="num">42</div>
+            <div class="lbl">分</div>
+          </div>
+          <h3 style="margin:1em 0 .3em;" class="em">基礎設施指標</h3>
+          <p class="note">Infrastructure</p>
+        </div>
+        <div>
+          <h4 style="margin-bottom:.5em;">指標定位</h4>
+          <p class="small" style="margin-bottom:.8em;">智慧建築的「數位基礎」，評估綜合佈線、資訊通信與資訊安全的規劃設計水準。</p>
+          <h4 style="margin-bottom:.5em;">評估重點</h4>
+          <ul style="font-size:.78em;">
+            <li>結構化綜合佈線系統</li>
+            <li>寬頻資訊通信網路與無線涵蓋</li>
+            <li>機房、弱電與電信空間</li>
+            <li>資訊安全防護機制</li>
+            <li>為其餘五項功能指標的基礎</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 14 維運管理 -->
+<section>
+  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
+    <div class="slide-inner">
+      <div class="cat-band">功能性指標</div>
+      <div class="ind-detail">
+        <div>
+          <div style="display:flex;align-items:center;gap:.8em;margin-bottom:.8em;">
+            <div class="ind-num" style="font-size:.9em;width:2.2em;height:2.2em;">2</div>
+            <span class="note">鼓勵配分</span>
+          </div>
+          <div class="score-box">
+            <div class="num">38</div>
+            <div class="lbl">分</div>
+          </div>
+          <h3 style="margin:1em 0 .3em;" class="em">維運管理指標</h3>
+          <p class="note">Operation &amp; Management</p>
+        </div>
+        <div>
+          <h4 style="margin-bottom:.5em;">指標定位</h4>
+          <p class="small" style="margin-bottom:.8em;">評估建築全生命週期的設施與設備管理智慧化程度。</p>
+          <h4 style="margin-bottom:.5em;">評估重點</h4>
+          <ul style="font-size:.78em;">
+            <li>設備資產與空間管理</li>
+            <li>IoT 設備監控與儀表板</li>
+            <li>預防保養與故障預警</li>
+            <li>能源與設備數據分析</li>
+            <li>智慧管理雲平台整合</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 15 安全防災 -->
+<section>
+  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
+    <div class="slide-inner">
+      <div class="cat-band">功能性指標</div>
+      <div class="ind-detail">
+        <div>
+          <div style="display:flex;align-items:center;gap:.8em;margin-bottom:.8em;">
+            <div class="ind-num" style="font-size:.9em;width:2.2em;height:2.2em;">3</div>
+            <span class="note">鼓勵配分</span>
+          </div>
+          <div class="score-box">
+            <div class="num">40</div>
+            <div class="lbl">分</div>
+          </div>
+          <h3 style="margin:1em 0 .3em;" class="em">安全防災指標</h3>
+          <p class="note">Safety &amp; Disaster Prevention</p>
+        </div>
+        <div>
+          <h4 style="margin-bottom:.5em;">指標定位</h4>
+          <p class="small" style="margin-bottom:.8em;">評估偵知與連動的安全防護與緊急應變能力。</p>
+          <h4 style="margin-bottom:.5em;">評估重點</h4>
+          <ul style="font-size:.78em;">
+            <li>火災、CO、漏水等災害偵測</li>
+            <li>保全監視 CCTV 與門禁系統</li>
+            <li>緊急廣播與避難引導連動</li>
+            <li>設備異常自動通報</li>
+            <li>災害情境的系統連動應變</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 16 節能管理 -->
+<section>
+  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
+    <div class="slide-inner">
+      <div class="cat-band">功能性指標</div>
+      <div class="ind-detail">
+        <div>
+          <div style="display:flex;align-items:center;gap:.8em;margin-bottom:.5em;">
+            <div style="background:var(--blue);color:#fff;font-family:'JetBrains Mono',monospace;font-size:.6em;padding:.2em .6em;border-radius:4px;font-weight:700;">配分最高</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:.8em;margin-bottom:.8em;">
+            <div class="ind-num" style="font-size:.9em;width:2.2em;height:2.2em;">4</div>
+            <span class="note">鼓勵配分</span>
+          </div>
+          <div class="score-box">
+            <div class="num">45</div>
+            <div class="lbl">分（最高）</div>
+          </div>
+          <h3 style="margin:1em 0 .3em;" class="em">節能管理指標</h3>
+          <p class="note">Energy Management</p>
+        </div>
+        <div>
+          <h4 style="margin-bottom:.5em;">指標定位</h4>
+          <p class="small" style="margin-bottom:.8em;">六大指標中配分最高（18.7%），評估以智慧化達成的節能效益。</p>
+          <h4 style="margin-bottom:.5em;">評估重點</h4>
+          <ul style="font-size:.78em;">
+            <li>用電分區計量與能耗分析</li>
+            <li>空調、照明智慧自動控制</li>
+            <li>需量管理與尖峰調節</li>
+            <li>再生能源與儲能整合</li>
+            <li>依節能技術積分評分</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 17 健康舒適 -->
+<section>
+  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
+    <div class="slide-inner">
+      <div class="cat-band">功能性指標</div>
+      <div class="ind-detail">
+        <div>
+          <div style="display:flex;align-items:center;gap:.8em;margin-bottom:.8em;">
+            <div class="ind-num" style="font-size:.9em;width:2.2em;height:2.2em;">5</div>
+            <span class="note">鼓勵配分</span>
+          </div>
+          <div class="score-box">
+            <div class="num">39</div>
+            <div class="lbl">分</div>
+          </div>
+          <h3 style="margin:1em 0 .3em;" class="em">健康舒適指標</h3>
+          <p class="note">Health &amp; Comfort</p>
+        </div>
+        <div>
+          <h4 style="margin-bottom:.5em;">指標定位</h4>
+          <p class="small" style="margin-bottom:.8em;">評估以智慧化提升室內環境健康與舒適的程度。</p>
+          <h4 style="margin-bottom:.5em;">評估重點</h4>
+          <ul style="font-size:.78em;">
+            <li>空氣品質（CO₂、PM2.5）監測</li>
+            <li>溫濕度智慧調節</li>
+            <li>照明品質與情境控制</li>
+            <li>通風與空調連動</li>
+            <li>智慧無障礙與友善設計</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 18 智慧創新 -->
+<section>
+  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
+    <div class="slide-inner">
+      <div class="cat-band">功能性指標</div>
+      <div class="ind-detail">
+        <div>
+          <div style="display:flex;align-items:center;gap:.8em;margin-bottom:.8em;">
+            <div class="ind-num" style="font-size:.9em;width:2.2em;height:2.2em;">6</div>
+            <span class="note">鼓勵配分</span>
+          </div>
+          <div class="score-box">
+            <div class="num">36</div>
+            <div class="lbl">分</div>
+          </div>
+          <h3 style="margin:1em 0 .3em;" class="em">智慧創新指標</h3>
+          <p class="note">Smart Innovation</p>
+        </div>
+        <div>
+          <h4 style="margin-bottom:.5em;">指標定位</h4>
+          <p class="small" style="margin-bottom:.8em;">鼓勵前瞻創新技術，僅有鼓勵分數、無基本規定。</p>
+          <h4 style="margin-bottom:.5em;">評估重點</h4>
+          <ul style="font-size:.78em;">
+            <li>智慧營造與 BIM 應用</li>
+            <li>智慧建材與預鑄工法</li>
+            <li>智慧管理雲平台</li>
+            <li>標準資料格式與資料互通</li>
+            <li>AI、數位孿生等創新應用</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 19 智慧創新亮點 -->
+<section>
+  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
+    <div class="slide-inner">
+      <span class="tag tag-blue">INNOVATION HIGHLIGHTS</span>
+      <div class="rule"></div>
+      <h2>智慧創新 ─ 前瞻技術亮點</h2>
+      <div class="grid-3" style="margin-top:1.2em;">
+        <div class="card card-acc" style="text-align:center;"><div style="font-size:1.3em;margin-bottom:.3em;">🏗️</div><h4 class="em">智慧營造 BIM</h4><p class="small" style="margin-top:.3em;">設計施工數位化、減少錯誤與浪費</p></div>
+        <div class="card card-acc" style="text-align:center;"><div style="font-size:1.3em;margin-bottom:.3em;">🧱</div><h4 class="em">智慧建材</h4><p class="small" style="margin-top:.3em;">預鑄、感測建材、智慧玻璃</p></div>
+        <div class="card card-acc" style="text-align:center;"><div style="font-size:1.3em;margin-bottom:.3em;">☁️</div><h4 class="em">管理雲平台</h4><p class="small" style="margin-top:.3em;">跨系統整合、遠端維運與大數據</p></div>
+        <div class="card" style="text-align:center;"><div style="font-size:1.3em;margin-bottom:.3em;">🔄</div><h4 class="em">標準資料格式</h4><p class="small" style="margin-top:.3em;">資料互通、避免廠商鎖定</p></div>
+        <div class="card" style="text-align:center;"><div style="font-size:1.3em;margin-bottom:.3em;">🔮</div><h4 class="em">數位孿生</h4><p class="small" style="margin-top:.3em;">虛實對應、模擬與預測</p></div>
+        <div class="card" style="text-align:center;"><div style="font-size:1.3em;margin-bottom:.3em;">🤖</div><h4 class="em">AI 應用</h4><p class="small" style="margin-top:.3em;">能源最佳化、異常偵測</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 20 節能管理深度 -->
+<section>
+  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
+    <div class="slide-inner">
+      <span class="tag tag-blue">ENERGY · DEEP DIVE</span>
+      <div class="rule"></div>
+      <h2>節能管理 ─ 智慧節能手法</h2>
+      <div class="grid-3" style="margin-top:1.2em;">
+        <div class="card card-acc" style="text-align:center;"><div style="font-size:1.2em;margin-bottom:.3em;">📊</div><h4 class="em">用電計量分析</h4><p class="small" style="margin-top:.3em;">分區計量、即時能耗儀表板</p></div>
+        <div class="card card-acc" style="text-align:center;"><div style="font-size:1.2em;margin-bottom:.3em;">❄️</div><h4 class="em">空調智慧控制</h4><p class="small" style="margin-top:.3em;">變頻、室內環境連動調節</p></div>
+        <div class="card card-acc" style="text-align:center;"><div style="font-size:1.2em;margin-bottom:.3em;">💡</div><h4 class="em">照明智慧控制</h4><p class="small" style="margin-top:.3em;">感應、調光、情境排程</p></div>
+        <div class="card" style="text-align:center;"><div style="font-size:1.2em;margin-bottom:.3em;">⚡</div><h4 class="em">需量管理</h4><p class="small" style="margin-top:.3em;">尖峰調節、契約容量最佳化</p></div>
+        <div class="card" style="text-align:center;"><div style="font-size:1.2em;margin-bottom:.3em;">☀️</div><h4 class="em">再生能源整合</h4><p class="small" style="margin-top:.3em;">太陽能、儲能與自發自用</p></div>
+        <div class="card" style="text-align:center;"><div style="font-size:1.2em;margin-bottom:.3em;">📈</div><h4 class="em">能源數據決策</h4><p class="small" style="margin-top:.3em;">大數據分析、持續最佳化</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 21 住戶有感 -->
+<section>
+  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
+    <div class="slide-inner">
+      <span class="tag tag-blue">RESIDENT VALUE</span>
+      <div class="rule"></div>
+      <h2>智慧安全與健康 ─ 住戶有感</h2>
+      <div class="grid-2" style="margin-top:1.2em;">
+        <div class="card card-acc">
+          <h3 style="margin-bottom:.7em;">安全防災</h3>
+          <ul style="font-size:.78em;">
+            <li>火災／CO／漏水即時偵測通報</li>
+            <li>CCTV、門禁、訪客管理</li>
+            <li>緊急應變與避難引導連動</li>
+            <li>設備異常主動預警</li>
+          </ul>
+        </div>
+        <div class="card card-alt">
+          <h3 style="margin-bottom:.7em;">健康舒適</h3>
+          <ul style="font-size:.78em;">
+            <li>空氣品質 CO₂／PM2.5 監測</li>
+            <li>溫濕度與通風自動調節</li>
+            <li>照明情境與品質控制</li>
+            <li>智慧無障礙友善設計</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 22 Part 03 過場 -->
+<section data-background-color="#1e293b">
+  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
+    <div style="max-width:800px;margin:0 auto;">
+      <p class="mono" style="color:var(--blue-pale);font-size:.62em;margin-bottom:1em;letter-spacing:.1em;">PART 03</p>
+      <h1 style="color:#fff;font-size:2.6em;line-height:1.1;margin-bottom:.5em;">分級、配分與申請</h1>
+      <p style="color:var(--blue-lg);font-size:.9em;">等級怎麼分？怎麼申請？</p>
+      <p style="color:#60a5fa80;font-size:.7em;margin-top:2em;">傑丞建築機構　Jieceng Architecture</p>
+    </div>
+  </div>
+</section>
+
+<!-- 23 五大認證等級 -->
+<section>
+  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
+    <div class="slide-inner">
+      <span class="tag tag-blue">CERTIFICATION LEVELS</span>
+      <div class="rule"></div>
+      <h2>五大認證等級</h2>
+      <p class="small" style="margin-bottom:1em;">須符合所有「基本規定」，再依「鼓勵項目」得分判定等級（滿分 240）。</p>
+      <div class="badge-row">
+        <div class="badge badge-pass">
+          <div class="badge-icon">✅</div>
+          <div class="badge-name">合格級</div>
+          <div class="badge-score">60分↑</div>
+        </div>
+        <div class="badge badge-bronze">
+          <div class="badge-icon">🥉</div>
+          <div class="badge-name">銅級</div>
+          <div class="badge-score">70分↑</div>
+        </div>
+        <div class="badge badge-silver">
+          <div class="badge-icon">🥈</div>
+          <div class="badge-name">銀級</div>
+          <div class="badge-score">100分↑</div>
+        </div>
+        <div class="badge badge-gold">
+          <div class="badge-icon">🥇</div>
+          <div class="badge-name">黃金級</div>
+          <div class="badge-score">130分↑</div>
+        </div>
+        <div class="badge badge-diamond">
+          <div class="badge-icon">💎</div>
+          <div class="badge-name">鑽石級</div>
+          <div class="badge-score">150分↑</div>
+        </div>
+      </div>
+      <p class="note" style="margin-top:.9em;">滿分 240 分；各等級分數門檻為鼓勵項目累計得分。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 24 配分權重 -->
+<section>
+  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
+    <div class="slide-inner">
+      <span class="tag tag-blue">SCORING WEIGHT</span>
+      <div class="rule"></div>
+      <h2>六大指標 ─ 配分與比重</h2>
+      <div class="grid-3" style="margin-top:1.2em;">
+        <div class="card card-em" style="text-align:center;"><h4 style="color:#fff;margin-bottom:.3em;">基礎設施</h4><div style="font-family:'Playfair Display',serif;font-size:2em;font-weight:700;color:var(--blue-pale);">42</div><p style="font-size:.7em;color:#93c5fd;">17.5%</p></div>
+        <div class="card card-acc" style="text-align:center;"><h4 class="em" style="margin-bottom:.3em;">維運管理</h4><div style="font-family:'Playfair Display',serif;font-size:2em;font-weight:700;color:var(--blue-mid);">38</div><p class="note">15.8%</p></div>
+        <div class="card card-acc" style="text-align:center;"><h4 class="em" style="margin-bottom:.3em;">安全防災</h4><div style="font-family:'Playfair Display',serif;font-size:2em;font-weight:700;color:var(--blue-mid);">40</div><p class="note">16.7%</p></div>
+        <div class="card" style="text-align:center;border:2px solid var(--blue-mid);background:var(--blue-pale);"><h4 style="color:var(--blue);margin-bottom:.3em;">節能管理</h4><div style="font-family:'Playfair Display',serif;font-size:2em;font-weight:700;color:var(--blue);">45</div><p style="font-size:.7em;color:var(--blue);">18.7% 最高</p></div>
+        <div class="card card-acc" style="text-align:center;"><h4 class="em" style="margin-bottom:.3em;">健康舒適</h4><div style="font-family:'Playfair Display',serif;font-size:2em;font-weight:700;color:var(--blue-mid);">39</div><p class="note">16.3%</p></div>
+        <div class="card card-acc" style="text-align:center;"><h4 class="em" style="margin-bottom:.3em;">智慧創新</h4><div style="font-family:'Playfair Display',serif;font-size:2em;font-weight:700;color:var(--blue-mid);">36</div><p class="note">15.0%</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 25 申請流程 -->
+<section>
+  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
+    <div class="slide-inner">
+      <span class="tag tag-blue">APPLICATION</span>
+      <div class="rule"></div>
+      <h2>申請流程</h2>
+      <div style="display:flex;align-items:stretch;gap:.6em;margin-top:1.4em;">
+        <div class="card" style="flex:1;text-align:center;">
+          <div style="font-size:1.3em;margin-bottom:.4em;">📐</div>
+          <div style="background:var(--blue-mid);color:#fff;border-radius:50%;width:1.8em;height:1.8em;display:flex;align-items:center;justify-content:center;margin:0 auto .5em;font-family:'JetBrains Mono',monospace;font-size:.75em;font-weight:700;">1</div>
+          <h4 class="em">規劃設計導入</h4>
+          <p class="small" style="margin-top:.3em;">設計階段納入六大指標，預估等級</p>
+        </div>
+        <div style="display:flex;align-items:center;font-size:1.2em;color:var(--slate-400);">→</div>
+        <div class="card" style="flex:1;text-align:center;">
+          <div style="font-size:1.3em;margin-bottom:.4em;">📋</div>
+          <div style="background:var(--blue-mid);color:#fff;border-radius:50%;width:1.8em;height:1.8em;display:flex;align-items:center;justify-content:center;margin:0 auto .5em;font-family:'JetBrains Mono',monospace;font-size:.75em;font-weight:700;">2</div>
+          <h4 class="em">候選證書</h4>
+          <p class="small" style="margin-top:.3em;">施工前以設計圖說送審</p>
+        </div>
+        <div style="display:flex;align-items:center;font-size:1.2em;color:var(--slate-400);">→</div>
+        <div class="card" style="flex:1;text-align:center;">
+          <div style="font-size:1.3em;margin-bottom:.4em;">🔍</div>
+          <div style="background:var(--blue-mid);color:#fff;border-radius:50%;width:1.8em;height:1.8em;display:flex;align-items:center;justify-content:center;margin:0 auto .5em;font-family:'JetBrains Mono',monospace;font-size:.75em;font-weight:700;">3</div>
+          <h4 class="em">施工查核</h4>
+          <p class="small" style="margin-top:.3em;">落實智慧化系統並留證</p>
+        </div>
+        <div style="display:flex;align-items:center;font-size:1.2em;color:var(--slate-400);">→</div>
+        <div class="card" style="flex:1;text-align:center;">
+          <div style="font-size:1.3em;margin-bottom:.4em;">🏅</div>
+          <div style="background:var(--blue-mid);color:#fff;border-radius:50%;width:1.8em;height:1.8em;display:flex;align-items:center;justify-content:center;margin:0 auto .5em;font-family:'JetBrains Mono',monospace;font-size:.75em;font-weight:700;">4</div>
+          <h4 class="em">智慧建築標章</h4>
+          <p class="small" style="margin-top:.3em;">完工查驗後取得，效期屆期需複評</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 26 適用對象 -->
+<section>
+  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
+    <div class="slide-inner">
+      <span class="tag tag-blue">WHEN TO APPLY</span>
+      <div class="rule"></div>
+      <h2>適用對象與導入時機</h2>
+      <div class="grid-4" style="margin-top:1.2em;">
+        <div class="card" style="text-align:center;border-top:3px solid var(--blue-mid);">
+          <div style="font-size:1.4em;margin-bottom:.3em;">🏢</div>
+          <h4 class="em">新建住宅大樓</h4>
+          <p class="small" style="margin-top:.3em;">智慧社區、智慧家庭規格</p>
+        </div>
+        <div class="card" style="text-align:center;border-top:3px solid var(--blue-mid);">
+          <div style="font-size:1.4em;margin-bottom:.3em;">🏬</div>
+          <h4 class="em">商辦／複合</h4>
+          <p class="small" style="margin-top:.3em;">智慧物管、能源管理</p>
+        </div>
+        <div class="card" style="text-align:center;border-top:3px solid var(--blue-mid);">
+          <div style="font-size:1.4em;margin-bottom:.3em;">🔄</div>
+          <h4 class="em">危老／都更案</h4>
+          <p class="small" style="margin-top:.3em;">結合容積獎勵一併規劃</p>
+        </div>
+        <div class="card" style="text-align:center;border-top:3px solid var(--blue-mid);">
+          <div style="font-size:1.4em;margin-bottom:.3em;">🏛️</div>
+          <h4 class="em">公共建築</h4>
+          <p class="small" style="margin-top:.3em;">智慧城市的基礎節點</p>
+        </div>
+      </div>
+      <p class="note" style="margin-top:.9em;">建議於「設計階段」即導入，導入越早、整合成本越低、可爭取的等級越高。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 27 Part 04 過場 -->
+<section data-background-color="#1e293b">
+  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
+    <div style="max-width:800px;margin:0 auto;">
+      <p class="mono" style="color:var(--blue-pale);font-size:.62em;margin-bottom:1em;letter-spacing:.1em;">PART 04</p>
+      <h1 style="color:#fff;font-size:2.6em;line-height:1.1;margin-bottom:.5em;">對開發案的價值</h1>
+      <p style="color:var(--blue-lg);font-size:.9em;">智慧建築是賣點，也是策略</p>
+      <p style="color:#60a5fa80;font-size:.7em;margin-top:2em;">傑丞建築機構　Jieceng Architecture</p>
+    </div>
+  </div>
+</section>
+
+<!-- 28 容積獎勵 -->
+<section>
+  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
+    <div class="slide-inner">
+      <span class="tag tag-blue">INCENTIVE</span>
+      <div class="rule"></div>
+      <h2>智慧建築 × 容積獎勵</h2>
+      <p class="small" style="margin-bottom:1.2em;">智慧建築標章可作為都更／危老等容積獎勵的加分項目，並常與綠建築、耐震標章合併爭取獎勵額度。</p>
+      <div class="grid-3">
+        <div class="card card-acc">
+          <h4 class="em">都市更新</h4>
+          <p class="small" style="margin-top:.5em;">依容積獎勵辦法，智慧建築等級對應一定獎勵比例</p>
+        </div>
+        <div class="card card-acc">
+          <h4 class="em">危老重建</h4>
+          <p class="small" style="margin-top:.5em;">結合綠建築、智慧、耐震標章爭取重建獎勵</p>
+        </div>
+        <div class="card card-acc">
+          <h4 class="em">產品差異化</h4>
+          <p class="small" style="margin-top:.5em;">智慧化規格提升產品定位與競爭力</p>
+        </div>
+      </div>
+      <p class="note" style="margin-top:.9em;">※ 容積獎勵之項目、級距與比例，依各主管機關最新法令與核定為準。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 29 智慧賣點 -->
+<section>
+  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
+    <div class="slide-inner">
+      <div class="rule"></div>
+      <h2>智慧化，是產品的競爭力</h2>
+      <div class="rule-full"></div>
+      <ul style="font-size:.88em;margin-top:.8em;">
+        <li>智慧安全與節能 = 住戶實際有感的便利與省錢</li>
+        <li>智慧物管降低社區長期維運成本</li>
+        <li>對應智慧城市與淨零趨勢，提升品牌形象</li>
+        <li>智慧規格成為高階產品的標準配備</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 30 三標章整合 -->
+<section>
+  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
+    <div class="slide-inner">
+      <span class="tag tag-blue">INTEGRATION</span>
+      <div class="rule"></div>
+      <h2>三標章整合 ─ 綠建築 × 智慧 × 能效</h2>
+      <p class="small" style="margin-bottom:1.2em;">三套標章可相互呼應、合併申請，共同支撐淨零建築與開發效益。</p>
+      <div class="grid-3">
+        <div class="card" style="text-align:center;border-left:4px solid #064e3b;">
+          <div style="font-size:1.6em;margin-bottom:.4em;">🌿</div>
+          <h4 style="color:#064e3b;">綠建築 EEWH</h4>
+          <p class="small" style="margin-top:.4em;">生態、節能、減廢、健康</p>
+        </div>
+        <div class="card card-em" style="text-align:center;">
+          <div style="font-size:1.6em;margin-bottom:.4em;">🏙️</div>
+          <h4 style="color:#fff;">智慧建築</h4>
+          <p style="font-size:.75em;color:var(--blue-pale);margin-top:.4em;">偵知、顯示、連動的智慧化</p>
+        </div>
+        <div class="card" style="text-align:center;border-left:4px solid #b45309;">
+          <div style="font-size:1.6em;margin-bottom:.4em;">⚡</div>
+          <h4 style="color:#b45309;">建築能效 BERS</h4>
+          <p class="small" style="margin-top:.4em;">量化能效、邁向近零碳</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 31 重點回顧 -->
+<section>
+  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
+    <div class="slide-inner">
+      <span class="tag tag-blue">KEY TAKEAWAYS</span>
+      <div class="rule"></div>
+      <h2>重點回顧</h2>
+      <ul style="font-size:.84em;margin-top:.8em;">
+        <li>智慧建築＝以 IoT 達成「偵知／顯示／連動」的建築</li>
+        <li>2024 版整併為六大指標：基礎設施＋維運/安全/節能/健康/創新</li>
+        <li>配分：節能管理 45 最高，鼓勵項目滿分 240 分</li>
+        <li>五等級：合格 60／銅 70／銀 100／黃金 130／鑽石 150</li>
+        <li>基本規定不計分但須全過；鼓勵項目才計分</li>
+        <li>對開發案：容積獎勵加分、產品差異化、三標章整合</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 32 Thank You -->
+<section data-background-color="#0f172a">
+  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
+    <div style="max-width:800px;margin:0 auto;text-align:center;">
+      <h1 style="color:#fff;font-size:3em;margin-bottom:.5em;">Thank You</h1>
+      <div style="width:56px;height:3px;background:var(--blue-lg);margin:1em auto;border-radius:2px;"></div>
+      <p style="color:#94a3b8;font-size:.88em;">智慧建築 2024 ─ 以智慧化邁向安全、健康、節能的永續建築</p>
+      <p style="color:#64748b;font-size:.78em;margin-top:1.2em;">傑丞建築機構　Jieceng Architecture</p>
+    </div>
+  </div>
+</section>
+
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+<script>
+  Reveal.initialize({
+    hash: true, transition: 'fade', transitionSpeed: 'fast',
+    width: 1280, height: 720, margin: 0.04,
+    slideNumber: true, controls: true, progress: true, center: false,
+  });
+</script>
+</body>
+</html>
