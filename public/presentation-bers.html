@@ -83,7 +83,10 @@
     .ptbox .num { font-family: 'Playfair Display', serif; font-size: 2.6em; font-weight: 700; line-height: 1; color: var(--amber); }
     .ptbox .unit { font-size: .5em; font-weight: 400; color: var(--stone-400); margin-left: .15em; }
     .ptbox .en { font-family: 'JetBrains Mono', monospace; font-size: .58em; color: var(--stone-400); margin-top: .6em; letter-spacing: .04em; }
-    .ind-detail { display: grid; grid-template-columns: 230px 1fr; gap: 2.2em; align-items: start; margin-top: .4em; }
+    .ind-detail { display: grid; grid-template-columns: 210px 1fr; gap: 2em; align-items: start; margin-top: .4em; }
+    .fmbox { font-family: 'JetBrains Mono', monospace; font-size: .6em; color: var(--amber); background: #fff; border: 1px solid var(--stone-200); border-radius: 3px; padding: .45em .9em; margin: .55em 0 .65em; display: inline-block; }
+    .pct-tag { font-family: 'Playfair Display', serif; font-size: 1.55em; font-weight: 700; color: var(--amber); line-height: 1; vertical-align: middle; margin-right: .2em; }
+    .pct-label { font-family: 'JetBrains Mono', monospace; font-size: .56em; color: var(--stone-400); vertical-align: middle; letter-spacing: .06em; }
     .cat-tab { font-family: 'JetBrains Mono', monospace; font-size: .58em; letter-spacing: .14em; text-transform: uppercase; color: var(--stone-400); margin-bottom: .7em; }
     .feel { font-size: .78em; color: var(--amber); font-style: italic; margin-top: 1em; padding-left: .9em; border-left: 2px solid var(--amber-lg); }
     .flow { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.1em; margin-top: 1.2em; }
@@ -396,16 +399,17 @@
     <div class="slide-inner">
       <p class="kicker">能效計算邊界 ECB</p>
       <div class="rule"></div>
-      <h2>納入評估的六項耗能</h2>
-      <p class="lead" style="margin-bottom:1em;">BERS 以「能效計算邊界（ECB）」界定納入評估的耗能項目，逐一檢視如下六項。</p>
+      <h2>住宅大樓的六項耗能</h2>
+      <p class="lead" style="margin-bottom:.9em;">BERS 以「能效計算邊界（ECB）」界定納入計算的耗能設備。集合住宅公共電費中，電梯與揚水泵合計超過一半。</p>
       <div class="grid-3">
-        <div class="card top"><h4 class="em">外殼</h4><p class="small" style="margin-top:.3em;">隔熱、遮陽、開窗</p></div>
-        <div class="card top"><h4 class="em">空調</h4><p class="small" style="margin-top:.3em;">主機效率、變頻</p></div>
-        <div class="card top"><h4 class="em">照明</h4><p class="small" style="margin-top:.3em;">LED、智慧控制</p></div>
-        <div class="card"><h4 class="em">電梯</h4><p class="small" style="margin-top:.3em;">馬達效率、群控調度</p></div>
-        <div class="card"><h4 class="em">揚水泵</h4><p class="small" style="margin-top:.3em;">給水加壓、屋頂水箱</p></div>
-        <div class="card"><h4 class="em">機械設備</h4><p class="small" style="margin-top:.3em;">通風、熱水等公共機電</p></div>
+        <div class="card top"><h4 class="em">外殼</h4><p class="small" style="margin-top:.3em;">Uaw / Uar / ENVLOAD 指標</p></div>
+        <div class="card top"><h4 class="em">空調</h4><p class="small" style="margin-top:.3em;">COP / IPLV 評估主機效率</p></div>
+        <div class="card top"><h4 class="em">照明</h4><p class="small" style="margin-top:.3em;">LPD（W/m²）公共空間功率密度</p></div>
+        <div class="card"><h4 class="em">電梯</h4><p class="small" style="margin-top:.3em;">公電 <strong style="color:var(--amber);">33%</strong>，最大宗</p></div>
+        <div class="card"><h4 class="em">揚水泵</h4><p class="small" style="margin-top:.3em;">公電 <strong style="color:var(--amber);">23%</strong>，全天候運轉</p></div>
+        <div class="card"><h4 class="em">機械設備</h4><p class="small" style="margin-top:.3em;">通風 16%、照明 15%、空調 13%</p></div>
       </div>
+      <p class="note">公電比例來源：RP-BERSn 51 棟集合住宅案例統計（內政部建築研究所）</p>
     </div>
   </div>
 </section>
@@ -424,13 +428,14 @@
           <h3 style="margin-top:1em;color:var(--amber);">外殼</h3>
         </div>
         <div>
-          <h4 style="margin-bottom:.5em;">決定空調負荷的起點</h4>
-          <ul style="font-size:.82em;">
-            <li>外牆與屋頂的隔熱性能</li>
-            <li>開窗面積、玻璃選用與外遮陽</li>
-            <li>朝向配置與開窗位置的優化</li>
+          <h4 style="margin-bottom:.3em;">影響空調耗電的起點</h4>
+          <p class="fmbox">ENVLOAD = Σ(牆面積 × Uaw × 溫差 + 窗面積 × SC × 日射) ÷ 樓地板面積</p>
+          <ul style="font-size:.8em;line-height:1.55;">
+            <li>手冊以外牆熱傳透率 <strong>Uaw</strong>（W/m²·K）與屋頂 <strong>Uar</strong> 為核心參數；台灣住宅外牆規範基準 ≤ 2.0 W/m²·K，高效設計可達 1.2 以下</li>
+            <li>西向立面以外遮陽搭配 Low-E 玻璃，遮陽係數（SC）從 0.87 降至 0.35，夏季空調負載可降約 20%</li>
+            <li>外殼是唯一在圖面定案後就幾乎無法再改的設計 —— 選材早、選對了，空調裝多大都還有彈性</li>
           </ul>
-          <p class="feel" style="border-left-color:var(--amber);color:var(--amber);">外殼做得好，後面的空調可以用更小的容量，達到一樣的舒適。</p>
+          <p class="feel" style="border-left-color:var(--amber);color:var(--amber);">外殼做得好，後面的空調可以小一號，設備費省了，長期電費也省了。</p>
         </div>
       </div>
     </div>
@@ -451,13 +456,14 @@
           <h3 style="margin-top:1em;color:var(--amber);">空調</h3>
         </div>
         <div>
-          <h4 style="margin-bottom:.5em;">通常是最大宗的用電負載</h4>
-          <ul style="font-size:.82em;">
-            <li>主機效率（COP／IPLV）</li>
-            <li>變頻控制與分區送風</li>
-            <li>新風與熱回收設計</li>
+          <h4 style="margin-bottom:.3em;">住戶私用電的最大一塊</h4>
+          <p class="fmbox">COP = 製冷量 (kW) ÷ 輸入功率 (kW)　｜　空調耗電 = 製冷量 × 時數 ÷ COP</p>
+          <ul style="font-size:.8em;line-height:1.55;">
+            <li>家用分離式空調台灣 <strong>1 級能效 EER ≥ 4.26</strong>，比市場普通品省電 30% 以上；R-BERSn 評估時直接採用設備 EER 計算戶內空調耗電</li>
+            <li>IPLV 是四個部分負載點的加權效率（1%@100%、42%@75%、45%@50%、12%@25%），反映實際長時間中低負載運轉的真實耗電</li>
+            <li>公共大廳若設中央空調，水冷螺旋主機 COP 應達 4.5 以上；選用全變頻機種在夏季尖峰以外的時段效益尤其明顯</li>
           </ul>
-          <p class="feel" style="border-left-color:var(--amber);color:var(--amber);">主機效率提高一級，長期電費單上的差異就很可觀。</p>
+          <p class="feel" style="border-left-color:var(--amber);color:var(--amber);">最省電的空調，是不需要開那麼久的空調 —— 外殼擋了熱，COP 就算普通也夠用了。</p>
         </div>
       </div>
     </div>
@@ -478,13 +484,14 @@
           <h3 style="margin-top:1em;color:var(--amber);">照明</h3>
         </div>
         <div>
-          <h4 style="margin-bottom:.5em;">長時間運轉的固定負載</h4>
-          <ul style="font-size:.82em;">
-            <li>燈具發光效率（lm／W）</li>
-            <li>公共空間的分區與時段控制</li>
-            <li>自然採光與感應控制整合</li>
+          <h4 style="margin-bottom:.3em;">公電的 15%，靠感應控制最有效</h4>
+          <p class="fmbox">LPD (W/m²) = 燈具總功率 ÷ 空間面積　｜　EL = 設計 LPD ÷ 基準 LPD</p>
+          <ul style="font-size:.8em;line-height:1.55;">
+            <li>手冊以 <strong>照明功率密度 LPD（W/m²）</strong> 評估；地下停車場基準約 5 W/m²，改 LED 後實際值可壓到 3 W/m² 以下，差距一半</li>
+            <li>走廊、電梯廳加裝動作感應器，可讓非尖峰時段燈具從 100% 降至 30% 待機亮度，全年節電 40–60%</li>
+            <li>地下停車場常與通風設備共用 CO 感應邏輯，人少時燈光與風機同步降載，兩個費用一起省</li>
           </ul>
-          <p class="feel" style="border-left-color:var(--amber);color:var(--amber);">走廊、停車場的燈一開就是一整天 —— 效率差一點，全年下來都是電費。</p>
+          <p class="feel" style="border-left-color:var(--amber);color:var(--amber);">地下停車場的燈，換 LED 加感應器，管委會下一個十年的電費差距就出來了。</p>
         </div>
       </div>
     </div>
@@ -505,13 +512,15 @@
           <h3 style="margin-top:1em;color:var(--amber);">電梯</h3>
         </div>
         <div>
-          <h4 style="margin-bottom:.5em;">中高樓層住宅的公共用電大宗</h4>
-          <ul style="font-size:.82em;">
-            <li>馬達效率與驅動方式</li>
-            <li>待機與低載運轉的能耗控制</li>
-            <li>群控調度，減少空跑與等待</li>
+          <h4 style="margin-bottom:.3em;"><span class="pct-tag">33%</span><span class="pct-label">公電</span>　住宅大樓最大電費項</h4>
+          <p class="fmbox">年耗電 ≈ 額定功率 (kW) × 年運轉時數 × 使用率 ÷ 電機效率</p>
+          <ul style="font-size:.8em;line-height:1.55;">
+            <li>51 棟集合住宅統計，電梯獨占公電 33%；一棟 30 層、200 戶的住宅，全年電梯用電可超過 10 萬 kWh</li>
+            <li><strong>永磁同步馬達（PMSM）</strong>比傳統感應馬達節能 20–30%，且啟動平穩、噪音低，已成高層住宅主流選配</li>
+            <li>加裝<strong>再生制動模組</strong>，下行時的制動能量回饋電網，電梯整體耗電再減 20–40%</li>
+            <li>群控調度讓多部電梯協同派發，尖峰時段減少空跑，待機期間自動降轉速</li>
           </ul>
-          <p class="feel" style="border-left-color:var(--amber);color:var(--amber);">電梯的效率住戶看不到，但每個月的公電費單看得到。</p>
+          <p class="feel" style="border-left-color:var(--amber);color:var(--amber);">住戶不關心機房裡用哪種馬達，但每個月管委會的公電帳單，記得清清楚楚。</p>
         </div>
       </div>
     </div>
@@ -532,13 +541,15 @@
           <h3 style="margin-top:1em;color:var(--amber);">揚水泵</h3>
         </div>
         <div>
-          <h4 style="margin-bottom:.5em;">容易被忽略，卻全天候運轉</h4>
-          <ul style="font-size:.82em;">
-            <li>給水加壓與屋頂水箱揚水</li>
-            <li>變頻泵與分區減壓設計</li>
-            <li>馬達效率與管路損耗</li>
+          <h4 style="margin-bottom:.3em;"><span class="pct-tag">23%</span><span class="pct-label">公電</span>　全天候不停歇</h4>
+          <p class="fmbox">P (kW) = ρ × g × Q × H ÷ η　（ρ=1000 kg/m³，H=揚程，η=泵效率）</p>
+          <ul style="font-size:.8em;line-height:1.55;">
+            <li>20 層住宅揚程約 75 m，設計流量 1.5 m³/min，定速泵額定功率約 <strong>26 kW</strong>，24 小時維持加壓，全年用電相當可觀</li>
+            <li>改用<strong>變頻泵（VFD）</strong>後，依即時用水量自動調轉速；夜間流量不到尖峰的兩成，省電幅度可達 30–50%，投資回收通常在 3–5 年內</li>
+            <li>手冊附錄列出<strong>揚水泵揚程基準值（PHc）</strong>，依樓層數與用途查表評估是否符合能效門檻</li>
+            <li>分區減壓設計（低樓層獨立加壓迴路）避免低層超壓損耗，管路壽命也因此延長</li>
           </ul>
-          <p class="feel" style="border-left-color:var(--amber);color:var(--amber);">揚水泵安靜地運轉一整年，是公電費單上常被忽略的一筆。</p>
+          <p class="feel" style="border-left-color:var(--amber);color:var(--amber);">地下機房裡那台泵，住戶從來不知道它在哪 —— 但它每打一立方水都有成本，讓它打得聰明一點是值得的投資。</p>
         </div>
       </div>
     </div>
@@ -559,13 +570,15 @@
           <h3 style="margin-top:1em;color:var(--amber);">機械設備</h3>
         </div>
         <div>
-          <h4 style="margin-bottom:.5em;">把剩下的公共機電都算進去</h4>
-          <ul style="font-size:.82em;">
-            <li>地下停車場通風與排風機</li>
-            <li>公共空間的熱水系統</li>
-            <li>消防、給排水等其餘固定設備</li>
+          <h4 style="margin-bottom:.3em;">停車場通風 16%，再加上熱水與其餘機電</h4>
+          <p class="fmbox">風機耗電 = 風量 (m³/h) × 靜壓 (Pa) ÷ (風機效率 × 3600) × 年運轉時數</p>
+          <ul style="font-size:.8em;line-height:1.55;">
+            <li>地下停車場通風佔公電 16%；加裝 <strong>CO 感應器</strong>後，風機從定速全轉改為按需啟停，實測耗電降幅可達 40–70%</li>
+            <li>熱水系統：以<strong>熱泵熱水器</strong>取代傳統電熱棒，COP 從 1.0 提升至 3.5 以上，同等熱水量少用 65% 的電力</li>
+            <li>手冊以「公共耗電基準值 PEc」涵蓋此類設備，評估後換算成能效得分 SCOREEE，納入整體分級計算</li>
+            <li>雖然每單項比例不大，但停車場風扇多、常態運轉；感應控制不貴，漏裝就是每年白白燒掉幾萬的電費</li>
           </ul>
-          <p class="feel" style="border-left-color:var(--amber);color:var(--amber);">能效計算邊界把這些細節都納入，標示才貼近建築實際耗能的全貌。</p>
+          <p class="feel" style="border-left-color:var(--amber);color:var(--amber);">CO 感應器的成本只需幾千元，但它決定了地下停車場風扇接下來二十年的運轉策略。</p>
         </div>
       </div>
     </div>
