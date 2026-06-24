@@ -19,7 +19,7 @@ def content(prs):
     return sl
 
 
-def eui_item(prs, idx, en, name, subhead, items, feel):
+def eui_item(prs, idx, en, name, subhead, formula, items, feel, pct=None):
     sl = content(prs)
     D.text(sl, f"EUI 檢核項目　{idx:02d} / 06", Inches(0.9), Inches(0.7), Inches(9), Inches(0.3),
            size=10, color=STONE4, font=D.MONO)
@@ -33,15 +33,22 @@ def eui_item(prs, idx, en, name, subhead, items, feel):
     D.text(sl, name, lx, ly + Inches(1.7), Inches(2.7), Inches(0.5),
            size=18, bold=True, color=AMBER)
     rx, ry = Inches(4.0), Inches(1.75)
-    D.text(sl, subhead, rx, ry, Inches(8.3), Inches(0.4), size=14, bold=True, color=CHAR)
-    D.bullets(sl, items, rx, ry + Inches(0.55), Inches(8.3), Inches(2.3),
-              size=12.5, color=BODY, marker_color=AMBER, gap=5, spacing=1.18)
-    fy = ry + Inches(0.55) + Inches(0.44) * len(items) + Inches(0.25)
-    if fy > Inches(5.5):
-        fy = Inches(5.5)
-    D.rect(sl, rx, fy, Pt(2), Inches(0.95), fill=AMBER)
-    D.text(sl, feel, rx + Inches(0.2), fy, Inches(7.9), Inches(1.0),
-           size=12, italic=True, color=AMBER, spacing=1.2)
+    # Subhead — optionally prepend a pct callout
+    head_text = f"{pct}  {subhead}" if pct else subhead
+    D.text(sl, head_text, rx, ry, Inches(8.3), Inches(0.42), size=14, bold=True, color=CHAR)
+    # Formula box
+    D.rect(sl, rx, ry + Inches(0.48), Inches(8.3), Inches(0.36), fill="#fef3c7", line=LINE)
+    D.text(sl, formula, rx + Inches(0.12), ry + Inches(0.52), Inches(8.1), Inches(0.32),
+           size=8.5, color=AMBER, font=D.MONO)
+    # Bullets
+    D.bullets(sl, items, rx, ry + Inches(0.92), Inches(8.3), Inches(2.5),
+              size=11.5, color=BODY, marker_color=AMBER, gap=4, spacing=1.15)
+    fy = ry + Inches(0.92) + Inches(0.38) * len(items) + Inches(0.22)
+    if fy > Inches(5.4):
+        fy = Inches(5.4)
+    D.rect(sl, rx, fy, Pt(2), Inches(0.9), fill=AMBER)
+    D.text(sl, feel, rx + Inches(0.2), fy, Inches(7.9), Inches(0.95),
+           size=11.5, italic=True, color=AMBER, spacing=1.2)
 
 
 def build(path):
@@ -235,39 +242,62 @@ def build(path):
 
     # 16 ECB 六項
     sl = content(prs)
-    D.header(sl, "能效計算邊界 ECB", "納入評估的六項耗能", AMBER_MID)
-    D.lead(sl, "BERS 以「能效計算邊界（ECB）」界定納入評估的耗能項目，逐一檢視如下六項。",
+    D.header(sl, "能效計算邊界 ECB", "住宅大樓的六項耗能", AMBER_MID)
+    D.lead(sl, "BERS 以「能效計算邊界（ECB）」界定納入計算的耗能設備。集合住宅公共電費中，電梯與揚水泵合計超過一半。",
            y=Inches(1.9), size=13)
-    items = [
-        dict(accent=AMBER_MID, head="外殼", head_color=AMBER, body="隔熱、遮陽、開窗"),
-        dict(accent=AMBER_MID, head="空調", head_color=AMBER, body="主機效率、變頻"),
-        dict(accent=AMBER_MID, head="照明", head_color=AMBER, body="LED、智慧控制"),
-        dict(accent=AMBER_MID, head="電梯", head_color=AMBER, body="馬達效率、群控調度"),
-        dict(accent=AMBER_MID, head="揚水泵", head_color=AMBER, body="給水加壓、屋頂水箱"),
-        dict(accent=AMBER_MID, head="機械設備", head_color=AMBER, body="通風、熱水等公共機電"),
+    ecb_items = [
+        dict(accent=AMBER_MID, head="外殼", head_color=AMBER, body="Uaw / Uar / ENVLOAD 指標"),
+        dict(accent=AMBER_MID, head="空調", head_color=AMBER, body="COP / IPLV 評估主機效率"),
+        dict(accent=AMBER_MID, head="照明", head_color=AMBER, body="LPD（W/m²）公共空間功率密度"),
+        dict(accent=AMBER_MID, head="電梯", head_color=AMBER, body="公電 33%，最大宗"),
+        dict(accent=AMBER_MID, head="揚水泵", head_color=AMBER, body="公電 23%，全天候運轉"),
+        dict(accent=AMBER_MID, head="機械設備", head_color=AMBER, body="通風 16%、照明 15%、空調 13%"),
     ]
-    D.card_row(sl, items[:3], y=Inches(2.85), h=Inches(1.55))
-    D.card_row(sl, items[3:], y=Inches(4.6), h=Inches(1.55))
+    D.card_row(sl, ecb_items[:3], y=Inches(2.85), h=Inches(1.55))
+    D.card_row(sl, ecb_items[3:], y=Inches(4.6), h=Inches(1.55))
+    D.note(sl, "公電比例來源：RP-BERSn 51 棟集合住宅案例統計（內政部建築研究所）")
 
     # 16a-16f EUI 檢核項目逐項說明
-    eui_item(prs, 1, "Building Envelope", "外殼", "決定空調負荷的起點",
-             ["外牆與屋頂的隔熱性能", "開窗面積、玻璃選用與外遮陽", "朝向配置與開窗位置的優化"],
-             "外殼做得好，後面的空調可以用更小的容量，達到一樣的舒適。")
-    eui_item(prs, 2, "Air Conditioning", "空調", "通常是最大宗的用電負載",
-             ["主機效率（COP／IPLV）", "變頻控制與分區送風", "新風與熱回收設計"],
-             "主機效率提高一級，長期電費單上的差異就很可觀。")
-    eui_item(prs, 3, "Lighting", "照明", "長時間運轉的固定負載",
-             ["燈具發光效率（lm／W）", "公共空間的分區與時段控制", "自然採光與感應控制整合"],
-             "走廊、停車場的燈一開就是一整天 —— 效率差一點，全年下來都是電費。")
-    eui_item(prs, 4, "Elevators", "電梯", "中高樓層住宅的公共用電大宗",
-             ["馬達效率與驅動方式", "待機與低載運轉的能耗控制", "群控調度，減少空跑與等待"],
-             "電梯的效率住戶看不到，但每個月的公電費單看得到。")
-    eui_item(prs, 5, "Water Pump", "揚水泵", "容易被忽略，卻全天候運轉",
-             ["給水加壓與屋頂水箱揚水", "變頻泵與分區減壓設計", "馬達效率與管路損耗"],
-             "揚水泵安靜地運轉一整年，是公電費單上常被忽略的一筆。")
-    eui_item(prs, 6, "Other Equipment", "機械設備", "把剩下的公共機電都算進去",
-             ["地下停車場通風與排風機", "公共空間的熱水系統", "消防、給排水等其餘固定設備"],
-             "能效計算邊界把這些細節都納入，標示才貼近建築實際耗能的全貌。")
+    eui_item(prs, 1, "Building Envelope", "外殼", "影響空調耗電的起點",
+             "ENVLOAD = Σ(牆面積 × Uaw × 溫差 + 窗面積 × SC × 日射) ÷ 樓地板面積",
+             ["手冊以外牆熱傳透率 Uaw（W/m²·K）與屋頂 Uar 為核心參數；台灣住宅外牆規範基準 ≤ 2.0 W/m²·K，高效設計可達 1.2 以下",
+              "西向立面以外遮陽搭配 Low-E 玻璃，遮陽係數（SC）從 0.87 降至 0.35，夏季空調負載可降約 20%",
+              "外殼是唯一在圖面定案後就幾乎無法再改的設計 —— 選材早、選對了，空調裝多大都還有彈性"],
+             "外殼做得好，後面的空調可以小一號，設備費省了，長期電費也省了。")
+    eui_item(prs, 2, "Air Conditioning", "空調", "住戶私用電的最大一塊",
+             "COP = 製冷量 (kW) ÷ 輸入功率 (kW)   |   空調耗電 = 製冷量 × 時數 ÷ COP",
+             ["家用分離式空調台灣 1 級能效 EER ≥ 4.26，比市場普通品省電 30% 以上；R-BERSn 評估時直接採用設備 EER 計算戶內空調耗電",
+              "IPLV 是四個部分負載點加權效率（1%@100%、42%@75%、45%@50%、12%@25%），反映長時間中低負載的真實耗電",
+              "公共大廳若設中央空調，水冷螺旋主機 COP 應達 4.5 以上；全變頻機種在非尖峰時段效益尤其明顯"],
+             "最省電的空調，是不需要開那麼久的空調 —— 外殼擋了熱，COP 就算普通也夠用了。")
+    eui_item(prs, 3, "Lighting", "照明", "公電的 15%，靠感應控制最有效",
+             "LPD (W/m²) = 燈具總功率 ÷ 空間面積   |   EL = 設計 LPD ÷ 基準 LPD",
+             ["手冊以照明功率密度 LPD（W/m²）評估；地下停車場基準約 5 W/m²，改 LED 後實際值可壓到 3 W/m² 以下",
+              "走廊、電梯廳加裝動作感應器，可讓非尖峰時段燈具從 100% 降至 30% 待機亮度，全年節電 40–60%",
+              "地下停車場常與通風設備共用 CO 感應邏輯，人少時燈光與風機同步降載，兩個費用一起省"],
+             "地下停車場的燈，換 LED 加感應器，管委會下一個十年的電費差距就出來了。")
+    eui_item(prs, 4, "Elevators", "電梯", "住宅大樓最大電費項",
+             "年耗電 ≈ 額定功率 (kW) × 年運轉時數 × 使用率 ÷ 電機效率",
+             ["51 棟集合住宅統計，電梯獨占公電 33%；一棟 30 層、200 戶住宅，全年電梯用電可超過 10 萬 kWh",
+              "永磁同步馬達（PMSM）比傳統感應馬達節能 20–30%，且啟動平穩、噪音低，已成高層住宅主流選配",
+              "加裝再生制動模組，下行時的制動能量回饋電網，電梯整體耗電再減 20–40%",
+              "群控調度讓多部電梯協同派發，尖峰時段減少空跑，待機期間自動降轉速"],
+             "住戶不關心機房裡用哪種馬達，但每個月管委會的公電帳單，記得清清楚楚。",
+             pct="▶ 公電 33%")
+    eui_item(prs, 5, "Water Pump", "揚水泵", "全天候不停歇",
+             "P (kW) = rho × g × Q × H ÷ eta   (rho=1000 kg/m³，H=揚程，eta=泵效率)",
+             ["20 層住宅揚程約 75 m，設計流量 1.5 m³/min，定速泵額定功率約 26 kW，24 小時維持加壓",
+              "改用變頻泵（VFD）後，依即時用水量自動調轉速；夜間流量不到尖峰的兩成，省電幅度可達 30–50%",
+              "手冊附錄列出揚水泵揚程基準值（PHc），依樓層數與用途查表評估是否符合能效門檻",
+              "分區減壓設計（低樓層獨立加壓迴路）避免低層超壓損耗，管路壽命也因此延長"],
+             "地下機房那台泵，住戶從來不知道它在哪 —— 但它每打一立方水都有成本，讓它打得聰明是值得的投資。",
+             pct="▶ 公電 23%")
+    eui_item(prs, 6, "Other Equipment", "機械設備", "停車場通風 16%，再加上熱水與其餘機電",
+             "風機耗電 = 風量 (m³/h) × 靜壓 (Pa) ÷ (風機效率 × 3600) × 年運轉時數",
+             ["地下停車場通風佔公電 16%；加裝 CO 感應器後，風機從定速全轉改為按需啟停，實測耗電降幅可達 40–70%",
+              "熱水系統：以熱泵熱水器取代傳統電熱棒，COP 從 1.0 提升至 3.5 以上，同等熱水量少用 65% 的電力",
+              "手冊以公共耗電基準值 PEc 涵蓋此類設備，評估後換算成能效得分 SCOREEE，納入整體分級計算"],
+             "CO 感應器的成本只需幾千元，但它決定了地下停車場風扇接下來二十年的運轉策略。")
 
     # 23 設計策略
     sl = content(prs)
