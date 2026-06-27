@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>都更全案管理 ─ 整合的力量 × 傑丞建築機構</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reset.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --warm-white : #f5f3ee;
+      --charcoal   : #1c1a17;
+      --brand      : #064e3b;
+      --brand-mid  : #047857;
+      --brand-lg   : #10b981;
+      --brand-pale : #ecfdf5;
+      --stone-200  : #e7e5e4;
+      --stone-400  : #a8a29e;
+      --warn       : #b45309;
+    }
+    .reveal-viewport { background: var(--warm-white); }
+    .reveal { font-family: 'Inter', 'Noto Sans TC', sans-serif; font-size: 22px; color: var(--charcoal); }
+    .reveal .slides { text-align: left; }
+    .reveal h1, .reveal h2, .reveal h3, .reveal h4 {
+      font-family: 'Playfair Display', 'Noto Serif TC', serif;
+      color: var(--charcoal); text-transform: none; letter-spacing: -0.01em;
+      line-height: 1.3; margin-bottom: .5em; font-weight: 700;
+    }
+    .reveal h1 { font-size: 2.4em; }
+    .reveal h2 { font-size: 1.6em; }
+    .reveal h3 { font-size: 1.12em; font-weight: 600; font-family: 'Inter', sans-serif; }
+    .reveal h4 { font-size: .95em; font-weight: 600; font-family: 'Inter', sans-serif; }
+    .reveal p, .reveal li { line-height: 1.7; }
+    .reveal ul { list-style: none; padding: 0; }
+    .reveal ul li { margin: .25em 0; }
+    .reveal ul li::before { content: ''; display: inline-block; width: 5px; height: 5px; background: var(--brand-mid); margin-right: .7em; vertical-align: middle; }
+    .reveal .controls { color: var(--brand-mid); }
+    .reveal .progress span { background: var(--brand-mid); }
+    .reveal .slide-number { font-family: 'JetBrains Mono', monospace; font-size: .55em; color: var(--stone-400); }
+    .slide-wrap  { padding: 0 64px; }
+    .slide-inner { max-width: 980px; margin: 0 auto; height: 100%; display: flex; flex-direction: column; justify-content: center; }
+    .em   { color: var(--brand); }
+    .mono { font-family: 'JetBrains Mono', monospace; font-size: .85em; }
+    .small{ font-size: .76em; color: #44403c; line-height: 1.7; }
+    .lead { font-size: .92em; color: #292524; line-height: 1.7; max-width: 770px; }
+    .kicker { font-family: 'JetBrains Mono', monospace; font-size: .6em; letter-spacing: .18em; text-transform: uppercase; color: var(--stone-400); margin-bottom: .9em; }
+    .rule { width: 44px; height: 2px; background: var(--brand-mid); margin: 0 0 1.1em; }
+    .rule-full { width: 100%; height: 1px; background: var(--stone-200); margin: .9em 0; }
+    .note { font-size: .62em; color: var(--stone-400); line-height: 1.6; margin-top: .8em; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.6em; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.3em; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.1em; }
+    .grid-5 { display: grid; grid-template-columns: repeat(5,1fr); gap: .9em; }
+    .card { background: #fff; border: 1px solid var(--stone-200); border-radius: 4px; padding: 1.15em 1.35em; }
+    .card.top { border-top: 3px solid var(--brand-mid); }
+    .card.warn-top { border-top: 3px solid var(--warn); }
+    .card .idx { font-family: 'JetBrains Mono', monospace; font-size: .62em; color: var(--stone-400); letter-spacing: .12em; }
+    .card h4 { margin-bottom: .35em; }
+    .card-em { background: var(--brand); border-radius: 4px; padding: 1.15em 1.45em; }
+    .card-em h3, .card-em h4, .card-em p, .card-em li { color: #fff; }
+    .card-em ul li::before { background: var(--brand-lg); }
+    .stat-num { font-family: 'Playfair Display', serif; font-size: 2.6em; font-weight: 700; color: var(--brand); line-height: 1; }
+    .stat-cap { font-size: .68em; color: var(--stone-400); margin-top: .35em; letter-spacing: .04em; }
+    .divider-wrap { max-width: 820px; margin: 0 auto; }
+    .divider-kicker { font-family: 'JetBrains Mono', monospace; font-size: .6em; letter-spacing: .16em; color: var(--brand-lg); margin-bottom: 1.1em; }
+    .scope { font-family: 'JetBrains Mono', monospace; font-size: .66em; color: var(--brand-lg); margin-top: 1.1em; letter-spacing: .03em; }
+    .cmp { width: 100%; border-collapse: collapse; font-size: .8em; margin-top: 1em; }
+    .cmp th { padding: .6em .9em; font-weight: 600; border-bottom: 2px solid var(--stone-200); text-align: left; }
+    .cmp th.a { color: var(--stone-400); } .cmp th.b { color: var(--warn); } .cmp th.c { color: var(--brand); }
+    .cmp td { padding: .55em .9em; border-bottom: 1px solid var(--stone-200); vertical-align: top; }
+    .cmp tr:last-child td { border-bottom: none; }
+    .cmp td:first-child, .cmp th:first-child { color: var(--stone-400); font-weight: 500; }
+    .cmp td.good { color: var(--brand); font-weight: 500; }
+    .flow { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.1em; margin-top: 1.2em; }
+    .step { border: 1px solid var(--stone-200); border-radius: 4px; padding: 1em 1.1em; }
+    .step .n { font-family: 'JetBrains Mono', monospace; font-size: .62em; color: var(--brand-mid); letter-spacing: .12em; }
+    .step h4 { margin: .35em 0; }
+    .role-tag { font-family: 'JetBrains Mono', monospace; font-size: .56em; letter-spacing: .1em; text-transform: uppercase; color: var(--stone-400); }
+    .pain { font-size: .72em; color: var(--warn); margin-top: .6em; padding-left: .8em; border-left: 2px solid var(--warn); line-height: 1.55; }
+    .gain { font-size: .72em; color: var(--brand); margin-top: .55em; padding-left: .8em; border-left: 2px solid var(--brand-lg); line-height: 1.55; }
+    .big-q { font-size: 1.15em; color: var(--brand); font-style: italic; font-family: 'Playfair Display','Noto Serif TC',serif; }
+    .pill { display:inline-block; font-family:'JetBrains Mono',monospace; font-size:.58em; letter-spacing:.08em; color:var(--brand); background:var(--brand-pale); border-radius:999px; padding:.3em .8em; }
+  </style>
+</head>
+
+<body>
+<div class="reveal">
+<div class="slides">
+
+<!-- 01 封面 -->
+<section data-background-color="#1c1a17">
+  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
+    <div style="max-width:920px;margin:0 auto;padding:60px 0;">
+      <p class="mono" style="color:var(--brand-lg);margin-bottom:1em;font-size:.66em;letter-spacing:.2em;">都市更新 ｜ 全案管理 PCM</p>
+      <h1 style="color:#fff;font-size:2.6em;line-height:1.2;margin-bottom:.5em;">都更的成敗，<br/>取決於「整合」</h1>
+      <div style="width:52px;height:2px;background:var(--brand-lg);margin:1.1em 0;"></div>
+      <p style="color:#a8a29e;font-size:.86em;line-height:1.7;max-width:660px;">一個都更案需要五種專業同時到位。<br/>市場上人人都能提供其中一塊──但唯有傑丞，把整塊整合起來。</p>
+      <p style="color:#78716c;font-size:.72em;margin-top:2.4em;">傑丞建築機構　Jieceng Architecture</p>
+    </div>
+  </div>
+</section>
+
+<!-- 02 導言 -->
+<section data-background-color="#1c1a17">
+  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
+    <div class="divider-wrap">
+      <p class="divider-kicker">PROLOGUE ｜ 00</p>
+      <h2 style="color:#fff;font-size:2em;line-height:1.35;">都更不缺專業，<br/>缺的是把專業<span style="color:var(--brand-lg);">「縫合」</span>起來的人</h2>
+      <p style="color:#a8a29e;font-size:.84em;line-height:1.75;margin-top:1.2em;max-width:680px;">
+        建築師、建經公司、營造廠、都更顧問──每一種都能為住戶提供一塊「全案管理顧問包」。
+        但都更最常出事的，不是哪一塊做得不好，而是<span style="color:#fff;">塊與塊之間的接縫</span>：
+        誰負責？誰把關？出事誰扛？
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- 03 痛點：該交給誰 -->
+<section>
+  <div class="slide-wrap"><div class="slide-inner">
+    <p class="kicker">THE QUESTION ｜ 01</p>
+    <div class="rule"></div>
+    <h2>都更住戶最常問的一句話</h2>
+    <p class="big-q" style="margin:.4em 0 1em;">「這個案子，到底該交給誰來統籌？」</p>
+    <p class="lead">市場上提供「全案管理（PCM）顧問包」的，大致有四種角色。每一種都有它的強項，
+      也都有它<span class="em">先天的盲點</span>──因為他們各自只站在自己那塊專業裡。</p>
+    <div class="grid-4" style="margin-top:1.4em;">
+      <div class="card top"><div class="idx">A</div><h4>建築師事務所</h4><p class="small">空間與設計的源頭</p></div>
+      <div class="card top"><div class="idx">B</div><h4>建經公司</h4><p class="small">資金與信託的把關</p></div>
+      <div class="card top"><div class="idx">C</div><h4>營造廠</h4><p class="small">把房子蓋出來</p></div>
+      <div class="card top"><div class="idx">D</div><h4>都更顧問公司</h4><p class="small">法規與整合的推手</p></div>
+    </div>
+  </div></div>
+</section>
+
+<!-- 04 四種角色：強項 -->
+<section>
+  <div class="slide-wrap"><div class="slide-inner">
+    <p class="kicker">EACH HAS A STRENGTH ｜ 02</p>
+    <div class="rule"></div>
+    <h2>四種專業，各擅一塊</h2>
+    <div class="grid-4" style="margin-top:1.2em;">
+      <div class="card top">
+        <p class="role-tag">A · Architect</p><h4>建築師事務所</h4>
+        <p class="gain">設計與規劃的源頭，掌握空間、量體、容積獎勵的技術。</p>
+      </div>
+      <div class="card top">
+        <p class="role-tag">B · Constr. Mgmt</p><h4>建經公司</h4>
+        <p class="gain">信託專款查核、財務稽核與工程估驗，守住資金不被挪用。</p>
+      </div>
+      <div class="card top">
+        <p class="role-tag">C · Contractor</p><h4>營造廠</h4>
+        <p class="gain">實際施工能力，把設計圖落成真正的建築。</p>
+      </div>
+      <div class="card top">
+        <p class="role-tag">D · Consultant</p><h4>都更顧問公司</h4>
+        <p class="gain">熟悉法規、同意書整合與報核程序，推動案子過門檻。</p>
+      </div>
+    </div>
+    <p class="note">說明：以上為各專業的核心定位，實務上業者服務範圍或有重疊。</p>
+  </div></div>
+</section>
+
+<!-- 05 四種角色：盲點 -->
+<section>
+  <div class="slide-wrap"><div class="slide-inner">
+    <p class="kicker">EACH HAS A BLIND SPOT ｜ 03</p>
+    <div class="rule"></div>
+    <h2>但各自，也都有先天的盲點</h2>
+    <div class="grid-4" style="margin-top:1.2em;">
+      <div class="card warn-top">
+        <p class="role-tag">A · Architect</p><h4>建築師事務所</h4>
+        <p class="pain">強於設計，弱於財務試算、營造監督與銷售去化；難以替地主把關「錢」與「賣」。</p>
+      </div>
+      <div class="card warn-top">
+        <p class="role-tag">B · Constr. Mgmt</p><h4>建經公司</h4>
+        <p class="pain">守得住金流，卻不主導設計品質與工程進度；只查核、不統籌。</p>
+      </div>
+      <div class="card warn-top">
+        <p class="role-tag">C · Contractor</p><h4>營造廠</h4>
+        <p class="pain">球員兼裁判──自己蓋、自己驗，住戶缺乏獨立第三方為品質與工期把關。</p>
+      </div>
+      <div class="card warn-top">
+        <p class="role-tag">D · Consultant</p><h4>都更顧問公司</h4>
+        <p class="pain">擅長整合送件，卻多半不碰工程監造與資金監管；報核後責任易斷點。</p>
+      </div>
+    </div>
+    <p class="note">本頁為產業常見結構性限制之分析，用以說明「單一專業」承接全案時的責任邊界。</p>
+  </div></div>
+</section>
+
+<!-- 06 共同的結構性問題 -->
+<section>
+  <div class="slide-wrap"><div class="slide-inner">
+    <p class="kicker">THE STRUCTURAL GAP ｜ 04</p>
+    <div class="rule"></div>
+    <h2>單一專業承接全案，會掉進四個縫</h2>
+    <div class="grid-2" style="margin-top:1.2em;gap:1.2em;">
+      <div class="card warn-top"><h4>介面斷點</h4><p class="small">設計、法規、營造、財務、銷售分屬不同廠商，接縫沒人負責，進度卡在「等對方」。</p></div>
+      <div class="card warn-top"><h4>責任推諉</h4><p class="small">工期延宕或鄰損發生時，廠商互指對方──住戶找不到一個扛全責的窗口。</p></div>
+      <div class="card warn-top"><h4>利益衝突</h4><p class="small">營造廠的利潤來自工程款、建商的利潤來自抽成；與「住戶利益最大化」天生不同向。</p></div>
+      <div class="card warn-top"><h4>資訊不對稱</h4><p class="small">住戶夾在多家廠商中間，看不懂合約與估價，談判籌碼被稀釋。</p></div>
+    </div>
+  </div></div>
+</section>
+
+<!-- 07 章節分隔：傑丞的答案 -->
+<section data-background-color="#064e3b">
+  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
+    <div class="divider-wrap">
+      <p class="divider-kicker" style="color:var(--brand-lg);">THE INTEGRATOR ｜ 05</p>
+      <h2 style="color:#fff;font-size:2.1em;line-height:1.3;">傑丞的答案：<br/>把全案，收斂成<span style="color:var(--brand-lg);">「一個窗口」</span></h2>
+      <p style="color:#d1fae5;font-size:.84em;line-height:1.75;margin-top:1.2em;max-width:680px;">
+        我們不只做其中一塊，而是以全案管理者（PCM）的角色，
+        把五種專業整合在同一張桌子上、同一份合約裡、同一個對地主負責的窗口下。
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- 08 傑丞整合五大職能 -->
+<section>
+  <div class="slide-wrap"><div class="slide-inner">
+    <p class="kicker">FIVE-IN-ONE ｜ 06</p>
+    <div class="rule"></div>
+    <h2>一個窗口，整合五大職能</h2>
+    <div class="grid-5" style="margin-top:1.3em;">
+      <div class="card top"><div class="idx">01</div><h4>法規都更</h4><p class="small">同意整合、容積獎勵、報核審議全程主導。</p></div>
+      <div class="card top"><div class="idx">02</div><h4>建築設計</h4><p class="small">與建築師協作，量體與分回價值最大化。</p></div>
+      <div class="card top"><div class="idx">03</div><h4>財務信託</h4><p class="small">100% 銀行融資、信託專戶、三方查核。</p></div>
+      <div class="card top"><div class="idx">04</div><h4>營造監造</h4><p class="small">獨立第三方監督施工品質與工期。</p></div>
+      <div class="card top"><div class="idx">05</div><h4>銷售去化</h4><p class="small">代銷遴選與退場機制，賣多少付多少。</p></div>
+    </div>
+    <p class="lead" style="margin-top:1.4em;">關鍵不在「五項都有」，而在於──<span class="em">由同一個對地主負責的窗口，把五項縫成一條線</span>。</p>
+  </div></div>
+</section>
+
+<!-- 09 傑丞的定位 -->
+<section>
+  <div class="slide-wrap"><div class="slide-inner">
+    <p class="kicker">WHOSE SIDE ｜ 07</p>
+    <div class="rule"></div>
+    <h2>而且，站在地主這一邊</h2>
+    <div class="grid-3" style="margin-top:1.2em;">
+      <div class="card-em">
+        <h4>僱傭關係，不是建商</h4>
+        <p class="small" style="color:#d1fae5;">傑丞是地主聘請的全案經理人，所有權、決策權、利潤全數歸地主，不從中抽取開發利潤。</p>
+      </div>
+      <div class="card top">
+        <h4>利潤留在地主手中</h4>
+        <p class="small">自主更新（更新會）模式，省下傳統合建中建商賺取的 <span class="em">20–30%</span> 開發利潤。</p>
+      </div>
+      <div class="card top">
+        <h4>零出資門檻</h4>
+        <p class="small">前期整合、估價、設計費由團隊無息墊付；銀行融資撥款前，地主可達「零出資」參與。</p>
+      </div>
+    </div>
+    <p class="note">數據引自傑丞延壽段都更案規劃；實際條件依各案估價與審議結果為準。</p>
+  </div></div>
+</section>
+
+<!-- 10 風險防火牆 -->
+<section>
+  <div class="slide-wrap"><div class="slide-inner">
+    <p class="kicker">THE FIREWALL ｜ 08</p>
+    <div class="rule"></div>
+    <h2>整合，才築得起完整的「防火牆」</h2>
+    <div class="flow">
+      <div class="step"><div class="n">01</div><h4>信託專款專用</h4><p class="small">資金入信託專戶，撥款前經建經三方查核：財務稽核、工程估驗、預售管帳。</p></div>
+      <div class="step"><div class="n">02</div><h4>產權風險隔絕</h4><p class="small">產權信託隔絕個別地主的債務、查封與繼承糾紛，工程不因個人因素停擺。</p></div>
+      <div class="step"><div class="n">03</div><h4>營造風險鎖定</h4><p class="small">以合約把延宕與鄰損責任鎖在營造廠，設逾期罰款補貼地主利息損失。</p></div>
+      <div class="step"><div class="n">04</div><h4>續建完工承諾</h4><p class="small">可導入建經完工承諾機制，中途異常時啟動續建，找新廠商接手蓋到好。</p></div>
+    </div>
+    <p class="lead" style="margin-top:1.3em;">這四道防火牆，<span class="em">沒有任何單一專業能獨力築成</span>──它需要法規、財務、營造、合約同時在場。</p>
+  </div></div>
+</section>
+
+<!-- 11 對比表 -->
+<section>
+  <div class="slide-wrap"><div class="slide-inner">
+    <p class="kicker">SIDE BY SIDE ｜ 09</p>
+    <div class="rule"></div>
+    <h2>單一專業外包 vs 傑丞整合全案</h2>
+    <table class="cmp">
+      <thead><tr><th>面向</th><th class="b">單一專業 / 多家外包</th><th class="c">傑丞 · 全案整合</th></tr></thead>
+      <tbody>
+        <tr><td>窗口</td><td>多家廠商，介面分散</td><td class="good">單一窗口，全程統籌</td></tr>
+        <tr><td>責任歸屬</td><td>出事易互相推諉</td><td class="good">一個對地主負責的總指揮</td></tr>
+        <tr><td>立場</td><td>各為自身利潤</td><td class="good">僱傭關係，利潤歸地主</td></tr>
+        <tr><td>資金監管</td><td>視廠商而定</td><td class="good">信託專款＋三方查核</td></tr>
+        <tr><td>工程把關</td><td>易球員兼裁判</td><td class="good">獨立第三方監造</td></tr>
+        <tr><td>地主負擔</td><td>常需自備前期費用</td><td class="good">前期墊付，零出資參與</td></tr>
+      </tbody>
+    </table>
+  </div></div>
+</section>
+
+<!-- 12 實證案例 延壽段 -->
+<section>
+  <div class="slide-wrap"><div class="slide-inner">
+    <p class="kicker">PROOF ｜ 10</p>
+    <div class="rule"></div>
+    <h2>實證｜傑丞・延壽段都更案</h2>
+    <div class="grid-4" style="margin-top:1em;">
+      <div class="card top"><div class="stat-num">80<span style="font-size:.4em;">%</span></div><p class="stat-cap">容積獎勵＋移轉上限</p></div>
+      <div class="card top"><div class="stat-num">20<span style="font-size:.4em;">層</span></div><p class="stat-cap">由 15 層躍升超高層 · 約 100 戶</p></div>
+      <div class="card top"><div class="stat-num">6.5<span style="font-size:.4em;">%</span></div><p class="stat-cap">全案管理費 · 服務約 8 年</p></div>
+      <div class="card top"><div class="stat-num">100<span style="font-size:.4em;">%</span></div><p class="stat-cap">銀行融資 · 地主零出資</p></div>
+    </div>
+    <p class="lead" style="margin-top:1.4em;">同一個案子裡，<span class="em">法規、設計、財務、營造、銷售由傑丞一條龍整合</span>，
+      省下建商 20–30% 利潤，前期費用由團隊墊付，住戶只需做一件事──做決定。</p>
+    <p class="note">資料引自傑丞延壽段都更說明會規劃內容；數據為規劃階段估算，實際以審議與估價結果為準。</p>
+  </div></div>
+</section>
+
+<!-- 13 結語 -->
+<section data-background-color="#1c1a17">
+  <div class="slide-wrap" style="height:100%;display:flex;align-items:center;">
+    <div style="max-width:840px;margin:0 auto;">
+      <p class="mono" style="color:var(--brand-lg);font-size:.64em;letter-spacing:.2em;margin-bottom:1.2em;">CONCLUSION</p>
+      <h2 style="color:#fff;font-size:2.1em;line-height:1.35;">專業，市場上人人都有一塊。<br/><span style="color:var(--brand-lg);">整合，唯有傑丞做得起來。</span></h2>
+      <p style="color:#a8a29e;font-size:.84em;line-height:1.75;margin-top:1.3em;max-width:680px;">
+        都更的風險，從來不在單點，而在接縫。把五種專業縫成一條線、收斂成一個對地主負責的窗口──
+        這就是傑丞全案管理的價值。
+      </p>
+      <p style="color:#78716c;font-size:.72em;margin-top:2.4em;">傑丞建築機構　Jieceng Architecture　｜　都更全案管理 PCM</p>
+    </div>
+  </div>
+</section>
+
+</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+<script>
+  Reveal.initialize({
+    hash: true,
+    slideNumber: 'c/t',
+    transition: 'fade',
+    transitionSpeed: 'slow',
+    controls: true,
+    progress: true,
+    center: false,
+    width: 1280,
+    height: 720,
+    margin: 0.04,
+  });
+</script>
+</body>
+</html>

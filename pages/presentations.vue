@@ -103,6 +103,18 @@ const withBase = (path) => `${base}${path}`.replace(/([^:]\/)\/+/g, '$1')
 
 const decks = [
   {
+    file: 'presentation-pcm.html',
+    code: 'PCM · Urban Renewal',
+    icon: '🏛️',
+    title: '都更全案管理',
+    version: '整合的力量 · 唯有傑丞',
+    description: '從住戶角度說清楚：建築師、建經、營造、都更顧問各有強項也各有盲點，唯有傑丞以全案管理整合五大專業、收斂成單一窗口，並以延壽段都更案實證。',
+    tags: ['全案管理', '整合優勢', '風險防火牆', '延壽段案例'],
+    bg: 'linear-gradient(135deg, #1c1a17 0%, #064e3b 60%, #047857 100%)',
+    tagBg: '#ecfdf5',
+    tagColor: '#064e3b',
+  },
+  {
     file: 'presentation.html',
     code: 'EEWH',
     icon: '🌿',
